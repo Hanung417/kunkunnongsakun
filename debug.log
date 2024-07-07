@@ -4631,3 +4631,89 @@ Not Found: /login/api/auth/check/
 Not Found: /login/api/auth/check/
 Not Found: /login/api/auth/check/
 Not Found: /login/api/auth/check/
+Watching for file changes with StatReloader
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Watching for file changes with StatReloader
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Not Found: /favicon.ico
+Not Found: /login/api/auth/check/
+Not Found: /login/api/auth/check/
+C:\Users\200778\Desktop\minju-git\be\login\views.py changed, reloading.
+Watching for file changes with StatReloader
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Not Found: /login/api/auth/check/
+Not Found: /login/api/auth/check/
+Internal Server Error: /login/login/
+C:\Users\200778\Desktop\minju-git\be\login\views.py changed, reloading.
+Watching for file changes with StatReloader
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Internal Server Error: /login/login/
+C:\Users\200778\Desktop\minju-git\be\login\views.py changed, reloading.
+Watching for file changes with StatReloader
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Internal Server Error: /login/login/
+C:\Users\200778\Desktop\minju-git\be\login\views.py changed, reloading.
+Watching for file changes with StatReloader
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Not Found: /login/api/auth/check/
+Not Found: /login/api/auth/check/

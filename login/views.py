@@ -16,7 +16,6 @@ from cryptography.fernet import Fernet
 from django.conf import settings
 from django.contrib.auth import logout
 
-
 logger = logging.getLogger(__name__)
 
 def signup(request):
@@ -37,7 +36,6 @@ def signup(request):
     else:
         return JsonResponse({'status': 'error', 'message': 'GET method not allowed'}, status=405)
 
-
 @require_GET
 def check_username(request):
     username = request.GET.get('username', None)
@@ -46,7 +44,6 @@ def check_username(request):
 
     is_taken = User.objects.filter(username=username).exists()
     return JsonResponse({'is_taken': is_taken})
-
 
 @csrf_exempt  # Use this decorator if you're handling CSRF tokens manually
 def login(request):
@@ -69,7 +66,13 @@ def login(request):
             
             if user is not None:
                 auth_login(request, user)
-                return JsonResponse({'status': 'success', 'message': 'User authenticated and logged in.'})
+                # 수정된 부분: 응답에 username과 is_authenticated 값을 포함
+                return JsonResponse({
+                    'status': 'success',
+                    'message': 'User authenticated and logged in.',
+                    'username': user.username,  # 추가된 부분
+                    'is_authenticated': user.is_authenticated  # 추가된 부분
+                })
             else:
                 return JsonResponse({'status': 'error', 'message': 'Invalid email or password'}, status=401)
         except User.DoesNotExist:
@@ -79,12 +82,7 @@ def login(request):
         except Exception as e:
             return JsonResponse({'status': 'error', 'message': f'An error occurred: {str(e)}'}, status=500)
     else:
-        # If the method is neither GET nor POST
         return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
-
-
-
-
 
 @csrf_exempt
 @require_POST
@@ -113,7 +111,6 @@ def send_verification_email(request):
     except Exception as e:
         logger.error(f"Error sending verification email: {e}")
         return JsonResponse({'message': 'An error occurred while sending the verification code.'}, status=500)
-
 
 def logout_view(request):
     logout(request)
