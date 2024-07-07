@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with GPT</title>
+</head>
+<body>
+    <h1>Chat with GPT</h1>
+    <form method="post" action="{% url 'selfchatbot:chatbot' %}">
+        {% csrf_token %}
+        <label for="question">Your Question:</label>
+        <input type="text" id="question" name="question" required>
+        <button type="submit">Ask</button>
+    </form>
+    <h2>Chat Logs</h2>
+    <ul>
+        {% for log in logs %}
+            <li>
+                <strong>Question:</strong> {{ log.question }} <br>
+                <strong>Answer:</strong> {{ log.answer }} <br>
+                <strong>Timestamp:</strong> {{ log.timestamp }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
