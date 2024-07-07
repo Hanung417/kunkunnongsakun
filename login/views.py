@@ -15,6 +15,7 @@ from .models import User
 from cryptography.fernet import Fernet
 from django.conf import settings
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 logger = logging.getLogger(__name__)
 
@@ -45,11 +46,13 @@ def check_username(request):
     is_taken = User.objects.filter(username=username).exists()
     return JsonResponse({'is_taken': is_taken})
 
-@csrf_exempt  # Use this decorator if you're handling CSRF tokens manually
+from django.views.decorators.csrf import ensure_csrf_cookie
+
+@csrf_exempt
+@require_POST
+@ensure_csrf_cookie  # Ensure CSRF cookie is sent to the client
 def login(request):
-    if request.method == 'GET':
-        return render(request, 'login.html')
-    elif request.method == 'POST':
+    if request.method == 'POST':
         try:
             if request.content_type == 'application/json':
                 data = json.loads(request.body.decode('utf-8'))
@@ -66,13 +69,15 @@ def login(request):
             
             if user is not None:
                 auth_login(request, user)
-                # 수정된 부분: 응답에 username과 is_authenticated 값을 포함
-                return JsonResponse({
+                response = JsonResponse({
                     'status': 'success',
                     'message': 'User authenticated and logged in.',
-                    'username': user.username,  # 추가된 부분
-                    'is_authenticated': user.is_authenticated  # 추가된 부분
+                    'username': user.username,  
+                    'user_id': user.id,  
+                    'is_authenticated': user.is_authenticated 
                 })
+                response.set_cookie('sessionid', request.session.session_key)
+                return response
             else:
                 return JsonResponse({'status': 'error', 'message': 'Invalid email or password'}, status=401)
         except User.DoesNotExist:
@@ -83,6 +88,7 @@ def login(request):
             return JsonResponse({'status': 'error', 'message': f'An error occurred: {str(e)}'}, status=500)
     else:
         return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+
 
 @csrf_exempt
 @require_POST
@@ -115,3 +121,13 @@ def send_verification_email(request):
 def logout_view(request):
     logout(request)
     return JsonResponse({'status': 'success', 'message': 'User logged out successfully'})
+
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+
+@login_required
+def auth_check(request):
+    return JsonResponse({
+        'is_authenticated': request.user.is_authenticated,
+        'username': request.user.username,
+    })

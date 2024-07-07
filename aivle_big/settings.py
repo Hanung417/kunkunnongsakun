@@ -31,36 +31,9 @@ INSTALLED_APPS = [
     "selfchatbot",
     'corsheaders', # cors 헤더 설정
     'rest_framework',
-    'rest_framework_simplejwt', # jwt 토큰 설정
-    'rest_framework_simplejwt.token_blacklist', # jwt 토큰 블랙리스트 설정
     
 ]
 
-# jwt 토큰 설정
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
-}
-
-
-from datetime import timedelta
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': SECRET_KEY,
-    'VERIFYING_KEY': None,
-    'AUTH_HEADER_TYPES': ('Bearer',),
-    'USER_ID_FIELD': 'id',
-    'USER_ID_CLAIM': 'user_id',
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    'TOKEN_TYPE_CLAIM': 'token_type',
-}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -107,8 +80,8 @@ SESSION_COOKIE_AGE = 1209600  # 2주
 SESSION_SAVE_EVERY_REQUEST = True  # 매 요청마다 세션 갱신
 
 # 쿠키 보안 설정
-SESSION_COOKIE_SECURE = False  # 개발 시에는 False로 설정, 배포 시에는 True로 설정
-CSRF_COOKIE_SECURE = False  # 개발 시에는 False로 설정, 배포 시에는 True로 설정
+SESSION_COOKIE_SECURE = True  # 개발 시에는 False로 설정, 배포 시에는 True로 설정
+CSRF_COOKIE_SECURE = True  # 개발 시에는 False로 설정, 배포 시에는 True로 설정
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 from decouple import config
