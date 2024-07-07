@@ -92,34 +92,33 @@ const LoginTemplate = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { email, password } = formData;
+ const handleSubmit = (e) => {
+  e.preventDefault();
+  const { email, password } = formData;
 
-    axios.post('http://localhost:8000/login/login/', { email, password })
-      .then((response) => {
-        const { status, message, access, refresh, user_id } = response.data;
-        if (status === "success") {
-          // 사용자 정보를 로컬 스토리지에 저장
-          localStorage.setItem("accessToken", access);
-          localStorage.setItem("refreshToken", refresh);
-          localStorage.setItem("userId", user_id);
-          // 로그인 후의 동작을 정의, 예: 리다이렉트
-          navigate('/');
-        } else {
-          setLoginError(message);
-        }
-      })
-      .catch((error) => {
-        if (error.response) {
-          const { data } = error.response;
-          setEmailError(data.email ? data.email[0] : "");
-          setPasswordError(data.password ? data.password[0] : "");
-        } else {
-          setLoginError("An error occurred during login.");
-        }
-      });
-  };
+  axios.post('http://localhost:8000/login/login/', { email, password }, { withCredentials: true })
+    .then((response) => {
+      const { status, message, user_id } = response.data;
+      if (status === "success") {
+        // 사용자 정보를 로컬 스토리지에 저장
+        localStorage.setItem("userId", user_id);
+        // 로그인 후의 동작을 정의, 예: 리다이렉트
+        navigate('/');
+      } else {
+        setLoginError(message);
+      }
+    })
+    .catch((error) => {
+      if (error.response) {
+        const { data } = error.response;
+        setEmailError(data.email ? data.email[0] : "");
+        setPasswordError(data.password ? data.password[0] : "");
+      } else {
+        setLoginError("An error occurred during login.");
+      }
+    });
+};
+
 
   return (
     <Container>

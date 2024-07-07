@@ -1,3 +1,4 @@
+// src/components/TopBar.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -40,21 +41,27 @@ const TopBarButton = styled.button`
   cursor: pointer;
 `;
 
+const UsernameText = styled.span`
+  font-size: 16px;
+  margin-right: 10px;
+`;
+
 const TopBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await instance.get("login/api/auth/check/");
+        const response = await instance.get('/login/auth/status/');
         if (response.data.is_authenticated) {
           setIsLoggedIn(true);
+          setUsername(response.data.username);
         } else {
           setIsLoggedIn(false);
         }
       } catch (error) {
-        setIsLoggedIn(false);
         console.error("Failed to check auth status:", error);
       }
     };
@@ -64,8 +71,9 @@ const TopBar = () => {
 
   const handleLogout = async () => {
     try {
-      await instance.post("login/logout/");
+      await instance.post('/login/logout/');
       setIsLoggedIn(false);
+      setUsername("");
       navigate("/login");
     } catch (error) {
       console.error("Failed to logout:", error);
@@ -77,7 +85,10 @@ const TopBar = () => {
       <Logo>ㅇㅇ 서비스</Logo>
       <RightSection>
         {isLoggedIn ? (
-          <TopBarButton onClick={handleLogout}>로그아웃</TopBarButton>
+          <>
+            <UsernameText>{username}님</UsernameText>
+            <TopBarButton onClick={handleLogout}>로그아웃</TopBarButton>
+          </>
         ) : (
           <TopBarButton onClick={() => navigate("/login")}>로그인</TopBarButton>
         )}
