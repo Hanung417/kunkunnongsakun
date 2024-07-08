@@ -12,7 +12,7 @@ from django.urls import reverse
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-from rest_framework_simplejwt.authentication import JWTAuthentication
+from django.contrib.auth.decorators import login_required
 
 logger = logging.getLogger(__name__)
 
@@ -28,15 +28,8 @@ qa_chain = ConversationalRetrievalChain.from_llm(
     memory=memory
 )
 
-def get_user_from_token(request):
-    jwt_auth = JWTAuthentication()
-    header = jwt_auth.get_header(request)
-    raw_token = jwt_auth.get_raw_token(header)
-    validated_token = jwt_auth.get_validated_token(raw_token)
-    user = jwt_auth.get_user(validated_token)
-    return user
-
 @csrf_exempt
+@login_required
 def chatbot(request):
     if request.method == "POST":
         try:
@@ -44,38 +37,34 @@ def chatbot(request):
             query = data.get('question')
             session_id = data.get('session_id')
             if query and session_id:
+                user = request.user
+                user_id = user.id
+
                 try:
-                    user = get_user_from_token(request)
-                    user_id = user.id if user else None
-
-                    try:
-                        chat_history = memory.load()
-                    except Exception as e:
-                        logger.error(f"Error loading memory: {e}")
-                        chat_history = []
-
-                    result = qa_chain({"question": query, "chat_history": chat_history})
-                    answer = result['answer']
-
-                    timestamp = timezone.now()
-
-                    Chatbot.objects.create(
-                        user_id=user_id,
-                        session_id=session_id,
-                        question_content=query,
-                        answer_content=answer,
-                        created_at=timestamp
-                    )
-
-                    return JsonResponse({
-                        'question': query,
-                        'answer': answer,
-                        'timestamp': timestamp
-                    })
-
+                    chat_history = memory.load()
                 except Exception as e:
-                    logger.error(f"Error during chat processing: {e}")
-                    return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+                    logger.error(f"Error loading memory: {e}")
+                    chat_history = []
+
+                result = qa_chain({"question": query, "chat_history": chat_history})
+                answer = result['answer']
+
+                timestamp = timezone.now()
+
+                Chatbot.objects.create(
+                    user_id=user_id,
+                    session_id=session_id,
+                    question_content=query,
+                    answer_content=answer,
+                    created_at=timestamp
+                )
+
+                return JsonResponse({
+                    'question': query,
+                    'answer': answer,
+                    'timestamp': timestamp
+                })
+
             else:
                 logger.warning("No question or session_id provided.")
                 return JsonResponse({'status': 'error', 'message': 'No question or session_id provided'}, status=400)
@@ -84,15 +73,15 @@ def chatbot(request):
 
     return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
 
+@login_required
 def chat_sessions(request):
-    user = get_user_from_token(request)
-    user_id = user.id if user else None
+    user_id = request.user.id
     sessions = Chatbot.objects.filter(user_id=user_id).values('session_id').distinct()
     return JsonResponse(list(sessions), safe=False)
 
+@login_required
 def chat_history(request, session_id):
-    user = get_user_from_token(request)
-    user_id = user.id if user else None
+    user_id = request.user.id
     chats = Chatbot.objects.filter(user_id=user_id, session_id=session_id).order_by('created_at')
     chat_data = [
         {
@@ -106,6 +95,7 @@ def chat_history(request, session_id):
 def error_page(request):
     return render(request, 'error_page.html')
 
+@login_required
 def chat_clear_logs(request):
     if request.method == 'POST':
         Chatbot.objects.filter(session_id=request.session.session_key).delete()

@@ -5062,3 +5062,74 @@ Starting component SegmentAPI
 Collection langchain is not created.
 Starting new HTTPS connection (1): us-api.i.posthog.com:443
 https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Watching for file changes with StatReloader
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Internal Server Error: /selfchatbot/chat_sessions/
+Traceback (most recent call last):
+  File "C:\Users\200778\AppData\Local\anaconda3\envs\env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\200778\AppData\Local\anaconda3\envs\env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\200778\Desktop\minju-git\be\selfchatbot\views.py", line 88, in chat_sessions
+    user = get_user_from_token(request)
+  File "C:\Users\200778\Desktop\minju-git\be\selfchatbot\views.py", line 35, in get_user_from_token
+    validated_token = jwt_auth.get_validated_token(raw_token)
+  File "C:\Users\200778\AppData\Local\anaconda3\envs\env\lib\site-packages\rest_framework_simplejwt\authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is invalid or expired', code='token_not_valid')}]}
+Internal Server Error: /selfchatbot/chat_sessions/
+Traceback (most recent call last):
+  File "C:\Users\200778\AppData\Local\anaconda3\envs\env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\200778\AppData\Local\anaconda3\envs\env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\200778\Desktop\minju-git\be\selfchatbot\views.py", line 88, in chat_sessions
+    user = get_user_from_token(request)
+  File "C:\Users\200778\Desktop\minju-git\be\selfchatbot\views.py", line 35, in get_user_from_token
+    validated_token = jwt_auth.get_validated_token(raw_token)
+  File "C:\Users\200778\AppData\Local\anaconda3\envs\env\lib\site-packages\rest_framework_simplejwt\authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is invalid or expired', code='token_not_valid')}]}
+C:\Users\200778\Desktop\minju-git\be\selfchatbot\views.py changed, reloading.
+Watching for file changes with StatReloader
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Not Found: /login/auth/status/
+Not Found: /login/auth/status/
+Not Found: /auth_check/
+Not Found: /auth_check/
+Not Found: /auth_check/
+Forbidden (CSRF token missing.): /login/logout/
+C:\Users\200778\Desktop\minju-git\be\login\views.py changed, reloading.
+Watching for file changes with StatReloader
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Forbidden (CSRF token missing.): /login/logout/

@@ -117,7 +117,7 @@ def send_verification_email(request):
     except Exception as e:
         logger.error(f"Error sending verification email: {e}")
         return JsonResponse({'message': 'An error occurred while sending the verification code.'}, status=500)
-
+@csrf_exempt
 def logout_view(request):
     logout(request)
     return JsonResponse({'status': 'success', 'message': 'User logged out successfully'})
