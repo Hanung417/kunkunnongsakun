@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -74,6 +74,16 @@ const ErrorMessage = styled.div`
   color: red;
   font-size: 12px;
   margin-top: 4px;
+`;
+
+const ResetLink = styled.div`
+  margin-top: 16px;
+  font-size: 14px;
+  color: #2faa9a;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const LoginTemplate = () => {
@@ -153,6 +163,9 @@ const LoginTemplate = () => {
         </InputGroup>
         {loginError && <ErrorMessage>{loginError}</ErrorMessage>}
         <Button type="submit">로그인</Button>
+        <ResetLink>
+          <Link to="/password_reset">비밀번호 재설정</Link>
+        </ResetLink>
       </Form>
     </Container>
   );

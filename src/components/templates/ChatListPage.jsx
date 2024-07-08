@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
-import { fetchChatSessions } from '../../apis/chat';
+import { fetchChatSessions, deleteChatSession } from '../../apis/chat';
+import Modal from 'react-modal';
+import { FaTrash } from 'react-icons/fa';
 
 const Container = styled.div`
   display: flex;
@@ -33,6 +35,9 @@ const ChatList = styled.ul`
 `;
 
 const ChatListItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 8px 12px;
   border-radius: 4px;
   margin-bottom: 12px;
@@ -56,8 +61,36 @@ const Button = styled.button`
   }
 `;
 
+const DeleteButton = styled.button`
+  background: none;
+  border: none;
+  color: #e53e3e;
+  cursor: pointer;
+  font-size: 18px;
+  &:hover {
+    color: #c53030;
+  }
+`;
+
+const NewChatButton = styled(Button)`
+  margin-top: 20px;
+`;
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
 const ChatListPage = () => {
   const [chatSessions, setChatSessions] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newSessionName, setNewSessionName] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -74,14 +107,30 @@ const ChatListPage = () => {
   }, []);
 
   const startNewChat = () => {
-    const newSessionId = uuidv4();
-    localStorage.setItem('sessionId', newSessionId);
-    navigate(`/chat/${newSessionId}`);
+    setIsModalOpen(true);
   };
 
-  const openChat = (sessionId) => {
+  const handleNewChatSubmit = () => {
+    const newSessionId = uuidv4();
+    localStorage.setItem('sessionId', newSessionId);
+    localStorage.setItem('sessionName', newSessionName);
+    setIsModalOpen(false);
+    navigate(`/chat/${newSessionId}?session_name=${encodeURIComponent(newSessionName)}`);
+  };
+
+  const openChat = (sessionId, sessionName) => {
     localStorage.setItem('sessionId', sessionId);
-    navigate(`/chat/${sessionId}`);
+    localStorage.setItem('sessionName', sessionName);
+    navigate(`/chat/${sessionId}?session_name=${encodeURIComponent(sessionName)}`);
+  };
+
+  const deleteSession = async (sessionId) => {
+    try {
+      await deleteChatSession(sessionId);
+      setChatSessions(chatSessions.filter(session => session.session_id !== sessionId));
+    } catch (error) {
+      console.error('Error deleting chat session:', error);
+    }
   };
 
   return (
@@ -89,12 +138,33 @@ const ChatListPage = () => {
       <Title>대화 목록</Title>
       <ChatList>
         {chatSessions.map(session => (
-          <ChatListItem key={session.session_id} onClick={() => openChat(session.session_id)}>
-            {session.session_id}
+          <ChatListItem key={session.session_id}>
+            <span onClick={() => openChat(session.session_id, session.session_name)}>
+              {session.session_name || session.session_id}
+            </span>
+            <DeleteButton onClick={() => deleteSession(session.session_id)}>
+              <FaTrash />
+            </DeleteButton>
           </ChatListItem>
         ))}
       </ChatList>
-      <Button onClick={startNewChat}>새 대화 생성</Button>
+      <NewChatButton onClick={startNewChat}>새 대화 생성</NewChatButton>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        style={customStyles}
+        contentLabel="새 대화 생성"
+      >
+        <h2>새 대화 생성</h2>
+        <input
+          type="text"
+          value={newSessionName}
+          onChange={(e) => setNewSessionName(e.target.value)}
+          placeholder="대화 제목"
+          required
+        />
+        <Button onClick={handleNewChatSubmit}>생성</Button>
+      </Modal>
     </Container>
   );
 };

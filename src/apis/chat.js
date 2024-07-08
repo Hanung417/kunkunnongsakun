@@ -1,33 +1,59 @@
-import { instance } from "./instance";
+// chat.js
+import axios from 'axios';
 
-// Fetch chat sessions
-export const fetchChatSessions = () => {
-  return instance.get('selfchatbot/chat_sessions/', {
-    headers: {
-      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+const baseURL = 'http://localhost:8000';
+
+export const fetchChatSessions = async () => {
+    try {
+        const response = await axios.get(`${baseURL}/selfchatbot/chat_sessions/`, {
+            withCredentials: true,
+        });
+        return response;
+    } catch (error) {
+        console.error('Error fetching chat sessions:', error);
+        throw error;
     }
-  });
 };
 
-// Fetch chat history for a session
-export const fetchChatHistory = (sessionId) => {
-  return instance.get(`selfchatbot/chat_history/${sessionId}/`, {
-    headers: {
-      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+export const fetchChatHistory = async (sessionId) => {
+    try {
+        const response = await axios.get(`${baseURL}/selfchatbot/chat_history/${sessionId}/`, {
+            withCredentials: true,
+        });
+        return response;
+    } catch (error) {
+        console.error('Error fetching chat history:', error);
+        throw error;
     }
-  });
 };
 
-// Send a chat message
-export const sendChatMessage = (messageData) => {
-  return instance.post('selfchatbot/chatbot/', messageData, {
-    headers: {
-      'X-CSRFToken': getCookie('csrftoken'),
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+export const sendChatMessage = async (messageData) => {
+    try {
+        const response = await axios.post(`${baseURL}/selfchatbot/chatbot/`, messageData, {
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response;
+    } catch (error) {
+        console.error('Error sending chat message:', error);
+        throw error;
     }
-  });
 };
+
+export const deleteChatSession = async (sessionId) => {
+    try {
+        const response = await axios.delete(`${baseURL}/selfchatbot/delete_session/${sessionId}/`, {
+            withCredentials: true,
+        });
+        return response;
+    } catch (error) {
+        console.error('Error deleting chat session:', error);
+        throw error;
+    }
+};
+
 
 const getCookie = (name) => {
   let cookieValue = null;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { fetchChatHistory, sendChatMessage } from '../../apis/chat';
 
 const Container = styled.div`
@@ -80,31 +80,32 @@ const Button = styled.button`
 
 const ChatPage = () => {
   const { sessionid } = useParams();
+  const location = useLocation();
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [sessionId, setSessionId] = useState(sessionid);
 
+  const params = new URLSearchParams(location.search);
+  const sessionName = params.get('session_name');
+
   useEffect(() => {
     localStorage.setItem('sessionId', sessionId);
+    localStorage.setItem('sessionName', sessionName);
     const fetchHistory = async () => {
       try {
         const response = await fetchChatHistory(sessionId);
-        setMessages(response.data.map(chat => ({
-          isUser: true,
-          text: chat.question,
-          timestamp: chat.timestamp
-        })).concat(response.data.map(chat => ({
-          isUser: false,
-          text: chat.answer,
-          timestamp: chat.timestamp
-        }))));
+        const orderedMessages = response.data.flatMap(chat => [
+          { isUser: true, text: chat.question, timestamp: chat.timestamp },
+          { isUser: false, text: chat.answer, timestamp: chat.timestamp }
+        ]);
+        setMessages(orderedMessages);
       } catch (error) {
         console.error('Error fetching chat history:', error);
       }
     };
 
     fetchHistory();
-  }, [sessionId]);
+  }, [sessionId, sessionName]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -115,7 +116,7 @@ const ChatPage = () => {
     };
     setMessages([...messages, userMessage]);
 
-    const messageData = { question: inputValue, session_id: sessionId, user_id: localStorage.getItem('userId') };
+    const messageData = { question: inputValue, session_id: sessionId, session_name: sessionName, user_id: localStorage.getItem('userId') };
 
     try {
       const response = await sendChatMessage(messageData);
@@ -139,7 +140,7 @@ const ChatPage = () => {
 
   return (
     <Container>
-      <Title>농업 GPT</Title>
+      <Title>{sessionName || '농업 GPT'}</Title>
       <ChatBox>
         <MessageList>
           {messages.map((msg, index) => (

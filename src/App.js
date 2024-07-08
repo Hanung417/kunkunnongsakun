@@ -13,6 +13,8 @@ import LoginTemplate from "./components/templates/LoginTemplate";
 import ChatPage from "./components/templates/ChatPage";
 import ChatListPage from "./components/templates/ChatListPage";
 import AuthCheck from "./components/templates/Authcheck";
+import PasswordResetTemplate from "./components/templates/PasswordResetTemplate";
+import MyPageTemplate from "./components/templates/MyPageTemplate";
 
 function App() {
 
@@ -22,6 +24,7 @@ function App() {
         <Route path="/auth" element={<AuthCheck />}/>
         <Route path="/signup" element={<SignupTemplate />} />
         <Route path="/login" element={<LoginTemplate />} />
+        <Route path="/password_reset" element={<PasswordResetTemplate />} />
         <Route element={<MainLayout/>}>
           <Route path="/" element={<MainPage />} />
           <Route path="board" element={<BoardPage />} />
@@ -32,6 +35,7 @@ function App() {
           <Route path="post/create" element={<WritePostPage />} />
           <Route path="chatlist" element={<ChatListPage />} />
           <Route path={"chat/:sessionid"} element={<ChatPage />} />
+          <Route path="/profile" element={<MyPageTemplate />} />
         </Route>
       </Routes>
     </BrowserRouter>
