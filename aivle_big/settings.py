@@ -77,7 +77,7 @@ CSRF_COOKIE_SAMESITE = None
 # 세션 설정
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 기본 DB 기반 세션 저장
 SESSION_COOKIE_AGE = 1209600  # 2주
-SESSION_SAVE_EVERY_REQUEST = True  # 매 요청마다 세션 갱신
+#SESSION_SAVE_EVERY_REQUEST = True  # 매 요청마다 세션 갱신
 
 # 쿠키 보안 설정
 SESSION_COOKIE_SECURE = True  # 개발 시에는 False로 설정, 배포 시에는 True로 설정

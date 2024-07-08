@@ -125,9 +125,42 @@ def logout_view(request):
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 
-@login_required
+#@login_required
 def auth_check(request):
     return JsonResponse({
         'is_authenticated': request.user.is_authenticated,
         'username': request.user.username,
     })
+
+# 비밀번호 변경 API 
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+
+
+@csrf_exempt
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        form = PasswordChangeForm(user=request.user, data=data)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # 중요한 부분, 사용자가 로그아웃되지 않도록 세션을 업데이트합니다.
+            return JsonResponse({'status': 'success', 'message': 'Password changed successfully'})
+        else:
+            return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+    
+@csrf_exempt
+@login_required
+def delete_account(request):
+    if request.method == 'POST':
+        try:
+            user = request.user
+            user.delete()
+            return JsonResponse({'status': 'success', 'message': 'Account deleted successfully'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': f'An error occurred: {str(e)}'}, status=500)
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
