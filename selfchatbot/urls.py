@@ -9,4 +9,5 @@ urlpatterns = [
     path('error/', views.error_page, name='error_page'),
     path('chat_sessions/', views.chat_sessions, name='chat_sessions'),
     path('chat_history/<str:session_id>/', views.chat_history, name='chat_history'),
+    path('delete_session/<str:session_id>/', views.delete_session, name='delete_session'),
 ]

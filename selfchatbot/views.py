@@ -36,6 +36,7 @@ def chatbot(request):
             data = json.loads(request.body)
             query = data.get('question')
             session_id = data.get('session_id')
+            session_name = data.get('session_name')
             if query and session_id:
                 user = request.user
                 user_id = user.id
@@ -54,6 +55,7 @@ def chatbot(request):
                 Chatbot.objects.create(
                     user_id=user_id,
                     session_id=session_id,
+                    session_name=session_name,
                     question_content=query,
                     answer_content=answer,
                     created_at=timestamp
@@ -76,18 +78,22 @@ def chatbot(request):
 @login_required
 def chat_sessions(request):
     user_id = request.user.id
-    sessions = Chatbot.objects.filter(user_id=user_id).values('session_id').distinct()
+    sessions = Chatbot.objects.filter(user_id=user_id).values('session_id', 'session_name').distinct()
     return JsonResponse(list(sessions), safe=False)
 
 @login_required
 def chat_history(request, session_id):
     user_id = request.user.id
+    # session_name을 쿼리 파라미터로 받음
+    session_name = request.GET.get('session_name', '')
+    # session_id로 필터링
     chats = Chatbot.objects.filter(user_id=user_id, session_id=session_id).order_by('created_at')
     chat_data = [
         {
             'question': chat.question_content,
             'answer': chat.answer_content,
-            'timestamp': chat.created_at
+            'timestamp': chat.created_at,
+            'session_name': chat.session_name  # session_name을 포함
         }
     for chat in chats]
     return JsonResponse(chat_data, safe=False)
@@ -102,3 +108,12 @@ def chat_clear_logs(request):
         return redirect('selfchatbot:chat_page')
     else:
         return HttpResponse(status=405)
+
+@csrf_exempt
+@login_required
+def delete_session(request, session_id):
+    if request.method == 'DELETE':
+        Chatbot.objects.filter(session_id=session_id).delete()
+        return JsonResponse({'status': 'success', 'message': 'Chat session deleted successfully'})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
