@@ -103,6 +103,7 @@ const LoginTemplate = () => {
         // 사용자 정보를 로컬 스토리지에 저장
         localStorage.setItem("userId", user_id);
         // 로그인 후의 동작을 정의, 예: 리다이렉트
+        alert("로그인이 완료되었습니다.");
         navigate('/');
       } else {
         setLoginError(message);

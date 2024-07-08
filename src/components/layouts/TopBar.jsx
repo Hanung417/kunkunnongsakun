@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
+import axios from "axios"; // axios 사용
 
 const TopBars = styled.nav`
   display: flex;
@@ -45,6 +45,21 @@ const UsernameText = styled.span`
   margin-right: 10px;
 `;
 
+const getCookie = (name) => {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith(name + "=")) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+};
+
 const TopBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
@@ -69,11 +84,22 @@ const TopBar = () => {
   }, []);
 
   const handleLogout = async () => {
+    const csrftoken = getCookie('csrftoken');
     try {
-      await axios.post('http://localhost:8000/login/logout/', {}, { withCredentials: true });
+      await axios.post(
+        'http://localhost:8000/login/logout/',
+        {},
+        {
+          headers: {
+            'X-CSRFToken': csrftoken
+          },
+          withCredentials: true
+        }
+      );
       setIsLoggedIn(false);
       setUsername("");
-      navigate("/login");
+      alert("로그아웃이 완료되었습니다.");
+      navigate("/");
     } catch (error) {
       console.error("Failed to logout:", error);
     }
