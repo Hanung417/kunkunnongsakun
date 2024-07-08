@@ -97,7 +97,9 @@ const ChatListPage = () => {
     const fetchSessions = async () => {
       try {
         const response = await fetchChatSessions();
-        setChatSessions(response.data);
+        // session_id가 null이 아닌 경우에만 세션을 추가하도록 필터링
+        const filteredSessions = response.data.filter(session => session.session_id !== null);
+        setChatSessions(filteredSessions);
       } catch (error) {
         console.error('Error fetching chat sessions:', error);
       }
