@@ -1,8 +1,7 @@
-// src/components/TopBar.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { instance } from "../../apis/instance";
+import axios from "axios"; // axios 사용
 
 const TopBars = styled.nav`
   display: flex;
@@ -54,7 +53,7 @@ const TopBar = () => {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await instance.get('/login/auth/status/');
+        const response = await axios.get('http://localhost:8000/login/auth_check/', { withCredentials: true });
         if (response.data.is_authenticated) {
           setIsLoggedIn(true);
           setUsername(response.data.username);
@@ -71,7 +70,7 @@ const TopBar = () => {
 
   const handleLogout = async () => {
     try {
-      await instance.post('/login/logout/');
+      await axios.post('http://localhost:8000/login/logout/', {}, { withCredentials: true });
       setIsLoggedIn(false);
       setUsername("");
       navigate("/login");
