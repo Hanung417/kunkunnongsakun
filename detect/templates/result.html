@@ -1,0 +1,23 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pest Detection Result</title>
+</head>
+<body>
+    <h1>Detection Result</h1>
+    {% if pest_name %}
+        <div>
+            <h2>Detected Pest: {{ pest_name }}</h2>
+            <p><strong>Threat Level:</strong> {{ threat_level }}</p>
+            <p><strong>Prevention Methods:</strong> {{ prevention_methods }}</p>
+            <p><strong>Confidence:</strong> {{ confidence }}%</p>
+            <img src="{{ image_url }}" alt="Detected Pest Image" style="max-width: 500px;">
+        </div>
+    {% else %}
+        <p>No pest detected or there was an error in processing. Please try another image.</p>
+    {% endif %}
+    <a href="{% url 'upload_image' %}">Try another image</a>
+</body>
+</html>
