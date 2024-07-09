@@ -10,8 +10,8 @@ from django.views.decorators.csrf import csrf_exempt
 logger = logging.getLogger(__name__)
 
 def post_list(request):
-    if request.method == 'GET':
-        return render(request, 'post_list.html')
+    # if request.method == 'GET':
+    #     return render(request, 'post_list.html')
     post_type = request.GET.get('post_type')
     if post_type:
         posts = Post.objects.filter(post_type=post_type).values('id', 'title', 'content', 'user_id', 'creation_date')
