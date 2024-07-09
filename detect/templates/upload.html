@@ -5,11 +5,12 @@
     <title>Upload Image for Pest Detection</title>
 </head>
 <body>
-    <h1>Upload an Image</h1>
+    <h1>Upload Image for Pest Detection</h1>
     <form action="{% url 'upload_image' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="file" name="image" required>
-        <button type="submit">Detect</button>
+        <label for="image">Select image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <button type="submit">Upload</button>
     </form>
 </body>
 </html>
