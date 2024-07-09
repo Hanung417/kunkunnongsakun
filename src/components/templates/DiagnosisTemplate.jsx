@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
 import { AiOutlineBell } from 'react-icons/ai';
+import axios from 'axios';
 
 const PageContainer = styled.div`
   display: flex;
@@ -9,19 +10,19 @@ const PageContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 100vh;
-  background-color: #f0f0f0; /* 배경색을 변경할 수 있습니다 */
-  font-size: 2rem; /* 글꼴 크기 설정 */
+  background-color: #f0f0f0;
+  font-size: 2rem;
 `;
 
 const HeaderContainer = styled.div`
   width: 100%;
-  background-color: #a5d6a7; /* 연한 초록색 배경 */
+  background-color: #a5d6a7;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative; /* 아이콘 컨테이너 위치를 위해 추가 */
+  position: relative;
 `;
 
 const Title = styled.h1`
@@ -71,35 +72,74 @@ const ResultContainer = styled.div`
   color: #333;
 `;
 
+const DiagnoseButton = styled.button`
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;
+
 const DiagnosisTemplate = () => {
   const [image, setImage] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [result, setResult] = useState("");
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      setImage(reader.result);
-      // 병해충 여부 확인 API 호출 및 결과 설정
-      checkPestDisease(reader.result);
-    };
-
-    reader.readAsDataURL(file);
+    setImage(URL.createObjectURL(file));
+    setSelectedFile(file); // 파일 저장
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
-  const checkPestDisease = (imageData) => {
-    // 여기에 병해충 여부 확인 API 호출 코드를 추가하세요.
-    // 예시: setResult("Pests and diseases detected.");
-    // 실제 API를 사용하여 응답을 처리하고 결과를 설정합니다.
-    setResult("Diagnosing for pests and diseases...");
+  const getCSRFToken = () => {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, 10) === 'csrftoken=') {
+          cookieValue = decodeURIComponent(cookie.substring(10));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  };
 
-    // 예시로 일정 시간 후에 결과를 설정
-    setTimeout(() => {
-      setResult("No pests or diseases detected."); // 예시 결과
-    }, 2000);
+  const handleDiagnose = async () => {
+    if (!selectedFile) {
+      setResult('Please upload an image first.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('image', selectedFile);
+
+    const csrfToken = getCSRFToken();
+
+    try {
+      const response = await axios.post('http://localhost:8000/upload/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'X-CSRFToken': csrfToken,
+        },
+        withCredentials: true,
+      });
+      console.log(formData);
+      setResult(response.data.result);
+    } catch (error) {
+      console.error('Failed to upload image', error);
+      setResult('Error in diagnosing the image.');
+    }
   };
 
   return (
@@ -119,6 +159,7 @@ const DiagnosisTemplate = () => {
             <p>Drag & drop a photo here, or click to select one</p>
           )}
         </UploadContainer>
+        <DiagnoseButton onClick={handleDiagnose}>Diagnose</DiagnoseButton>
         {result && <ResultContainer>{result}</ResultContainer>}
       </Content>
     </PageContainer>
