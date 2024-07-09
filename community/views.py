@@ -10,7 +10,11 @@ from django.views.decorators.csrf import csrf_exempt
 logger = logging.getLogger(__name__)
 
 def post_list(request):
-    posts = Post.objects.all().values('id', 'title', 'content', 'user_id', 'creation_date')
+    post_type = request.GET.get('post_type')
+    if post_type:
+        posts = Post.objects.filter(post_type=post_type).values('id', 'title', 'content', 'user_id', 'creation_date')
+    else:
+        posts = Post.objects.all().values('id', 'title', 'content', 'user_id', 'creation_date')
     return JsonResponse(list(posts), safe=False)
 
 def post_detail(request, post_id):
@@ -26,6 +30,7 @@ def post_detail(request, post_id):
     }
     return JsonResponse(post_data)
 
+@csrf_exempt
 @login_required
 def post_create(request):
     if request.method == 'POST':
@@ -34,6 +39,7 @@ def post_create(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
+            post.post_type = data.get('post_type')
             post.save()
             return JsonResponse({'id': post.pk, 'status': 'success'}, status=201)
         else:
