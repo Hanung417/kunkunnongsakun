@@ -101,8 +101,24 @@ const WritePostTemplate = () => {
     setPostType(event.target.value);
   };
 
+  const getCSRFToken = () => {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, 10) === 'csrftoken=') {
+          cookieValue = decodeURIComponent(cookie.substring(10));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const csrfToken = getCSRFToken();
     try {
       const response = await axios.post(
         "http://localhost:8000/community/post/create/",
@@ -114,7 +130,9 @@ const WritePostTemplate = () => {
         {
           headers: {
             "Content-Type": "application/json",
+            "X-CSRFToken": csrfToken, // Add CSRF token
           },
+          withCredentials: true, // Include credentials (cookies)
         }
       );
       alert("글 작성 성공");
