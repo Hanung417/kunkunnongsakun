@@ -1,0 +1,33 @@
+<!-- templates/session_history.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Session History</title>
+</head>
+<body>
+    <h1>Session History</h1>
+    {% if prediction_history %}
+        <ul>
+        {% for session in prediction_history %}
+            <li>
+                <p><strong>Date:</strong> {{ session.timestamp }}</p>
+                <p><strong>Total Income:</strong> {{ session.total_income }}</p>
+                <ul>
+                {% for result in session.results %}
+                    <li>
+                        <p><strong>Crop Name:</strong> {{ result.crop_name }}</p>
+                        <p><strong>Latest Year:</strong> {{ result.latest_year }}</p>
+                        <p><strong>Adjusted Data:</strong> {{ result.adjusted_data }}</p>
+                        <p><strong>Predicted Price:</strong> {{ result.price }}</p>
+                    </li>
+                {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No prediction history found.</p>
+    {% endif %}
+</body>
+</html>

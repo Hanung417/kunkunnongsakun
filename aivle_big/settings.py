@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "selfchatbot",
     'corsheaders', # cors 헤더 설정
     'rest_framework',
+    'prediction', # predict 병합
     
 ]
 

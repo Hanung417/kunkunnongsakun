@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+{% load humanize %}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>예측 소득 결과</title>
+</head>
+<body>
+    {% load humanize %}
+    <h1>예측 소득 결과</h1>
+    <ul>
+        {% for result in results %}
+            <li>
+                <strong>{{ result.crop_name }}</strong>
+                <ul>
+                    {% for key, value in result.adjusted_data.items %}
+                        {% if key != '작물명' and key != '시점'%}
+                            <li>{{ key }}: {{ value|floatformat:0|intcomma }}</li>
+                        {% endif %}
+                    {% endfor %}
+                    <li>예측 시세 결과{{ result.price|floatformat:0|intcomma }}</li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>총 소득 결과: {{ total_income|floatformat:0|intcomma }}원</h2>
+</body>
+</html>

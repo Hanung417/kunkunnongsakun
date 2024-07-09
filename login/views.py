@@ -49,9 +49,11 @@ def check_username(request):
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 @csrf_exempt
-@require_POST
+@require_http_methods(["GET", "POST"])
 @ensure_csrf_cookie  # Ensure CSRF cookie is sent to the client
 def login(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
     if request.method == 'POST':
         try:
             if request.content_type == 'application/json':
