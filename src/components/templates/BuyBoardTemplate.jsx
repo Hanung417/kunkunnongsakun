@@ -83,6 +83,20 @@ const SearchBar = styled.input`
   }
 `;
 
+const CreatePostButton = styled(Link)`
+  display: inline-block;
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  font-size: 16px;
+  color: white;
+  background-color: #4aaa87;
+  border-radius: 8px;
+  text-decoration: none;
+  &:hover {
+    background-color: #6dc4b0;
+  }
+`;
+
 const BuyBoardTemplate = () => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -90,7 +104,9 @@ const BuyBoardTemplate = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/community/");
+        const response = await axios.get("http://localhost:8000/community/", {
+          params: { post_type: 'buy' }
+        });
         setPosts(response.data);
       } catch (error) {
         console.error("Failed to fetch posts", error);
@@ -116,6 +132,7 @@ const BuyBoardTemplate = () => {
         value={searchTerm}
         onChange={handleSearchChange}
       />
+      <CreatePostButton to="/post/create?post_type=buy">글 작성</CreatePostButton>
       <PostList>
         <Table>
           <TableHeader>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Container = styled.div`
   padding: 24px;
@@ -87,6 +87,7 @@ const WritePostTemplate = () => {
   const [content, setContent] = useState("");
   const [postType, setPostType] = useState("buy");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -103,11 +104,21 @@ const WritePostTemplate = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/community/post/create/", {
-        title,
-        content,
-        post_type: postType,
-      });
+      const response = await axios.post(
+        "http://localhost:8000/community/post/create/",
+        {
+          title,
+          content,
+          post_type: postType,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      alert("글 작성 성공");
+      console.log("Created post", response.data);
       navigate(`/post/${response.data.id}`);
     } catch (error) {
       console.error("Failed to create post", error);

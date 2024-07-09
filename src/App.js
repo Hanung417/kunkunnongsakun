@@ -16,6 +16,15 @@ import AuthCheck from "./components/templates/Authcheck";
 import PasswordResetTemplate from "./components/templates/PasswordResetTemplate";
 import MyPageTemplate from "./components/templates/MyPageTemplate";
 
+// 용범 페이지 병합
+import ExpectedReturnPage from "./pages/ExpectedReturnPage";
+import CropsPage from './pages/CropsPage';
+import SoilPage from './pages/SoilPage';
+import FertilizerPage from './pages/FertilizerPage';
+import DiagnosisPage from './pages/DiagnosisPage';
+import InfoPage from './pages/InfoPage';
+
+
 function App() {
 
   return (
@@ -25,6 +34,14 @@ function App() {
         <Route path="/signup" element={<SignupTemplate />} />
         <Route path="/login" element={<LoginTemplate />} />
         <Route path="/password_reset" element={<PasswordResetTemplate />} />
+        {/* 용범 페이지 병합 */}
+        <Route path="Crops" element={<CropsPage />} />
+        <Route path="ExpectedReturn" element={<ExpectedReturnPage />} />
+        <Route path="Soil" element={<SoilPage />} />
+        <Route path="Fertilizer" element={<FertilizerPage />} />
+        <Route path="Diagnosis" element={<DiagnosisPage />} />
+        <Route path="Info" element={<InfoPage />} />
+
         <Route element={<MainLayout/>}>
           <Route path="/" element={<MainPage />} />
           <Route path="board" element={<BoardPage />} />
