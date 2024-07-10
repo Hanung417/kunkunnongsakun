@@ -15,6 +15,7 @@ import ChatListPage from "./components/templates/ChatListPage";
 import AuthCheck from "./components/templates/Authcheck";
 import PasswordResetTemplate from "./components/templates/PasswordResetTemplate";
 import MyPageTemplate from "./components/templates/MyPageTemplate";
+import CropTest from "./components/templates/CropTest";
 
 // 용범 페이지 병합
 import ExpectedReturnPage from "./pages/ExpectedReturnPage";
@@ -53,6 +54,7 @@ function App() {
           <Route path="chatlist" element={<ChatListPage />} />
           <Route path={"chat/:sessionid"} element={<ChatPage />} />
           <Route path="/profile" element={<MyPageTemplate />} />
+          <Route path="/croptest" element={<CropTest />} />
         </Route>
       </Routes>
     </BrowserRouter>
