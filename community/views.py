@@ -115,3 +115,11 @@ def comment_delete(request, comment_id):
         comment.delete()
         return JsonResponse({'status': 'success'}, status=204)
     return JsonResponse({'error': 'GET method not allowed'}, status=405)
+
+# 내가쓴 글 조회 API
+@csrf_exempt
+@login_required
+def my_post_list(request):
+    posts = Post.objects.filter(user=request.user).values('id', 'title', 'content', 'user_id', 'creation_date')
+    return JsonResponse(list(posts), safe=False)
+
