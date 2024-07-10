@@ -50,7 +50,7 @@ const TableCell = styled.td`
   padding: 12px;
   border-bottom: 1px solid #ccc;
   font-size: 14px;
-  color: ${(props) => (props.header ? "aliceblue" : "black")};
+  color: ${(props) => (props.$header ? "aliceblue" : "black")};
   text-align: left;
 `;
 
@@ -137,9 +137,9 @@ const SellBoardTemplate = () => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableCell header>제목</TableCell>
-              <TableCell header>작성자</TableCell>
-              <TableCell header>작성일</TableCell>
+              <TableCell $header>제목</TableCell>
+              <TableCell $header>작성자</TableCell>
+              <TableCell $header>작성일</TableCell>
             </TableRow>
           </TableHeader>
           <tbody>
