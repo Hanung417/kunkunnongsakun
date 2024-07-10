@@ -19,6 +19,7 @@ from django.contrib.auth.decorators import login_required
 
 logger = logging.getLogger(__name__)
 
+@csrf_exempt
 def signup(request):
     if request.method == 'GET':
         return render(request, 'signup.html')
