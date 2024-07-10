@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
 import { AiOutlineBell } from 'react-icons/ai';
@@ -11,7 +12,8 @@ const PageContainer = styled.div`
   align-items: center;
   height: 100vh;
   background-color: #f0f0f0;
-  font-size: 2rem;
+  font-size: 1.5rem; /* 폰트 크기를 작게 조정 */
+  padding: 20px;
 `;
 
 const HeaderContainer = styled.div`
@@ -29,6 +31,7 @@ const Title = styled.h1`
   font-size: 1.5rem;
   color: #fff;
   margin: 0;
+  text-align: center;
 `;
 
 const IconContainer = styled.div`
@@ -54,7 +57,8 @@ const Content = styled.div`
 const UploadContainer = styled.div`
   border: 2px dashed #ccc;
   padding: 20px;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   text-align: center;
   margin-bottom: 20px;
   background-color: #fff;
@@ -68,7 +72,7 @@ const ImagePreview = styled.img`
 
 const ResultContainer = styled.div`
   margin-top: 20px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #333;
 `;
 
@@ -87,10 +91,11 @@ const DiagnoseButton = styled.button`
   }
 `;
 
-const DiagnosisTemplate = () => {
+const DiagnosisPage = () => {
   const [image, setImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [result, setResult] = useState("");
+  const navigate = useNavigate();
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -134,8 +139,8 @@ const DiagnosisTemplate = () => {
         },
         withCredentials: true,
       });
-      console.log(formData);
       setResult(response.data.result);
+      navigate('/Info', { state: { diagnosisResult: response.data } }); // 결과를 InfoPage로 전달
     } catch (error) {
       console.error('Failed to upload image', error);
       setResult('Error in diagnosing the image.');
@@ -166,4 +171,4 @@ const DiagnosisTemplate = () => {
   );
 };
 
-export default DiagnosisTemplate;
+export default DiagnosisPage;
