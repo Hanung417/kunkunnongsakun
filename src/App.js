@@ -26,6 +26,7 @@ import SoilPage from './pages/SoilPage';
 import FertilizerPage from './pages/FertilizerPage';
 import DiagnosisPage from './pages/DiagnosisPage';
 import InfoPage from './pages/InfoPage';
+import MyCommentedPostsTemplate from "./components/templates/MyCommentedPostsTemplate";
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
           <Route path="/croptest" element={<CropTest />} />
           <Route path="/my_posts" element={<MyPostTemplate />} />
           <Route path="/post/edit/:id" element={<EditPostTemplate />} />
+          <Route path="/my_commented_posts" element={<MyCommentedPostsTemplate />} />
 
            {/* 용범 페이지 병합 */}
           <Route path="/crops" element={<CropsPage />} />

@@ -71,6 +71,10 @@ const MyPageTemplate = () => {
     navigate("/my_posts");
   };
 
+  const handleViewMyCommentedPosts = () => {
+    navigate("/my_commented_posts");
+  }
+
   return (
     <Container>
       <Title>마이페이지</Title>
@@ -78,6 +82,7 @@ const MyPageTemplate = () => {
       <Button onClick={handlePasswordChange}>비밀번호 변경</Button>
       <Button onClick={handleAccountDeletion}>회원 탈퇴</Button>
       <Button onClick={handleViewMyPosts}>내가 쓴 글</Button>
+        <Button onClick={handleViewMyCommentedPosts}>내가 댓글 단 글</Button>
 
       <ChangePasswordModal
         isOpen={isPasswordModalOpen}

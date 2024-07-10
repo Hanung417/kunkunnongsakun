@@ -166,6 +166,9 @@ const LoginTemplate = () => {
         <ResetLink>
           <Link to="/password_reset">비밀번호 재설정</Link>
         </ResetLink>
+          <ResetLink>
+          <Link to="/signup">회원가입</Link>
+        </ResetLink>
       </Form>
     </Container>
   );
