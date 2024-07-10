@@ -123,3 +123,11 @@ def my_post_list(request):
     posts = Post.objects.filter(user=request.user).values('id', 'title', 'content', 'user_id', 'creation_date')
     return JsonResponse(list(posts), safe=False)
 
+# 내가 댓글 단 글 조회 API
+@csrf_exempt
+@login_required
+def my_commented_posts(request):
+    comments = Comment.objects.filter(user=request.user).values('post').distinct()
+    post_ids = [comment['post'] for comment in comments]
+    posts = Post.objects.filter(id__in=post_ids).values('id', 'title', 'content', 'user_id', 'creation_date')
+    return JsonResponse(list(posts), safe=False)
