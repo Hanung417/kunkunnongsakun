@@ -17,6 +17,7 @@ import PasswordResetTemplate from "./components/templates/PasswordResetTemplate"
 import MyPageTemplate from "./components/templates/MyPageTemplate";
 import CropTest from "./components/templates/CropTest";
 import MyPostTemplate from "./components/templates/MyPostTemplate";
+import EditPostTemplate from "./components/templates/EditPostTemplate";
 
 // 용범 페이지 병합
 import ExpectedReturnPage from "./pages/ExpectedReturnPage";
@@ -56,7 +57,8 @@ function App() {
           <Route path={"chat/:sessionid"} element={<ChatPage />} />
           <Route path="/profile" element={<MyPageTemplate />} />
           <Route path="/croptest" element={<CropTest />} />
-          <Route path={"/mypost"} element={<MyPostTemplate />} />
+          <Route path={"/my_posts"} element={<MyPostTemplate />} />
+          <Route path="/post/edit/:id" element={<EditPostTemplate />} />
         </Route>
       </Routes>
     </BrowserRouter>

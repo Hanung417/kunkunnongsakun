@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Container = styled.div`
@@ -70,8 +70,23 @@ const PostTitle = styled.span`
   text-overflow: ellipsis;
 `;
 
+const Button = styled.button`
+  padding: 8px 16px;
+  margin: 4px;
+  font-size: 14px;
+  color: white;
+  background-color: #4aaa87;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    background-color: #6dc4b0;
+  }
+`;
+
 const MyPostTemplate = () => {
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
 
   const getCSRFToken = () => {
     let cookieValue = null;
@@ -106,6 +121,25 @@ const MyPostTemplate = () => {
     fetchPosts();
   }, []);
 
+  const handleEdit = (postId) => {
+    navigate(`/post/edit/${postId}`);
+  };
+
+  const handleDelete = async (postId) => {
+    try {
+      const csrfToken = getCSRFToken();
+      await axios.post(`http://localhost:8000/community/post/${postId}/delete/`, {}, {
+        headers: {
+          'X-CSRFToken': csrfToken
+        },
+        withCredentials: true
+      });
+      setPosts(posts.filter(post => post.id !== postId));
+    } catch (error) {
+      console.error("Failed to delete post", error);
+    }
+  };
+
   return (
     <Container>
       <Title>내가 작성한 글</Title>
@@ -116,6 +150,8 @@ const MyPostTemplate = () => {
               <TableCell header>제목</TableCell>
               <TableCell header>작성자</TableCell>
               <TableCell header>작성일</TableCell>
+              <TableCell header>수정</TableCell>
+              <TableCell header>삭제</TableCell>
             </TableRow>
           </TableHeader>
           <tbody>
@@ -128,6 +164,8 @@ const MyPostTemplate = () => {
                 </TableCell>
                 <TableCell>{post.user_id}</TableCell>
                 <TableCell>{new Date(post.creation_date).toLocaleDateString()}</TableCell>
+                <TableCell><Button onClick={() => handleEdit(post.id)}>수정</Button></TableCell>
+                <TableCell><Button onClick={() => handleDelete(post.id)}>삭제</Button></TableCell>
               </TableRow>
             ))}
           </tbody>
