@@ -93,11 +93,11 @@ const MainTemplate = () => {
           <h2>병해충 진단</h2>
           <p>작물 이미지로 병해충 진단</p>
         </MenuCard>
-        <MenuCard to="/profit-prediction">
+        <MenuCard to="/croptest">
           <h2>수익 예측</h2>
           <p>작물 수익 미리 계산해보기</p>
         </MenuCard>
-        <MenuCard to="/chatbot">
+        <MenuCard to="/chatlist">
           <h2>농업 GPT</h2>
           <p>농업 전문 챗봇</p>
         </MenuCard>

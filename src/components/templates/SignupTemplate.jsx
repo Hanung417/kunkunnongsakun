@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { checkUsername, sendVerificationEmail, signupUser } from "../../apis/user";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -140,6 +141,8 @@ const SignupTemplate = () => {
       });
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const { username, email, verification_code, password1, password2 } =
@@ -148,7 +151,9 @@ const SignupTemplate = () => {
     signupUser({ username, email, verification_code, password1, password2 })
       .then((response) => {
         console.log(response.data);
-        // Handle successful signup, e.g., redirect or show success message
+        alert("회원가입 성공");
+        navigate("/login"); // 회원가입 성공 시 로그인 페이지로 이동
+
       })
       .catch((error) => {
         if (error.response) {
