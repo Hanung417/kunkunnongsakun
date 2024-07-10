@@ -1,13 +1,14 @@
 import pandas as pd
 import numpy as np
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import requests
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNet
 from django.contrib.auth.decorators import login_required
+import json
 
 # CSV 파일 경로
 CSV_FILE_PATH = 'prediction/all_crop_data.csv'  # 수익률 예측
@@ -27,12 +28,12 @@ def fetch_crop_data(crop_name, df, land_area, crop_ratio):
         latest_crop_data = crop_data.sort_values(by='시점', ascending=False).iloc[0]
         crop_income = latest_crop_data['소득 (원)']
         latest_year = latest_crop_data['시점']
-        adjusted_income = (crop_income / 302.5) * land_area * crop_ratio
+        adjusted_income = (crop_income / 302.5) * land_area * crop_ratio  
         adjusted_data = latest_crop_data.copy()
         for col in adjusted_data.index:
             if pd.api.types.is_numeric_dtype(adjusted_data[col]):
-                adjusted_data[col] = int((adjusted_data[col] / 302.5) * land_area * crop_ratio)
-        return adjusted_income, adjusted_data, latest_year
+                adjusted_data[col] = (adjusted_data[col] / 302.5) * land_area * crop_ratio 
+        return adjusted_income, adjusted_data.to_dict(), latest_year  # to_dict()로 변환
     else:
         return None, None, None
 
@@ -134,7 +135,7 @@ def convert_values(data):
         return {k: convert_values(v) for k, v in data.items()}
     elif isinstance(data, list):
         return [convert_values(i) for i in data]
-    elif isinstance(data, np.int64):
+    elif isinstance(data, (np.int64, np.int32)):
         return int(data)
     elif isinstance(data, np.float64):
         return float(data)
@@ -143,7 +144,7 @@ def convert_values(data):
 
 def save_session_data(request, total_income, crop_results):
     session_data = {
-        'total_income': convert_values(total_income),
+        'total_income': total_income, 
         'results': convert_values(crop_results),
         'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     }
@@ -155,58 +156,63 @@ def save_session_data(request, total_income, crop_results):
 @login_required
 def predict_income(request):
     if request.method == 'POST':
-        land_area = float(request.POST.get('land_area'))
-        crop_names = request.POST.getlist('crop_name')
-        crop_ratios = request.POST.getlist('crop_ratio')
-        region = request.POST.get('region')
+        try:
+            data = json.loads(request.body)  
+            land_area = float(data['land_area'])
+            crop_names = data['crop_names']
+            crop_ratios = data['crop_ratios']
+            region = data['region']
 
-        crop_ratios = [float(ratio) for ratio in crop_ratios]
-        if sum(crop_ratios) != 1:
-            return HttpResponse('작물 비율의 합은 1이어야 합니다.')
+            crop_ratios = [float(ratio) for ratio in crop_ratios]
+            if sum(crop_ratios) != 1:
+                return JsonResponse({'error': '작물 비율의 합은 1이어야 합니다.'}, status=400)
 
-        df = read_csv_data()
-        total_predicted_value = 0
-        crop_results = []
+            df = read_csv_data()
+            total_predicted_value = 0
+            crop_results = []
 
-        for crop_name, crop_ratio in zip(crop_names, crop_ratios):
-            adjusted_income, adjusted_data, latest_year = fetch_crop_data(crop_name, df, land_area, crop_ratio)
-            if adjusted_income is None:
-                return HttpResponse(f'{crop_name}의 데이터를 찾을 수 없습니다.')
+            for crop_name, crop_ratio in zip(crop_names, crop_ratios):
+                adjusted_income, adjusted_data, latest_year = fetch_crop_data(crop_name, df, land_area, crop_ratio)
+                if adjusted_income is None:
+                    return JsonResponse({'error': f'{crop_name}의 데이터를 찾을 수 없습니다.'}, status=404)
 
-            total_predicted_value += adjusted_income
+                total_predicted_value += int(adjusted_income)  # int로 변환
 
-            df_1 = fetch_market_prices(crop_name, region)
-            if df_1 is None:
-                return HttpResponse(f'{crop_name}의 시세 데이터를 찾을 수 없습니다.')
+                df_1 = fetch_market_prices(crop_name, region)
+                if df_1 is None:
+                    return JsonResponse({'error': f'{crop_name}의 시세 데이터를 찾을 수 없습니다.'}, status=404)
 
-            df_2 = fetch_weather_data(region)
-            if df_2 is None:
-                return HttpResponse(f'{crop_name}의 날씨 데이터를 찾을 수 없습니다.')
+                df_2 = fetch_weather_data(region)
+                if df_2 is None:
+                    return JsonResponse({'error': f'{crop_name}의 날씨 데이터를 찾을 수 없습니다.'}, status=404)
 
-            start = df_1['tm'].iloc[0].strftime('%Y%m%d')
-            end = df_1['tm'].iloc[-1].strftime('%Y%m%d')
-            df_3 = df_2[(df_2['tm'] >= start) & (df_2['tm'] <= end)].reset_index(drop=True)
-            merged_df = pd.merge(df_3, df_1, on='tm', how='left')
-            merged_df.drop('itemname', axis=1, inplace=True)
+                start = df_1['tm'].iloc[0].strftime('%Y%m%d')
+                end = df_1['tm'].iloc[-1].strftime('%Y%m%d')
+                df_3 = df_2[(df_2['tm'] >= start) & (df_2['tm'] <= end)].reset_index(drop=True)
+                merged_df = pd.merge(df_3, df_1, on='tm', how='left')
+                merged_df.drop('itemname', axis=1, inplace=True)
 
-            pred_value = predict_prices(merged_df, df_2)
+                pred_value = int(predict_prices(merged_df, df_2))  # int로 변환
+# 여기서 int 변환해주어야 json 변환 됨 (Object of type int64 is not JSON serializable)
+                crop_results.append({
+                    'crop_name': crop_name,
+                    'latest_year': int(latest_year),  # int로 변환
+                    'adjusted_data': convert_values(adjusted_data),  # 여기서 convert_values 함수를 사용하여 데이터 변환
+                    'price': int(pred_value)  # int로 변환
+                })
 
-            crop_results.append({
-                'crop_name': crop_name,
-                'latest_year': latest_year,
-                'adjusted_data': adjusted_data.to_dict(),
-                'price': pred_value
-            })
+            save_session_data(request, int(total_predicted_value), crop_results)  # int로 변환
 
-        save_session_data(request, total_predicted_value, crop_results)
+            return JsonResponse({
+                'total_income': int(total_predicted_value),  # int로 변환
+                'results': crop_results,
+            }, status=200)
 
-        return render(request, 'result.html', {
-            'total_income': total_predicted_value,
-            'results': crop_results,
-        })
-
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
     else:
-        return render(request, 'form.html')
+        return JsonResponse({'error': 'Invalid request method'}, status=405)
+
 
 @login_required
 def session_history(request):
