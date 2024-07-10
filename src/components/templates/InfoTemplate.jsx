@@ -1,101 +1,84 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { AiOutlineBell } from 'react-icons/ai';
 
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
-  padding: 20px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  height: 100%;
 `;
 
 const HeaderContainer = styled.div`
   width: 100%;
-  background-color: #a5d6a7;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  background-color: #4aaa87;
+  color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
 `;
 
 const Title = styled.h1`
-  font-size: 1.5rem;
-  color: #fff;
+  font-size: 1.3rem;
   margin: 0;
-  text-align: center;
-`;
-
-const IconContainer = styled.div`
-  position: absolute;
-  right: 1rem;
-  display: flex;
-  align-items: center;
-`;
-
-const Icon = styled.div`
-  margin-left: 1rem;
-  cursor: pointer;
 `;
 
 const LayoutContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 20px;
   width: 100%;
-  max-width: 800px;
-
-  @media (min-width: 769px) {
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-  }
+  max-width: 900px; /* Increased max-width for better content spacing */
+  margin-top: 20px; /* Added margin-top for separation from header */
+  padding: 20px; /* Added padding for inner content */
+  background-color: #fff; /* White background for content area */
+  border-radius: 10px; /* Rounded corners for visual appeal */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
 `;
 
 const ImageContainer = styled.div`
-  width: 100%;
+  width: 60%;
   aspect-ratio: 1 / 1;
-  border: 2px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  overflow: hidden; /* Ensure image does not overflow container */
+  margin: 0 auto; /* Center the container horizontally */
+`;
 
-  @media (min-width: 769px) {
-    width: 60%;
-    margin-right: 20px;
-    margin-bottom: 0;
-  }
+const Image = styled.img`
+  width: 100%; /* Ensure the image takes up 100% of its container */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
 `;
 
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  gap: 10px;
-  
-  @media (min-width: 769px) {
-    width: 40%;
-  }
+  gap: 20px;
 `;
 
 const InfoBox = styled.div`
-  flex: 1;
-  border: 2px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  text-align: center;
-  font-size: 1rem; /* 폰트 크기를 작게 조정 */
+  border: 2px solid #4aaa87;
+  margin: 4px 16px;
+  padding: 14px; /* Increased padding for better spacing */
+  text-align: left; /* Align text to the left for readability */
+  border-radius: 10px; /* Rounded corners for each info box */
 `;
 
-const InfoPage = () => {
+const InfoLabel = styled.p`
+  font-weight: bold;
+  margin-bottom: 8px; /* Reduced margin bottom for compact layout */
+`;
+
+const InfoText = styled.p`
+`;
+
+const InfoTemplate = () => {
   const location = useLocation();
   const { diagnosisResult } = location.state || {};
 
@@ -108,30 +91,32 @@ const InfoPage = () => {
   return (
     <PageContainer>
       <HeaderContainer>
-        <Title>Pest and Disease Info Page</Title>
-        <IconContainer>
-          <Icon><AiOutlineBell size={24} color="#fff" /></Icon>
-        </IconContainer>
+        <Title> 병해충 진단 결과 </Title>
       </HeaderContainer>
       <LayoutContainer>
         <ImageContainer>
-          {image_url ? <img src={image_url} alt="Pest" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : <p>No Image Available</p>}
+          {image_url ? <Image src={image_url} alt="Pest" /> : <p>No Image Available</p>}
         </ImageContainer>
         <InfoContainer>
           <InfoBox>
-            <p>{pest_name}</p>
+            <InfoLabel>Pest Name</InfoLabel>
+            <InfoText>{pest_name}</InfoText>
           </InfoBox>
           <InfoBox>
-            <p>{occurrence_environment}</p>
+            <InfoLabel>Occurrence Environment</InfoLabel>
+            <InfoText>{occurrence_environment}</InfoText>
           </InfoBox>
           <InfoBox>
-            <p>{symptom_description}</p>
+            <InfoLabel>Symptom Description</InfoLabel>
+            <InfoText>{symptom_description}</InfoText>
           </InfoBox>
           <InfoBox>
-            <p>{prevention_methods}</p>
+            <InfoLabel>Prevention Methods</InfoLabel>
+            <InfoText>{prevention_methods}</InfoText>
           </InfoBox>
           <InfoBox>
-            <p>{pesticide_name}</p>
+            <InfoLabel>Pesticide Name</InfoLabel>
+            <InfoText>{pesticide_name}</InfoText>
           </InfoBox>
         </InfoContainer>
       </LayoutContainer>
@@ -139,4 +124,4 @@ const InfoPage = () => {
   );
 };
 
-export default InfoPage;
+export default InfoTemplate;

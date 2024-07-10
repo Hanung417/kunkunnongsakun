@@ -2,96 +2,88 @@ import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
-import { AiOutlineBell } from 'react-icons/ai';
 import axios from 'axios';
 
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
-  font-size: 1.5rem; /* 폰트 크기를 작게 조정 */
-  padding: 20px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  height: 100%;
 `;
 
 const HeaderContainer = styled.div`
   width: 100%;
-  background-color: #a5d6a7;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  background-color: #4aaa87;
+  color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
 `;
 
 const Title = styled.h1`
-  font-size: 1.5rem;
-  color: #fff;
+  font-size: 1.3rem;
   margin: 0;
-  text-align: center;
-`;
-
-const IconContainer = styled.div`
-  position: absolute;
-  right: 1rem;
-  display: flex;
-  align-items: center;
-`;
-
-const Icon = styled.div`
-  margin-left: 1rem;
-  cursor: pointer;
 `;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
   width: 100%;
+  max-width: 600px;
+  margin-top: 30px;
 `;
 
 const UploadContainer = styled.div`
   border: 2px dashed #ccc;
-  padding: 20px;
-  width: 100%;
-  max-width: 300px;
+  width: 80%;
+  
   text-align: center;
   margin-bottom: 20px;
   background-color: #fff;
+  border-radius: 10px;
 `;
 
 const ImagePreview = styled.img`
   max-width: 100%;
   height: auto;
   margin-top: 20px;
+  border-radius: 10px;
 `;
 
 const ResultContainer = styled.div`
   margin-top: 20px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #333;
+  text-align: center;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 const DiagnoseButton = styled.button`
-  background-color: #4CAF50;
+  background-color: #4aaa87;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.3em;
   margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Freesentation', sans-serif; /* Apply custom font here */
 
   &:hover {
-    background-color: #45a049;
+    background-color: #3b8b6d;
   }
 `;
 
-const DiagnosisPage = () => {
+const DiagnosisTemplate = () => {
   const [image, setImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [result, setResult] = useState("");
@@ -122,7 +114,7 @@ const DiagnosisPage = () => {
 
   const handleDiagnose = async () => {
     if (!selectedFile) {
-      setResult('Please upload an image first.');
+      setResult('이미지를 업로드해주세요');
       return;
     }
 
@@ -150,10 +142,7 @@ const DiagnosisPage = () => {
   return (
     <PageContainer>
       <HeaderContainer>
-        <Title>Pest and Disease Diagnosis Page</Title>
-        <IconContainer>
-          <Icon><AiOutlineBell size={24} color="#fff" /></Icon>
-        </IconContainer>
+        <Title>병해충 진단</Title>
       </HeaderContainer>
       <Content>
         <UploadContainer {...getRootProps()}>
@@ -161,14 +150,14 @@ const DiagnosisPage = () => {
           {image ? (
             <ImagePreview src={image} alt="Uploaded" />
           ) : (
-            <p>Drag & drop a photo here, or click to select one</p>
+            <p>사진 업로드</p>
           )}
         </UploadContainer>
-        <DiagnoseButton onClick={handleDiagnose}>Diagnose</DiagnoseButton>
+        <DiagnoseButton onClick={handleDiagnose}>진단</DiagnoseButton>
         {result && <ResultContainer>{result}</ResultContainer>}
       </Content>
     </PageContainer>
   );
 };
 
-export default DiagnosisPage;
+export default DiagnosisTemplate;

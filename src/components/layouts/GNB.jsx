@@ -83,11 +83,11 @@ export const GNB = () => {
           </IconWrapper>
           <MenuText isActive={currentPage === "/"}>홈</MenuText>
         </MenuLink>
-        <MenuLink to="/map" className={currentPage === "/map" ? "active" : ""}>
-          <IconWrapper isActive={currentPage === "/map"}>
+        <MenuLink to="/soil" className={currentPage === "/soil" ? "active" : ""}>
+          <IconWrapper isActive={currentPage === "/soil"}>
             <FaMapMarkedAlt size={24} />
           </IconWrapper>
-          <MenuText isActive={currentPage === "/map"}>토양</MenuText>
+          <MenuText isActive={currentPage === "/soil"}>토양</MenuText>
         </MenuLink>
         <ChatIconWrapper
           isActive={currentPage === "/chatlist"}
@@ -105,7 +105,7 @@ export const GNB = () => {
           <MenuText isActive={currentPage === "/board"}>게시판</MenuText>
         </MenuLink>
         <MenuLink
-          to="/profile"
+          to="/mypage"
           className={currentPage === "/profile" ? "active" : ""}
         >
           <IconWrapper isActive={currentPage === "/profile"}>

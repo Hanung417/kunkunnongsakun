@@ -37,13 +37,7 @@ function App() {
         <Route path="/signup" element={<SignupTemplate />} />
         <Route path="/login" element={<LoginTemplate />} />
         <Route path="/password_reset" element={<PasswordResetTemplate />} />
-        {/* 용범 페이지 병합 */}
-        <Route path="Crops" element={<CropsPage />} />
-        <Route path="ExpectedReturn" element={<ExpectedReturnPage />} />
-        <Route path="Soil" element={<SoilPage />} />
-        <Route path="Fertilizer" element={<FertilizerPage />} />
-        <Route path="Diagnosis" element={<DiagnosisPage />} />
-        <Route path="Info" element={<InfoPage />} />
+
 
         <Route element={<MainLayout/>}>
           <Route path="/" element={<MainPage />} />
@@ -54,11 +48,19 @@ function App() {
           <Route path="post/:id" element={<PostDetailPage />} />
           <Route path="post/create" element={<WritePostPage />} />
           <Route path="chatlist" element={<ChatListPage />} />
-          <Route path={"chat/:sessionid"} element={<ChatPage />} />
-          <Route path="/profile" element={<MyPageTemplate />} />
+          <Route path="chat/:sessionid" element={<ChatPage />} />
+          <Route path="/mypage" element={<MyPageTemplate />} />
           <Route path="/croptest" element={<CropTest />} />
-          <Route path={"/my_posts"} element={<MyPostTemplate />} />
+          <Route path="/my_posts" element={<MyPostTemplate />} />
           <Route path="/post/edit/:id" element={<EditPostTemplate />} />
+
+           {/* 용범 페이지 병합 */}
+          <Route path="/crops" element={<CropsPage />} />
+          <Route path="/expectedreturn" element={<ExpectedReturnPage />} />
+          <Route path="/soil" element={<SoilPage />} />
+          <Route path="/fertilizer" element={<FertilizerPage />} />
+          <Route path="/diagnosis" element={<DiagnosisPage />} />
+          <Route path="/info" element={<InfoPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
