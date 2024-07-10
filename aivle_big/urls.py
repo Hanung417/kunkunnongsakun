@@ -16,5 +16,5 @@ urlpatterns = [
     path('selfchatbot/', include('selfchatbot.urls', namespace='selfchatbot')),
     path('prediction/', include('prediction.urls')), # predict 병합
     path('upload/', upload_image_for_detection, name='upload_image'),
-
+    path('soil/', include('soil.urls')),
 ]

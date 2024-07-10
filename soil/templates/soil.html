@@ -1,0 +1,71 @@
+<!-- soil/templates/soil.html -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비료처방</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-inline .form-group {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mb-4">비료처방</h2>
+        <form class="form-inline">
+            <div class="form-group mr-2">
+                <select class="form-control">
+                    <option selected disabled>광역시/도</option>
+                    <option>서울특별시</option>
+                    <option>경기도</option>
+                    <option>인천광역시</option>
+                    <!-- 다른 지역 옵션들 추가 -->
+                </select>
+            </div>
+            <div class="form-group mr-2">
+                <select class="form-control">
+                    <option selected disabled>시/군/구</option>
+                    <!-- 선택지 추가 -->
+                </select>
+            </div>
+            <div class="form-group mr-2">
+                <select class="form-control">
+                    <option selected disabled>읍/면/동</option>
+                    <!-- 선택지 추가 -->
+                </select>
+            </div>
+            <div class="form-group mr-2">
+                <select class="form-control">
+                    <option selected disabled>리</option>
+                    <!-- 선택지 추가 -->
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary">주소검색</button>
+        </form>
+        <hr class="my-4">
+        <form class="form-inline">
+            <div class="form-group mr-2">
+                <select class="form-control">
+                    <option selected disabled>작물 선택</option>
+                    <!-- 선택지 추가 -->
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary">작물명검색</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

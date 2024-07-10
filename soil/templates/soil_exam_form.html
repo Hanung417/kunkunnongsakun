@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Exam Form</title>
+</head>
+<body>
+    <h1>Soil Exam Form</h1>
+    <form action="{% url 'soil:soil_exam_result' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="address">주소:</label>
+            <input type="text" id="address" name="address">
+        </div>
+        <div>
+            <label for="crop">작물:</label>
+            <input type="text" id="crop_name" name="crop_name">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="result"></p>
+</body>
+</html>

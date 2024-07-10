@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Fertilizer Info</title>
+</head>
+<body>
+    <h1>Soil Fertilizer Info</h1>
+    {% if data %}
+        {% for item in data %}
+            <div>
+                <h3>Crop Name: {{ item.crop_Nm }}</h3>
+                <p>Pre Fertilizer N: {{ item.pre_Fert_N }}</p>
+                <p>Pre Fertilizer P: {{ item.pre_Fert_P }}</p>
+                <p>Pre Fertilizer K: {{ item.pre_Fert_K }}</p>
+                <p>Post Fertilizer N: {{ item.post_Fert_N }}</p>
+                <p>Post Fertilizer P: {{ item.post_Fert_P }}</p>
+                <p>Post Fertilizer K: {{ item.post_Fert_K }}</p>
+                <p>Pre Compost Cattl: {{ item.pre_Compost_Cattl }}</p>
+                <p>Pre Compost Pig: {{ item.pre_Compost_Pig }}</p>
+                <p>Pre Compost Chick: {{ item.pre_Compost_Chick }}</p>
+                <p>Pre Compost Mix: {{ item.pre_Compost_Mix }}</p>
+            </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
+</body>
+</html>
