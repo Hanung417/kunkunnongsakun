@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'prediction', # predict 병합
     'detect', # detect 병합
+    'soil',
     
 ]
 

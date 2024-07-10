@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Exam Results</title>
+    <script>
+        function sendData(data) {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/soil/get-soil-fertilizer-info/';  // 올바른 URL로 설정합니다
+
+            for (const key in data) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = data[key];
+                form.appendChild(input);
+            }
+
+            const csrfToken = '{{ csrf_token }}';  // CSRF 토큰 추가
+            const csrfInput = document.createElement('input');
+            csrfInput.type = 'hidden';
+            csrfInput.name = 'csrfmiddlewaretoken';
+            csrfInput.value = csrfToken;
+            form.appendChild(csrfInput);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+</head>
+<body>
+    <h1>Soil Exam Results</h1>
+    <div>
+        <h2>Crop Name: {{ result.crop_name }}</h2>
+        <h2>Address: {{ result.address }}</h2>
+    </div>
+    <div id="result" style="display: flex; flex-wrap: wrap;">
+        {% if result.soil_data %}
+            {% for item in result.soil_data %}
+                <div style="border: 1px solid #ccc; padding: 10px; margin: 10px; flex: 1; cursor: pointer;"
+                     onclick='sendData({ "crop_code": "{{ result.crop_name }}", "acid": "{{ item.ACID }}", "om": "{{ item.OM }}", "vldpha": "{{ item.VLDPHA }}", "posifert_k": "{{ item.POSIFERT_K }}", "posifert_ca": "{{ item.POSIFERT_CA }}", "posifert_mg": "{{ item.POSIFERT_MG }}", "vldsia": "{{ item.VLDSIA }}", "selc": "{{ item.SELC }}" })'>
+                    <h3>Exam No: {{ item.No }}</h3>
+                    <p>BJD Code: {{ item.BJD_Code }}</p>
+                    <p>Year: {{ item.Any_Year }}</p>
+                    <p>Exam Day: {{ item.Exam_Day }}</p>
+                    <p>Type: {{ item.Exam_Type }}</p>
+                    <p>PNU Name: {{ item.PNU_Nm }}</p>
+                    <p>ACID: {{ item.ACID }}</p>
+                    <p>VLDPHA: {{ item.VLDPHA }}</p>
+                    <p>VLDSIA: {{ item.VLDSIA }}</p>
+                    <p>OM: {{ item.OM }}</p>
+                    <p>POSIFERT MG: {{ item.POSIFERT_MG }}</p>
+                    <p>POSIFERT K: {{ item.POSIFERT_K }}</p>
+                    <p>POSIFERT CA: {{ item.POSIFERT_CA }}</p>
+                    <p>SELC: {{ item.SELC }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No data available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
