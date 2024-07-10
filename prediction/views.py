@@ -33,15 +33,11 @@ def fetch_crop_data(crop_name, df, land_area, crop_ratio):
         for col in adjusted_data.index:
             if pd.api.types.is_numeric_dtype(adjusted_data[col]):
                 adjusted_data[col] = (adjusted_data[col] / 302.5) * land_area * crop_ratio 
-        return adjusted_income, adjusted_data.to_dict(), latest_year  # to_dict()로 변환
+        return adjusted_income, adjusted_data.to_dict(), latest_year
     else:
         return None, None, None
 
-def fetch_market_prices(crop_name, region):
-    date_2 = datetime.now() - timedelta(1)
-    date_2 = date_2.strftime("%Y%m%d")
-    date_1 = datetime.now() - timedelta(1) - timedelta(365)
-    date_1 = date_1.strftime("%Y%m%d")
+def fetch_market_prices(crop_name, region, start_date, end_date):
     price_code = pd.read_csv(CSV_FILE_PATH_1, encoding='utf-8')
     itemcategorycode = int(price_code.loc[price_code['품목명'] == crop_name, '부류코드'].values[0])
     itemcode = int(price_code.loc[price_code['품목명'] == crop_name, '품목코드'].values[0])
@@ -49,8 +45,8 @@ def fetch_market_prices(crop_name, region):
     params = {
         'action': 'periodProductList',
         'p_productclscode': '02',
-        'p_startday': date_1,
-        'p_endday': date_2,
+        'p_startday': start_date,
+        'p_endday': end_date,
         'p_itemcategorycode': itemcategorycode,
         'p_itemcode': itemcode,
         'p_kindcode': '',
@@ -99,9 +95,9 @@ def fetch_weather_data(region):
     }
     response = requests.get('http://apis.data.go.kr/1360000/AsosDalyInfoService/getWthrDataList', params=params)
     if response.status_code == 200:
-        root_1 = ET.fromstring(response.content)
+        root = ET.fromstring(response.content)
         columns = ['tm', 'avgRhm', 'minTa', 'maxTa', 'maxWs', 'avgTa', 'avgWs', 'sumRn', 'ddMes']
-        data = [{child.tag: child.text for child in item if child.tag in columns} for item in root_1.iter('item')]
+        data = [{child.tag: child.text for child in item if child.tag in columns} for item in root.iter('item')]
         df_2 = pd.DataFrame(data, columns=columns)
         for col in columns[1:]:
             df_2[col] = pd.to_numeric(df_2[col], errors='coerce')
@@ -171,6 +167,15 @@ def predict_income(request):
             total_predicted_value = 0
             crop_results = []
 
+            # 날씨 데이터 한 번만 불러오기
+            df_2 = fetch_weather_data(region)
+            if df_2 is None:
+                return JsonResponse({'error': '날씨 데이터를 찾을 수 없습니다.'}, status=404)
+
+            # 날씨 데이터 범위 설정
+            start_date = df_2['tm'].iloc[0].strftime('%Y%m%d')
+            end_date = df_2['tm'].iloc[-1].strftime('%Y%m%d')
+
             for crop_name, crop_ratio in zip(crop_names, crop_ratios):
                 adjusted_income, adjusted_data, latest_year = fetch_crop_data(crop_name, df, land_area, crop_ratio)
                 if adjusted_income is None:
@@ -178,33 +183,26 @@ def predict_income(request):
 
                 total_predicted_value += int(adjusted_income)  # int로 변환
 
-                df_1 = fetch_market_prices(crop_name, region)
+                # 날씨 데이터에 맞는 시세 데이터 가져오기
+                df_1 = fetch_market_prices(crop_name, region, start_date, end_date)
                 if df_1 is None:
                     return JsonResponse({'error': f'{crop_name}의 시세 데이터를 찾을 수 없습니다.'}, status=404)
 
-                df_2 = fetch_weather_data(region)
-                if df_2 is None:
-                    return JsonResponse({'error': f'{crop_name}의 날씨 데이터를 찾을 수 없습니다.'}, status=404)
-
-                start = df_1['tm'].iloc[0].strftime('%Y%m%d')
-                end = df_1['tm'].iloc[-1].strftime('%Y%m%d')
-                df_3 = df_2[(df_2['tm'] >= start) & (df_2['tm'] <= end)].reset_index(drop=True)
-                merged_df = pd.merge(df_3, df_1, on='tm', how='left')
+                merged_df = pd.merge(df_2, df_1, on='tm', how='left')
                 merged_df.drop('itemname', axis=1, inplace=True)
 
                 pred_value = int(predict_prices(merged_df, df_2))  # int로 변환
-# 여기서 int 변환해주어야 json 변환 됨 (Object of type int64 is not JSON serializable)
                 crop_results.append({
                     'crop_name': crop_name,
-                    'latest_year': int(latest_year),  # int로 변환
-                    'adjusted_data': convert_values(adjusted_data),  # 여기서 convert_values 함수를 사용하여 데이터 변환
-                    'price': int(pred_value)  # int로 변환
+                    'latest_year': int(latest_year),
+                    'adjusted_data': convert_values(adjusted_data),
+                    'price': int(pred_value)
                 })
 
-            save_session_data(request, int(total_predicted_value), crop_results)  # int로 변환
+            save_session_data(request, int(total_predicted_value), crop_results)
 
             return JsonResponse({
-                'total_income': int(total_predicted_value),  # int로 변환
+                'total_income': int(total_predicted_value),
                 'results': crop_results,
             }, status=200)
 
@@ -212,7 +210,6 @@ def predict_income(request):
             return JsonResponse({'error': str(e)}, status=500)
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=405)
-
 
 @login_required
 def session_history(request):
