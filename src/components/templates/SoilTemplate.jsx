@@ -37,11 +37,11 @@ const InputContainer = styled.div`
   position: relative;
   width: 100%;
   max-width: 400px;
+  margin-bottom: 16px;
 `;
 
 const Input = styled.input`
   padding: 8px;
-  margin-bottom: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 100%;
@@ -64,6 +64,7 @@ const Button = styled.button`
     cursor: not-allowed;
   }
   margin-bottom: 16px;
+  margin-right: 8px;
 `;
 
 const ErrorMessage = styled.p`
@@ -116,7 +117,7 @@ const RecommendationContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 100%;
+  max-width: 600px;
   margin-top: 24px;
   background-color: #fff;
   padding: 16px;
@@ -137,7 +138,7 @@ const TableContainer = styled.div`
 
 const Table = styled.table`
   width: 100%;
-  table-layout: auto;
+  table-layout: fixed;
   border-collapse: collapse;
   margin-bottom: 16px;
 `;
@@ -146,12 +147,22 @@ const TableHeader = styled.th`
   border: 1px solid #ccc;
   padding: 8px;
   background-color: #f1f1f1;
+  width: 150px;
 `;
 
 const TableData = styled.td`
   border: 1px solid #ccc;
   padding: 8px;
   text-align: center;
+  width: 150px;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 16px;
 `;
 
 const customStyles = {
@@ -332,7 +343,9 @@ const SoilTest = () => {
             </CropList>
           )}
         </InputContainer>
-        <Input type="text" value={address} onChange={handleAddressChange} placeholder="주소" />
+        <InputContainer>
+          <Input type="text" value={address} onChange={handleAddressChange} placeholder="주소" />
+        </InputContainer>
         <Button onClick={fetchSoilExamData}>주소 검색</Button>
       </BoxContainer>
       {error && <ErrorMessage>{error}</ErrorMessage>}
@@ -344,15 +357,17 @@ const SoilTest = () => {
       >
         <h2>상세 주소</h2>
         <Select onChange={handleSampleChange}>
-          <option value="">토양 샘플 선택</option>
+          <option value="">선택</option>
           {soilData.map(sample => (
             <option key={sample.No} value={sample.No}>
               {sample.PNU_Nm}
             </option>
           ))}
         </Select>
-        <Button onClick={fetchFertilizerData} disabled={!selectedSample}>분석하기</Button>
-        <Button onClick={closeModal}>닫기</Button>
+        <ButtonContainer>
+          <Button onClick={fetchFertilizerData} disabled={!selectedSample}>분석하기</Button>
+          <Button onClick={closeModal}>닫기</Button>
+        </ButtonContainer>
       </Modal>
       {fertilizerData && (
         <RecommendationContainer>
