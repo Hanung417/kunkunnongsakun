@@ -62,6 +62,12 @@ const CommentContent = styled.div`
   color: #555;
 `;
 
+const CommentMeta = styled.div`
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 4px;
+`;
+
 const CommentActions = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -197,7 +203,8 @@ const PostDetailTemplate = () => {
       <CommentList>
         {comments.map((comment) => (
           <CommentItem key={comment.id}>
-            <CommentAuthor>{comment.user_id}</CommentAuthor>
+            <CommentAuthor>{comment.user__username}</CommentAuthor>
+            <CommentMeta>{new Date(comment.created_at).toLocaleString()}</CommentMeta>
             {editCommentId === comment.id ? (
               <CommentTextarea
                 rows="2"

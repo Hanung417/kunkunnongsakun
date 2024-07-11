@@ -34,16 +34,14 @@ const Table = styled.table`
 const TableHeader = styled.thead`
   background-color: #4aaa87;
   color: white;
+  
 `;
 
 const TableRow = styled.tr`
   &:nth-child(even) {
     background-color: #f9f9f9;
   }
-
-  &:hover {
-    background-color: #f1f1f1;
-  }
+  
 `;
 
 const TableCell = styled.td`
@@ -52,6 +50,7 @@ const TableCell = styled.td`
   font-size: 14px;
   color: ${(props) => (props.$header ? "aliceblue" : "black")};
   text-align: left;
+
 `;
 
 const StyledLink = styled(Link)`
@@ -147,10 +146,10 @@ const SellBoardTemplate = () => {
               <TableRow key={post.id}>
                 <TableCell>
                   <StyledLink to={`/post/${post.id}`}>
-                    <PostTitle>{post.title}</PostTitle>
+                    <PostTitle>{`${post.title} (${post.comment_count})`}</PostTitle>
                   </StyledLink>
                 </TableCell>
-                <TableCell>{post.user_id}</TableCell>
+                <TableCell>{post.user__username}</TableCell>
                 <TableCell>{new Date(post.creation_date).toLocaleDateString()}</TableCell>
               </TableRow>
             ))}
