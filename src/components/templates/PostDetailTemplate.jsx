@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import {instance} from "../../apis/instance"
+import { instance } from "../../apis/instance";
 
 const Container = styled.div`
   display: flex;
@@ -62,6 +62,12 @@ const CommentContent = styled.div`
   color: #555;
 `;
 
+const CommentMeta = styled.div`
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 4px;
+`;
+
 const CommentActions = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -113,6 +119,7 @@ const PostDetailTemplate = () => {
   const [newComment, setNewComment] = useState("");
   const [editCommentId, setEditCommentId] = useState(null);
   const [editCommentContent, setEditCommentContent] = useState("");
+  const currentUserId = localStorage.getItem("userId"); // 로컬스토리지에서 현재 사용자 ID 가져오기
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -196,7 +203,8 @@ const PostDetailTemplate = () => {
       <CommentList>
         {comments.map((comment) => (
           <CommentItem key={comment.id}>
-            <CommentAuthor>{comment.user_id}</CommentAuthor>
+            <CommentAuthor>{comment.user__username}</CommentAuthor>
+            <CommentMeta>{new Date(comment.created_at).toLocaleString()}</CommentMeta>
             {editCommentId === comment.id ? (
               <CommentTextarea
                 rows="2"
@@ -206,21 +214,23 @@ const PostDetailTemplate = () => {
             ) : (
               <CommentContent>{comment.content}</CommentContent>
             )}
-            <CommentActions>
-              {editCommentId === comment.id ? (
-                <button onClick={() => handleEditComment(comment.id)}>저장</button>
-              ) : (
-                <button
-                  onClick={() => {
-                    setEditCommentId(comment.id);
-                    setEditCommentContent(comment.content);
-                  }}
-                >
-                  수정
-                </button>
-              )}
-              <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
-            </CommentActions>
+            {String(currentUserId) === String(comment.user_id) && (
+              <CommentActions>
+                {editCommentId === comment.id ? (
+                  <button onClick={() => handleEditComment(comment.id)}>저장</button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      setEditCommentId(comment.id);
+                      setEditCommentContent(comment.content);
+                    }}
+                  >
+                    수정
+                  </button>
+                )}
+                <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
+              </CommentActions>
+            )}
           </CommentItem>
         ))}
       </CommentList>
