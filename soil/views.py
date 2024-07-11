@@ -6,7 +6,7 @@ import requests
 import xml.etree.ElementTree as ET
 import pandas as pd
 import json
-from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError
+from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError, InvalidRequestError, BadRequestError
 
 def index(request):
     return render(request, 'soil.html')
@@ -62,23 +62,86 @@ def soil_exam_result(request):
 
 crop_code = pd.read_csv('soil/crop_code.csv')
 
-@login_required
-@csrf_exempt
+
 def get_soil_fertilizer_info(request):
     if request.method != 'POST':
-        raise ValidationError("Only POST method is allowed.", code=405)
+        raise InvalidRequestError("Invalid request method")
+
+    url = 'http://apis.data.go.kr/1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo'
+
+    def validate_and_convert(value, min_val, max_val):
+        try:
+            value = float(value)
+        except (ValueError, TypeError):
+            return str(min_val)
+        return str(max(min_val, min(value, max_val)))
+
     try:
         data = json.loads(request.body)
-        crop_code_value = crop_code.loc[crop_code['crop_name'] == data['crop_code'], 'crop_code'].iat[0]
-        params = {'serviceKey': 'XMihbktoJgeXAASWbeYTDZaWDPRL08q/i+1Sml2083f1m3gcyPJ2T1YwIrbry0Fe+HA1R4EU0S+zNL4LjuGBbQ==', 'crop_Code': str(crop_code_value).zfill(5), 'acid': data['acid']}
-        response = requests.get('http://apis.data.go.kr/1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo', params=params)
-        if response.status_code == 200:
-            items = ET.fromstring(response.content).find('.//items')
-            if items is not None:
-                return JsonResponse({'data': [{child.tag: child.text for child in item} for item in items.findall('item')]})
-            else:
-                raise NotFoundError("No fertilizer data found.", code=404)
-        else:
-            raise InternalServerError("Failed to retrieve fertilizer data.", code=response.status_code)
+        name = data.get('crop_code')
+
+        if not name:
+            raise MissingPartError("Missing crop code")
+
+        crop_code_row = crop_code.loc[crop_code['crop_name'] == name]
+
+        if crop_code_row.empty:
+            raise ValidationError("Invalid crop name provided")
+
+        crop_code_value = crop_code_row['crop_code'].values[0]
+        crop_code_value = str(crop_code_value).zfill(5)
+
+        params = {
+            'serviceKey': '1/eYLkvnjZNKzzUpbpb+/VWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA==',
+            'crop_Code': crop_code_value,
+            'acid': validate_and_convert(data.get('acid'), 4, 9),
+            'om': validate_and_convert(data.get('om'), 5, 300),
+            'vldpha': validate_and_convert(data.get('vldpha'), 5, 1700),
+            'posifert_K': validate_and_convert(data.get('posifert_K'), 0.01, 9),
+            'posifert_Ca': validate_and_convert(data.get('posifert_Ca'), 0.1, 30),
+            'posifert_Mg': validate_and_convert(data.get('posifert_Mg'), 0.1, 20),
+            'vldsia': validate_and_convert(data.get('vldsia'), 5, 1500),
+            'selc': validate_and_convert(data.get('selc'), 0, 10),
+        }
+
+        response = requests.get(url, params=params)
+        response.raise_for_status()  # Raise an HTTPError for bad responses
+
+        response_content = response.content.decode('utf-8')
+        root = ET.fromstring(response_content)
+        body = root.find('body')
+        if body is None:
+            raise NotFoundError("No body element found in response")
+
+        items = body.find('items')
+        if items is None:
+            raise NotFoundError("No items found in response")
+
+        data = []
+        for item in items.findall('item'):
+            item_data = {
+                'crop_Code': item.find('crop_Code').text if item.find('crop_Code') is not None else None,
+                'crop_Nm': item.find('crop_Nm').text if item.find('crop_Nm') is not None else None,
+                'pre_Fert_N': item.find('pre_Fert_N').text if item.find('pre_Fert_N') is not None else None,
+                'pre_Fert_P': item.find('pre_Fert_P').text if item.find('pre_Fert_P') is not None else None,
+                'pre_Fert_K': item.find('pre_Fert_K').text if item.find('pre_Fert_K') is not None else None,
+                'post_Fert_N': item.find('post_Fert_N').text if item.find('post_Fert_N') is not None else None,
+                'post_Fert_P': item.find('post_Fert_P').text if item.find('post_Fert_P') is not None else None,
+                'post_Fert_K': item.find('post_Fert_K').text if item.find('post_Fert_K') is not None else None,
+                'pre_Compost_Cattl': item.find('pre_Compost_Cattl').text if item.find('pre_Compost_Cattl') is not None else None,
+                'pre_Compost_Pig': item.find('pre_Compost_Pig').text if item.find('pre_Compost_Pig') is not None else None,
+                'pre_Compost_Chick': item.find('pre_Compost_Chick').text if item.find('pre_Compost_Chick') is not None else None,
+                'pre_Compost_Mix': item.find('pre_Compost_Mix').text if item.find('pre_Compost_Mix') is not None else None,
+            }
+            data.append(item_data)
+
+        return JsonResponse({'data': data})
+
     except json.JSONDecodeError:
-        raise ValidationError("Invalid JSON input.", code=400)
+        raise BadRequestError("Invalid JSON")
+    except ValidationError as e:
+        raise ValidationError(str(e))
+    except requests.exceptions.HTTPError as e:
+        raise InternalServerError(f"HTTP error: {str(e)}")
+    except Exception as e:
+        raise InternalServerError(str(e))
