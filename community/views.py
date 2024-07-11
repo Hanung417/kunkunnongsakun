@@ -6,17 +6,16 @@ from .forms import PostForm, CommentForm
 import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Count
 
 logger = logging.getLogger(__name__)
 
 def post_list(request):
-    # if request.method == 'GET':
-    #     return render(request, 'post_list.html')
     post_type = request.GET.get('post_type')
     if post_type:
-        posts = Post.objects.filter(post_type=post_type).values('id', 'title', 'content', 'user_id', 'creation_date')
+        posts = Post.objects.filter(post_type=post_type).annotate(comment_count=Count('comments')).values('id', 'title', 'content', 'user_id', 'creation_date', 'comment_count')
     else:
-        posts = Post.objects.all().values('id', 'title', 'content', 'user_id', 'creation_date')
+        posts = Post.objects.annotate(comment_count=Count('comments')).values('id', 'title', 'content', 'user_id', 'creation_date', 'comment_count')
     return JsonResponse(list(posts), safe=False)
 
 def post_detail(request, post_id):
@@ -116,14 +115,12 @@ def comment_delete(request, comment_id):
         return JsonResponse({'status': 'success'}, status=204)
     return JsonResponse({'error': 'GET method not allowed'}, status=405)
 
-# 내가쓴 글 조회 API
 @csrf_exempt
 @login_required
 def my_post_list(request):
     posts = Post.objects.filter(user=request.user).values('id', 'title', 'content', 'user_id', 'creation_date')
     return JsonResponse(list(posts), safe=False)
 
-# 내가 댓글 단 글 조회 API
 @csrf_exempt
 @login_required
 def my_commented_posts(request):
