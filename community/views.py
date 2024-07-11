@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.db import DatabaseError, IntegrityError
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
+from aivle_big.exceptions import ResourceAccessForbiddenError, ValidationError, NotFoundError, InternalServerError, InvalidRequestError, DuplicateResourceError
 import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
@@ -11,120 +13,211 @@ from django.db.models import Count
 logger = logging.getLogger(__name__)
 
 def post_list(request):
-    post_type = request.GET.get('post_type')
-    if post_type:
-        posts = Post.objects.filter(post_type=post_type).annotate(comment_count=Count('comments')).values('id', 'title', 'content', 'user_id', 'creation_date', 'comment_count')
-    else:
-        posts = Post.objects.annotate(comment_count=Count('comments')).values('id', 'title', 'content', 'user_id', 'creation_date', 'comment_count')
-    return JsonResponse(list(posts), safe=False)
+    try:
+        post_type = request.GET.get('post_type')
+        posts = Post.objects.filter(post_type=post_type).values('id', 'title', 'content', 'user_id', 'creation_date') if post_type else Post.objects.all().values('id', 'title', 'content', 'user_id', 'creation_date')
+        return JsonResponse(list(posts), safe=False)
+    except DatabaseError as e:
+        logger.error(f"Database error while fetching posts: {str(e)}")
+        raise InternalServerError("Database error occurred while fetching posts.")
 
 def post_detail(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
-    comments = list(post.comments.all().values('id', 'content', 'user_id', 'created_at'))
-    post_data = {
-        'id': post.id,
-        'title': post.title,
-        'content': post.content,
-        'user_id': post.user_id,
-        'creation_date': post.creation_date,
-        'comments': comments
-    }
-    return JsonResponse(post_data)
+    try:
+        post = get_object_or_404(Post, pk=post_id)
+        comments = list(post.comments.all().values('id', 'content', 'user_id', 'created_at'))
+        return JsonResponse({
+            'id': post.id,
+            'title': post.title,
+            'content': post.content,
+            'user_id': post.user_id,
+            'creation_date': post.creation_date,
+            'comments': comments
+        })
+    except DatabaseError as e:
+        logger.error(f"Database error on retrieving post details: {str(e)}")
+        raise InternalServerError("Database error occurred while retrieving post details.")
 
 @csrf_exempt
 @login_required
 def post_create(request):
-    if request.method == 'POST':
+    if request.method != 'POST':
+        raise InvalidRequestError("POST method only allowed")
+    try:
         data = json.loads(request.body)
         form = PostForm(data)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user
-            post.post_type = data.get('post_type')
-            post.save()
-            return JsonResponse({'id': post.pk, 'status': 'success'}, status=201)
-        else:
-            return JsonResponse({'errors': form.errors}, status=400)
-    return JsonResponse({'error': 'GET method not allowed'}, status=405)
-
-@login_required
-def post_edit(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        form = PostForm(data, instance=post)
-        if form.is_valid():
-            form.save()
-            return JsonResponse({'status': 'success'}, status=200)
-        else:
-            return JsonResponse({'errors': form.errors}, status=400)
-    return JsonResponse({'error': 'GET method not allowed'}, status=405)
+        if not form.is_valid():
+            raise ValidationError("Form validation failed", details=form.errors)
+        post = form.save(commit=False)
+        post.user = request.user
+        post.post_type = data.get('post_type')
+        post.save()
+        return JsonResponse({'id': post.pk, 'status': 'success'}, status=201)
+    except IntegrityError as e:
+        logger.error(f"Integrity error on creating post: {str(e)}")
+        raise DuplicateResourceError("Duplicate post cannot be created.")
+    except DatabaseError as e:
+        logger.error(f"Database error on creating post: {str(e)}")
+        raise InternalServerError("Database error occurred while creating post.")
+    except json.JSONDecodeError:
+        raise ValidationError("Invalid JSON format")
+    except Exception as e:
+        logger.error(f"Unhandled exception in post creation: {str(e)}")
+        raise InternalServerError("An unexpected error occurred while creating the post.")
 
 @login_required
 def post_delete(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
-    if request.method == 'POST':
-        post.delete()
-        return JsonResponse({'status': 'success'}, status=204)
-    return JsonResponse({'error': 'GET method not allowed'}, status=405)
+    try:
+        post = get_object_or_404(Post, pk=post_id)
+        if request.method == 'POST':
+            try:
+                post.delete()
+                return JsonResponse({'status': 'success'}, status=204)
+            except Exception as e:
+                logger.error(f"Error deleting post: {e}")
+                raise InternalServerError("Error deleting post.")
+        else:
+            raise InvalidRequestError("GET method not allowed.")
+    except Post.DoesNotExist:
+        raise NotFoundError("Post not found.")
+    except ResourceAccessForbiddenError as e:
+        logger.error(f"Permission denied: {e}")
+        raise ResourceAccessForbiddenError("Permission denied.")
+    except Exception as e:
+        logger.error(f"Unexpected error: {e}")
+        raise InternalServerError("An unexpected error occurred.")
 
-@csrf_exempt
 @login_required
+def post_edit(request, post_id):
+    if request.method != 'POST':
+        raise InvalidRequestError("POST method only allowed")
+    try:
+        post = get_object_or_404(Post, pk=post_id)
+        data = json.loads(request.body)
+        form = PostForm(data, instance=post)
+        if not form.is_valid():
+            raise ValidationError("Form validation failed", details=form.errors)
+        form.save()
+        return JsonResponse({'status': 'success'}, status=200)
+    except json.JSONDecodeError:
+        raise ValidationError("Invalid JSON format")
+    except Post.DoesNotExist:
+        raise NotFoundError("Post not found")
+    except IntegrityError as e:
+        logger.error(f"Integrity error on editing post: {str(e)}")
+        raise ValidationError("Duplicate data provided.")
+    except Exception as e:
+        logger.error(f"Error editing post: {str(e)}")
+        raise InternalServerError("Failed to edit post")
+
+@login_required
+@csrf_exempt
 def comment_create(request, post_id):
-    if request.method == 'POST':
+    if request.method != 'POST':
+        raise InvalidRequestError("POST method only allowed")
+    try:
         data = json.loads(request.body)
         form = CommentForm(data)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.user = request.user
-            comment.post = get_object_or_404(Post, pk=post_id)
-            comment.save()
-            return JsonResponse({
-                'id': comment.id,
-                'content': comment.content,
-                'user_id': comment.user.id,
-                'created_at': comment.created_at
-            }, status=201)
-        else:
-            return JsonResponse({'errors': form.errors}, status=400)
-    return JsonResponse({'error': 'GET method not allowed'}, status=405)
+        if not form.is_valid():
+            raise ValidationError("Form validation failed", details=form.errors)
+        comment = form.save(commit=False)
+        comment.user = request.user
+        comment.post = get_object_or_404(Post, pk=post_id)
+        comment.save()
+        return JsonResponse({
+            'id': comment.id,
+            'content': comment.content,
+            'user_id': comment.user.id,
+            'created_at': comment.created_at
+        }, status=201)
+    except Post.DoesNotExist:
+        raise NotFoundError("Post related to the comment not found")
+    except IntegrityError as e:
+        logger.error(f"Integrity error on creating comment: {str(e)}")
+        raise DuplicateResourceError("Duplicate comment cannot be created.")
+    except DatabaseError as e:
+        logger.error(f"Database error on creating comment: {str(e)}")
+        raise InternalServerError("Database error occurred while creating comment.")
+    except json.JSONDecodeError:
+        raise ValidationError("Invalid JSON format")
+    except Exception as e:
+        logger.error(f"Unhandled exception in comment creation: {str(e)}")
+        raise InternalServerError("An unexpected error occurred while creating the comment")
 
 @login_required
 def comment_edit(request, comment_id):
-    comment = get_object_or_404(Comment, pk=comment_id, user=request.user)
-    if request.method == 'POST':
+    if request.method != 'POST':
+        raise InvalidRequestError("POST method only allowed")
+    try:
+        comment = get_object_or_404(Comment, pk=comment_id, user=request.user)
         data = json.loads(request.body)
         form = CommentForm(data, instance=comment)
-        if form.is_valid():
-            form.save()
-            return JsonResponse({
-                'id': comment.id,
-                'content': comment.content,
-                'user_id': comment.user.id,
-                'created_at': comment.created_at
-            }, status=200)
-        else:
-            return JsonResponse({'errors': form.errors}, status=400)
-    return JsonResponse({'error': 'GET method not allowed'}, status=405)
+        if not form.is_valid():
+            raise ValidationError("Form validation failed", details=form.errors)
+        form.save()
+        return JsonResponse({
+            'id': comment.id,
+            'content': comment.content,
+            'user_id': comment.user.id,
+            'created_at': comment.created_at
+        }, status=200)
+    except Comment.DoesNotExist:
+        raise NotFoundError("Comment not found")
+    except json.JSONDecodeError:
+        raise ValidationError("Invalid JSON format")
+    except IntegrityError as e:
+        logger.error(f"Integrity error on editing comment: {str(e)}")
+        raise ValidationError("Duplicate data provided.")
+    except Exception as e:
+        logger.error(f"Error editing comment: {str(e)}")
+        raise InternalServerError("Failed to edit comment")
 
 @login_required
 def comment_delete(request, comment_id):
-    comment = get_object_or_404(Comment, pk=comment_id, user=request.user)
-    if request.method == 'POST':
+    if request.method != 'POST':
+        raise InvalidRequestError("POST method only allowed")
+    try:
+        comment = get_object_or_404(Comment, pk=comment_id, user=request.user)
         comment.delete()
         return JsonResponse({'status': 'success'}, status=204)
-    return JsonResponse({'error': 'GET method not allowed'}, status=405)
+    except Comment.DoesNotExist:
+        raise NotFoundError("Comment not found")
+    except Exception as e:
+        logger.error(f"Error deleting comment: {str(e)}")
+        raise InternalServerError("Failed to delete comment")
 
+<<<<<<< HEAD
 @csrf_exempt
+=======
+>>>>>>> b59812d5b59b2f22f990beb5e7556a8871fe0edf
 @login_required
+@csrf_exempt
 def my_post_list(request):
-    posts = Post.objects.filter(user=request.user).values('id', 'title', 'content', 'user_id', 'creation_date')
-    return JsonResponse(list(posts), safe=False)
+    try:
+        posts = Post.objects.filter(user=request.user).values('id', 'title', 'content', 'user_id', 'creation_date')
+        return JsonResponse(list(posts), safe=False)
+    except DatabaseError as e:
+        logger.error(f"Database error fetching user's posts: {str(e)}")
+        raise InternalServerError("Database error occurred while fetching user's posts")
 
+<<<<<<< HEAD
 @csrf_exempt
+=======
+>>>>>>> b59812d5b59b2f22f990beb5e7556a8871fe0edf
 @login_required
+@csrf_exempt
 def my_commented_posts(request):
+<<<<<<< HEAD
     comments = Comment.objects.filter(user=request.user).values('post').distinct()
     post_ids = [comment['post'] for comment in comments]
     posts = Post.objects.filter(id__in=post_ids).values('id', 'title', 'content', 'user_id', 'creation_date')
     return JsonResponse(list(posts), safe=False)
+=======
+    try:
+        comments = Comment.objects.filter(user=request.user).values('post').distinct()
+        post_ids = [comment['post'] for comment in comments]
+        posts = Post.objects.filter(id__in=post_ids).values('id', 'title', 'content', 'user_id', 'creation_date')
+        return JsonResponse(list(posts), safe=False)
+    except DatabaseError as e:
+        logger.error(f"Database error fetching commented posts: {str(e)}")
+        raise InternalServerError("Database error occurred while fetching posts commented by user")
+>>>>>>> b59812d5b59b2f22f990beb5e7556a8871fe0edf
