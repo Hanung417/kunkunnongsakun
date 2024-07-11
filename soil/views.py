@@ -8,8 +8,13 @@ import pandas as pd
 import json
 from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError, InvalidRequestError, BadRequestError
 
-def index(request):
-    return render(request, 'soil.html')
+@csrf_exempt
+def get_crop_names(request):
+    if request.method == 'GET':
+        crop_names = crop_code['crop_name'].tolist()
+        return JsonResponse({'crop_names': crop_names})
+    else:
+        return JsonResponse({'error': 'Invalid request method.'}, status=405)
 
 def get_b_code(address):
     url = 'https://dapi.kakao.com/v2/local/search/address.json'
@@ -46,19 +51,26 @@ def get_soil_exam_data(b_code):
 @login_required
 @csrf_exempt
 def soil_exam_result(request):
-    if request.method != 'POST':
-        raise ValidationError("Only POST method is allowed.", code=405)
-    try:
-        data = json.loads(request.body)
-        crop_name = data.get('crop_name')
-        address = data.get('address')
-        if not crop_name or not address:
-            raise ValidationError("Both address and crop name are required.", code=400)
-        b_code = get_b_code(address)
-        soil_data = get_soil_exam_data(b_code)
-        return JsonResponse({'crop_name': crop_name, 'address': address, 'soil_data': soil_data})
-    except json.JSONDecodeError:
-        raise ValidationError("Invalid JSON input.", code=400)
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            crop_name = data.get('crop_name')
+            address = data.get('address')
+            if crop_name and address:
+                b_code = get_b_code(address)
+                soil_data = get_soil_exam_data(b_code)
+                result = {
+                    'crop_name': crop_name,
+                    'address': address,
+                    'soil_data': soil_data
+                }
+                return JsonResponse(result)
+            else:
+                return JsonResponse({'error': 'Address and crop name are required'}, status=400)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
+    return JsonResponse({'error': 'Invalid request method.'}, status=405)
+
 
 crop_code = pd.read_csv('soil/crop_code.csv')
 
