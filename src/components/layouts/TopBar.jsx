@@ -107,7 +107,7 @@ const TopBar = () => {
 
   return (
     <TopBars>
-      <Logo>ㅇㅇ 서비스</Logo>
+      <Logo> 꾼꾼농사꾼 </Logo>
       <RightSection>
         {isLoggedIn ? (
           <>
