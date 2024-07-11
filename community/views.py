@@ -8,7 +8,6 @@ from aivle_big.exceptions import ResourceAccessForbiddenError, ValidationError, 
 import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
-from django.db.models import Count
 
 logger = logging.getLogger(__name__)
 
@@ -185,10 +184,6 @@ def comment_delete(request, comment_id):
         logger.error(f"Error deleting comment: {str(e)}")
         raise InternalServerError("Failed to delete comment")
 
-<<<<<<< HEAD
-@csrf_exempt
-=======
->>>>>>> b59812d5b59b2f22f990beb5e7556a8871fe0edf
 @login_required
 @csrf_exempt
 def my_post_list(request):
@@ -199,19 +194,9 @@ def my_post_list(request):
         logger.error(f"Database error fetching user's posts: {str(e)}")
         raise InternalServerError("Database error occurred while fetching user's posts")
 
-<<<<<<< HEAD
-@csrf_exempt
-=======
->>>>>>> b59812d5b59b2f22f990beb5e7556a8871fe0edf
 @login_required
 @csrf_exempt
 def my_commented_posts(request):
-<<<<<<< HEAD
-    comments = Comment.objects.filter(user=request.user).values('post').distinct()
-    post_ids = [comment['post'] for comment in comments]
-    posts = Post.objects.filter(id__in=post_ids).values('id', 'title', 'content', 'user_id', 'creation_date')
-    return JsonResponse(list(posts), safe=False)
-=======
     try:
         comments = Comment.objects.filter(user=request.user).values('post').distinct()
         post_ids = [comment['post'] for comment in comments]
@@ -220,4 +205,3 @@ def my_commented_posts(request):
     except DatabaseError as e:
         logger.error(f"Database error fetching commented posts: {str(e)}")
         raise InternalServerError("Database error occurred while fetching posts commented by user")
->>>>>>> b59812d5b59b2f22f990beb5e7556a8871fe0edf
