@@ -18,6 +18,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError, UnauthorizedError, InvalidRequestError, DuplicateResourceError
 from django.db import DatabaseError, IntegrityError
+from django.contrib.auth.forms import UserChangeForm
 
 logger = logging.getLogger(__name__)
 
@@ -172,5 +173,28 @@ def delete_account(request):
         except Exception as e:
             logger.error(f"Error deleting account: {str(e)}")
             raise InternalServerError("Failed to delete account")
+    else:
+        raise InvalidRequestError("POST method only allowed")
+
+# username 변경 API
+@csrf_exempt
+@login_required
+def change_username(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            new_username = data.get('new_username')
+            if not new_username:
+                raise ValidationError("New username is required")
+
+            user = request.user
+            user.username = new_username
+            user.save()
+            return JsonResponse({'status': 'success', 'message': 'Username changed successfully'})
+        except json.JSONDecodeError:
+            raise ValidationError("Invalid JSON format")
+        except Exception as e:
+            logger.error(f"Error changing username: {str(e)}")
+            raise InternalServerError("Failed to change username")
     else:
         raise InvalidRequestError("POST method only allowed")
