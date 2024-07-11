@@ -10231,12 +10231,20 @@ Collection langchain is not created.
 Starting new HTTPS connection (1): us-api.i.posthog.com:443
 https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
 >>>>>>> 20e87a757ac58655ab55699da07f49f0b0e2afc5
+<<<<<<< HEAD
+=======
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+>>>>>>> ae4ec809f8ee2466049f8938f417dd48f3c448c0
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+<<<<<<< HEAD
+=======
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+>>>>>>> ae4ec809f8ee2466049f8938f417dd48f3c448c0
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
@@ -10244,10 +10252,13 @@ Creating converter from 5 to 7
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Watching for file changes with StatReloader
+<<<<<<< HEAD
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+=======
+>>>>>>> ae4ec809f8ee2466049f8938f417dd48f3c448c0
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -10257,6 +10268,7 @@ Starting component QuotaEnforcer
 Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
+<<<<<<< HEAD
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
 Starting new HTTPS connection (1): us-api.i.posthog.com:443
@@ -10266,6 +10278,12 @@ https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
 Forbidden (CSRF token missing.): /login/password_reset/
 Forbidden (CSRF token missing.): /login/password_reset/
 E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-3\login\views.py changed, reloading.
+=======
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+C:\Users\User\Desktop\bigproject\minju-be\community\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+>>>>>>> ae4ec809f8ee2466049f8938f417dd48f3c448c0
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
@@ -10273,10 +10291,13 @@ Creating converter from 5 to 7
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Watching for file changes with StatReloader
+<<<<<<< HEAD
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+=======
+>>>>>>> ae4ec809f8ee2466049f8938f417dd48f3c448c0
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -10286,6 +10307,7 @@ Starting component QuotaEnforcer
 Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
+<<<<<<< HEAD
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
 Starting new HTTPS connection (1): us-api.i.posthog.com:443
@@ -10306,6 +10328,18 @@ Starting new HTTP connection (1): apis.data.go.kr:80
 http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=108 HTTP/11" 200 None
 Internal Server Error: /prediction/predict/
 E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-3\prediction\views.py changed, reloading.
+=======
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+>>>>>>> ae4ec809f8ee2466049f8938f417dd48f3c448c0
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
@@ -10313,10 +10347,13 @@ Creating converter from 5 to 7
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Watching for file changes with StatReloader
+<<<<<<< HEAD
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+=======
+>>>>>>> ae4ec809f8ee2466049f8938f417dd48f3c448c0
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -10326,6 +10363,7 @@ Starting component QuotaEnforcer
 Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
+<<<<<<< HEAD
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
 Starting new HTTPS connection (1): us-api.i.posthog.com:443
@@ -10336,6 +10374,12 @@ Starting new HTTP connection (1): apis.data.go.kr:80
 http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/11" 200 None
 Internal Server Error: /prediction/predict/
 E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-3\prediction\views.py changed, reloading.
+=======
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+C:\Users\User\Desktop\bigproject\minju-be\community\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+>>>>>>> ae4ec809f8ee2466049f8938f417dd48f3c448c0
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
@@ -10343,10 +10387,13 @@ Creating converter from 5 to 7
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Watching for file changes with StatReloader
+<<<<<<< HEAD
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+=======
+>>>>>>> ae4ec809f8ee2466049f8938f417dd48f3c448c0
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -10356,6 +10403,7 @@ Starting component QuotaEnforcer
 Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
+<<<<<<< HEAD
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
 Starting new HTTPS connection (1): us-api.i.posthog.com:443
@@ -10369,6 +10417,26 @@ Starting new HTTP connection (1): apis.data.go.kr:80
 http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/11" 200 None
 Internal Server Error: /prediction/predict/
 E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-3\prediction\views.py changed, reloading.
+=======
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+Internal Server Error: /community/post/9/
+Internal Server Error: /community/post/9/
+Internal Server Error: /community/post/5/
+Internal Server Error: /community/post/5/
+Internal Server Error: /community/post/1/
+Internal Server Error: /community/post/1/
+Internal Server Error: /community/post/9/
+Internal Server Error: /community/post/9/
+Internal Server Error: /community/post/4/
+Internal Server Error: /community/post/4/
+Internal Server Error: /community/post/1/
+Internal Server Error: /community/post/1/
+Internal Server Error: /community/post/1/
+Internal Server Error: /community/post/1/
+C:\Users\User\Desktop\bigproject\minju-be\community\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+>>>>>>> ae4ec809f8ee2466049f8938f417dd48f3c448c0
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
@@ -10376,10 +10444,13 @@ Creating converter from 5 to 7
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Watching for file changes with StatReloader
+<<<<<<< HEAD
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+=======
+>>>>>>> ae4ec809f8ee2466049f8938f417dd48f3c448c0
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -10389,6 +10460,7 @@ Starting component QuotaEnforcer
 Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
+<<<<<<< HEAD
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
 Starting new HTTPS connection (1): us-api.i.posthog.com:443
@@ -10402,6 +10474,38 @@ http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_
 Starting new HTTPS connection (1): www.kamis.or.kr:443
 https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
 E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-3\prediction\views.py changed, reloading.
+=======
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+Not Found: /community/8/
+Not Found: /community/8/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/3/
+Not Found: /community/1/
+Not Found: /community/1/
+Not Found: /community/5/
+Not Found: /community/5/
+Not Found: /community/3/
+Not Found: /community/3/
+Unhandled exception in comment creation: ValidationError.__init__() got an unexpected keyword argument 'details'
+Internal Server Error: /community/post/3/comment/create/
+C:\Users\User\Desktop\bigproject\minju-be\community\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+>>>>>>> ae4ec809f8ee2466049f8938f417dd48f3c448c0
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
@@ -10409,10 +10513,13 @@ Creating converter from 5 to 7
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Watching for file changes with StatReloader
+<<<<<<< HEAD
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+=======
+>>>>>>> ae4ec809f8ee2466049f8938f417dd48f3c448c0
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -10422,6 +10529,7 @@ Starting component QuotaEnforcer
 Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
+<<<<<<< HEAD
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
 Starting new HTTPS connection (1): us-api.i.posthog.com:443
@@ -10475,3 +10583,115 @@ Starting new HTTP connection (1): www.kamis.or.kr:80
 http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2501&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
 Starting new HTTPS connection (1): www.kamis.or.kr:443
 https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2501&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+=======
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+C:\Users\User\Desktop\bigproject\minju-be\community\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+C:\Users\User\Desktop\bigproject\minju-be\community\models.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+C:\Users\User\Desktop\bigproject\minju-be\community\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+Not Found: /community/boards/
+C:\Users\User\Desktop\bigproject\minju-be\community\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+>>>>>>> ae4ec809f8ee2466049f8938f417dd48f3c448c0
