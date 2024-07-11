@@ -47,6 +47,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    'aivle_big.middleware.CustomExceptionMiddleware'
 ]
 
 ROOT_URLCONF = "aivle_big.urls"
