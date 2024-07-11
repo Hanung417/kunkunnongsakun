@@ -9101,3 +9101,814 @@ Traceback (most recent call last):
   File "C:\Users\200778\AppData\Local\anaconda3\envs\env\lib\site-packages\django\template\loader.py", line 47, in select_template
     raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
 django.template.exceptions.TemplateDoesNotExist: registration/login.html
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+Not Found: /favicon.ico
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230710&endDt=20240709&stnIds=143 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230710&p_endday=20240708&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230710&p_endday=20240708&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+Error loading memory: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x000001E174CA8040>, 'json_data': {'input': [[67945, 67218, 234]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001E174D06D10>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000001E16FE48E60> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001E174D05410>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 401, b'Unauthorized', [(b'Date', b'Thu, 11 Jul 2024 00:19:07 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'306'), (b'Connection', b'keep-alive'), (b'vary', b'Origin'), (b'x-request-id', b'req_5e330a49559ab9ebdc4bd4e23217b44f'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=vyyWJNOM4rjDUCywk0PlTccmekw8gKHzN2cYPypwUx8-1720657147-1.0.1.1-_W.YQBJhe8cJokE3wiLdt0vt4qwa4VlwOVxtRB76T45VyNH0Mb3p0zIoDZ4Z26k7EfxjK9trC8yb4S7S.Yz3FA; path=/; expires=Thu, 11-Jul-24 00:49:07 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=fSPhD0ogGcYxiEBXFz.h0TwWFLRZ47GmWKr2X.9.4Gs-1720657147324-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a149ec19dc23091-ICN'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "401 Unauthorized" Headers([('date', 'Thu, 11 Jul 2024 00:19:07 GMT'), ('content-type', 'application/json; charset=utf-8'), ('content-length', '306'), ('connection', 'keep-alive'), ('vary', 'Origin'), ('x-request-id', 'req_5e330a49559ab9ebdc4bd4e23217b44f'), ('strict-transport-security', 'max-age=31536000; includeSubDomains'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=vyyWJNOM4rjDUCywk0PlTccmekw8gKHzN2cYPypwUx8-1720657147-1.0.1.1-_W.YQBJhe8cJokE3wiLdt0vt4qwa4VlwOVxtRB76T45VyNH0Mb3p0zIoDZ4Z26k7EfxjK9trC8yb4S7S.Yz3FA; path=/; expires=Thu, 11-Jul-24 00:49:07 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=fSPhD0ogGcYxiEBXFz.h0TwWFLRZ47GmWKr2X.9.4Gs-1720657147324-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '8a149ec19dc23091-ICN'), ('alt-svc', 'h3=":443"; ma=86400')])
+request_id: req_5e330a49559ab9ebdc4bd4e23217b44f
+Encountered httpx.HTTPStatusError
+Traceback (most recent call last):
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\_base_client.py", line 999, in _request
+    response.raise_for_status()
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\httpx\_models.py", line 761, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://api.openai.com/v1/embeddings'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+Not retrying
+Re-raising status error
+Internal Server Error: /selfchatbot/chatbot/
+Traceback (most recent call last):
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\aivle_big\minju_be\bigproject28-fe\selfchatbot\views.py", line 50, in chatbot
+    result = qa_chain({"question": query, "chat_history": chat_history})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_core\_api\deprecation.py", line 148, in warning_emitting_wrapper
+    return wrapped(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\base.py", line 378, in __call__
+    return self.invoke(
+           ^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\base.py", line 163, in invoke
+    raise e
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\base.py", line 153, in invoke
+    self._call(inputs, run_manager=run_manager)
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\conversational_retrieval\base.py", line 156, in _call
+    docs = self._get_docs(new_question, inputs, run_manager=_run_manager)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\conversational_retrieval\base.py", line 393, in _get_docs
+    docs = self.retriever.invoke(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_core\retrievers.py", line 221, in invoke
+    raise e
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_core\retrievers.py", line 214, in invoke
+    result = self._get_relevant_documents(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_core\vectorstores.py", line 797, in _get_relevant_documents
+    docs = self.vectorstore.similarity_search(query, **self.search_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\vectorstores\chroma.py", line 349, in similarity_search
+    docs_and_scores = self.similarity_search_with_score(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\vectorstores\chroma.py", line 438, in similarity_search_with_score
+    query_embedding = self._embedding_function.embed_query(query)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\embeddings\openai.py", line 697, in embed_query
+    return self.embed_documents([text])[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\embeddings\openai.py", line 668, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\embeddings\openai.py", line 494, in _get_len_safe_embeddings
+    response = embed_with_retry(
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\embeddings\openai.py", line 116, in embed_with_retry
+    return embeddings.client.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\resources\embeddings.py", line 114, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\_base_client.py", line 1240, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\_base_client.py", line 921, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\_base_client.py", line 1020, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************GSCo. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Error loading memory: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x000001E1755B62A0>, 'json_data': {'input': [[67945, 67218, 234]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001E17115B450>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000001E16FE48E60> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001E17445A4D0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 401, b'Unauthorized', [(b'Date', b'Thu, 11 Jul 2024 00:19:15 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'306'), (b'Connection', b'keep-alive'), (b'vary', b'Origin'), (b'x-request-id', b'req_131f3c6c37bed89e0a899fffb69c6a53'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a149ef369d83273-ICN'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "401 Unauthorized" Headers({'date': 'Thu, 11 Jul 2024 00:19:15 GMT', 'content-type': 'application/json; charset=utf-8', 'content-length': '306', 'connection': 'keep-alive', 'vary': 'Origin', 'x-request-id': 'req_131f3c6c37bed89e0a899fffb69c6a53', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a149ef369d83273-ICN', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_131f3c6c37bed89e0a899fffb69c6a53
+Encountered httpx.HTTPStatusError
+Traceback (most recent call last):
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\_base_client.py", line 999, in _request
+    response.raise_for_status()
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\httpx\_models.py", line 761, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://api.openai.com/v1/embeddings'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+Not retrying
+Re-raising status error
+Internal Server Error: /selfchatbot/chatbot/
+Traceback (most recent call last):
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\aivle_big\minju_be\bigproject28-fe\selfchatbot\views.py", line 50, in chatbot
+    result = qa_chain({"question": query, "chat_history": chat_history})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_core\_api\deprecation.py", line 148, in warning_emitting_wrapper
+    return wrapped(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\base.py", line 378, in __call__
+    return self.invoke(
+           ^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\base.py", line 163, in invoke
+    raise e
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\base.py", line 153, in invoke
+    self._call(inputs, run_manager=run_manager)
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\conversational_retrieval\base.py", line 156, in _call
+    docs = self._get_docs(new_question, inputs, run_manager=_run_manager)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\conversational_retrieval\base.py", line 393, in _get_docs
+    docs = self.retriever.invoke(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_core\retrievers.py", line 221, in invoke
+    raise e
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_core\retrievers.py", line 214, in invoke
+    result = self._get_relevant_documents(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_core\vectorstores.py", line 797, in _get_relevant_documents
+    docs = self.vectorstore.similarity_search(query, **self.search_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\vectorstores\chroma.py", line 349, in similarity_search
+    docs_and_scores = self.similarity_search_with_score(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\vectorstores\chroma.py", line 438, in similarity_search_with_score
+    query_embedding = self._embedding_function.embed_query(query)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\embeddings\openai.py", line 697, in embed_query
+    return self.embed_documents([text])[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\embeddings\openai.py", line 668, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\embeddings\openai.py", line 494, in _get_len_safe_embeddings
+    response = embed_with_retry(
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\embeddings\openai.py", line 116, in embed_with_retry
+    return embeddings.client.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\resources\embeddings.py", line 114, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\_base_client.py", line 1240, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\_base_client.py", line 921, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\_base_client.py", line 1020, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************GSCo. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Internal Server Error: /prediction/predict/
+Bad Request: /prediction/predict/
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=143 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=159 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=151&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=151&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Bad Request: /community/post/6/edit/
+Bad Request: /community/post/6/edit/
+Bad Request: /community/post/6/edit/
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=159 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=159 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+C:\aivle_big\minju_be\bigproject28-fe\prediction\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+C:\aivle_big\minju_be\bigproject28-fe\prediction\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=159 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=151&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=151&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+C:\aivle_big\minju_be\bigproject28-fe\prediction\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=159 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=151&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=151&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=151&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=151&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=151&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=151&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Error loading memory: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x00000241FEA25A80>, 'json_data': {'input': [[67945, 67218, 234]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000241FF341550>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x00000241FABC8DD0> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000241FF260B10>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 401, b'Unauthorized', [(b'Date', b'Thu, 11 Jul 2024 04:11:28 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'306'), (b'Connection', b'keep-alive'), (b'vary', b'Origin'), (b'x-request-id', b'req_fb51db0f79e29bb3733bca2b4f651345'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=JYK_kdjs6ckrl7Tk8et2YAeFfGBtdu0.2Nw2cBrGKOE-1720671088-1.0.1.1-JeL2JBJoq_QbYghgWKdCgNCzveVav_tS9SyJ4SZEuTK_5Yq4M9byBIt5QMgkKHj86kncT.KpqiejCh9lKqCjCg; path=/; expires=Thu, 11-Jul-24 04:41:28 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=0J84hi3FiRQJwPUwJwl74B4i3_EHFviVJz1P694UIOE-1720671088937-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a15f3206bd230b5-ICN'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 401 Unauthorized"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "401 Unauthorized" Headers([('date', 'Thu, 11 Jul 2024 04:11:28 GMT'), ('content-type', 'application/json; charset=utf-8'), ('content-length', '306'), ('connection', 'keep-alive'), ('vary', 'Origin'), ('x-request-id', 'req_fb51db0f79e29bb3733bca2b4f651345'), ('strict-transport-security', 'max-age=31536000; includeSubDomains'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=JYK_kdjs6ckrl7Tk8et2YAeFfGBtdu0.2Nw2cBrGKOE-1720671088-1.0.1.1-JeL2JBJoq_QbYghgWKdCgNCzveVav_tS9SyJ4SZEuTK_5Yq4M9byBIt5QMgkKHj86kncT.KpqiejCh9lKqCjCg; path=/; expires=Thu, 11-Jul-24 04:41:28 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=0J84hi3FiRQJwPUwJwl74B4i3_EHFviVJz1P694UIOE-1720671088937-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '8a15f3206bd230b5-ICN'), ('alt-svc', 'h3=":443"; ma=86400')])
+request_id: req_fb51db0f79e29bb3733bca2b4f651345
+Encountered httpx.HTTPStatusError
+Traceback (most recent call last):
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\_base_client.py", line 999, in _request
+    response.raise_for_status()
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\httpx\_models.py", line 761, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://api.openai.com/v1/embeddings'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+Not retrying
+Re-raising status error
+Internal Server Error: /selfchatbot/chatbot/
+Traceback (most recent call last):
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\aivle_big\minju_be\bigproject28-fe\selfchatbot\views.py", line 50, in chatbot
+    result = qa_chain({"question": query, "chat_history": chat_history})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_core\_api\deprecation.py", line 148, in warning_emitting_wrapper
+    return wrapped(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\base.py", line 378, in __call__
+    return self.invoke(
+           ^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\base.py", line 163, in invoke
+    raise e
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\base.py", line 153, in invoke
+    self._call(inputs, run_manager=run_manager)
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\conversational_retrieval\base.py", line 156, in _call
+    docs = self._get_docs(new_question, inputs, run_manager=_run_manager)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain\chains\conversational_retrieval\base.py", line 393, in _get_docs
+    docs = self.retriever.invoke(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_core\retrievers.py", line 221, in invoke
+    raise e
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_core\retrievers.py", line 214, in invoke
+    result = self._get_relevant_documents(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_core\vectorstores.py", line 797, in _get_relevant_documents
+    docs = self.vectorstore.similarity_search(query, **self.search_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\vectorstores\chroma.py", line 349, in similarity_search
+    docs_and_scores = self.similarity_search_with_score(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\vectorstores\chroma.py", line 438, in similarity_search_with_score
+    query_embedding = self._embedding_function.embed_query(query)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\embeddings\openai.py", line 697, in embed_query
+    return self.embed_documents([text])[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\embeddings\openai.py", line 668, in embed_documents
+    return self._get_len_safe_embeddings(texts, engine=engine)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\embeddings\openai.py", line 494, in _get_len_safe_embeddings
+    response = embed_with_retry(
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\langchain_community\embeddings\openai.py", line 116, in embed_with_retry
+    return embeddings.client.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\resources\embeddings.py", line 114, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\_base_client.py", line 1240, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\_base_client.py", line 921, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\qa_system\Lib\site-packages\openai\_base_client.py", line 1020, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************GSCo. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=143 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=159 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=300&p_itemcode=312&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=300&p_itemcode=312&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=212&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=212&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=256&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=256&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=143 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=211&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=211&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+C:\aivle_big\minju_be\bigproject28-fe\prediction\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Internal Server Error: /prediction/predict/
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 212
+Internal Server Error: /prediction/predict/
+C:\aivle_big\minju_be\bigproject28-fe\prediction\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+C:\aivle_big\minju_be\bigproject28-fe\prediction\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\envs\\qa_system\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=211&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=211&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=143 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=143 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=246&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=246&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=232&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/1.1" 200 None

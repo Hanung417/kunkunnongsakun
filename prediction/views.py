@@ -60,11 +60,16 @@ def fetch_market_prices(crop_name, region, start_date, end_date):
     response = requests.get('http://www.kamis.or.kr/service/price/xml.do', params=params)
     if response.status_code == 200:
         root = ET.fromstring(response.content)
-        data = [{'yyyy': item.find('yyyy').text if item.find('yyyy') is not None else None,
-                 'regday': item.find('regday').text if item.find('regday') is not None else None,
-                 'itemname': item.find('itemname').text if item.find('itemname') is not None else None,
-                 'price': item.find('price').text if item.find('price') is not None else None}
-                for item in root.findall('.//item')]
+        data = []
+        for item in root.findall('.//item'):
+            row = {
+                'yyyy': item.find('yyyy').text if item.find('yyyy') is not None else None,
+                'regday': item.find('regday').text if item.find('regday') is not None else None,
+                'itemname': item.find('itemname').text if item.find('itemname') is not None else None,
+                'kindname' : item.find('kindname').text if item.find('kindname') is not None else None,
+                'price': item.find('price').text if item.find('price') is not None else None
+            }
+            data.append(row)
         df_1 = pd.DataFrame(data)
         df_1['regday'] = df_1['regday'].apply(lambda x: x.replace('/', '-') if x else '')
         df_1['price'] = df_1['price'].replace('-', 'NaN').str.replace(',', '').astype(float)
@@ -72,6 +77,9 @@ def fetch_market_prices(crop_name, region, start_date, end_date):
         df_1.drop(columns=['yyyy', 'regday'], inplace=True)
         df_1.dropna(inplace=True)
         df_1 = df_1.reset_index(drop=True)
+        kind_to_keep = df_1.loc[0, 'kindname']
+        df_1 = df_1[df_1['kindname'] == kind_to_keep]
+        df_1.drop(columns=['kindname'], inplace = True)
         return df_1
     else:
         return None
@@ -191,12 +199,16 @@ def predict_income(request):
                 merged_df = pd.merge(df_2, df_1, on='tm', how='left')
                 merged_df.drop('itemname', axis=1, inplace=True)
 
+                # merged_df를 JSON 형식으로 변환하여 결과에 추가
+                df_1_json = df_1.to_json(orient='records', date_format='iso')
+
                 pred_value = int(predict_prices(merged_df, df_2))  # int로 변환
                 crop_results.append({
                     'crop_name': crop_name,
                     'latest_year': int(latest_year),
                     'adjusted_data': convert_values(adjusted_data),
-                    'price': int(pred_value)
+                    'price': int(pred_value),
+                    'crop_chart_data': json.loads(df_1_json)
                 })
 
             save_session_data(request, int(total_predicted_value), crop_results)
