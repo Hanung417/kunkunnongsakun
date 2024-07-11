@@ -1,10 +1,10 @@
-from django.shortcuts import render
+import pandas as pd
+import json
 import requests
 import xml.etree.ElementTree as ET
-import json
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse, HttpResponse
-import pandas as pd
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 
 def index(request):
@@ -12,12 +12,8 @@ def index(request):
 
 def get_b_code(address):
     url = 'https://dapi.kakao.com/v2/local/search/address.json'
-    params = {
-        'query': address
-    }
-    headers = {
-        'Authorization': 'KakaoAK c3899565939c467eee249e97805d28c1'
-    }
+    params = {'query': address}
+    headers = {'Authorization': 'KakaoAK c3899565939c467eee249e97805d28c1'}
     response = requests.get(url, headers=headers, params=params)
     if response.status_code == 200:
         data = response.json()
@@ -31,7 +27,7 @@ def get_b_code(address):
         print(f"API 요청 실패: {response.status_code}")
         print(response.text)
         return None
-    
+
 def get_soil_exam_data(b_code):
     url = 'http://apis.data.go.kr/1390802/SoilEnviron/SoilExam/getSoilExamList'
     params = {
@@ -72,19 +68,23 @@ def get_soil_exam_data(b_code):
 @csrf_exempt
 def soil_exam_result(request):
     if request.method == 'POST':
-        crop_name = request.POST.get('crop_name')
-        address = request.POST.get('address')
-        if crop_name and address:
-            b_code = get_b_code(address)
-            soil_data = get_soil_exam_data(b_code)
-            result = {
-                'crop_name': crop_name,
-                'address': address,
-                'soil_data': soil_data
-            }
-            return JsonResponse(result)
-        else:
-            return JsonResponse({'error': 'Address and crop name are required'}, status=400)
+        try:
+            data = json.loads(request.body)
+            crop_name = data.get('crop_name')
+            address = data.get('address')
+            if crop_name and address:
+                b_code = get_b_code(address)
+                soil_data = get_soil_exam_data(b_code)
+                result = {
+                    'crop_name': crop_name,
+                    'address': address,
+                    'soil_data': soil_data
+                }
+                return JsonResponse(result)
+            else:
+                return JsonResponse({'error': 'Address and crop name are required'}, status=400)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
     return JsonResponse({'error': 'Invalid request method.'}, status=405)
 
 crop_code = pd.read_csv('soil/crop_code.csv')
@@ -102,50 +102,63 @@ def get_soil_fertilizer_info(request):
                 return str(min_val)
             return str(max(min_val, min(value, max_val)))
         
-        name = request.POST.get('crop_code')
-        crop_code_value = crop_code.loc[crop_code['crop_name'] == name, 'crop_code'].values[0]
-        crop_code_value = str(crop_code_value).zfill(5)
-        
-        params = {
-            'serviceKey': '1/eYLkvnjZNKzzUpbpb+/VWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA==',
-            'crop_Code': crop_code_value,
-            'acid': validate_and_convert(request.POST.get('acid'), 4, 9),
-            'om': validate_and_convert(request.POST.get('om'), 5, 300),
-            'vldpha': validate_and_convert(request.POST.get('vldpha'), 5, 1700),
-            'posifert_K': validate_and_convert(request.POST.get('posifert_k'), 0.01, 9),
-            'posifert_Ca': validate_and_convert(request.POST.get('posifert_ca'), 0.1, 30),
-            'posifert_Mg': validate_and_convert(request.POST.get('posifert_mg'), 0.1, 20),
-            'vldsia': validate_and_convert(request.POST.get('vldsia'), 5, 1500),
-            'selc': validate_and_convert(request.POST.get('selc'), 0, 10),
-        }
-        
-        response = requests.get(url, params=params)
-        response_content = response.content.decode('utf-8')
-        root = ET.fromstring(response_content)
-        body = root.find('body')
-        if body is None:
-            return JsonResponse({'error': 'No body element found in response.'}, status=404)
-        items = body.find('items')
-        data = []
-        if items is not None:
-            for item in items.findall('item'):
-                item_data = {
-                    'crop_Code': item.find('crop_Code').text if item.find('crop_Code') is not None else None,
-                    'crop_Nm': item.find('crop_Nm').text if item.find('crop_Nm') is not None else None,
-                    'pre_Fert_N': item.find('pre_Fert_N').text if item.find('pre_Fert_N') is not None else None,
-                    'pre_Fert_P': item.find('pre_Fert_P').text if item.find('pre_Fert_P') is not None else None,
-                    'pre_Fert_K': item.find('pre_Fert_K').text if item.find('pre_Fert_K') is not None else None,
-                    'post_Fert_N': item.find('post_Fert_N').text if item.find('post_Fert_N') is not None else None,
-                    'post_Fert_P': item.find('post_Fert_P').text if item.find('post_Fert_P') is not None else None,
-                    'post_Fert_K': item.find('post_Fert_K').text if item.find('post_Fert_K') is not None else None,
-                    'pre_Compost_Cattl': item.find('pre_Compost_Cattl').text if item.find('pre_Compost_Cattl') is not None else None,
-                    'pre_Compost_Pig': item.find('pre_Compost_Pig').text if item.find('pre_Compost_Pig') is not None else None,
-                    'pre_Compost_Chick': item.find('pre_Compost_Chick').text if item.find('pre_Compost_Chick') is not None else None,
-                    'pre_Compost_Mix': item.find('pre_Compost_Mix').text if item.find('pre_Compost_Mix') is not None else None,
-                }
-                data.append(item_data)
-            return JsonResponse({'data': data})
-        else:
-            return JsonResponse({'error': 'No items found in response.'}, status=404)
+        try:
+            data = json.loads(request.body)
+            name = data.get('crop_code')
+            print("Requested crop name:", name)
+            print("Available crop codes:", crop_code[['crop_name', 'crop_code']])
+            crop_code_row = crop_code.loc[crop_code['crop_name'] == name]
+
+            if crop_code_row.empty:
+                return JsonResponse({'error': 'Invalid crop name provided.'}, status=400)
+
+            crop_code_value = crop_code_row['crop_code'].values[0]
+            crop_code_value = str(crop_code_value).zfill(5)
+
+            params = {
+                'serviceKey': '1/eYLkvnjZNKzzUpbpb+/VWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA==',
+                'crop_Code': crop_code_value,
+                'acid': validate_and_convert(data.get('acid'), 4, 9),
+                'om': validate_and_convert(data.get('om'), 5, 300),
+                'vldpha': validate_and_convert(data.get('vldpha'), 5, 1700),
+                'posifert_K': validate_and_convert(data.get('posifert_K'), 0.01, 9),
+                'posifert_Ca': validate_and_convert(data.get('posifert_Ca'), 0.1, 30),
+                'posifert_Mg': validate_and_convert(data.get('posifert_Mg'), 0.1, 20),
+                'vldsia': validate_and_convert(data.get('vldsia'), 5, 1500),
+                'selc': validate_and_convert(data.get('selc'), 0, 10),
+            }
+
+            response = requests.get(url, params=params)
+            response_content = response.content.decode('utf-8')
+            root = ET.fromstring(response_content)
+            body = root.find('body')
+            if body is None:
+                return JsonResponse({'error': 'No body element found in response.'}, status=404)
+            items = body.find('items')
+            data = []
+            if items is not None:
+                for item in items.findall('item'):
+                    item_data = {
+                        'crop_Code': item.find('crop_Code').text if item.find('crop_Code') is not None else None,
+                        'crop_Nm': item.find('crop_Nm').text if item.find('crop_Nm') is not None else None,
+                        'pre_Fert_N': item.find('pre_Fert_N').text if item.find('pre_Fert_N') is not None else None,
+                        'pre_Fert_P': item.find('pre_Fert_P').text if item.find('pre_Fert_P') is not None else None,
+                        'pre_Fert_K': item.find('pre_Fert_K').text if item.find('pre_Fert_K') is not None else None,
+                        'post_Fert_N': item.find('post_Fert_N').text if item.find('post_Fert_N') is not None else None,
+                        'post_Fert_P': item.find('post_Fert_P').text if item.find('post_Fert_P') is not None else None,
+                        'post_Fert_K': item.find('post_Fert_K').text if item.find('post_Fert_K') is not None else None,
+                        'pre_Compost_Cattl': item.find('pre_Compost_Cattl').text if item.find('pre_Compost_Cattl') is not None else None,
+                        'pre_Compost_Pig': item.find('pre_Compost_Pig').text if item.find('pre_Compost_Pig') is not None else None,
+                        'pre_Compost_Chick': item.find('pre_Compost_Chick').text if item.find('pre_Compost_Chick') is not None else None,
+                        'pre_Compost_Mix': item.find('pre_Compost_Mix').text if item.find('pre_Compost_Mix') is not None else None,
+                    }
+                    data.append(item_data)
+                return JsonResponse({'data': data})
+            else:
+                return JsonResponse({'error': 'No items found in response.'}, status=404)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
     else:
         return JsonResponse({'error': 'Invalid request method.'}, status=405)
