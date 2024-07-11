@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNet
 from django.contrib.auth.decorators import login_required
-from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError
+from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError, InvalidRequestError
 import json
 
 # CSV 파일 경로
@@ -150,58 +150,6 @@ def save_session_data(request, total_income, crop_results):
     request.session['prediction_history'].append(session_data)
     request.session.modified = True
 
-@login_required
-def predict_income(request):
-    if request.method != 'POST':
-        raise ValidationError("Invalid request method. Only POST is allowed.", code=405)
-    
-    try:
-        data = json.loads(request.body)
-        land_area = float(data['land_area'])
-        crop_names = data['crop_names']
-        crop_ratios = [float(ratio) for ratio in data['crop_ratios']]
-        
-        if sum(crop_ratios) != 1:
-            raise ValidationError("The sum of crop ratios must equal 1.", code=1001)
-
-        df = read_csv_data()
-        df_2 = fetch_weather_data(data['region'])
-        if df_2 is None:
-            raise NotFoundError("Weather data could not be found.", code=404)
-
-        results = process_crops(df, df_2, crop_names, crop_ratios, land_area)
-        save_session_data(request, sum(item['adjusted_income'] for item in results), results)
-        
-        return JsonResponse({
-            'total_income': sum(item['adjusted_income'] for item in results),
-            'results': results,
-        }, status=200)
-    except json.JSONDecodeError:
-        raise ValidationError("Invalid JSON format.", code=400)
-    except Exception as e:
-        raise InternalServerError(f"An unexpected error occurred: {str(e)}", code=500)
-
-def process_crops(df, weather_data, crop_names, crop_ratios, land_area):
-    results = []
-    for crop_name, crop_ratio in zip(crop_names, crop_ratios):
-        crop_data = fetch_crop_data(crop_name, df, land_area, crop_ratio)
-        if crop_data is None:
-            raise NotFoundError(f"Crop data for '{crop_name}' not found.", code=404)
-
-        market_data = fetch_market_prices(crop_name, weather_data['region'], weather_data['start_date'], weather_data['end_date'])
-        if market_data is None:
-            raise NotFoundError(f"Market data for '{crop_name}' not found.", code=404)
-
-        predicted_price = predict_prices(market_data, weather_data)
-        results.append({
-            'crop_name': crop_name,
-            'latest_year': crop_data['latest_year'],
-            'adjusted_data': crop_data['adjusted_data'],
-            'price': predicted_price,
-            'adjusted_income': crop_data['adjusted_income']
-        })
-    return results
-
 def save_session_data(request, total_income, crop_results):
     session_data = {
         'total_income': total_income,
@@ -213,6 +161,80 @@ def save_session_data(request, total_income, crop_results):
     request.session['prediction_history'].append(session_data)
     request.session.modified = True
 
+@login_required
+def predict_income(request):
+    if request.method != 'POST':
+        raise InvalidRequestError("Invalid request method. Only POST is allowed.", code=405)
+    
+    try:
+        data = json.loads(request.body)
+        land_area = float(data['land_area'])
+        crop_names = data['crop_names']
+        crop_ratios = data['crop_ratios']
+        region = data['region']
+
+        crop_ratios = [float(ratio) for ratio in crop_ratios]
+        if sum(crop_ratios) != 1:
+            raise ValidationError("The sum of crop ratios must equal 1.", code=1001)
+
+        df = read_csv_data()
+        total_predicted_value = 0
+        crop_results = []
+
+        # Fetch weather data once
+        df_2 = fetch_weather_data(region)
+        if df_2 is None:
+            raise NotFoundError("Weather data could not be found.", code=404)
+
+        # Set weather data range
+        start_date = df_2['tm'].iloc[0].strftime('%Y%m%d')
+        end_date = df_2['tm'].iloc[-1].strftime('%Y%m%d')
+
+        for crop_name, crop_ratio in zip(crop_names, crop_ratios):
+            adjusted_income, adjusted_data, latest_year = fetch_crop_data(crop_name, df, land_area, crop_ratio)
+            if adjusted_income is None:
+                raise NotFoundError(f"Data for {crop_name} could not be found.", code=404)
+
+            total_predicted_value += int(adjusted_income)  # Convert to int
+
+            # Fetch market prices matching the weather data
+            df_1 = fetch_market_prices(crop_name, region, start_date, end_date)
+            if df_1 is None:
+                raise NotFoundError(f"Market data for {crop_name} could not be found.", code=404)
+
+            merged_df = pd.merge(df_2, df_1, on='tm', how='left')
+            merged_df.drop('itemname', axis=1, inplace=True)
+
+            # Convert merged_df to JSON format and add to results
+            df_1_json = df_1.to_json(orient='records', date_format='iso')
+
+            pred_value = int(predict_prices(merged_df, df_2))  # Convert to int
+            crop_results.append({
+                'crop_name': crop_name,
+                'latest_year': int(latest_year),
+                'adjusted_data': convert_values(adjusted_data),
+                'price': int(pred_value),
+                'crop_chart_data': json.loads(df_1_json)
+            })
+
+        save_session_data(request, int(total_predicted_value), crop_results)
+
+        return JsonResponse({
+            'total_income': int(total_predicted_value),
+            'results': crop_results,
+        }, status=200)
+
+    except json.JSONDecodeError:
+        raise ValidationError("Invalid JSON format.", code=400)
+    except ValidationError as e:
+        return JsonResponse({'status': 'error', 'message': str(e), 'code': e.error_code, 'status_code': e.status_code}, status=e.status_code)
+    except NotFoundError as e:
+        return JsonResponse({'status': 'error', 'message': str(e), 'code': e.error_code, 'status_code': e.status_code}, status=e.status_code)
+    except InvalidRequestError as e:
+        return JsonResponse({'status': 'error', 'message': str(e), 'code': e.error_code, 'status_code': e.status_code}, status=e.status_code)
+    except Exception as e:
+        raise InternalServerError(f"An unexpected error occurred: {str(e)}", code=500)
+    
 @login_required
 def session_history(request):
     prediction_history = request.session.get('prediction_history', [])

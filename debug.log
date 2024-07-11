@@ -10231,3 +10231,247 @@ Collection langchain is not created.
 Starting new HTTPS connection (1): us-api.i.posthog.com:443
 https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
 >>>>>>> 20e87a757ac58655ab55699da07f49f0b0e2afc5
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Forbidden (CSRF token missing.): /login/password_reset/
+Forbidden (CSRF token missing.): /login/password_reset/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-3\login\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Forbidden (CSRF token missing.): /login/password_reset/
+Forbidden (CSRF token missing.): /login/password_reset/
+Forbidden (CSRF token missing.): /login/password_reset/
+Internal Server Error: /accounts/login/
+Internal Server Error: /accounts/login/
+Internal Server Error: /accounts/login/
+Internal Server Error: /accounts/login/
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=108 HTTP/11" 200 None
+Internal Server Error: /prediction/predict/
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=108 HTTP/11" 200 None
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-3\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/11" 200 None
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-3\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/11" 200 None
+Internal Server Error: /prediction/predict/
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=156 HTTP/11" 200 None
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-3\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=143 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2200&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-3\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Error loading chat history: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x000001850AB4CFE0>, 'json_data': {'input': [[67945, 67218, 234, 10997, 93220, 41381, 16969, 48765, 243]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001850B3E9650>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x00000185063FA3C0> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001850ABE89D0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Thu, 11 Jul 2024 07:09:50 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'21'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999990'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_43645e21f2732d000a6aa1c50c654d31'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=64Kxg4l.bqau8oL9We._.tLF6xMAGwOR43mqRudfi4U-1720681790-1.0.1.1-savkaywhFR6gHJGnGv7ent_uAA98QxkmIGVMRKRkxnT_yNlSyFXE6tTGYsEADzmPzE8VP3GCAg4UbZUcOmALzg; path=/; expires=Thu, 11-Jul-24 07:39:50 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=KUX0r4n6_JnzyYLzswco.bCjNs4Rwt2lg5tEktJIWrY-1720681790350-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a16f8637abfc173-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers([('date', 'Thu, 11 Jul 2024 07:09:50 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-allow-origin', '*'), ('openai-model', 'text-embedding-ada-002'), ('openai-organization', 'user-6gooegy6nkbnabcwwvym7mjd'), ('openai-processing-ms', '21'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains'), ('x-ratelimit-limit-requests', '3000'), ('x-ratelimit-limit-tokens', '1000000'), ('x-ratelimit-remaining-requests', '2999'), ('x-ratelimit-remaining-tokens', '999990'), ('x-ratelimit-reset-requests', '20ms'), ('x-ratelimit-reset-tokens', '0s'), ('x-request-id', 'req_43645e21f2732d000a6aa1c50c654d31'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=64Kxg4l.bqau8oL9We._.tLF6xMAGwOR43mqRudfi4U-1720681790-1.0.1.1-savkaywhFR6gHJGnGv7ent_uAA98QxkmIGVMRKRkxnT_yNlSyFXE6tTGYsEADzmPzE8VP3GCAg4UbZUcOmALzg; path=/; expires=Thu, 11-Jul-24 07:39:50 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=KUX0r4n6_JnzyYLzswco.bCjNs4Rwt2lg5tEktJIWrY-1720681790350-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '8a16f8637abfc173-ICN'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+request_id: req_43645e21f2732d000a6aa1c50c654d31
+Starting component PersistentLocalHnswSegment
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n파 주요 기술,적기 파종 및 적정 크기의 묘 정식이 필요함.\n\n정식 후 잡초 및 병해충 방제를 적기에 실시함.\n\n북주기(뿌리나 밑줄기를 흙으로 두둑하게 덮어 주는 일)를 통해 상품성을 향상시킴.\n\n파 생리적 특성,파는 선선한 기후를 좋아함.\n\n내한·내건성이 있으나 토양 과습에는 매우 약함.\n\n일장이 길어지고 온도가 높아지면 잎 끝이 마르는 증상이 발생함.\n\n파 생육 온도,발아적온 : 15~25℃"}, {'role': 'user', 'content': '대파 키우는 법'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001850682A450>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000018507DE39B0> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001850ABEB6D0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Thu, 11 Jul 2024 07:09:55 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'4680'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'59804'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'196ms'), (b'x-request-id', b'req_ba144d81db48f470b622241c2325f912'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=Pl2UCzpekpCCvebTqgjOg1frwx1vanOGadipNgd5HG0-1720681795-1.0.1.1-4x_LbA8BWE8UcrB4MOtSr5v0yooO2Fuc1vJgy2Q74DLeSMZ5KYm36y9PZvq8ZxUM8k.qkuYmXq4FLsxG31.5Rg; path=/; expires=Thu, 11-Jul-24 07:39:55 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=sRS2o5uu9VaCa4FRsW9cm_4iKMDkI4mIF_yOtZqq4bA-1720681795934-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a16f86938e76837-NRT'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Thu, 11 Jul 2024 07:09:55 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('openai-organization', 'user-6gooegy6nkbnabcwwvym7mjd'), ('openai-processing-ms', '4680'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '60000'), ('x-ratelimit-remaining-requests', '9999'), ('x-ratelimit-remaining-tokens', '59804'), ('x-ratelimit-reset-requests', '8.64s'), ('x-ratelimit-reset-tokens', '196ms'), ('x-request-id', 'req_ba144d81db48f470b622241c2325f912'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=Pl2UCzpekpCCvebTqgjOg1frwx1vanOGadipNgd5HG0-1720681795-1.0.1.1-4x_LbA8BWE8UcrB4MOtSr5v0yooO2Fuc1vJgy2Q74DLeSMZ5KYm36y9PZvq8ZxUM8k.qkuYmXq4FLsxG31.5Rg; path=/; expires=Thu, 11-Jul-24 07:39:55 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=sRS2o5uu9VaCa4FRsW9cm_4iKMDkI4mIF_yOtZqq4bA-1720681795934-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '8a16f86938e76837-NRT'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+request_id: req_ba144d81db48f470b622241c2325f912
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230711&endDt=20240710&stnIds=133 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2501&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230711&p_endday=20240709&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2501&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None

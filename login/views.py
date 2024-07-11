@@ -141,7 +141,6 @@ def auth_check(request):
     })
 
 @csrf_exempt
-@login_required
 def change_password(request):
     if request.method == 'POST':
         try:
