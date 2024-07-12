@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from aivle_big.decorators import login_required
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.db import DatabaseError, IntegrityError
 from django.db.models import Count
@@ -27,14 +27,15 @@ def post_list(request):
 def post_detail(request, post_id):
     try:
         post = get_object_or_404(Post, pk=post_id)
-        comments = list(post.comments.all().values('id', 'content', 'user__username', 'user_id', 'created_at'))
+        comments = list(post.comments.all().values('id', 'content', 'user__username', 'user_id', 'created_at', 'parent_id'))
         post_data = {
             'id': post.id,
             'title': post.title,
             'content': post.content,
+            'post_type': post.post_type, 
             'user_id': post.user.username,
             'creation_date': post.creation_date,
-            'comments': comments
+            'comments': comments,
         }
         return JsonResponse(post_data)
     except DatabaseError as e:
@@ -126,12 +127,15 @@ def comment_create(request, post_id):
         comment = form.save(commit=False)
         comment.user = request.user
         comment.post = get_object_or_404(Post, pk=post_id)
+        comment.parent_id = data.get('parent_id')
         comment.save()
         return JsonResponse({
             'id': comment.id,
             'content': comment.content,
             'user_id': comment.user.id,
-            'created_at': comment.created_at
+            'user__username': comment.user.username,
+            'created_at': comment.created_at,
+            'parent_id': comment.parent_id
         }, status=201)
     except Post.DoesNotExist:
         raise NotFoundError("Post related to the comment not found")
