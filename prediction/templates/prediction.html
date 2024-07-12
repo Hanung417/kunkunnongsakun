@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Prediction</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Submit Prediction</h1>
+    <form id="predictionForm">
+        <input type="text" id="session_id" name="session_id" placeholder="Session ID" required><br>
+        <input type="text" id="session_name" name="session_name" placeholder="Session Name" required><br>
+        <input type="text" id="land_area" name="land_area" placeholder="Land Area" required><br>
+        <input type="text" id="crop_names" name="crop_names" placeholder="Crop Names" required><br>
+        <input type="text" id="crop_ratios" name="crop_ratios" placeholder="Crop Ratios" required><br>
+        <input type="text" id="region" name="region" placeholder="Region" required><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+    $("#predictionForm").submit(function(event) {
+        event.preventDefault();
+        var formData = {
+            session_id: $("#session_id").val(),
+            session_name: $("#session_name").val(),
+            land_area: $("#land_area").val(),
+            crop_names: $("#crop_names").val(),
+            crop_ratios: $("#crop_ratios").val(),
+            region: $("#region").val()
+        };
+        $.ajax({
+            type: "POST",
+            url: "/predict_income/",
+            data: JSON.stringify(formData),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(response) {
+                alert('Prediction submitted successfully!');
+                console.log(response);
+            },
+            error: function(errMsg) {
+                alert('Error submitting prediction');
+                console.log(errMsg);
+            }
+        });
+    });
+    </script>
+</body>
+</html>

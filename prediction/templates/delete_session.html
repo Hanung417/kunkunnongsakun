@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Prediction Session</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Delete Prediction Session</h1>
+    <button onclick="deleteSession('your_session_id')">Delete Session</button>
+
+    <script>
+    function deleteSession(sessionId) {
+        $.ajax({
+            type: "DELETE",
+            url: "/delete_session/" + sessionId + "/",
+            success: function(response) {
+                alert('Session deleted successfully');
+                console.log(response);
+            },
+            error: function(errMsg) {
+                alert('Error deleting session');
+                console.log(errMsg);
+            }
+        });
+    }
+    </script>
+</body>
+</html>

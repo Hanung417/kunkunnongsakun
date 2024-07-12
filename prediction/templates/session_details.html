@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Prediction Session Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Prediction Session Details</h1>
+    <div id="sessionDetails"></div>
+
+    <script>
+    function fetchSessionDetails(sessionId) {
+        $.ajax({
+            type: "GET",
+            url: "/session_details/" + sessionId + "/",
+            success: function(details) {
+                $('#sessionDetails').html('<p>Session Name: ' + details.session_name + '</p>');
+                details.results.forEach(function(result) {
+                    $('#sessionDetails').append('<p>' + result.crop_name + ': ' + result.price + '</p>');
+                });
+            },
+            error: function() {
+                alert("Error loading session details");
+            }
+        });
+    }
+    fetchSessionDetails('your_session_id'); // Replace 'your_session_id' with an actual session ID
+    </script>
+</body>
+</html>
