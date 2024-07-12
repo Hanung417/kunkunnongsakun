@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
+import 'chartjs-adapter-date-fns';
 
 const PageContainer = styled.div`
   display: flex;
@@ -15,30 +16,6 @@ const PageContainer = styled.div`
   height: 100vh;
   box-sizing: border-box;
   overflow: auto;
-`;
-
-const Header = styled.div`
-  width: 100%;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #a5d6a7; /* light green */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
-`;
-
-const HeaderButton = styled.button`
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1rem;
-  cursor: pointer;
-`;
-
-const Title = styled.div`
-  color: #fff;
-  font-size: 1.5rem;
 `;
 
 const SectionContainer = styled.div`
@@ -77,48 +54,32 @@ const Box = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   min-width: 200px;
   flex: 1;
-  overflow: auto;
-  border: 1px solid #ddd; /* 테두리 추가 */
+  overflow: hidden;
+  border: 1px solid #ddd;
 `;
 
-const FixedLargeBox = styled(Box)`
-  width: 100%;
-  height: 400px;
-  @media (min-width: 768px) {
-    flex: 3;
-    max-width: 65%;
-    min-width: 400px;
-    height: 600px;
-  }
-`;
-
-const FixedWideBox = styled(Box)`
-  width: 100%;
-  height: 200px;
-  @media (min-width: 768px) {
-    flex: 1;
-    max-width: 35%;
-    min-width: 200px;
-    height: 600px;
-  }
-`;
-
-const Footer = styled.div`
-  width: 100%;
-  padding: 1rem;
+const ChartBox = styled.div`
   display: flex;
-  justify-content: space-around;
-  background-color: #fff;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 `;
 
-const FooterButton = styled.button`
-  background: none;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  color: #4CAF50;
+const ResponsiveBox = styled(Box)`
+  width: 100%;
+  height: 80vh; /* 바 차트 높이 조정 */
+  @media (min-width: 768px) {
+    height: 80vh; /* 바 차트 높이 조정 */
+  }
+`;
+
+const ResponsiveLineBox = styled(Box)`
+  width: 100%;
+  height: 50vh; /* 라인 차트 높이 조정 */
+  @media (min-width: 768px) {
+    height: 50vh; /* 라인 차트 높이 조정 */
+  }
 `;
 
 const CropButton = styled.button`
@@ -137,39 +98,10 @@ const CropButton = styled.button`
 const ExpectedReturnTemplate = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [chartData, setChartData] = useState([]);
   const [selectedCropIndex, setSelectedCropIndex] = useState(0);
-  const [plantStatus, setPlantStatus] = useState({
-    age: null,
-    humidity: null,
-    status: null
-  });
   const [cropNames, setCropNames] = useState(location.state?.cropNames || []);
   const [landArea, setLandArea] = useState(location.state?.landArea || '');
   const [resultData, setResultData] = useState(location.state?.result || {});
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const sampleData = {
-          chartData: { /* 차트 데이터 샘플 */ },
-          plantStatus: {
-            age: '2 years',
-            humidity: '50%',
-            status: 'Healthy'
-          },
-          wholesalePrediction: 'Sample Wholesale Prediction'
-        };
-
-        setChartData(sampleData.chartData);
-        setPlantStatus(sampleData.plantStatus);
-      } catch (error) {
-        console.error('데이터를 가져오는데 실패했습니다:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const navigateToMainPage = () => {
     navigate("/");
@@ -193,28 +125,182 @@ const ExpectedReturnTemplate = () => {
     const labels = columns;
     const data = columns.map(column => adjustedData[column]);
 
+    const backgroundColors = [
+      'rgba(255, 99, 132, 0.8)',
+      'rgba(54, 162, 235, 0.8)',
+      'rgba(255, 206, 86, 0.8)',
+      'rgba(75, 192, 192, 0.8)',
+      'rgba(153, 102, 255, 0.8)',
+      'rgba(255, 159, 64, 0.8)',
+      'rgba(199, 199, 199, 0.8)',
+      'rgba(83, 102, 255, 0.8)',
+      'rgba(102, 159, 64, 0.8)',
+      'rgba(123, 99, 132, 0.8)',
+      'rgba(210, 162, 235, 0.8)',
+      'rgba(255, 206, 100, 0.8)',
+      'rgba(100, 192, 192, 0.8)',
+      'rgba(153, 99, 255, 0.8)',
+      'rgba(255, 159, 120, 0.8)',
+      'rgba(100, 159, 199, 0.8)',
+      'rgba(159, 102, 255, 0.8)',
+      'rgba(159, 64, 255, 0.8)',
+      'rgba(102, 255, 64, 0.8)',
+      'rgba(64, 255, 102, 0.8)',
+      'rgba(99, 132, 255, 0.8)',
+      'rgba(162, 210, 235, 0.8)',
+      'rgba(206, 100, 255, 0.8)',
+      'rgba(192, 100, 192, 0.8)',
+      'rgba(255, 102, 153, 0.8)',
+      'rgba(159, 120, 255, 0.8)'
+    ];
+
     return {
       labels: labels,
       datasets: [
         {
           label: cropName,
           data: data,
-          backgroundColor: 'rgba(75, 192, 192, 0.6)',
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 1,
+          backgroundColor: backgroundColors,
+          borderColor: backgroundColors.map(color => color.replace('0.8', '1')),
+          borderWidth: 2, // 바의 테두리 두께
+          hoverBorderWidth: 2,
+          barThickness: 15, // 바 두께 조정
         }
       ],
     };
   };
 
-  const options = {
+  const barChartOptions = {
     maintainAspectRatio: false,
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+        labels: {
+          font: {
+            size: 12 // 범례 폰트 크기
+          }
+        }
+      },
+      title: {
+        display: true,
+        text: '작물별 예상 수익률',
+        font: {
+          size: 16 // 타이틀 폰트 크기
+        }
+      }
+    },
     scales: {
       x: {
         ticks: {
           autoSkip: false,
-          maxRotation: 90,
-          minRotation: 45
+          maxRotation: 45,
+          minRotation: 0,
+          font: {
+            size: 10, // x축 폰트 크기
+          }
+        }
+      },
+      y: {
+        beginAtZero: true,
+        ticks: {
+          font: {
+            size: 10, // y축 폰트 크기
+          },
+          callback: function(value) { // y축 값 포맷팅
+            return value.toLocaleString(); // 천 단위 콤마 추가
+          }
+        }
+      }
+    },
+    hover: {
+      mode: 'nearest',
+      intersect: true,
+      onHover: (event, chartElement) => {
+        if (chartElement.length) {
+          event.native.target.style.cursor = 'pointer';
+        } else {
+          event.native.target.style.cursor = 'default';
+        }
+      }
+    }
+  };
+
+  const generateLineChartData = (cropChartData, cropName) => {
+    const labels = cropChartData.map(data => data.tm);
+    const data = cropChartData.map(data => data.price);
+
+    return {
+      labels,
+      datasets: [
+        {
+          label: cropName,
+          data: data,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          borderWidth: 2, // 선의 두께
+          pointRadius: 1, // 데이터 포인트 크기 감소
+          tension: 0.1
+        }
+      ]
+    };
+  };
+
+  const lineChartOptions = {
+    maintainAspectRatio: false,
+    responsive: true,
+    scales: {
+      x: {
+        type: 'time',
+        time: {
+          unit: 'day',
+          tooltipFormat: 'MM/dd/yyyy'
+        },
+        title: {
+          display: true,
+          text: 'Date',
+          font: {
+            size: 12 // x축 제목 폰트 크기
+          }
+        },
+        ticks: {
+          font: {
+            size: 10, // x축 폰트 크기
+          }
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Price (₩)',
+          font: {
+            size: 12 // y축 제목 폰트 크기
+          }
+        },
+        ticks: {
+          font: {
+            size: 10, // y축 폰트 크기
+          },
+          callback: function(value) { // y축 값 포맷팅
+            return value.toLocaleString(); // 천 단위 콤마 추가
+          }
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: true,
+        labels: {
+          font: {
+            size: 12 // 범례 폰트 크기
+          }
+        }
+      },
+      title: {
+        display: true,
+        text: '작물별 일별 도매가',
+        font: {
+          size: 16 // 타이틀 폰트 크기
         }
       }
     }
@@ -222,22 +308,16 @@ const ExpectedReturnTemplate = () => {
 
   return (
     <PageContainer>
-      <Header>
-        <HeaderButton onClick={navigateToCropsPage}>뒤로</HeaderButton>
-        <Title>작물별 예상 수익률</Title>
-        <HeaderButton>알림</HeaderButton>
-      </Header>
-
       <SectionContainer>
         <SubSectionContainer>
           <Box>
-            {cropNames.length > 0 ? cropNames.join(', ') : 'Sample Crop Data'}
+            {cropNames.length > 0 ? cropNames.join(', ') : 'Crop Data Not Available'}
           </Box>
           <Box>
-            {landArea ? `Land Area: ${landArea}` : 'Sample Area Data'}
+            {landArea ? `Land Area: ${landArea}` : 'Land Area Not Available'}
           </Box>
           <Box>
-            {resultData.total_income ? `Total Income: ${resultData.total_income}` : 'Sample Wholesale Prediction'}
+            {resultData.total_income ? `Total Income: ${resultData.total_income}` : 'Income Data Not Available'}
           </Box>
         </SubSectionContainer>
         <SubSectionContainer>
@@ -248,22 +328,27 @@ const ExpectedReturnTemplate = () => {
               </CropButton>
             ))}
           </div>
-          <FixedLargeBox>
+        </SubSectionContainer>
+        <ChartBox>
+          <ResponsiveBox>
             {adjustedDataList[selectedCropIndex] && Object.keys(adjustedDataList[selectedCropIndex]).length > 0 ? (
-              <Bar data={generateBarChartData(adjustedDataList[selectedCropIndex], cropNames[selectedCropIndex])} options={options} />
+              <Bar data={generateBarChartData(adjustedDataList[selectedCropIndex], cropNames[selectedCropIndex])} options={barChartOptions} />
             ) : (
               '차트 데이터'
             )}
-          </FixedLargeBox>
-          <FixedWideBox>세부 정보 1</FixedWideBox>
-        </SubSectionContainer>
+          </ResponsiveBox>
+          <ResponsiveLineBox>
+            {resultData.results && resultData.results[selectedCropIndex].crop_chart_data ? (
+              <Line
+                data={generateLineChartData(resultData.results[selectedCropIndex].crop_chart_data, cropNames[selectedCropIndex])}
+                options={lineChartOptions}
+              />
+            ) : (
+              '로딩중..'
+            )}
+          </ResponsiveLineBox>
+        </ChartBox>
       </SectionContainer>
-
-      <Footer>
-        <FooterButton onClick={navigateToMainPage}>홈</FooterButton>
-        <FooterButton>기타</FooterButton>
-        <FooterButton>마이페이지</FooterButton>
-      </Footer>
     </PageContainer>
   );
 };
