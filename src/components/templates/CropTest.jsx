@@ -98,12 +98,15 @@ const ErrorMessage = styled.p`
 `;
 
 const CropTest = () => {
+  // 나머지 코드는 동일하게 유지
   const [landArea, setLandArea] = useState("");
   const [region, setRegion] = useState("");
   const [crops, setCrops] = useState([{ name: "", ratio: "" }]);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  const cropOptions = ["고구마", "감자", "배추", "양배추", "시금치", "상추", "수박", "참외", "오이", "호박", "토마토", "딸기", "무", "당근", "풋고추", "파", "생강", "파프리카", "방울토마토", "참깨", "들깨", "사과", "배", "복숭아", "포도", "감귤", "단감", "참다래"]; // 드롭다운 작물 목록
 
   const handleInputChange = (index, event) => {
     const values = [...crops];
@@ -124,17 +127,17 @@ const CropTest = () => {
   const validateInput = () => {
     const newErrors = [];
     if (!landArea || landArea.trim() === "") {
-      newErrors.push("평수를 입력해주세요.\n");
+      newErrors.push("평수를 입력해주세요. ");
     }
     if (!region || region.trim() === "") {
-      newErrors.push("지역을 입력해주세요.\n");
+      newErrors.push("지역을 입력해주세요. ");
     }
     crops.forEach((crop, index) => {
       if (!crop.name || crop.name.trim() === "") {
-        newErrors.push(` ${index + 1}번째 작물명을 입력해주세요.\n`);
+        newErrors.push(` ${index + 1}번째 작물명을 입력해주세요. `);
       }
       if (!crop.ratio || crop.ratio.trim() === "" || isNaN(crop.ratio)) {
-        newErrors.push(`${index + 1}번째 작물의 비율을 입력해주세요.\n`);
+        newErrors.push(`${index + 1}번째 작물의 비율을 입력해주세요. `);
       }
     });
     return newErrors;
@@ -198,16 +201,15 @@ const CropTest = () => {
       <InputContainer>
         <Input
           type="text"
-          placeholder="Land Area"
+          placeholder="재배 면적 (평)"
           value={landArea}
           onChange={(e) => setLandArea(e.target.value)}
         />
-        {/* Region dropdown */}
         <Select
           value={region}
           onChange={(e) => setRegion(e.target.value)}
         >
-          <option value="">Select Region</option>
+          <option value="">지역 선택</option>
           <option value="서울">서울</option>
           <option value="부산">부산</option>
           <option value="대구">대구</option>
@@ -216,16 +218,19 @@ const CropTest = () => {
         </Select>
         {crops.map((crop, index) => (
           <CropContainer key={index}>
-            <Input
-              type="text"
-              placeholder="Crop Name"
+            <Select
               name="name"
               value={crop.name}
               onChange={(event) => handleInputChange(index, event)}
-            />
+            >
+              <option value="">작물 선택</option>
+              {cropOptions.map((option, idx) => (
+                <option key={idx} value={option}>{option}</option>
+              ))}
+            </Select>
             <Input
               type="text"
-              placeholder="Crop Ratio"
+              placeholder="작물별 비율"
               name="ratio"
               value={crop.ratio}
               onChange={(event) => handleInputChange(index, event)}
