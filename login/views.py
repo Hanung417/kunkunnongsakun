@@ -139,6 +139,8 @@ def auth_check(request):
         'username': request.user.username,
     })
 
+# 비밀번호 변경 API
+@login_required
 @csrf_exempt
 def change_password(request):
     if request.method == 'POST':
@@ -147,7 +149,8 @@ def change_password(request):
             form = PasswordChangeForm(user=request.user, data=data)
             if form.is_valid():
                 user = form.save()
-                update_session_auth_hash(request, user)
+                update_session_auth_hash(request, user) 
+                logout(request) # 비밀번호 변경 후 로그아웃
                 return JsonResponse({'status': 'success', 'message': 'Password changed successfully'})
             else:
                 raise ValidationError("Form validation failed", details=form.errors)
