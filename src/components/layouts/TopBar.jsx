@@ -20,6 +20,7 @@ const Logo = styled.div`
   font-weight: 800;
   color: #4aaa87;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer; /* Add cursor pointer for visual indication */
 `;
 
 const RightSection = styled.div`
@@ -105,9 +106,13 @@ const TopBar = () => {
     }
   };
 
+  const handleLogoClick = () => {
+    navigate("/");
+  };
+
   return (
     <TopBars>
-      <Logo> 꾼꾼농사꾼 </Logo>
+      <Logo onClick={handleLogoClick}> 꾼꾼농사꾼 </Logo>
       <RightSection>
         {isLoggedIn ? (
           <>

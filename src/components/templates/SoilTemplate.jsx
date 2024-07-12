@@ -1,216 +1,455 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
-import { AiOutlineBell } from 'react-icons/ai';
+import Modal from 'react-modal';
 
-const PageContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 24px;
+  background-color: #f9f9f9;
+  height: 100%;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background-color: #f0f0f0;
+  box-sizing: border-box;
 `;
 
-const HeaderContainer = styled.div`
-  width: 100%;
-  background-color: #a5d6a7; /* 연한 초록색 배경 */
+const BoxContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative; /* 아이콘 컨테이너 위치를 위해 추가 */
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+  width: 100%;
+  max-width: 600px;
 `;
 
 const Title = styled.h1`
-  font-size: 1.5rem;
-  color: #fff;
-  margin: 0;
+  font-size: 24px;
+  margin-bottom: 32px;
+  color: #333;
 `;
 
-const IconContainer = styled.div`
-  position: absolute;
-  right: 1rem;
-  display: flex;
-  align-items: center;
-`;
-
-const Icon = styled.div`
-  margin-left: 1rem;
-  cursor: pointer;
-`;
-
-const Content = styled.div`
+const InputContainer = styled.div`
+  position: relative;
   width: 100%;
-  padding: 1rem;
+  max-width: 400px;
+  margin-bottom: 16px;
+`;
+
+const Input = styled.input`
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+`;
+
+const Button = styled.button`
+  padding: 12px 16px;
+  font-size: 14px;
+  color: white;
+  background-color: #4aaa87;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    background-color: #6dc4b0;
+  }
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  margin-bottom: 16px;
+  margin-right: 8px;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  margin-bottom: 16px;
+`;
+
+const Select = styled.select`
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+`;
+
+const CropList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: auto;
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 1;
+  top: 40px; /* Adjust this value if needed */
+  max-height: 200px; /* Fixed height */
+  overflow-y: auto; /* Enable vertical scrolling */
 `;
 
-const Form = styled.form`
+const CropItem = styled.div`
+  padding: 8px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    background-color: #f1f1f1;
+  }
+  &:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+  }
+`;
+
+const RecommendationContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   max-width: 600px;
+  margin-top: 24px;
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
 
-const Label = styled.label`
-  font-size: 1rem;
-  margin: 0.5rem 0;
+const RecommendationTitle = styled.h2`
+  font-size: 20px;
+  margin-bottom: 16px;
   color: #333;
 `;
 
-const Input = styled.input`
+const TableContainer = styled.div`
   width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-`;
-
-const Button = styled.button`
-  background-color: #a5d6a7;
-  border: none;
-  border-radius: 50px;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  color: #fff;
-  cursor: pointer;
-  margin-top: 1rem;
-  width: auto;
-`;
-
-const ResultContainer = styled.div`
-  text-align: center;
-  margin-top: 20px;
-  background: #fff;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
 `;
 
 const Table = styled.table`
-  margin: 0 auto;
-  border: 1px solid #ccc;
-  border-collapse: collapse;
   width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-bottom: 16px;
 `;
 
-const Th = styled.th`
+const TableHeader = styled.th`
   border: 1px solid #ccc;
   padding: 8px;
-  background-color: #f9f9f9;
+  background-color: #f1f1f1;
+  width: 150px;
 `;
 
-const Td = styled.td`
+const TableData = styled.td`
   border: 1px solid #ccc;
   padding: 8px;
+  text-align: center;
+  width: 150px;
 `;
 
-const SoilPage = () => {
-  const [criteria, setCriteria] = useState({
-    kyoengji: '전체',
-    area: '전라남도',
-    district: '영암군',
-    town: '신북면',
-    village: '유곡리',
-    plot: '',
-  });
-  const [result, setResult] = useState(null);
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 16px;
+`;
 
-  const handleChange = (e) => {
-    setCriteria({ ...criteria, [e.target.name]: e.target.value });
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: '80%',
+    maxWidth: '600px',
+    padding: '20px',
+  },
+};
+
+Modal.setAppElement('#root');
+
+const SoilTest = () => {
+  const [cropName, setCropName] = useState('');
+  const [address, setAddress] = useState('');
+  const [soilData, setSoilData] = useState([]);
+  const [selectedSample, setSelectedSample] = useState(null);
+  const [fertilizerData, setFertilizerData] = useState(null);
+  const [cropNames, setCropNames] = useState([]);
+  const [filteredCropNames, setFilteredCropNames] = useState([]);
+  const [showCropList, setShowCropList] = useState(false);
+  const [error, setError] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const inputRef = useRef(null);
+
+  const handleCropNameChange = (e) => {
+    const value = e.target.value;
+    setCropName(value);
+    setFilteredCropNames(cropNames.filter(crop => crop.toLowerCase().includes(value.toLowerCase())));
+    setShowCropList(true);
   };
 
-  const handleSearch = async () => {
-    try {
-      const response = await fetch(`/api/soil?criteria=${encodeURIComponent(JSON.stringify(criteria))}`);
-      if (!response.ok) {
-        throw new Error('네트워크 응답이 정상이 아닙니다.');
+  const handleAddressChange = (e) => setAddress(e.target.value);
+  const handleSampleChange = (e) => setSelectedSample(e.target.value);
+
+  const getCSRFToken = () => {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, 10) === 'csrftoken=') {
+          cookieValue = decodeURIComponent(cookie.substring(10));
+          break;
+        }
       }
-      const data = await response.json();
-      setResult(data);
-    } catch (error) {
-      console.error('API 요청에 실패했습니다:', error);
-      const mockData = {
-        pH: 5.8,
-        organicMatter: 23.5,
-        availablePhosphorus: 199.4,
-        cationExchangeCapacity: {
-          potassium: 0.7,
-          calcium: 5.9,
-          magnesium: 1.9,
-        },
-        electricalConductivity: 0.7,
-        availableSilicon: 102.4,
-      };
-      setResult(mockData);
+    }
+    return cookieValue;
+  };
+
+  const fetchCropNames = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/soil/get-crop-names/');
+      setCropNames(response.data.crop_names);
+      setFilteredCropNames(response.data.crop_names); // 초기값 설정
+    } catch (err) {
+      setError('작물 이름을 불러오는 중 오류가 발생했습니다.');
     }
   };
 
+  useEffect(() => {
+    fetchCropNames();
+  }, []);
+
+  const fetchSoilExamData = async () => {
+    const csrfToken = getCSRFToken();
+    try {
+      const response = await axios.post('http://localhost:8000/soil/soil_exam/',
+        JSON.stringify({ crop_name: cropName, address }),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+          },
+          withCredentials: true,
+        }
+      );
+      setSoilData(response.data.soil_data);
+      setSelectedSample(null); // Reset selected sample
+      setError(null);
+      setModalIsOpen(true); // Show modal when soil data is fetched
+    } catch (err) {
+      setError(err.response.data.error);
+      setSoilData([]);
+    }
+  };
+
+  const fetchFertilizerData = async () => {
+    if (!selectedSample) {
+      setError('먼저 토양 샘플을 선택하세요.');
+      return;
+    }
+
+    const latestSoilSample = soilData.find(sample => sample.No === selectedSample); // 선택된 토양 샘플 데이터를 사용
+    const csrfToken = getCSRFToken();
+    try {
+      const response = await axios.post('http://localhost:8000/soil/get-soil-fertilizer-info/',
+        JSON.stringify({
+          crop_code: cropName,
+          acid: latestSoilSample.ACID,
+          om: latestSoilSample.OM,
+          vldpha: latestSoilSample.VLDPHA,
+          posifert_K: latestSoilSample.POSIFERT_K,
+          posifert_Ca: latestSoilSample.POSIFERT_CA,
+          posifert_Mg: latestSoilSample.POSIFERT_MG,
+          vldsia: latestSoilSample.VLDSIA,
+          selc: latestSoilSample.SELC
+        }),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+          },
+          withCredentials: true,
+        }
+      );
+      setFertilizerData(response.data.data);
+      setError(null);
+      setModalIsOpen(false); // Close modal when analysis is done
+    } catch (err) {
+      setError(err.response.data.error);
+      setFertilizerData(null);
+    }
+  };
+
+  const handleCropNameClick = () => {
+    setShowCropList(true);
+  };
+
+  const handleCropSelect = (crop) => {
+    setCropName(crop);
+    setShowCropList(false);
+  };
+
+  const handleClickOutside = (event) => {
+    if (inputRef.current && !inputRef.current.contains(event.target)) {
+      setShowCropList(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   return (
-    <PageContainer>
-      <HeaderContainer>
-        <Title>토양검정</Title>
-        <IconContainer>
-          <Icon><AiOutlineBell size={24} color="#fff" /></Icon>
-        </IconContainer>
-      </HeaderContainer>
-      <Content>
-        <Form onSubmit={(e) => { e.preventDefault(); handleSearch(); }}>
-          <Label htmlFor="kyoengji">경지구분</Label>
-          <Input id="kyoengji" name="kyoengji" value={criteria.kyoengji} onChange={handleChange} />
-          <Label htmlFor="area">지역</Label>
-          <Input id="area" name="area" value={criteria.area} onChange={handleChange} />
-          <Label htmlFor="district">시/군</Label>
-          <Input id="district" name="district" value={criteria.district} onChange={handleChange} />
-          <Label htmlFor="town">읍/면</Label>
-          <Input id="town" name="town" value={criteria.town} onChange={handleChange} />
-          <Label htmlFor="village">리/동</Label>
-          <Input id="village" name="village" value={criteria.village} onChange={handleChange} />
-          <Label htmlFor="plot">지번 조회</Label>
-          <Input id="plot" name="plot" value={criteria.plot} onChange={handleChange} />
-          <Button type="submit">조회</Button>
-        </Form>
-        {result && (
-          <ResultContainer>
-            <h2>전라남도 영암군 신북면 유곡리 화학성 평균</h2>
+    <Container>
+      <BoxContainer>
+        <Title>토양 분석</Title>
+        <InputContainer ref={inputRef}>
+          <Input
+            type="text"
+            value={cropName}
+            onChange={handleCropNameChange}
+            onClick={handleCropNameClick}
+            placeholder="작물 이름"
+          />
+          {showCropList && filteredCropNames.length > 0 && (
+            <CropList>
+              {filteredCropNames.map((crop, index) => (
+                <CropItem key={index} onClick={() => handleCropSelect(crop)}>
+                  {crop}
+                </CropItem>
+              ))}
+            </CropList>
+          )}
+        </InputContainer>
+        <InputContainer>
+          <Input type="text" value={address} onChange={handleAddressChange} placeholder="주소" />
+        </InputContainer>
+        <Button onClick={fetchSoilExamData}>주소 검색</Button>
+      </BoxContainer>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Soil Samples Modal"
+      >
+        <h2>상세 주소</h2>
+        <Select onChange={handleSampleChange}>
+          <option value="">선택</option>
+          {soilData.map(sample => (
+            <option key={sample.No} value={sample.No}>
+              {sample.PNU_Nm}
+            </option>
+          ))}
+        </Select>
+        <ButtonContainer>
+          <Button onClick={fetchFertilizerData} disabled={!selectedSample}>분석하기</Button>
+          <Button onClick={closeModal}>닫기</Button>
+        </ButtonContainer>
+      </Modal>
+      {fertilizerData && (
+        <RecommendationContainer>
+          <RecommendationTitle>비료 추천 데이터</RecommendationTitle>
+          <TableContainer>
             <Table>
               <thead>
                 <tr>
-                  <Th>pH (1:5)</Th>
-                  <Th>유기물 (g/kg)</Th>
-                  <Th>유효인산 (mg/kg)</Th>
-                  <Th>치환성 양이온(cmol+/kg)</Th>
-                  <Th>전기전도도 (dS/m)</Th>
-                  <Th>유효규산 (mg/kg)</Th>
+                  <TableHeader>항목</TableHeader>
+                  {fertilizerData.map((item, index) => (
+                    <TableHeader key={index}>{item.crop_Nm}</TableHeader>
+                  ))}
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <Td>{result.pH}</Td>
-                  <Td>{result.organicMatter}</Td>
-                  <Td>{result.availablePhosphorus}</Td>
-                  <Td>
-                    칼륨: {result.cationExchangeCapacity.potassium},<br />
-                    칼슘: {result.cationExchangeCapacity.calcium},<br />
-                    마그네슘: {result.cationExchangeCapacity.magnesium}
-                  </Td>
-                  <Td>{result.electricalConductivity}</Td>
-                  <Td>{result.availableSilicon}</Td>
+                  <TableData>밑거름_질소 처방량(kg/10a)</TableData>
+                  {fertilizerData.map((item, index) => (
+                    <TableData key={index}>{item.pre_Fert_N}</TableData>
+                  ))}
+                </tr>
+                <tr>
+                  <TableData>밑거름_인산 처방량(kg/10a)</TableData>
+                  {fertilizerData.map((item, index) => (
+                    <TableData key={index}>{item.pre_Fert_P}</TableData>
+                  ))}
+                </tr>
+                <tr>
+                  <TableData>밑거름_칼리 처방량(kg/10a)</TableData>
+                  {fertilizerData.map((item, index) => (
+                    <TableData key={index}>{item.pre_Fert_K}</TableData>
+                  ))}
+                </tr>
+                <tr>
+                  <TableData>웃거름_질소 처방량(kg/10a)</TableData>
+                  {fertilizerData.map((item, index) => (
+                    <TableData key={index}>{item.post_Fert_N}</TableData>
+                  ))}
+                </tr>
+                <tr>
+                  <TableData>웃거름_인산 처방량(kg/10a)</TableData>
+                  {fertilizerData.map((item, index) => (
+                    <TableData key={index}>{item.post_Fert_P}</TableData>
+                  ))}
+                </tr>
+                <tr>
+                  <TableData>웃거름_칼리 처방량(kg/10a)</TableData>
+                  {fertilizerData.map((item, index) => (
+                    <TableData key={index}>{item.post_Fert_K}</TableData>
+                  ))}
+                </tr>
+                <tr>
+                  <TableData>우분퇴비 처방량(kg/10a)</TableData>
+                  {fertilizerData.map((item, index) => (
+                    <TableData key={index}>{item.pre_Compost_Cattl}</TableData>
+                  ))}
+                </tr>
+                <tr>
+                  <TableData>돈분퇴비 처방량(kg/10a)</TableData>
+                  {fertilizerData.map((item, index) => (
+                    <TableData key={index}>{item.pre_Compost_Pig}</TableData>
+                  ))}
+                </tr>
+                <tr>
+                  <TableData>계분퇴비 처방량(kg/10a)</TableData>
+                  {fertilizerData.map((item, index) => (
+                    <TableData key={index}>{item.pre_Compost_Chick}</TableData>
+                  ))}
+                </tr>
+                <tr>
+                  <TableData>혼합퇴비 처방량(kg/10a)</TableData>
+                  {fertilizerData.map((item, index) => (
+                    <TableData key={index}>{item.pre_Compost_Mix}</TableData>
+                  ))}
                 </tr>
               </tbody>
             </Table>
-          </ResultContainer>
-        )}
-      </Content>
-    </PageContainer>
+          </TableContainer>
+        </RecommendationContainer>
+      )}
+    </Container>
   );
 };
 
-export default SoilPage;
+export default SoilTest;
