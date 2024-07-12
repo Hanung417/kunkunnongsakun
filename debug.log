@@ -12498,3 +12498,1256 @@ Unhandled exception in post creation: 'utf-8' codec can't decode byte 0xff in po
 Internal Server Error: /community/post/create/
 Unhandled exception in post creation: 'utf-8' codec can't decode byte 0xff in position 442: invalid start byte
 Internal Server Error: /community/post/create/
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%A2%85%EB%A1%9C%EA%B5%AC HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=1111000000 HTTP/11" 200 161
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%A4%91%EA%B5%AC HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=1114000000 HTTP/11" 200 161
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%A4%91%EB%A6%BC%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=1114017100 HTTP/11" 200 491
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=7.3&om=54.0&vldpha=133.0&posifert_K=0.53&posifert_Ca=16.0&posifert_Mg=3.0&vldsia=5&selc=0.3 HTTP/11" 200 260
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%A4%91%EB%A6%BC%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=1114017100 HTTP/11" 200 491
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%A4%91%EB%A6%BC%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=1114017100 HTTP/11" 200 491
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=5.4&om=13.0&vldpha=93.0&posifert_K=0.36&posifert_Ca=2.3&posifert_Mg=0.7&vldsia=5&selc=0.2 HTTP/11" 200 279
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Internal Server Error: /soil/soil_exam/
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Internal Server Error: /soil/soil_exam/
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Internal Server Error: /soil/soil_exam/
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Internal Server Error: /soil/soil_exam/
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Internal Server Error: /soil/soil_exam/
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Internal Server Error: /soil/soil_exam/
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Internal Server Error: /soil/soil_exam/
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\models.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=6.6&om=14.0&vldpha=404.0&posifert_K=1.207&posifert_Ca=5.35&posifert_Mg=2.93&vldsia=266.0&selc=0 HTTP/11" 200 279
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\models.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=5.2&om=14.0&vldpha=371.0&posifert_K=1.347&posifert_Ca=4.4&posifert_Mg=1.62&vldsia=61.0&selc=0 HTTP/11" 200 281
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=5.2&om=14.0&vldpha=371.0&posifert_K=1.347&posifert_Ca=4.4&posifert_Mg=1.62&vldsia=61.0&selc=0 HTTP/11" 200 281
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=5.2&om=14.0&vldpha=371.0&posifert_K=1.347&posifert_Ca=4.4&posifert_Mg=1.62&vldsia=61.0&selc=0 HTTP/11" 200 281
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=6.6&om=14.0&vldpha=404.0&posifert_K=1.207&posifert_Ca=5.35&posifert_Mg=2.93&vldsia=266.0&selc=0 HTTP/11" 200 279
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=6.6&om=14.0&vldpha=404.0&posifert_K=1.207&posifert_Ca=5.35&posifert_Mg=2.93&vldsia=266.0&selc=0 HTTP/11" 200 279
+Error loading chat history: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x0000025CA5A40400>, 'json_data': {'input': [[70787, 229, 70787, 229]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000025CA591E050>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000025CA1B80DD0> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000025CA613FE90>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 08:22:21 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'19'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999996'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_a995a45e6dea37e9ed7678b1186714b4'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=yrhi.2AVtefCUJg0bzk6DjwsqgAUrVgNj0FuILzjFY8-1720772541-1.0.1.1-uf8jy1ZkoOFklm94Hjz9fVLC0Bu74HExOKWn0GEHFDIwUliRReRpiVv_sEzrtrGSyDI6Cx1Y.IDE4r_3DONmaQ; path=/; expires=Fri, 12-Jul-24 08:52:21 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=I8rsrA1f5..dPQtpSgVJ_9Y7r9YzHwe5M6_vUghiRFs-1720772541438-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1f9ffea8ceaa89-ICN'), (b'Content-Encoding', b'br'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers([('date', 'Fri, 12 Jul 2024 08:22:21 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-allow-origin', '*'), ('openai-model', 'text-embedding-ada-002'), ('openai-organization', 'user-6gooegy6nkbnabcwwvym7mjd'), ('openai-processing-ms', '19'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains'), ('x-ratelimit-limit-requests', '3000'), ('x-ratelimit-limit-tokens', '1000000'), ('x-ratelimit-remaining-requests', '2999'), ('x-ratelimit-remaining-tokens', '999996'), ('x-ratelimit-reset-requests', '20ms'), ('x-ratelimit-reset-tokens', '0s'), ('x-request-id', 'req_a995a45e6dea37e9ed7678b1186714b4'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=yrhi.2AVtefCUJg0bzk6DjwsqgAUrVgNj0FuILzjFY8-1720772541-1.0.1.1-uf8jy1ZkoOFklm94Hjz9fVLC0Bu74HExOKWn0GEHFDIwUliRReRpiVv_sEzrtrGSyDI6Cx1Y.IDE4r_3DONmaQ; path=/; expires=Fri, 12-Jul-24 08:52:21 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=I8rsrA1f5..dPQtpSgVJ_9Y7r9YzHwe5M6_vUghiRFs-1720772541438-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '8a1f9ffea8ceaa89-ICN'), ('content-encoding', 'br'), ('alt-svc', 'h3=":443"; ma=86400')])
+request_id: req_a995a45e6dea37e9ed7678b1186714b4
+Starting component PersistentLocalHnswSegment
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n시설 재배 중 가스 피해를 받아 작물이 잘 크지 못하고 시들시들한데 어떻게해야 하나요?,우선 통풍 및 환기가 필요합니다. 약제 살포로 가스 피해를 줄이기 어렵기 때문에, 미발효 퇴비 등을 사용할 시에는 작물 정식 20~30일 전에 처리하여 가스를 모두 환기시켜 주도록 합니다. \n\n비산되어 온 농약성분(제초제 등)으로 인한 분쟁상황에\n서의 대응 매뉴얼이 궁금합니다.,□ 친환경에서는 비의도적인 오염이 예상 될 때에는 구분생산계획에 따라 완충지대(3~5m)를 설치하도록 하고 있으며 완충지대내의 농산물을 친환경으로 출하하지 못하도록 하고 있습니다.\n\n□ 농업인은 바람이 부는 날 살포기로 농약을 살포하여 이웃 농지에 비산하는 등 피해를 주지 않도록 노력해야 하며, 농약을 살포할 날짜를 이웃 농지 농업인에게 미리 알려주고, 바람이 부는 날을 피해 살포하고, 필요시 가림막 등의 조치를 해야 합니다.\n\n□ 현장에서 비산 등 분쟁이 발생할 경우 농림축산식품부 농약피해분쟁조정위원회 또는 한국소비자원 분쟁조정위원회 (043-880-5500)에 문의하시기 바랍니다.\n\n시대가 바뀌어 인터넷 구매가 활발해 짐에 따라 농약도\n인터넷으로 구매할 수 있도록 제도를 개선해 주세요.,□ 농약을 인터넷으로 판매할 경우, 청소년 등 누구나 손쉽게 구입할 수 있어 농약의 오남용(자살 등) 우려에 따라 통신판매를 금지함으로써 농약을 안전하게 관리하고 있습니다.\n\n   ○ 농약은「농약관리법」제21조 제3항에 따라 누구든지「전자상거래 등에서의 소비자보호에 관한 법률」제2조 제2호에 따른 통신판매가 금지되고 있습니다.\n\n□ 천연식물보호제 등 인체에 위해성이 낮은 농약에 한하여 통신 또는 전화권유의 방법으로 판매할 수 있도록 농촌진흥청장이 별도 고시 하고 있습니다.\n\n    (통신 또는 전화권유의 방법으로 판매할 수 있는 농약「농촌진흥청 고시」)"}, {'role': 'user', 'content': 'ㅇㅇ'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000025CA5BCEAD0>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000025CA24CBB60> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000025CA59E30D0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 08:22:22 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'527'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'59389'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'611ms'), (b'x-request-id', b'req_d0d8d4c40a589003c0e23694000ddcd8'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=mlAdjF_sSKp3kk1a8wwLLMtgiBDXT0O9z3MQI9E_QIc-1720772542-1.0.1.1-ovyo7.bF2B9SoQ8W0gYiCXJlttT_9gnaJPJ39Q5uiv67RSgV0qJhOQIezbzezjQ7ZNFo87rK0HeDEhlZXqtoGA; path=/; expires=Fri, 12-Jul-24 08:52:22 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=nc2xatQr.UYUOylK5SvBdLNJYfvrd6XrxJm28wPIMRQ-1720772542626-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1fa0024b43f587-NRT'), (b'Content-Encoding', b'br'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 12 Jul 2024 08:22:22 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('openai-organization', 'user-6gooegy6nkbnabcwwvym7mjd'), ('openai-processing-ms', '527'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '60000'), ('x-ratelimit-remaining-requests', '9999'), ('x-ratelimit-remaining-tokens', '59389'), ('x-ratelimit-reset-requests', '8.64s'), ('x-ratelimit-reset-tokens', '611ms'), ('x-request-id', 'req_d0d8d4c40a589003c0e23694000ddcd8'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=mlAdjF_sSKp3kk1a8wwLLMtgiBDXT0O9z3MQI9E_QIc-1720772542-1.0.1.1-ovyo7.bF2B9SoQ8W0gYiCXJlttT_9gnaJPJ39Q5uiv67RSgV0qJhOQIezbzezjQ7ZNFo87rK0HeDEhlZXqtoGA; path=/; expires=Fri, 12-Jul-24 08:52:22 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=nc2xatQr.UYUOylK5SvBdLNJYfvrd6XrxJm28wPIMRQ-1720772542626-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '8a1fa0024b43f587-NRT'), ('content-encoding', 'br'), ('alt-svc', 'h3=":443"; ma=86400')])
+request_id: req_d0d8d4c40a589003c0e23694000ddcd8
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=6.6&om=14.0&vldpha=404.0&posifert_K=1.207&posifert_Ca=5.35&posifert_Mg=2.93&vldsia=266.0&selc=0 HTTP/11" 200 279
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=6.6&om=14.0&vldpha=404.0&posifert_K=1.207&posifert_Ca=5.35&posifert_Mg=2.93&vldsia=266.0&selc=0 HTTP/11" 200 279
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=6.6&om=14.0&vldpha=404.0&posifert_K=1.207&posifert_Ca=5.35&posifert_Mg=2.93&vldsia=266.0&selc=0 HTTP/11" 200 212
+Internal Server Error: /soil/get-soil-fertilizer-info/
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01002&acid=6.6&om=14.0&vldpha=404.0&posifert_K=1.207&posifert_Ca=5.35&posifert_Mg=2.93&vldsia=266.0&selc=0 HTTP/11" 200 259
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01002&acid=6.5&om=16.0&vldpha=130.0&posifert_K=0.226&posifert_Ca=4.32&posifert_Mg=1.3&vldsia=5&selc=0.18 HTTP/11" 200 259
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01002&acid=5.3&om=25.3&vldpha=226.0&posifert_K=2.225&posifert_Ca=6.12&posifert_Mg=2.42&vldsia=5&selc=1.09 HTTP/11" 200 265
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01004&acid=6.6&om=14.0&vldpha=404.0&posifert_K=1.207&posifert_Ca=5.35&posifert_Mg=2.93&vldsia=266.0&selc=0 HTTP/11" 200 269
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01004&acid=6.6&om=14.0&vldpha=404.0&posifert_K=1.207&posifert_Ca=5.35&posifert_Mg=2.93&vldsia=266.0&selc=0 HTTP/11" 200 269
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01004&acid=6.1&om=16.0&vldpha=249.0&posifert_K=0.407&posifert_Ca=4.84&posifert_Mg=1.44&vldsia=5&selc=0.55 HTTP/11" 200 271
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=5.2&om=14.0&vldpha=371.0&posifert_K=1.347&posifert_Ca=4.4&posifert_Mg=1.62&vldsia=61.0&selc=0 HTTP/11" 200 281
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=5.2&om=14.0&vldpha=371.0&posifert_K=1.347&posifert_Ca=4.4&posifert_Mg=1.62&vldsia=61.0&selc=0 HTTP/11" 200 281
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=5.3&om=25.3&vldpha=226.0&posifert_K=2.225&posifert_Ca=6.12&posifert_Mg=2.42&vldsia=5&selc=1.09 HTTP/11" 200 283
