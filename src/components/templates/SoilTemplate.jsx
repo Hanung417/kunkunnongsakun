@@ -445,9 +445,7 @@ const SoilTest = () => {
               <thead>
                 <tr>
                   <TableHeader>항목</TableHeader>
-                  {fertilizerData.map((item, index) => (
-                    <TableHeader key={index}>{item.crop_Nm}</TableHeader>
-                  ))}
+                  <TableHeader>값</TableHeader>
                 </tr>
               </thead>
               <tbody>

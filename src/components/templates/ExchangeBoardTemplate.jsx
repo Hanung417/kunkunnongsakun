@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { FaArrowLeft, FaHome } from "react-icons/fa";
+import { FaArrowLeft, FaHome } from "react-icons/fa"; // FaHome 추가
 
 const Container = styled.div`
   display: flex;
@@ -83,7 +83,7 @@ const TableCell = styled.td`
   padding: 12px;
   border-bottom: 1px solid #ccc;
   font-size: 14px;
-  color: ${(props) => (props.header ? "aliceblue" : "black")};
+  color: ${(props) => (props.$header ? "aliceblue" : "black")};
   text-align: left;
 `;
 
@@ -130,16 +130,16 @@ const CreatePostButton = styled(Link)`
   }
 `;
 
-const BuyBoardTemplate = () => {
+const ExchangeBoardTemplate = () => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // useNavigate 추가
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get("http://localhost:8000/community/", {
-          params: { post_type: 'buy' }
+          params: { post_type: 'exchange' }
         });
         setPosts(response.data);
       } catch (error) {
@@ -176,7 +176,7 @@ const BuyBoardTemplate = () => {
             <FaHome />
           </IconButton>
         </ButtonGroup>
-        <Title>구매 게시판</Title>
+        <Title>품앗이 게시판</Title>
       </TitleBar>
       <SearchBar
         type="text"
@@ -184,14 +184,14 @@ const BuyBoardTemplate = () => {
         value={searchTerm}
         onChange={handleSearchChange}
       />
-      <CreatePostButton to="/post/create?post_type=buy">글 작성</CreatePostButton>
+      <CreatePostButton to="/post/create?post_type=exchange">글 작성</CreatePostButton>
       <PostList>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableCell header>제목</TableCell>
-              <TableCell header>작성자</TableCell>
-              <TableCell header>작성일</TableCell>
+              <TableCell $header>제목</TableCell>
+              <TableCell $header>작성자</TableCell>
+              <TableCell $header>작성일</TableCell>
             </TableRow>
           </TableHeader>
           <tbody>
@@ -213,4 +213,4 @@ const BuyBoardTemplate = () => {
   );
 };
 
-export default BuyBoardTemplate;
+export default ExchangeBoardTemplate;

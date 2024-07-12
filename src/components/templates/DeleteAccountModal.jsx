@@ -67,36 +67,37 @@ const ErrorMessage = styled.div`
   margin-top: 4px;
 `;
 
-const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
-  const [formData, setFormData] = useState({
-    old_password: "",
-    new_password1: "",
-    new_password2: ""
-  });
+const WarningMessage = styled.div`
+  color: #d9534f;
+  font-size: 14px;
+  margin-bottom: 16px;
+`;
+
+const DeleteAccountModal = ({ isOpen, onRequestClose }) => {
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setPassword(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:8000/login/change_password/', formData, { withCredentials: true })
+    axios.post('http://localhost:8000/login/delete_account/', { password }, { withCredentials: true })
       .then((response) => {
-        setMessage("비밀번호가 성공적으로 변경되었습니다.");
+        setMessage("계정이 성공적으로 삭제되었습니다.");
         setError("");
-        alert("비밀번호 변겅 성공, 다시 로그인 필요")
 
-        // 비밀번호 변경 성공 시 로그인 페이지로 리디렉션
-        navigate('/login');
+        alert("회원 탈퇴 성공")
+        // 회원 탈퇴하면 어디 페이지로 가지,,,,,
+        navigate('/');
       })
       .catch((error) => {
         if (error.response) {
-          setError(error.response.data.errors || "비밀번호 변경 중 오류가 발생했습니다.");
+          setError(error.response.data.errors || "계정 삭제 중 오류가 발생했습니다.");
           setMessage("");
         }
       });
@@ -107,52 +108,31 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       style={customStyles}
-      contentLabel="Change Password Modal"
+      contentLabel="Delete Account Modal"
     >
       <Form onSubmit={handleSubmit}>
-        <h2>비밀번호 변경</h2>
+        <h2>회원 탈퇴</h2>
+        <WarningMessage>
+          계정을 삭제하면 되돌릴 수 없습니다. 정말 삭제하시겠습니까?
+        </WarningMessage>
         <InputGroup>
-          <Label htmlFor="old_password">현재 비밀번호</Label>
+          <Label htmlFor="password">비밀번호 확인</Label>
           <Input
             type="password"
-            id="old_password"
-            name="old_password"
-            value={formData.old_password}
+            id="password"
+            name="password"
+            value={password}
             onChange={handleChange}
-            placeholder="현재 비밀번호"
-            required
-          />
-        </InputGroup>
-        <InputGroup>
-          <Label htmlFor="new_password1">새 비밀번호</Label>
-          <Input
-            type="password"
-            id="new_password1"
-            name="new_password1"
-            value={formData.new_password1}
-            onChange={handleChange}
-            placeholder="새 비밀번호"
-            required
-          />
-        </InputGroup>
-        <InputGroup>
-          <Label htmlFor="new_password2">새 비밀번호 확인</Label>
-          <Input
-            type="password"
-            id="new_password2"
-            name="new_password2"
-            value={formData.new_password2}
-            onChange={handleChange}
-            placeholder="새 비밀번호 확인"
+            placeholder="비밀번호 입력"
             required
           />
         </InputGroup>
         {error && <ErrorMessage>{error}</ErrorMessage>}
         {message && <div>{message}</div>}
-        <Button type="submit">비밀번호 변경</Button>
+        <Button type="submit">계정 삭제</Button>
       </Form>
     </Modal>
   );
 };
 
-export default ChangePasswordModal;
+export default DeleteAccountModal;

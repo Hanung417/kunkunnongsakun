@@ -140,8 +140,8 @@ const ChatListPage = () => {
       <Title>대화 목록</Title>
       <ChatList>
         {chatSessions.map(session => (
-          <ChatListItem key={session.session_id}>
-            <span onClick={() => openChat(session.session_id, session.session_name)}>
+          <ChatListItem key={session.session_id} onClick={() => openChat(session.session_id, session.session_name)}>
+            <span>
               {session.session_name || session.session_id}
             </span>
             <DeleteButton onClick={() => deleteSession(session.session_id)}>

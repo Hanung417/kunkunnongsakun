@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaArrowLeft, FaHome } from "react-icons/fa"; // FaHome 추가
 
 const Container = styled.div`
   display: flex;
@@ -9,6 +10,42 @@ const Container = styled.div`
   align-items: center;
   padding: 16px;
   background-color: #f9f9f9;
+`;
+
+const TitleBar = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+`;
+
+const ButtonGroup = styled.div`
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+`;
+
+const IconButton = styled.button`
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #4aaa87;
+
+  &:hover {
+    color: #3e8e75;
+  }
+
+  & > svg {
+    font-size: 24px;
+  }
+
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
 `;
 
 const Title = styled.h1`
@@ -34,14 +71,12 @@ const Table = styled.table`
 const TableHeader = styled.thead`
   background-color: #4aaa87;
   color: white;
-  
 `;
 
 const TableRow = styled.tr`
   &:nth-child(even) {
     background-color: #f9f9f9;
   }
-  
 `;
 
 const TableCell = styled.td`
@@ -50,7 +85,6 @@ const TableCell = styled.td`
   font-size: 14px;
   color: ${(props) => (props.$header ? "aliceblue" : "black")};
   text-align: left;
-
 `;
 
 const StyledLink = styled(Link)`
@@ -99,6 +133,7 @@ const CreatePostButton = styled(Link)`
 const SellBoardTemplate = () => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate(); // useNavigate 추가
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -122,9 +157,27 @@ const SellBoardTemplate = () => {
     setSearchTerm(event.target.value);
   };
 
+  const handleBackClick = () => {
+    navigate(-1); // 이전 페이지로 이동
+  };
+
+  const handleHomeClick = () => {
+    navigate('/'); // 메인 화면으로 이동
+  };
+
   return (
     <Container>
-      <Title>판매 게시판</Title>
+      <TitleBar>
+        <ButtonGroup>
+          <IconButton onClick={handleBackClick}>
+            <FaArrowLeft />
+          </IconButton>
+          <IconButton onClick={handleHomeClick}>
+            <FaHome />
+          </IconButton>
+        </ButtonGroup>
+        <Title>판매 게시판</Title>
+      </TitleBar>
       <SearchBar
         type="text"
         placeholder="제목을 검색하세요"

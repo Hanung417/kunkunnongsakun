@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { instance } from "../../apis/instance";
+import { FaReply, FaArrowLeft } from "react-icons/fa"; // 화살표 아이콘 추가
 
 const Container = styled.div`
   display: flex;
@@ -51,6 +52,18 @@ const CommentItem = styled.li`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 8px 16px;
   margin-bottom: 12px;
+  position: relative;
+  margin-left: ${(props) => (props.isReply ? "40px" : "0")}; // 대댓글 들여쓰기
+
+  &::before {
+    content: "${(props) => (props.isReply ? "↳" : "")}";
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #4aaa87;
+  }
 `;
 
 const CommentAuthor = styled.div`
@@ -82,7 +95,11 @@ const CommentActions = styled.div`
   }
 `;
 
-const CommentForm = styled.form``;
+const CommentForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+`;
 
 const CommentTextarea = styled.textarea`
   width: 100%;
@@ -117,6 +134,8 @@ const PostDetailTemplate = () => {
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [replyCommentId, setReplyCommentId] = useState(null); // 대댓글을 달 댓글의 ID
+  const [newReply, setNewReply] = useState(""); // 대댓글 내용
   const [editCommentId, setEditCommentId] = useState(null);
   const [editCommentContent, setEditCommentContent] = useState("");
   const currentUserId = localStorage.getItem("userId"); // 로컬스토리지에서 현재 사용자 ID 가져오기
@@ -142,6 +161,10 @@ const PostDetailTemplate = () => {
     setEditCommentContent(event.target.value);
   };
 
+  const handleReplyChange = (event) => {
+    setNewReply(event.target.value);
+  };
+
   const handleSubmitComment = async (event) => {
     event.preventDefault();
     try {
@@ -155,6 +178,30 @@ const PostDetailTemplate = () => {
       setNewComment("");
     } catch (error) {
       console.error("Failed to post comment", error);
+    }
+  };
+
+  const handleSubmitReply = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await instance.post(
+        `community/post/${id}/comment/create/`,
+        {
+          content: newReply,
+          parent_id: replyCommentId, // 대댓글의 부모 ID 설정
+        }
+      );
+      setComments(
+        comments.map((comment) =>
+          comment.id === replyCommentId
+            ? { ...comment, replies: [...(comment.replies || []), response.data] }
+            : comment
+        )
+      );
+      setNewReply("");
+      setReplyCommentId(null);
+    } catch (error) {
+      console.error("Failed to post reply", error);
     }
   };
 
@@ -202,36 +249,56 @@ const PostDetailTemplate = () => {
 
       <CommentList>
         {comments.map((comment) => (
-          <CommentItem key={comment.id}>
-            <CommentAuthor>{comment.user__username}</CommentAuthor>
-            <CommentMeta>{new Date(comment.created_at).toLocaleString()}</CommentMeta>
-            {editCommentId === comment.id ? (
-              <CommentTextarea
-                rows="2"
-                value={editCommentContent}
-                onChange={handleEditCommentChange}
-              />
-            ) : (
-              <CommentContent>{comment.content}</CommentContent>
-            )}
-            {String(currentUserId) === String(comment.user_id) && (
+          <React.Fragment key={comment.id}>
+            <CommentItem isReply={comment.parent_id !== null}>
+              <CommentAuthor>{comment.user__username}</CommentAuthor>
+              <CommentMeta>{new Date(comment.created_at).toLocaleString()}</CommentMeta>
+              {editCommentId === comment.id ? (
+                <CommentTextarea
+                  rows="2"
+                  value={editCommentContent}
+                  onChange={handleEditCommentChange}
+                />
+              ) : (
+                <CommentContent>{comment.content}</CommentContent>
+              )}
+              {String(currentUserId) === String(comment.user_id) && (
+                <CommentActions>
+                  {editCommentId === comment.id ? (
+                    <button onClick={() => handleEditComment(comment.id)}>저장</button>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        setEditCommentId(comment.id);
+                        setEditCommentContent(comment.content);
+                      }}
+                    >
+                        수정
+                      </button>
+                    )}
+                    <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
+                </CommentActions>
+              )}
               <CommentActions>
-                {editCommentId === comment.id ? (
-                  <button onClick={() => handleEditComment(comment.id)}>저장</button>
-                ) : (
-                  <button
-                    onClick={() => {
-                      setEditCommentId(comment.id);
-                      setEditCommentContent(comment.content);
-                    }}
-                  >
-                    수정
-                  </button>
-                )}
-                <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
+                <button onClick={() => setReplyCommentId(comment.id)}>
+                  <FaArrowLeft /> 댓글
+                </button>
               </CommentActions>
+            </CommentItem>
+            {replyCommentId === comment.id && (
+              <CommentItem isReply>
+                <CommentForm onSubmit={handleSubmitReply}>
+                  <CommentTextarea
+                    rows="2"
+                    placeholder="e댓글을 작성하세요"
+                    value={newReply}
+                    onChange={handleReplyChange}
+                  />
+                  <CommentButton type="submit">댓글 작성</CommentButton>
+                </CommentForm>
+              </CommentItem>
             )}
-          </CommentItem>
+          </React.Fragment>
         ))}
       </CommentList>
 
