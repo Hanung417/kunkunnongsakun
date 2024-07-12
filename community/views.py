@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.db import DatabaseError, IntegrityError
+from django.db.models import Count
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from aivle_big.exceptions import ResourceAccessForbiddenError, ValidationError, NotFoundError, InternalServerError, InvalidRequestError, DuplicateResourceError
@@ -14,7 +15,10 @@ logger = logging.getLogger(__name__)
 def post_list(request):
     try:
         post_type = request.GET.get('post_type')
-        posts = Post.objects.filter(post_type=post_type).values('id', 'title', 'content', 'user_id', 'creation_date') if post_type else Post.objects.all().values('id', 'title', 'content', 'user_id', 'creation_date')
+        if post_type:
+            posts = Post.objects.filter(post_type=post_type).annotate(comment_count=Count('comments')).values('id', 'title', 'content', 'user__username', 'creation_date', 'comment_count')
+        else:
+            posts = Post.objects.annotate(comment_count=Count('comments')).values('id', 'title', 'content', 'user__username', 'creation_date', 'comment_count')
         return JsonResponse(list(posts), safe=False)
     except DatabaseError as e:
         logger.error(f"Database error while fetching posts: {str(e)}")
@@ -23,15 +27,16 @@ def post_list(request):
 def post_detail(request, post_id):
     try:
         post = get_object_or_404(Post, pk=post_id)
-        comments = list(post.comments.all().values('id', 'content', 'user_id', 'created_at'))
-        return JsonResponse({
+        comments = list(post.comments.all().values('id', 'content', 'user__username', 'user_id', 'created_at'))
+        post_data = {
             'id': post.id,
             'title': post.title,
             'content': post.content,
-            'user_id': post.user_id,
+            'user_id': post.user.username,
             'creation_date': post.creation_date,
             'comments': comments
-        })
+        }
+        return JsonResponse(post_data)
     except DatabaseError as e:
         logger.error(f"Database error on retrieving post details: {str(e)}")
         raise InternalServerError("Database error occurred while retrieving post details.")
@@ -64,28 +69,6 @@ def post_create(request):
         raise InternalServerError("An unexpected error occurred while creating the post.")
 
 @login_required
-def post_delete(request, post_id):
-    try:
-        post = get_object_or_404(Post, pk=post_id)
-        if request.method == 'POST':
-            try:
-                post.delete()
-                return JsonResponse({'status': 'success'}, status=204)
-            except Exception as e:
-                logger.error(f"Error deleting post: {e}")
-                raise InternalServerError("Error deleting post.")
-        else:
-            raise InvalidRequestError("GET method not allowed.")
-    except Post.DoesNotExist:
-        raise NotFoundError("Post not found.")
-    except ResourceAccessForbiddenError as e:
-        logger.error(f"Permission denied: {e}")
-        raise ResourceAccessForbiddenError("Permission denied.")
-    except Exception as e:
-        logger.error(f"Unexpected error: {e}")
-        raise InternalServerError("An unexpected error occurred.")
-
-@login_required
 def post_edit(request, post_id):
     if request.method != 'POST':
         raise InvalidRequestError("POST method only allowed")
@@ -109,7 +92,29 @@ def post_edit(request, post_id):
         raise InternalServerError("Failed to edit post")
 
 @login_required
+def post_delete(request, post_id):
+    try:
+        post = get_object_or_404(Post, pk=post_id)
+        if request.method == 'POST':
+            try:
+                post.delete()
+                return JsonResponse({'status': 'success'}, status=204)
+            except Exception as e:
+                logger.error(f"Error deleting post: {e}")
+                raise InternalServerError("Error deleting post.")
+        else:
+            raise InvalidRequestError("GET method not allowed.")
+    except Post.DoesNotExist:
+        raise NotFoundError("Post not found.")
+    except ResourceAccessForbiddenError as e:
+        logger.error(f"Permission denied: {e}")
+        raise ResourceAccessForbiddenError("Permission denied.")
+    except Exception as e:
+        logger.error(f"Unexpected error: {e}")
+        raise InternalServerError("An unexpected error occurred.")
+
 @csrf_exempt
+@login_required
 def comment_create(request, post_id):
     if request.method != 'POST':
         raise InvalidRequestError("POST method only allowed")
@@ -184,8 +189,8 @@ def comment_delete(request, comment_id):
         logger.error(f"Error deleting comment: {str(e)}")
         raise InternalServerError("Failed to delete comment")
 
-@login_required
 @csrf_exempt
+@login_required
 def my_post_list(request):
     try:
         posts = Post.objects.filter(user=request.user).values('id', 'title', 'content', 'user_id', 'creation_date')
@@ -194,8 +199,8 @@ def my_post_list(request):
         logger.error(f"Database error fetching user's posts: {str(e)}")
         raise InternalServerError("Database error occurred while fetching user's posts")
 
-@login_required
 @csrf_exempt
+@login_required
 def my_commented_posts(request):
     try:
         comments = Comment.objects.filter(user=request.user).values('post').distinct()

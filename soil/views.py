@@ -6,10 +6,18 @@ import requests
 import xml.etree.ElementTree as ET
 import pandas as pd
 import json
-from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError, InvalidRequestError, BadRequestError
+from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError, InvalidRequestError, BadRequestError, MissingPartError
 
-def index(request):
-    return render(request, 'soil.html')
+@csrf_exempt
+def get_crop_names(request):
+    if request.method != 'GET':
+        raise InvalidRequestError("Invalid request method. Only GET is allowed.", code=405)
+    
+    try:
+        crop_names = crop_code['crop_name'].tolist()
+        return JsonResponse({'crop_names': crop_names})
+    except Exception as e:
+        raise InternalServerError(f"An unexpected error occurred: {str(e)}", code=500)
 
 def get_b_code(address):
     url = 'https://dapi.kakao.com/v2/local/search/address.json'
@@ -47,18 +55,42 @@ def get_soil_exam_data(b_code):
 @csrf_exempt
 def soil_exam_result(request):
     if request.method != 'POST':
-        raise ValidationError("Only POST method is allowed.", code=405)
+        raise InvalidRequestError("Invalid request method. Only POST is allowed.", code=405)
+
     try:
         data = json.loads(request.body)
         crop_name = data.get('crop_name')
         address = data.get('address')
+        
         if not crop_name or not address:
-            raise ValidationError("Both address and crop name are required.", code=400)
+            raise ValidationError("Address and crop name are required", code=1001)
+
         b_code = get_b_code(address)
+        if b_code is None:
+            raise NotFoundError("B code could not be found for the given address", code=404)
+
         soil_data = get_soil_exam_data(b_code)
-        return JsonResponse({'crop_name': crop_name, 'address': address, 'soil_data': soil_data})
+        if soil_data is None:
+            raise NotFoundError("Soil examination data could not be found", code=404)
+
+        result = {
+            'crop_name': crop_name,
+            'address': address,
+            'soil_data': soil_data
+        }
+        return JsonResponse(result, status=200)
+
     except json.JSONDecodeError:
-        raise ValidationError("Invalid JSON input.", code=400)
+        raise ValidationError("Invalid JSON format.", code=400)
+    except ValidationError as e:
+        return JsonResponse({'status': 'error', 'message': str(e), 'code': e.error_code, 'status_code': e.status_code}, status=e.status_code)
+    except NotFoundError as e:
+        return JsonResponse({'status': 'error', 'message': str(e), 'code': e.error_code, 'status_code': e.status_code}, status=e.status_code)
+    except InvalidRequestError as e:
+        return JsonResponse({'status': 'error', 'message': str(e), 'code': e.error_code, 'status_code': e.status_code}, status=e.status_code)
+    except Exception as e:
+        raise InternalServerError(f"An unexpected error occurred: {str(e)}", code=500)
+
 
 crop_code = pd.read_csv('soil/crop_code.csv')
 
