@@ -12498,29 +12498,46 @@ Unhandled exception in post creation: 'utf-8' codec can't decode byte 0xff in po
 Internal Server Error: /community/post/create/
 Unhandled exception in post creation: 'utf-8' codec can't decode byte 0xff in position 442: invalid start byte
 Internal Server Error: /community/post/create/
+<<<<<<< HEAD
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
+=======
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Watching for file changes with StatReloader
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -12531,6 +12548,7 @@ Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
@@ -12561,10 +12579,34 @@ http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?ser
 Starting new HTTP connection (1): apis.data.go.kr:80
 http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=5.4&om=13.0&vldpha=93.0&posifert_K=0.36&posifert_Ca=2.3&posifert_Mg=0.7&vldsia=5&selc=0.2 HTTP/11" 200 279
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Unauthorized: /selfchatbot/chat_sessions/
+Unauthorized: /selfchatbot/chat_sessions/
+Unauthorized: /selfchatbot/chat_history/f88965d7-1747-4b81-b9fd-378f3b00d583/
+Unauthorized: /selfchatbot/chat_history/f88965d7-1747-4b81-b9fd-378f3b00d583/
+Unauthorized: /selfchatbot/chatbot/
+Unauthorized: /selfchatbot/chat_sessions/
+Unauthorized: /selfchatbot/chat_sessions/
+Unauthorized: /selfchatbot/chat_sessions/
+Unauthorized: /selfchatbot/chat_sessions/
+Internal Server Error: /accounts/login/
+Internal Server Error: /accounts/login/
+Internal Server Error: /accounts/login/
+Internal Server Error: /accounts/login/
+Internal Server Error: /accounts/login/
+Unauthorized: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-6\community\views.py changed, reloading.
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
 Creating converter from 3 to 5
@@ -12688,13 +12730,21 @@ Creating converter from 7 to 5
 Creating converter from 5 to 7
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
+=======
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Watching for file changes with StatReloader
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -12705,6 +12755,7 @@ Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
@@ -12717,19 +12768,46 @@ http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?ser
 Internal Server Error: /soil/soil_exam/
 C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Unauthorized: /community/post/create/
+Signup error: ValidationError.__init__() got an unexpected keyword argument 'details'
+Internal Server Error: /login/signup/
+Authentication error: Invalid email or password
+Unauthorized: /login/login/
+Authentication error: Invalid email or password
+Unauthorized: /login/login/
+Error changing password: ValidationError.__init__() got an unexpected keyword argument 'details'
+Internal Server Error: /login/change_password/
+Not Found: /login/delete_account/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-6\login\urls.py changed, reloading.
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
+=======
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Watching for file changes with StatReloader
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -12740,6 +12818,7 @@ Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
@@ -13272,17 +13351,36 @@ connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=No
 connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000025CA591E050>
 start_tls.started ssl_context=<ssl.SSLContext object at 0x0000025CA1B80DD0> server_hostname='api.openai.com' timeout=None
 start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000025CA613FE90>
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Error loading chat history: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x0000022E82844220>, 'json_data': {'input': [[67945, 67218, 234, 10997, 93220, 41381, 21121]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E81BF5D10>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFD3FE600> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E827EEC10>
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 send_request_headers.started request=<Request [b'POST']>
 send_request_headers.complete
 send_request_body.started request=<Request [b'POST']>
 send_request_body.complete
 receive_response_headers.started request=<Request [b'POST']>
+<<<<<<< HEAD
 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 08:22:21 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'19'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999996'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_a995a45e6dea37e9ed7678b1186714b4'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=yrhi.2AVtefCUJg0bzk6DjwsqgAUrVgNj0FuILzjFY8-1720772541-1.0.1.1-uf8jy1ZkoOFklm94Hjz9fVLC0Bu74HExOKWn0GEHFDIwUliRReRpiVv_sEzrtrGSyDI6Cx1Y.IDE4r_3DONmaQ; path=/; expires=Fri, 12-Jul-24 08:52:21 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=I8rsrA1f5..dPQtpSgVJ_9Y7r9YzHwe5M6_vUghiRFs-1720772541438-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1f9ffea8ceaa89-ICN'), (b'Content-Encoding', b'br'), (b'alt-svc', b'h3=":443"; ma=86400')])
+=======
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 04:49:21 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'17'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999992'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_c77b45f8fa0549b3c5141a821b4f3a1d'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=VhlhAJo7CTxsh5Ab7aYLqNVLDDpavDhVzEXLESqRRjo-1720759761-1.0.1.1-wk8MedqCKER_dWMoeuapjoN8X74jG0zll.c1Vm4FdKNqWl90RyNIJ6f8IlTUIXQEM.66DwFXjeuXH5PXjePxnA; path=/; expires=Fri, 12-Jul-24 05:19:21 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=7xdw4K6xt1595hSYoccX_.jFdKi3R44_U2zarggYs38-1720759761015-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1e67f8fe39c076-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
 receive_response_body.started request=<Request [b'POST']>
 receive_response_body.complete
 response_closed.started
 response_closed.complete
+<<<<<<< HEAD
 HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers([('date', 'Fri, 12 Jul 2024 08:22:21 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-allow-origin', '*'), ('openai-model', 'text-embedding-ada-002'), ('openai-organization', 'user-6gooegy6nkbnabcwwvym7mjd'), ('openai-processing-ms', '19'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains'), ('x-ratelimit-limit-requests', '3000'), ('x-ratelimit-limit-tokens', '1000000'), ('x-ratelimit-remaining-requests', '2999'), ('x-ratelimit-remaining-tokens', '999996'), ('x-ratelimit-reset-requests', '20ms'), ('x-ratelimit-reset-tokens', '0s'), ('x-request-id', 'req_a995a45e6dea37e9ed7678b1186714b4'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=yrhi.2AVtefCUJg0bzk6DjwsqgAUrVgNj0FuILzjFY8-1720772541-1.0.1.1-uf8jy1ZkoOFklm94Hjz9fVLC0Bu74HExOKWn0GEHFDIwUliRReRpiVv_sEzrtrGSyDI6Cx1Y.IDE4r_3DONmaQ; path=/; expires=Fri, 12-Jul-24 08:52:21 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=I8rsrA1f5..dPQtpSgVJ_9Y7r9YzHwe5M6_vUghiRFs-1720772541438-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '8a1f9ffea8ceaa89-ICN'), ('content-encoding', 'br'), ('alt-svc', 'h3=":443"; ma=86400')])
 request_id: req_a995a45e6dea37e9ed7678b1186714b4
 Starting component PersistentLocalHnswSegment
@@ -13292,35 +13390,753 @@ connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=No
 connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000025CA5BCEAD0>
 start_tls.started ssl_context=<ssl.SSLContext object at 0x0000025CA24CBB60> server_hostname='api.openai.com' timeout=None
 start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000025CA59E30D0>
+=======
+HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers([('date', 'Fri, 12 Jul 2024 04:49:21 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-allow-origin', '*'), ('openai-model', 'text-embedding-ada-002'), ('openai-organization', 'user-6gooegy6nkbnabcwwvym7mjd'), ('openai-processing-ms', '17'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains'), ('x-ratelimit-limit-requests', '3000'), ('x-ratelimit-limit-tokens', '1000000'), ('x-ratelimit-remaining-requests', '2999'), ('x-ratelimit-remaining-tokens', '999992'), ('x-ratelimit-reset-requests', '20ms'), ('x-ratelimit-reset-tokens', '0s'), ('x-request-id', 'req_c77b45f8fa0549b3c5141a821b4f3a1d'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=VhlhAJo7CTxsh5Ab7aYLqNVLDDpavDhVzEXLESqRRjo-1720759761-1.0.1.1-wk8MedqCKER_dWMoeuapjoN8X74jG0zll.c1Vm4FdKNqWl90RyNIJ6f8IlTUIXQEM.66DwFXjeuXH5PXjePxnA; path=/; expires=Fri, 12-Jul-24 05:19:21 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=7xdw4K6xt1595hSYoccX_.jFdKi3R44_U2zarggYs38-1720759761015-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '8a1e67f8fe39c076-ICN'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+request_id: req_c77b45f8fa0549b3c5141a821b4f3a1d
+Starting component PersistentLocalHnswSegment
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n파 생육 온도,발아적온 : 15~25℃\n\n파 생리적 특성,파는 선선한 기후를 좋아함.\n\n내한·내건성이 있으나 토양 과습에는 매우 약함.\n\n일장이 길어지고 온도가 높아지면 잎 끝이 마르는 증상이 발생함.\n\n파 주요 기술,적기 파종 및 적정 크기의 묘 정식이 필요함.\n\n정식 후 잡초 및 병해충 방제를 적기에 실시함.\n\n북주기(뿌리나 밑줄기를 흙으로 두둑하게 덮어 주는 일)를 통해 상품성을 향상시킴."}, {'role': 'user', 'content': '대파 키우기'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E8276D150>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFDE33BF0> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E82ACB190>
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 send_request_headers.started request=<Request [b'POST']>
 send_request_headers.complete
 send_request_body.started request=<Request [b'POST']>
 send_request_body.complete
 receive_response_headers.started request=<Request [b'POST']>
+<<<<<<< HEAD
 https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
 receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 08:22:22 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'527'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'59389'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'611ms'), (b'x-request-id', b'req_d0d8d4c40a589003c0e23694000ddcd8'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=mlAdjF_sSKp3kk1a8wwLLMtgiBDXT0O9z3MQI9E_QIc-1720772542-1.0.1.1-ovyo7.bF2B9SoQ8W0gYiCXJlttT_9gnaJPJ39Q5uiv67RSgV0qJhOQIezbzezjQ7ZNFo87rK0HeDEhlZXqtoGA; path=/; expires=Fri, 12-Jul-24 08:52:22 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=nc2xatQr.UYUOylK5SvBdLNJYfvrd6XrxJm28wPIMRQ-1720772542626-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1fa0024b43f587-NRT'), (b'Content-Encoding', b'br'), (b'alt-svc', b'h3=":443"; ma=86400')])
+=======
+Resetting dropped connection: us-api.i.posthog.com
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 04:49:24 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'3097'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'59805'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'195ms'), (b'x-request-id', b'req_c463f2867703303e0976b00f36f3e7ca'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=xWc1JDuOB.2QzDwWta6ihZoN40V9QBEMmI09LFgWDPE-1720759764-1.0.1.1-xkpRtlzPOviyqK54Hh_MnRNmmlpjLri22GSNOYU_93H5IWM7cGvEQY3obf_bnkFRXUAk5y9SOxzdGsXo2L4KHw; path=/; expires=Fri, 12-Jul-24 05:19:24 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=gOCVGDABzCn4fNoHs3PMm3pRZSraFUV7kYtLet_I9wM-1720759764860-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1e67fcee163085-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 receive_response_body.started request=<Request [b'POST']>
 receive_response_body.complete
 response_closed.started
 response_closed.complete
+<<<<<<< HEAD
 HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 12 Jul 2024 08:22:22 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('openai-organization', 'user-6gooegy6nkbnabcwwvym7mjd'), ('openai-processing-ms', '527'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '60000'), ('x-ratelimit-remaining-requests', '9999'), ('x-ratelimit-remaining-tokens', '59389'), ('x-ratelimit-reset-requests', '8.64s'), ('x-ratelimit-reset-tokens', '611ms'), ('x-request-id', 'req_d0d8d4c40a589003c0e23694000ddcd8'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=mlAdjF_sSKp3kk1a8wwLLMtgiBDXT0O9z3MQI9E_QIc-1720772542-1.0.1.1-ovyo7.bF2B9SoQ8W0gYiCXJlttT_9gnaJPJ39Q5uiv67RSgV0qJhOQIezbzezjQ7ZNFo87rK0HeDEhlZXqtoGA; path=/; expires=Fri, 12-Jul-24 08:52:22 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=nc2xatQr.UYUOylK5SvBdLNJYfvrd6XrxJm28wPIMRQ-1720772542626-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '8a1fa0024b43f587-NRT'), ('content-encoding', 'br'), ('alt-svc', 'h3=":443"; ma=86400')])
 request_id: req_d0d8d4c40a589003c0e23694000ddcd8
 C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 12 Jul 2024 04:49:24 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('openai-organization', 'user-6gooegy6nkbnabcwwvym7mjd'), ('openai-processing-ms', '3097'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '60000'), ('x-ratelimit-remaining-requests', '9999'), ('x-ratelimit-remaining-tokens', '59805'), ('x-ratelimit-reset-requests', '8.64s'), ('x-ratelimit-reset-tokens', '195ms'), ('x-request-id', 'req_c463f2867703303e0976b00f36f3e7ca'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=xWc1JDuOB.2QzDwWta6ihZoN40V9QBEMmI09LFgWDPE-1720759764-1.0.1.1-xkpRtlzPOviyqK54Hh_MnRNmmlpjLri22GSNOYU_93H5IWM7cGvEQY3obf_bnkFRXUAk5y9SOxzdGsXo2L4KHw; path=/; expires=Fri, 12-Jul-24 05:19:24 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=gOCVGDABzCn4fNoHs3PMm3pRZSraFUV7kYtLet_I9wM-1720759764860-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '8a1e67fcee163085-ICN'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+request_id: req_c463f2867703303e0976b00f36f3e7ca
+Unhandled exception in post creation: 'utf-8' codec can't decode byte 0xfe in position 443: invalid start byte
+Internal Server Error: /community/post/create/
+Bad Request: /community/post/create/
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230712&endDt=20240711&stnIds=156 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230712&p_endday=20240710&p_itemcategorycode=100&p_itemcode=151&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230712&p_endday=20240710&p_itemcategorycode=100&p_itemcode=151&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230712&p_endday=20240710&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230712&p_endday=20240710&p_itemcategorycode=100&p_itemcode=152&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230712&endDt=20240711&stnIds=156 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230712&p_endday=20240710&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230712&p_endday=20240710&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Unauthorized: /soil/soil_exam/
+Authentication error: Invalid email or password
+Unauthorized: /login/login/
+Authentication error: Invalid email or password
+Unauthorized: /login/login/
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EA%B8%88%EC%95%94%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=4137010700 HTTP/11" 200 161
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01003&acid=6.5&om=16.0&vldpha=130.0&posifert_K=0.226&posifert_Ca=4.32&posifert_Mg=1.3&vldsia=5&selc=0.18 HTTP/11" 200 286
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01004&acid=5.2&om=14.0&vldpha=371.0&posifert_K=1.347&posifert_Ca=4.4&posifert_Mg=1.62&vldsia=61.0&selc=0 HTTP/11" 200 269
+Starting new HTTPS connection (1): dapi.kakao.com:443
+https://dapi.kakao.com:443 "GET /v2/local/search/address.json?query=%EC%88%98%EC%99%84%EB%8F%99 HTTP/11" 200 None
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01004&acid=5.3&om=25.3&vldpha=226.0&posifert_K=2.225&posifert_Ca=6.12&posifert_Mg=2.42&vldsia=5&selc=1.09 HTTP/11" 200 270
+Error loading chat history: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': 'Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.\n\nChat History:\n\nHuman: 대파 키우기\nAssistant: 대파는 선선한 기후를 좋아하며, 파 생육 온도는 15~25℃ 정도인 것으로 알려져 있습니다. 대파는 내한·내건성이 있지만 토양이 과습되면 잘 약해진다고 합니다. 대파를 재배할 때에는 적기에 파종하고 적정 크기의 묘를 정식으로 심어주는 것이 중요합니다. 또한, 정식 후에는 잡초와 병해충을 적기에 방제해야 합니다. 상품성을 향상시키기 위해 북주기를 통해 뿌리나 밑줄기를 흙으로 두둑하게 덮어주는 것이 좋습니다. 이러한 기본적인 사항들을 준수하면 대파를 키우는데 도움이 될 것입니다.\nFollow Up Input: 123\nStandalone question:'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E85206FD0>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFDE33BF0> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E825DAF10>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:30:39 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'485'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'59759'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'241ms'), (b'x-request-id', b'req_028e5d5b3ed28c76df43f45808114522'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=g2iIHU17jHZPHG5qlsMSpysec9aDR_UgZRXMCycYlhU-1720762239-1.0.1.1-fU95wLD2j18QOG8XCWV.6cnP3XZF9ngb6ax5Ob3fW1sO35701Qc6hhW3TH64c1xFNbF5pUu.yWtrM1WSA3xDWA; path=/; expires=Fri, 12-Jul-24 06:00:39 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea4792bffc058-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:30:39 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '485', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9999', 'x-ratelimit-remaining-tokens': '59759', 'x-ratelimit-reset-requests': '8.64s', 'x-ratelimit-reset-tokens': '241ms', 'x-request-id': 'req_028e5d5b3ed28c76df43f45808114522', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=g2iIHU17jHZPHG5qlsMSpysec9aDR_UgZRXMCycYlhU-1720762239-1.0.1.1-fU95wLD2j18QOG8XCWV.6cnP3XZF9ngb6ax5Ob3fW1sO35701Qc6hhW3TH64c1xFNbF5pUu.yWtrM1WSA3xDWA; path=/; expires=Fri, 12-Jul-24 06:00:39 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None', 'server': 'cloudflare', 'cf-ray': '8a1ea4792bffc058-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_028e5d5b3ed28c76df43f45808114522
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x0000022EAC8AE160>, 'json_data': {'input': [[3923, 527, 1063, 6913, 17959, 311, 1833, 994, 7982, 6307, 45697, 30]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E82A10ED0>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFD3FE600> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E82A12ED0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:30:40 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'18'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999988'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_9804ba68398840abd9c3bc029b37cbfd'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=4SL.oo40BtUWd52bNRLE8TMPEnjXv56oxkkjScMAzUs-1720762240-1.0.1.1-Kh_Rxc0vLX_1DdLd3S5cXdFf_usLGgQI3.oZq8rAlxFoDRuhTKS.3hJ_rnC53fE8w0rxVuPi1lofSp3jigQqxA; path=/; expires=Fri, 12-Jul-24 06:00:40 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea47e8c413060-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:30:40 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'openai-model': 'text-embedding-ada-002', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '18', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999988', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_9804ba68398840abd9c3bc029b37cbfd', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=4SL.oo40BtUWd52bNRLE8TMPEnjXv56oxkkjScMAzUs-1720762240-1.0.1.1-Kh_Rxc0vLX_1DdLd3S5cXdFf_usLGgQI3.oZq8rAlxFoDRuhTKS.3hJ_rnC53fE8w0rxVuPi1lofSp3jigQqxA; path=/; expires=Fri, 12-Jul-24 06:00:40 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None', 'server': 'cloudflare', 'cf-ray': '8a1ea47e8c413060-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_9804ba68398840abd9c3bc029b37cbfd
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n배 생리적 특성,꽃 한 과총에서 5~8개의 꽃이 밑에서 차례로 피어 올라감.  3~4번째 꽃에서 열린 과실이 좋음.\n\n꽃눈 분화기는 6월 중순~8월이며 수분수를 20% 이상 섞어 심음.  신고·황금배는 꽃가루가 없으므로 2품종의 수분수가 필요함.\n\n비산되어 온 농약성분(제초제 등)으로 인한 분쟁상황에\n서의 대응 매뉴얼이 궁금합니다.,□ 친환경에서는 비의도적인 오염이 예상 될 때에는 구분생산계획에 따라 완충지대(3~5m)를 설치하도록 하고 있으며 완충지대내의 농산물을 친환경으로 출하하지 못하도록 하고 있습니다.\n\n□ 농업인은 바람이 부는 날 살포기로 농약을 살포하여 이웃 농지에 비산하는 등 피해를 주지 않도록 노력해야 하며, 농약을 살포할 날짜를 이웃 농지 농업인에게 미리 알려주고, 바람이 부는 날을 피해 살포하고, 필요시 가림막 등의 조치를 해야 합니다.\n\n□ 현장에서 비산 등 분쟁이 발생할 경우 농림축산식품부 농약피해분쟁조정위원회 또는 한국소비자원 분쟁조정위원회 (043-880-5500)에 문의하시기 바랍니다.\n\n배추 생리적 특성,저온성 채소로 서늘한 기후를 좋아함\n\n생육 초기에는 고온에 비교적 잘 견디나 결구기에는 내고온성이 약함\n\n종자춘화형의 식물로 12℃이하에서 7일이상 지나면 꽃눈이 분화되고, 고온에 의하여 추대가 촉진됨\n\n자가 불화합성이 있어 계속 자식시키면 세력이 약화됨"}, {'role': 'user', 'content': 'What are some basic guidelines to follow when growing green onions?'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:30:41 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'673'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9998'), (b'x-ratelimit-remaining-tokens', b'59521'), (b'x-ratelimit-reset-requests', b'15.955s'), (b'x-ratelimit-reset-tokens', b'479ms'), (b'x-request-id', b'req_0c590cd3e13b73da04511aec09ed553d'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea4815fa2c058-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:30:41 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '673', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9998', 'x-ratelimit-remaining-tokens': '59521', 'x-ratelimit-reset-requests': '15.955s', 'x-ratelimit-reset-tokens': '479ms', 'x-request-id': 'req_0c590cd3e13b73da04511aec09ed553d', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea4815fa2c058-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_0c590cd3e13b73da04511aec09ed553d
+Error loading chat history: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': "Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.\n\nChat History:\n\nHuman: 대파 키우기\nAssistant: 대파는 선선한 기후를 좋아하며, 파 생육 온도는 15~25℃ 정도인 것으로 알려져 있습니다. 대파는 내한·내건성이 있지만 토양이 과습되면 잘 약해진다고 합니다. 대파를 재배할 때에는 적기에 파종하고 적정 크기의 묘를 정식으로 심어주는 것이 중요합니다. 또한, 정식 후에는 잡초와 병해충을 적기에 방제해야 합니다. 상품성을 향상시키기 위해 북주기를 통해 뿌리나 밑줄기를 흙으로 두둑하게 덮어주는 것이 좋습니다. 이러한 기본적인 사항들을 준수하면 대파를 키우는데 도움이 될 것입니다.\nHuman: 123\nAssistant: I don't have information on green onions specifically, but I can provide general advice for growing onions.\nFollow Up Input: 123123\nStandalone question:"}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:30:43 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'337'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9997'), (b'x-ratelimit-remaining-tokens', b'59725'), (b'x-ratelimit-reset-requests', b'21.723s'), (b'x-ratelimit-reset-tokens', b'275ms'), (b'x-request-id', b'req_4f30b607e5dccfe6bb03ac1a17ffa477'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea4935b4fc058-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:30:43 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '337', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9997', 'x-ratelimit-remaining-tokens': '59725', 'x-ratelimit-reset-requests': '21.723s', 'x-ratelimit-reset-tokens': '275ms', 'x-request-id': 'req_4f30b607e5dccfe6bb03ac1a17ffa477', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea4935b4fc058-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_4f30b607e5dccfe6bb03ac1a17ffa477
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x0000022E81FC1760>, 'json_data': {'input': [[4513, 4513, 30]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:30:43 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'31'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999997'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_b2e467c3528d2023cc3cf0c3a3028478'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea49718aa3060-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:30:43 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'openai-model': 'text-embedding-ada-002', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '31', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999997', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_b2e467c3528d2023cc3cf0c3a3028478', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea49718aa3060-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_b2e467c3528d2023cc3cf0c3a3028478
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n종자의 발아보증시한 및 포장일자를 어디에서 확인할 수 있나요?,종자 제품 포장지 뒷면 하단에 발아보증시한과 포장년월이 기재되어 있습니다.\n\n시대가 바뀌어 인터넷 구매가 활발해 짐에 따라 농약도\n인터넷으로 구매할 수 있도록 제도를 개선해 주세요.,□ 농약을 인터넷으로 판매할 경우, 청소년 등 누구나 손쉽게 구입할 수 있어 농약의 오남용(자살 등) 우려에 따라 통신판매를 금지함으로써 농약을 안전하게 관리하고 있습니다.\n\n   ○ 농약은「농약관리법」제21조 제3항에 따라 누구든지「전자상거래 등에서의 소비자보호에 관한 법률」제2조 제2호에 따른 통신판매가 금지되고 있습니다.\n\n□ 천연식물보호제 등 인체에 위해성이 낮은 농약에 한하여 통신 또는 전화권유의 방법으로 판매할 수 있도록 농촌진흥청장이 별도 고시 하고 있습니다.\n\n    (통신 또는 전화권유의 방법으로 판매할 수 있는 농약「농촌진흥청 고시」)\n\n2023년 농약 판매관리인 교육 주요 질의 사항,1. 2023년 농약 판매관리인 교육은 어떻게 진행되나요?\n\n→ 2023년 농약 판매관리인 교육은 집합교육과 온라인 교육을 병행하여 진행됩니다. 집합교육과 온라인 교육을 모두 이수하셔야 수료증을 발급받으실 수 있습니다.\n\n2. 집합교육과 온라인 교육 중 한 가지만 수료하면 안되나요?\n\n→ 두 가지 교육 중 한 가지만 수료하시면 미수료로 처리됩니다. 반드시 두 가지 교육을 모두 이수하셔야 합니다.\n   \n3. 교육 시간은 어떻게 되나요?\n\n→ 2023년 농약 판매관리인 교육은 권역별로 오전과 오후 교육으로 나누어 진행합니다. 오전 교육(10:00∼12:30)은 농협, 오후 교육(14:00∼16:30)은 시판상 판매관리인분들을 대상으로 진행합니다. 다만, 부득이한 사유로 해당 시간에 교육 참석이 어려우신 경우 타 시간대에 교육을 신청하셔도 교육을 이수하실 수 있습니다.\n   \n4. 타 지역에서 열리는 교육을 신청해도 상관없나요?\n\n→ 본인 지역의 교육을 이수하실 수 없는 경우, 타 지역의 교육을 신청하셔도 교육을 이수하실 수 있습니다. 다만, 반드시 교육을 신청하신 해당 지역에서 교육을 이수하셔야 합니다.\n   \n5. 교육 신청기간은 어떻게 되나요?\n\n→ 집합교육: 2023. 3. 20.(월) ∼ 2023. 4. 25.(화), 권역별 12개소\n\n    온라인 교육: 2023. 4. 3.(월) ∼ 2023. 10. 29.(일), 24기수\n\n * 집합 교육 사전신청은 3. 14.(화)부터 가능\n\n * 온라인 교육 사전신청은 기수별로 교육시작일 전주(前週) 목요일부터 신청 가능\n\n    예시) 4.3.∼4.9. 1기 수강신청은 3.30(목)부터 농약안전정보시스템을 통해 신청 가능"}, {'role': 'user', 'content': '123123?'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:30:44 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'545'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9996'), (b'x-ratelimit-remaining-tokens', b'59197'), (b'x-ratelimit-reset-requests', b'29.443s'), (b'x-ratelimit-reset-tokens', b'803ms'), (b'x-request-id', b'req_d43f0db676357e6b43d3516f9c96c3c4'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea4992c2fc058-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:30:44 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '545', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9996', 'x-ratelimit-remaining-tokens': '59197', 'x-ratelimit-reset-requests': '29.443s', 'x-ratelimit-reset-tokens': '803ms', 'x-request-id': 'req_d43f0db676357e6b43d3516f9c96c3c4', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea4992c2fc058-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_d43f0db676357e6b43d3516f9c96c3c4
+Error loading chat history: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': "Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.\n\nChat History:\n\nHuman: 대파 키우기\nAssistant: 대파는 선선한 기후를 좋아하며, 파 생육 온도는 15~25℃ 정도인 것으로 알려져 있습니다. 대파는 내한·내건성이 있지만 토양이 과습되면 잘 약해진다고 합니다. 대파를 재배할 때에는 적기에 파종하고 적정 크기의 묘를 정식으로 심어주는 것이 중요합니다. 또한, 정식 후에는 잡초와 병해충을 적기에 방제해야 합니다. 상품성을 향상시키기 위해 북주기를 통해 뿌리나 밑줄기를 흙으로 두둑하게 덮어주는 것이 좋습니다. 이러한 기본적인 사항들을 준수하면 대파를 키우는데 도움이 될 것입니다.\nHuman: 123\nAssistant: I don't have information on green onions specifically, but I can provide general advice for growing onions.\nHuman: 123123\nAssistant: I don't understand the question. Can you please provide more context or clarify what you need help with?\nFollow Up Input: 123123123\nStandalone question:"}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:30:47 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'289'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9995'), (b'x-ratelimit-remaining-tokens', b'59692'), (b'x-ratelimit-reset-requests', b'35.268s'), (b'x-ratelimit-reset-tokens', b'308ms'), (b'x-request-id', b'req_052b70a7813cba8b28659a73aee2467a'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea4aabedac058-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:30:47 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '289', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9995', 'x-ratelimit-remaining-tokens': '59692', 'x-ratelimit-reset-requests': '35.268s', 'x-ratelimit-reset-tokens': '308ms', 'x-request-id': 'req_052b70a7813cba8b28659a73aee2467a', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea4aabedac058-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_052b70a7813cba8b28659a73aee2467a
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x0000022E82845E40>, 'json_data': {'input': [[6854, 499, 4587, 3493, 810, 2317, 477, 38263, 1148, 499, 1205, 1520, 449, 30]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:30:47 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'20'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999985'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_f2f94c31c0ff29447c3d26e469ffb57a'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea4ae2bff3060-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:30:47 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'openai-model': 'text-embedding-ada-002', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '20', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999985', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_f2f94c31c0ff29447c3d26e469ffb57a', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea4ae2bff3060-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_f2f94c31c0ff29447c3d26e469ffb57a
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n(귀농귀촌 정책지원) 사업 신청은 어떻게 해야 하나요?,사업신청을 하기 전에 행정기관(시·군 담당부서 또는 농업기술센터)과 농협(농협중앙회 또는 지역농협)을 방문하여 사업신청 및 대출과 관련된 상담을 받아야 합니다.\n\n이 때 상담을 받으러 갈 때는 어느 정도 구체화된 사업계획서를 가지고 가야 실질적인 도움을 받을 수 있습니다.\n\n(청년농업인 영농정착지원) 아버지(혹은 가족) 밑에서 함께 농업을 했습니다. 경영주로 인정이 되나요?,경영주인 아버지 혹은 가족 밑에서 농업인으로 일을 했더라도 본인이 경영주가 아니기 때문에 인정이 되지 않습니다. 본인 명의로 농업경영체 경영주 등록을 해야 합니다.\n\n개인정보 제공 및 이용동의서는 기관, 법인도 받아야 하\n나요?,□ 개인정보 제공 및 이용동의서는 구매자가 개인인 경우에만 해당됩니다.\n\n   ○ 구매자가 개인이 아닌 법인, 단체, 기관은 개인정보 제공 및 이용동의서를 작성하지 않아도 됩니다.\n\n     -  개인에게 개인정보 제공 및 이용동의서를 받지 않고 개인정보를 기록하고 제공하는 것은 개인정보보호법에 위반됩니다. "}, {'role': 'user', 'content': 'Can you please provide more context or clarify what you need help with?'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:30:48 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'421'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9995'), (b'x-ratelimit-remaining-tokens', b'59593'), (b'x-ratelimit-reset-requests', b'43.106s'), (b'x-ratelimit-reset-tokens', b'407ms'), (b'x-request-id', b'req_dc57e5f83db3ee24a1e779adaa1135e3'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea4afbe10c058-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:30:48 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '421', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9995', 'x-ratelimit-remaining-tokens': '59593', 'x-ratelimit-reset-requests': '43.106s', 'x-ratelimit-reset-tokens': '407ms', 'x-request-id': 'req_dc57e5f83db3ee24a1e779adaa1135e3', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea4afbe10c058-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_dc57e5f83db3ee24a1e779adaa1135e3
+Error loading chat history: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': "Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.\n\nChat History:\n\nHuman: 대파 키우기\nAssistant: 대파는 선선한 기후를 좋아하며, 파 생육 온도는 15~25℃ 정도인 것으로 알려져 있습니다. 대파는 내한·내건성이 있지만 토양이 과습되면 잘 약해진다고 합니다. 대파를 재배할 때에는 적기에 파종하고 적정 크기의 묘를 정식으로 심어주는 것이 중요합니다. 또한, 정식 후에는 잡초와 병해충을 적기에 방제해야 합니다. 상품성을 향상시키기 위해 북주기를 통해 뿌리나 밑줄기를 흙으로 두둑하게 덮어주는 것이 좋습니다. 이러한 기본적인 사항들을 준수하면 대파를 키우는데 도움이 될 것입니다.\nHuman: 123\nAssistant: I don't have information on green onions specifically, but I can provide general advice for growing onions.\nHuman: 123123\nAssistant: I don't understand the question. Can you please provide more context or clarify what you need help with?\nHuman: 123123123\nAssistant: I don't know the answer to your question.\nFollow Up Input: 123123123\nStandalone question:"}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E825AF590>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFDE33BF0> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E825AD350>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:30:58 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'392'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9995'), (b'x-ratelimit-remaining-tokens', b'59675'), (b'x-ratelimit-reset-requests', b'41.718s'), (b'x-ratelimit-reset-tokens', b'325ms'), (b'x-request-id', b'req_7cfe2f8b1a95796e94c98304f5172a12'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea4ee585daa41-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:30:58 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '392', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9995', 'x-ratelimit-remaining-tokens': '59675', 'x-ratelimit-reset-requests': '41.718s', 'x-ratelimit-reset-tokens': '325ms', 'x-request-id': 'req_7cfe2f8b1a95796e94c98304f5172a12', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea4ee585daa41-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_7cfe2f8b1a95796e94c98304f5172a12
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x0000022E82ACFCE0>, 'json_data': {'input': [[6854, 499, 4587, 38263, 1148, 499, 1205, 1520, 449, 30]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E889C1750>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFD3FE600> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E889C3F50>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:30:58 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'28'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999990'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_b7e26aa591aacde44cc73ae43a7b8657'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea4f3292d311b-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:30:58 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'openai-model': 'text-embedding-ada-002', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '28', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999990', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_b7e26aa591aacde44cc73ae43a7b8657', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea4f3292d311b-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_b7e26aa591aacde44cc73ae43a7b8657
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n(청년농업인 영농정착지원) 청년농업인들을 위한 유통판로 지원은 어떤것들이 있나요?,청년농업인이 안정적인 영농정착을 할 수 있도록 네이버쇼핑, 현대그린푸드 등과 협업하여 유통,판로 개척을 지원해 드리고 있습니다.\n\n(귀농귀촌 정책지원) 사업 신청은 어떻게 해야 하나요?,사업신청을 하기 전에 행정기관(시·군 담당부서 또는 농업기술센터)과 농협(농협중앙회 또는 지역농협)을 방문하여 사업신청 및 대출과 관련된 상담을 받아야 합니다.\n\n이 때 상담을 받으러 갈 때는 어느 정도 구체화된 사업계획서를 가지고 가야 실질적인 도움을 받을 수 있습니다.\n\n스마트팜과 관련한 교육을 받고 싶습니다. 교육일정은 어디에서 확인할 수 있나요?,스마트팜코리아 홈페이지(www.smartfarmkorea.net) 메인화면 상단의 [스마트 팜 교육 > 교육과정 조회 및 신청]에서 확인하실 수 있습니다.\n\n또한, 지자체 문의 및 농업교육포털(www.agriedu.net) 참조 부탁드립니다."}, {'role': 'user', 'content': 'Can you please clarify what you need help with?'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:30:59 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'401'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9994'), (b'x-ratelimit-remaining-tokens', b'59645'), (b'x-ratelimit-reset-requests', b'49.324s'), (b'x-ratelimit-reset-tokens', b'355ms'), (b'x-request-id', b'req_2f5f599545c950aa9714e19ad1cbd3d6'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea4f4ecf5aa41-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:30:59 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '401', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9994', 'x-ratelimit-remaining-tokens': '59645', 'x-ratelimit-reset-requests': '49.324s', 'x-ratelimit-reset-tokens': '355ms', 'x-request-id': 'req_2f5f599545c950aa9714e19ad1cbd3d6', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea4f4ecf5aa41-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_2f5f599545c950aa9714e19ad1cbd3d6
+Error loading chat history: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': "Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.\n\nChat History:\n\nHuman: 대파 키우기\nAssistant: 대파는 선선한 기후를 좋아하며, 파 생육 온도는 15~25℃ 정도인 것으로 알려져 있습니다. 대파는 내한·내건성이 있지만 토양이 과습되면 잘 약해진다고 합니다. 대파를 재배할 때에는 적기에 파종하고 적정 크기의 묘를 정식으로 심어주는 것이 중요합니다. 또한, 정식 후에는 잡초와 병해충을 적기에 방제해야 합니다. 상품성을 향상시키기 위해 북주기를 통해 뿌리나 밑줄기를 흙으로 두둑하게 덮어주는 것이 좋습니다. 이러한 기본적인 사항들을 준수하면 대파를 키우는데 도움이 될 것입니다.\nHuman: 123\nAssistant: I don't have information on green onions specifically, but I can provide general advice for growing onions.\nHuman: 123123\nAssistant: I don't understand the question. Can you please provide more context or clarify what you need help with?\nHuman: 123123123\nAssistant: I don't know the answer to your question.\nHuman: 123123123\nAssistant: I need help finding information on distribution channels and support for young farmers.\nFollow Up Input: 양파 키우기\nStandalone question:"}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E825AF910>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFDE33BF0> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E825447D0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:31:11 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'685'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9994'), (b'x-ratelimit-remaining-tokens', b'59644'), (b'x-ratelimit-reset-requests', b'45.963s'), (b'x-ratelimit-reset-tokens', b'356ms'), (b'x-request-id', b'req_7ae9f619d747ab38bcc4cdaf58f18b00'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea53fdfd3aa66-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:31:11 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '685', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9994', 'x-ratelimit-remaining-tokens': '59644', 'x-ratelimit-reset-requests': '45.963s', 'x-ratelimit-reset-tokens': '356ms', 'x-request-id': 'req_7ae9f619d747ab38bcc4cdaf58f18b00', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea53fdfd3aa66-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_7ae9f619d747ab38bcc4cdaf58f18b00
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x0000022E857987C0>, 'json_data': {'input': [[28498, 239, 67218, 234, 16969, 80402, 112, 167, 244, 97, 55216, 169, 75309, 18918, 66799, 233, 54059, 16582, 28313, 108, 11, 16633, 105, 39277, 108, 45618, 56773, 21028, 34983, 90759, 96102, 33229, 7459, 255, 13094, 5251, 91834, 13879, 229, 32428, 20565, 36811, 30]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E82546310>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFD3FE600> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E82544750>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:31:11 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'28'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999956'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'2ms'), (b'x-request-id', b'req_b1a57e6016179ab3b3deaae4e1f9e5fc'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea54628dd8b61-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:31:11 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'openai-model': 'text-embedding-ada-002', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '28', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999956', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '2ms', 'x-request-id': 'req_b1a57e6016179ab3b3deaae4e1f9e5fc', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea54628dd8b61-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_b1a57e6016179ab3b3deaae4e1f9e5fc
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n파 생리적 특성,파는 선선한 기후를 좋아함.\n\n내한·내건성이 있으나 토양 과습에는 매우 약함.\n\n일장이 길어지고 온도가 높아지면 잎 끝이 마르는 증상이 발생함.\n\n양파 생육 온도,발아적온 : 15~25℃\n\n생육적온 : 17℃\n\n양파 생리적 특성,광이 없는 어두운 조건에서 발아가 잘 됨.\n\n25℃ 이상의 고온에서는 생육 장해가 발생함.\n\n양파의 구 비대에는 일정한 시간 이상의 일장이 있어야 하며, 조생종은 11.5~13시간, 중만생종은 13~14.3시간이 필요함."}, {'role': 'user', 'content': '양파는 어떤 기후를 좋아하며, 재배 시 주의해야 할 사항이 무엇인가요?'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:31:14 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'1910'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9993'), (b'x-ratelimit-remaining-tokens', b'59769'), (b'x-ratelimit-reset-requests', b'53.308s'), (b'x-ratelimit-reset-tokens', b'231ms'), (b'x-request-id', b'req_d638fa635bea9c5bf44e00e378ee4caa'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea5481f3caa66-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:31:14 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '1910', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9993', 'x-ratelimit-remaining-tokens': '59769', 'x-ratelimit-reset-requests': '53.308s', 'x-ratelimit-reset-tokens': '231ms', 'x-request-id': 'req_d638fa635bea9c5bf44e00e378ee4caa', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea5481f3caa66-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_d638fa635bea9c5bf44e00e378ee4caa
+Error loading chat history: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': "Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.\n\nChat History:\n\nHuman: 대파 키우기\nAssistant: 대파는 선선한 기후를 좋아하며, 파 생육 온도는 15~25℃ 정도인 것으로 알려져 있습니다. 대파는 내한·내건성이 있지만 토양이 과습되면 잘 약해진다고 합니다. 대파를 재배할 때에는 적기에 파종하고 적정 크기의 묘를 정식으로 심어주는 것이 중요합니다. 또한, 정식 후에는 잡초와 병해충을 적기에 방제해야 합니다. 상품성을 향상시키기 위해 북주기를 통해 뿌리나 밑줄기를 흙으로 두둑하게 덮어주는 것이 좋습니다. 이러한 기본적인 사항들을 준수하면 대파를 키우는데 도움이 될 것입니다.\nHuman: 123\nAssistant: I don't have information on green onions specifically, but I can provide general advice for growing onions.\nHuman: 123123\nAssistant: I don't understand the question. Can you please provide more context or clarify what you need help with?\nHuman: 123123123\nAssistant: I don't know the answer to your question.\nHuman: 123123123\nAssistant: I need help finding information on distribution channels and support for young farmers.\nHuman: 양파 키우기\nAssistant: 양파는 선선한 기후를 좋아합니다. 그러나 높은 온도에서는 잎 끝이 마르는 증상이 발생할 수 있으며, 25℃ 이상의 고온에서는 생육에 장애가 될 수 있습니다. 양파의 발아와 생육에는 적절한 온도와 광선이 중요하며, 양파의 구 비대에는 적정한 일장이 있어야 합니다. 양파는 내한·내건성이 있지만 토양 과습에는 약하기 때문에 주의해야 합니다.\nFollow Up Input: 123123\nStandalone question:"}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E82547910>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFDE33BF0> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E825472D0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:31:29 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'2916'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9994'), (b'x-ratelimit-remaining-tokens', b'59523'), (b'x-ratelimit-reset-requests', b'48.524s'), (b'x-ratelimit-reset-tokens', b'477ms'), (b'x-request-id', b'req_4fcbda4dd0a5dc9edb16d2c21b14e087'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea59bdf78326b-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:31:29 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '2916', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9994', 'x-ratelimit-remaining-tokens': '59523', 'x-ratelimit-reset-requests': '48.524s', 'x-ratelimit-reset-tokens': '477ms', 'x-request-id': 'req_4fcbda4dd0a5dc9edb16d2c21b14e087', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea59bdf78326b-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_4fcbda4dd0a5dc9edb16d2c21b14e087
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x0000022E82ACF2E0>, 'json_data': {'input': [[3923, 3230, 2038, 527, 499, 3411, 369, 9002, 8141, 12006, 323, 1862, 369, 3995, 20957, 30]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E8288F690>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFD3FE600> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E8288E490>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:31:30 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'25'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999984'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_8b80aa536e905e9d6dc7feaf41719f1f'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea5b77d1a30cd-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:31:30 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'openai-model': 'text-embedding-ada-002', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '25', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999984', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_8b80aa536e905e9d6dc7feaf41719f1f', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea5b77d1a30cd-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_8b80aa536e905e9d6dc7feaf41719f1f
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n(청년농업인 영농정착지원) 청년농업인들을 위한 유통판로 지원은 어떤것들이 있나요?,청년농업인이 안정적인 영농정착을 할 수 있도록 네이버쇼핑, 현대그린푸드 등과 협업하여 유통,판로 개척을 지원해 드리고 있습니다.\n\n(농식품 청년기업 성장펀드) 농식품 청년기업 성장펀드는 어떤 지원사업인가요?,우수한 기술력과 성장 가능성이 높은 농식품 청년기업이 안정적으로 성장할 수 있도록 정책 펀드 조성을 통해 사업화 자금 등을 지원하는 사업입니다. \n'창업 초기(Start-up)', '사업화(Step-up)', '후속투자 유치(Scale-up)' 등 각 성장단계별 전용 펀드를 통해 민간 투자자(펀드 운용사)에게 인정받은 기업은 기술개발, 사업화 등에 필요한 자금을 지원받을 수 있습니다. \n자세한 사항은 탄탄창업가이드>농식품 청년기업 성장펀드 첨부파일을 확인해 주세요.\n\n(융자금)후계농 정책자금의 신청 및 실행 시기는 언제인가요?,청년농업인 및 후계농업인은 선정 후 5년까지 정책자금 신청 및 사용이 가능합니다.\n\n<대출 가능 기간>\n\n’20년 선정자 ‘24.12.31까지\n\n’21년 선정자 ‘25.12.31까지\n\n’22년 선정자 ‘26.12.31까지\n\n’23년 선정자 ‘27.12.31까지\n\n’24년 선정자 ‘28.12.31까지\n\n- 단, 당해연도까지 후계농업경영인 경영교육을 반드시 수료하셔야 대출 신청이 가능합니다. \n\n- 스마트팜보육센터 수료생 → 보육센터 수료증으로 대체 가능 \n\n- 청년농업인 선정자 → 청년농업인 선정자 대상 온라인 설명회 수료증으로 대체 가능\n\n자세한 교육 과정 및 신청방법은 청년농업인 카페(cafe.naver.com/koreayoungfarmer)의 농업교육정보 알리미를 참고 바랍니다."}, {'role': 'user', 'content': 'What specific information are you looking for regarding distribution channels and support for young farmers?'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:31:30 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'357'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9993'), (b'x-ratelimit-remaining-tokens', b'59438'), (b'x-ratelimit-reset-requests', b'52.43s'), (b'x-ratelimit-reset-tokens', b'562ms'), (b'x-request-id', b'req_9a0b222731c60656e7bed49bab54434f'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea5b96ad5326b-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:31:30 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '357', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9993', 'x-ratelimit-remaining-tokens': '59438', 'x-ratelimit-reset-requests': '52.43s', 'x-ratelimit-reset-tokens': '562ms', 'x-request-id': 'req_9a0b222731c60656e7bed49bab54434f', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea5b96ad5326b-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_9a0b222731c60656e7bed49bab54434f
+Error loading chat history: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': "Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.\n\nChat History:\n\nHuman: 대파 키우기\nAssistant: 대파는 선선한 기후를 좋아하며, 파 생육 온도는 15~25℃ 정도인 것으로 알려져 있습니다. 대파는 내한·내건성이 있지만 토양이 과습되면 잘 약해진다고 합니다. 대파를 재배할 때에는 적기에 파종하고 적정 크기의 묘를 정식으로 심어주는 것이 중요합니다. 또한, 정식 후에는 잡초와 병해충을 적기에 방제해야 합니다. 상품성을 향상시키기 위해 북주기를 통해 뿌리나 밑줄기를 흙으로 두둑하게 덮어주는 것이 좋습니다. 이러한 기본적인 사항들을 준수하면 대파를 키우는데 도움이 될 것입니다.\nHuman: 123\nAssistant: I don't have information on green onions specifically, but I can provide general advice for growing onions.\nHuman: 123123\nAssistant: I don't understand the question. Can you please provide more context or clarify what you need help with?\nHuman: 123123123\nAssistant: I don't know the answer to your question.\nHuman: 123123123\nAssistant: I need help finding information on distribution channels and support for young farmers.\nHuman: 양파 키우기\nAssistant: 양파는 선선한 기후를 좋아합니다. 그러나 높은 온도에서는 잎 끝이 마르는 증상이 발생할 수 있으며, 25℃ 이상의 고온에서는 생육에 장애가 될 수 있습니다. 양파의 발아와 생육에는 적절한 온도와 광선이 중요하며, 양파의 구 비대에는 적정한 일장이 있어야 합니다. 양파는 내한·내건성이 있지만 토양 과습에는 약하기 때문에 주의해야 합니다.\nHuman: 123123\nAssistant: I don't know the answer to that question.\nFollow Up Input: 12312312312\nStandalone question:"}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E889D2450>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFDE33BF0> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E889A3890>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:31:37 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'480'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9993'), (b'x-ratelimit-remaining-tokens', b'59505'), (b'x-ratelimit-reset-requests', b'54.268s'), (b'x-ratelimit-reset-tokens', b'495ms'), (b'x-request-id', b'req_1f1d3de2ed97ee2afc3c1444a77469cd'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea5e3ace1aa4f-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:31:37 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '480', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9993', 'x-ratelimit-remaining-tokens': '59505', 'x-ratelimit-reset-requests': '54.268s', 'x-ratelimit-reset-tokens': '495ms', 'x-request-id': 'req_1f1d3de2ed97ee2afc3c1444a77469cd', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea5e3ace1aa4f-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_1f1d3de2ed97ee2afc3c1444a77469cd
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x0000022E85798E00>, 'json_data': {'input': [[3923, 3230, 2038, 527, 499, 3411, 369, 9002, 8141, 12006, 323, 1862, 369, 3995, 20957, 30]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E81C1E990>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFD3FE600> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E81C1E490>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:31:38 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'19'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999984'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_3399bdccb80108ba28e116ad4966627d'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea5e93d0b32a6-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:31:38 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'openai-model': 'text-embedding-ada-002', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '19', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999984', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_3399bdccb80108ba28e116ad4966627d', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea5e93d0b32a6-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_3399bdccb80108ba28e116ad4966627d
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n(청년농업인 영농정착지원) 청년농업인들을 위한 유통판로 지원은 어떤것들이 있나요?,청년농업인이 안정적인 영농정착을 할 수 있도록 네이버쇼핑, 현대그린푸드 등과 협업하여 유통,판로 개척을 지원해 드리고 있습니다.\n\n(농식품 청년기업 성장펀드) 농식품 청년기업 성장펀드는 어떤 지원사업인가요?,우수한 기술력과 성장 가능성이 높은 농식품 청년기업이 안정적으로 성장할 수 있도록 정책 펀드 조성을 통해 사업화 자금 등을 지원하는 사업입니다. \n'창업 초기(Start-up)', '사업화(Step-up)', '후속투자 유치(Scale-up)' 등 각 성장단계별 전용 펀드를 통해 민간 투자자(펀드 운용사)에게 인정받은 기업은 기술개발, 사업화 등에 필요한 자금을 지원받을 수 있습니다. \n자세한 사항은 탄탄창업가이드>농식품 청년기업 성장펀드 첨부파일을 확인해 주세요.\n\n(융자금)후계농 정책자금의 신청 및 실행 시기는 언제인가요?,청년농업인 및 후계농업인은 선정 후 5년까지 정책자금 신청 및 사용이 가능합니다.\n\n<대출 가능 기간>\n\n’20년 선정자 ‘24.12.31까지\n\n’21년 선정자 ‘25.12.31까지\n\n’22년 선정자 ‘26.12.31까지\n\n’23년 선정자 ‘27.12.31까지\n\n’24년 선정자 ‘28.12.31까지\n\n- 단, 당해연도까지 후계농업경영인 경영교육을 반드시 수료하셔야 대출 신청이 가능합니다. \n\n- 스마트팜보육센터 수료생 → 보육센터 수료증으로 대체 가능 \n\n- 청년농업인 선정자 → 청년농업인 선정자 대상 온라인 설명회 수료증으로 대체 가능\n\n자세한 교육 과정 및 신청방법은 청년농업인 카페(cafe.naver.com/koreayoungfarmer)의 농업교육정보 알리미를 참고 바랍니다."}, {'role': 'user', 'content': 'What specific information are you looking for regarding distribution channels and support for young farmers?'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:31:38 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'620'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9992'), (b'x-ratelimit-remaining-tokens', b'59438'), (b'x-ratelimit-reset-requests', b'1m1.731s'), (b'x-ratelimit-reset-tokens', b'562ms'), (b'x-request-id', b'req_06c5e1034f903763a96a980b5cb99279'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea5eb5a0faa4f-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:31:38 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '620', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9992', 'x-ratelimit-remaining-tokens': '59438', 'x-ratelimit-reset-requests': '1m1.731s', 'x-ratelimit-reset-tokens': '562ms', 'x-request-id': 'req_06c5e1034f903763a96a980b5cb99279', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea5eb5a0faa4f-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_06c5e1034f903763a96a980b5cb99279
+Error loading chat history: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': "Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.\n\nChat History:\n\nHuman: 대파 키우기\nAssistant: 대파는 선선한 기후를 좋아하며, 파 생육 온도는 15~25℃ 정도인 것으로 알려져 있습니다. 대파는 내한·내건성이 있지만 토양이 과습되면 잘 약해진다고 합니다. 대파를 재배할 때에는 적기에 파종하고 적정 크기의 묘를 정식으로 심어주는 것이 중요합니다. 또한, 정식 후에는 잡초와 병해충을 적기에 방제해야 합니다. 상품성을 향상시키기 위해 북주기를 통해 뿌리나 밑줄기를 흙으로 두둑하게 덮어주는 것이 좋습니다. 이러한 기본적인 사항들을 준수하면 대파를 키우는데 도움이 될 것입니다.\nHuman: 123\nAssistant: I don't have information on green onions specifically, but I can provide general advice for growing onions.\nHuman: 123123\nAssistant: I don't understand the question. Can you please provide more context or clarify what you need help with?\nHuman: 123123123\nAssistant: I don't know the answer to your question.\nHuman: 123123123\nAssistant: I need help finding information on distribution channels and support for young farmers.\nHuman: 양파 키우기\nAssistant: 양파는 선선한 기후를 좋아합니다. 그러나 높은 온도에서는 잎 끝이 마르는 증상이 발생할 수 있으며, 25℃ 이상의 고온에서는 생육에 장애가 될 수 있습니다. 양파의 발아와 생육에는 적절한 온도와 광선이 중요하며, 양파의 구 비대에는 적정한 일장이 있어야 합니다. 양파는 내한·내건성이 있지만 토양 과습에는 약하기 때문에 주의해야 합니다.\nHuman: 123123\nAssistant: I don't know the answer to that question.\nHuman: 12312312312\nAssistant: I am looking for information on the specific distribution channels and support programs available for young farmers, such as collaborations with platforms like Naver Shopping and Hyundai Green Food to help establish distribution channels.\nFollow Up Input: 123123123\nStandalone question:"}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022EFF970990>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFDE33BF0> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E83117B50>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:32:01 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'398'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9994'), (b'x-ratelimit-remaining-tokens', b'59438'), (b'x-ratelimit-reset-requests', b'47.817s'), (b'x-ratelimit-reset-tokens', b'562ms'), (b'x-request-id', b'req_e109e039d676c3db13bbbe9dc75b95a4'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea6785a703122-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:32:01 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '398', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9994', 'x-ratelimit-remaining-tokens': '59438', 'x-ratelimit-reset-requests': '47.817s', 'x-ratelimit-reset-tokens': '562ms', 'x-request-id': 'req_e109e039d676c3db13bbbe9dc75b95a4', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea6785a703122-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_e109e039d676c3db13bbbe9dc75b95a4
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x0000022E82425DA0>, 'json_data': {'input': [[3923, 3230, 8141, 12006, 323, 1862, 7620, 527, 2561, 369, 3995, 20957, 304, 4987, 12126, 30]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E82A3D090>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFD3FE600> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E81C1ED10>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:32:01 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'18'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999984'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_48ad44142431eca62019759ca6b19bbc'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea67d29aa3073-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:32:01 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'openai-model': 'text-embedding-ada-002', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '18', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999984', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_48ad44142431eca62019759ca6b19bbc', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea67d29aa3073-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_48ad44142431eca62019759ca6b19bbc
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n(청년농업인 영농정착지원) 청년농업인들을 위한 유통판로 지원은 어떤것들이 있나요?,청년농업인이 안정적인 영농정착을 할 수 있도록 네이버쇼핑, 현대그린푸드 등과 협업하여 유통,판로 개척을 지원해 드리고 있습니다.\n\n(융자금)후계농 정책자금의 신청 및 실행 시기는 언제인가요?,청년농업인 및 후계농업인은 선정 후 5년까지 정책자금 신청 및 사용이 가능합니다.\n\n<대출 가능 기간>\n\n’20년 선정자 ‘24.12.31까지\n\n’21년 선정자 ‘25.12.31까지\n\n’22년 선정자 ‘26.12.31까지\n\n’23년 선정자 ‘27.12.31까지\n\n’24년 선정자 ‘28.12.31까지\n\n- 단, 당해연도까지 후계농업경영인 경영교육을 반드시 수료하셔야 대출 신청이 가능합니다. \n\n- 스마트팜보육센터 수료생 → 보육센터 수료증으로 대체 가능 \n\n- 청년농업인 선정자 → 청년농업인 선정자 대상 온라인 설명회 수료증으로 대체 가능\n\n자세한 교육 과정 및 신청방법은 청년농업인 카페(cafe.naver.com/koreayoungfarmer)의 농업교육정보 알리미를 참고 바랍니다.\n\n(농식품 청년기업 성장펀드) 농식품 청년기업 성장펀드는 어떤 지원사업인가요?,우수한 기술력과 성장 가능성이 높은 농식품 청년기업이 안정적으로 성장할 수 있도록 정책 펀드 조성을 통해 사업화 자금 등을 지원하는 사업입니다. \n'창업 초기(Start-up)', '사업화(Step-up)', '후속투자 유치(Scale-up)' 등 각 성장단계별 전용 펀드를 통해 민간 투자자(펀드 운용사)에게 인정받은 기업은 기술개발, 사업화 등에 필요한 자금을 지원받을 수 있습니다. \n자세한 사항은 탄탄창업가이드>농식품 청년기업 성장펀드 첨부파일을 확인해 주세요."}, {'role': 'user', 'content': 'What specific distribution channels and support programs are available for young farmers in South Korea?'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:32:02 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'824'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9993'), (b'x-ratelimit-remaining-tokens', b'59439'), (b'x-ratelimit-reset-requests', b'55.35s'), (b'x-ratelimit-reset-tokens', b'561ms'), (b'x-request-id', b'req_d178b3bd63023e9272f3b1a9834fbb83'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea67f3dca3122-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:32:02 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '824', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9993', 'x-ratelimit-remaining-tokens': '59439', 'x-ratelimit-reset-requests': '55.35s', 'x-ratelimit-reset-tokens': '561ms', 'x-request-id': 'req_d178b3bd63023e9272f3b1a9834fbb83', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea67f3dca3122-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_d178b3bd63023e9272f3b1a9834fbb83
+Error loading chat history: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': "Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.\n\nChat History:\n\nHuman: 대파 키우기\nAssistant: 대파는 선선한 기후를 좋아하며, 파 생육 온도는 15~25℃ 정도인 것으로 알려져 있습니다. 대파는 내한·내건성이 있지만 토양이 과습되면 잘 약해진다고 합니다. 대파를 재배할 때에는 적기에 파종하고 적정 크기의 묘를 정식으로 심어주는 것이 중요합니다. 또한, 정식 후에는 잡초와 병해충을 적기에 방제해야 합니다. 상품성을 향상시키기 위해 북주기를 통해 뿌리나 밑줄기를 흙으로 두둑하게 덮어주는 것이 좋습니다. 이러한 기본적인 사항들을 준수하면 대파를 키우는데 도움이 될 것입니다.\nHuman: 123\nAssistant: I don't have information on green onions specifically, but I can provide general advice for growing onions.\nHuman: 123123\nAssistant: I don't understand the question. Can you please provide more context or clarify what you need help with?\nHuman: 123123123\nAssistant: I don't know the answer to your question.\nHuman: 123123123\nAssistant: I need help finding information on distribution channels and support for young farmers.\nHuman: 양파 키우기\nAssistant: 양파는 선선한 기후를 좋아합니다. 그러나 높은 온도에서는 잎 끝이 마르는 증상이 발생할 수 있으며, 25℃ 이상의 고온에서는 생육에 장애가 될 수 있습니다. 양파의 발아와 생육에는 적절한 온도와 광선이 중요하며, 양파의 구 비대에는 적정한 일장이 있어야 합니다. 양파는 내한·내건성이 있지만 토양 과습에는 약하기 때문에 주의해야 합니다.\nHuman: 123123\nAssistant: I don't know the answer to that question.\nHuman: 12312312312\nAssistant: I am looking for information on the specific distribution channels and support programs available for young farmers, such as collaborations with platforms like Naver Shopping and Hyundai Green Food to help establish distribution channels.\nHuman: 123123123\nAssistant: Young farmers in South Korea are supported in establishing stable farming practices through collaborations with platforms like Naver Shopping and Hyundai Green Food to help them explore distribution channels. Additionally, there are support programs like the Youth Farmer Agricultural Settlement Support to aid in this process.\nFollow Up Input: 12312312312\nStandalone question:"}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E8288F690>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFDE33BF0> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E8252F210>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:32:12 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'393'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9993'), (b'x-ratelimit-remaining-tokens', b'59348'), (b'x-ratelimit-reset-requests', b'53.59s'), (b'x-ratelimit-reset-tokens', b'652ms'), (b'x-request-id', b'req_69c3b9c6d765724831fa9c2d89e6be7f'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea6c029ffaa69-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:32:12 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '393', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9993', 'x-ratelimit-remaining-tokens': '59348', 'x-ratelimit-reset-requests': '53.59s', 'x-ratelimit-reset-tokens': '652ms', 'x-request-id': 'req_69c3b9c6d765724831fa9c2d89e6be7f', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea6c029ffaa69-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_69c3b9c6d765724831fa9c2d89e6be7f
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x0000022E82752340>, 'json_data': {'input': [[3923, 3230, 8141, 12006, 323, 1862, 7620, 527, 2561, 369, 3995, 20957, 304, 4987, 12126, 30]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E8288C310>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFD3FE600> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E8288EE50>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:32:13 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'320'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999984'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_22fc84dbad6c509e223cfbb546504d57'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea6c47d33aa7d-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:32:13 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'openai-model': 'text-embedding-ada-002', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '320', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999984', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_22fc84dbad6c509e223cfbb546504d57', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea6c47d33aa7d-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_22fc84dbad6c509e223cfbb546504d57
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n(청년농업인 영농정착지원) 청년농업인들을 위한 유통판로 지원은 어떤것들이 있나요?,청년농업인이 안정적인 영농정착을 할 수 있도록 네이버쇼핑, 현대그린푸드 등과 협업하여 유통,판로 개척을 지원해 드리고 있습니다.\n\n(융자금)후계농 정책자금의 신청 및 실행 시기는 언제인가요?,청년농업인 및 후계농업인은 선정 후 5년까지 정책자금 신청 및 사용이 가능합니다.\n\n<대출 가능 기간>\n\n’20년 선정자 ‘24.12.31까지\n\n’21년 선정자 ‘25.12.31까지\n\n’22년 선정자 ‘26.12.31까지\n\n’23년 선정자 ‘27.12.31까지\n\n’24년 선정자 ‘28.12.31까지\n\n- 단, 당해연도까지 후계농업경영인 경영교육을 반드시 수료하셔야 대출 신청이 가능합니다. \n\n- 스마트팜보육센터 수료생 → 보육센터 수료증으로 대체 가능 \n\n- 청년농업인 선정자 → 청년농업인 선정자 대상 온라인 설명회 수료증으로 대체 가능\n\n자세한 교육 과정 및 신청방법은 청년농업인 카페(cafe.naver.com/koreayoungfarmer)의 농업교육정보 알리미를 참고 바랍니다.\n\n(농식품 청년기업 성장펀드) 농식품 청년기업 성장펀드는 어떤 지원사업인가요?,우수한 기술력과 성장 가능성이 높은 농식품 청년기업이 안정적으로 성장할 수 있도록 정책 펀드 조성을 통해 사업화 자금 등을 지원하는 사업입니다. \n'창업 초기(Start-up)', '사업화(Step-up)', '후속투자 유치(Scale-up)' 등 각 성장단계별 전용 펀드를 통해 민간 투자자(펀드 운용사)에게 인정받은 기업은 기술개발, 사업화 등에 필요한 자금을 지원받을 수 있습니다. \n자세한 사항은 탄탄창업가이드>농식품 청년기업 성장펀드 첨부파일을 확인해 주세요."}, {'role': 'user', 'content': 'What specific distribution channels and support programs are available for young farmers in South Korea?'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:32:16 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'2592'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9992'), (b'x-ratelimit-remaining-tokens', b'59439'), (b'x-ratelimit-reset-requests', b'1m0.892s'), (b'x-ratelimit-reset-tokens', b'561ms'), (b'x-request-id', b'req_dd13816d4d161e238c9455268bda11fc'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea6c89933aa69-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:32:16 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '2592', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9992', 'x-ratelimit-remaining-tokens': '59439', 'x-ratelimit-reset-requests': '1m0.892s', 'x-ratelimit-reset-tokens': '561ms', 'x-request-id': 'req_dd13816d4d161e238c9455268bda11fc', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea6c89933aa69-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_dd13816d4d161e238c9455268bda11fc
+Error loading chat history: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': "Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.\n\nChat History:\n\nHuman: 대파 키우기\nAssistant: 대파는 선선한 기후를 좋아하며, 파 생육 온도는 15~25℃ 정도인 것으로 알려져 있습니다. 대파는 내한·내건성이 있지만 토양이 과습되면 잘 약해진다고 합니다. 대파를 재배할 때에는 적기에 파종하고 적정 크기의 묘를 정식으로 심어주는 것이 중요합니다. 또한, 정식 후에는 잡초와 병해충을 적기에 방제해야 합니다. 상품성을 향상시키기 위해 북주기를 통해 뿌리나 밑줄기를 흙으로 두둑하게 덮어주는 것이 좋습니다. 이러한 기본적인 사항들을 준수하면 대파를 키우는데 도움이 될 것입니다.\nHuman: 123\nAssistant: I don't have information on green onions specifically, but I can provide general advice for growing onions.\nHuman: 123123\nAssistant: I don't understand the question. Can you please provide more context or clarify what you need help with?\nHuman: 123123123\nAssistant: I don't know the answer to your question.\nHuman: 123123123\nAssistant: I need help finding information on distribution channels and support for young farmers.\nHuman: 양파 키우기\nAssistant: 양파는 선선한 기후를 좋아합니다. 그러나 높은 온도에서는 잎 끝이 마르는 증상이 발생할 수 있으며, 25℃ 이상의 고온에서는 생육에 장애가 될 수 있습니다. 양파의 발아와 생육에는 적절한 온도와 광선이 중요하며, 양파의 구 비대에는 적정한 일장이 있어야 합니다. 양파는 내한·내건성이 있지만 토양 과습에는 약하기 때문에 주의해야 합니다.\nHuman: 123123\nAssistant: I don't know the answer to that question.\nHuman: 12312312312\nAssistant: I am looking for information on the specific distribution channels and support programs available for young farmers, such as collaborations with platforms like Naver Shopping and Hyundai Green Food to help establish distribution channels.\nHuman: 123123123\nAssistant: Young farmers in South Korea are supported in establishing stable farming practices through collaborations with platforms like Naver Shopping and Hyundai Green Food to help them explore distribution channels. Additionally, there are support programs like the Youth Farmer Agricultural Settlement Support to aid in this process.\nHuman: 12312312312\nAssistant: For young farmers in South Korea, there are various distribution channels and support programs available to help them establish stable farming practices. Some of the support includes collaboration with platforms like Naver Shopping and Hyundai Green Food to assist in distribution and market development. Additionally, there are funding programs like the Youth Farm Succession Policy Fund, which allows selected young farmers to apply for and use policy funds for up to 5 years after selection. To get more detailed information on the education process and application methods, individuals can refer to the Young Farmers Cafe (cafe.naver.com/koreayoungfarmer). Furthermore, the Agriculture and Food Young Enterprise Growth Fund supports young agriculture and food businesses with high technological capabilities and growth potential by providing funds for business development and stability through different stages such as Start-up, Step-up, and Scale-up. For specific details on these programs, individuals can review the relevant attachments in the Solid Start-up Guide.\nFollow Up Input: 12312312312\nStandalone question:"}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E889D3050>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFDE33BF0> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E889D1810>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:32:37 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'517'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9994'), (b'x-ratelimit-remaining-tokens', b'59072'), (b'x-ratelimit-reset-requests', b'46.114s'), (b'x-ratelimit-reset-tokens', b'928ms'), (b'x-request-id', b'req_dd3e00cbbd225185aee4833e4b59dab0'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea75a8ff2f691-NRT'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:32:37 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '517', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9994', 'x-ratelimit-remaining-tokens': '59072', 'x-ratelimit-reset-requests': '46.114s', 'x-ratelimit-reset-tokens': '928ms', 'x-request-id': 'req_dd3e00cbbd225185aee4833e4b59dab0', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea75a8ff2f691-NRT', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_dd3e00cbbd225185aee4833e4b59dab0
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x0000022E85798C20>, 'json_data': {'input': [[3923, 527, 1063, 3230, 8141, 12006, 323, 1862, 7620, 2561, 369, 3995, 20957, 304, 4987, 12126, 30]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E8288EC50>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFD3FE600> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E8288C090>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:32:38 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'19'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999982'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'1ms'), (b'x-request-id', b'req_cb6e493a6f6db664fc48581c6ed042b2'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea760aaa4aa4a-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:32:38 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'openai-model': 'text-embedding-ada-002', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '19', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999982', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '1ms', 'x-request-id': 'req_cb6e493a6f6db664fc48581c6ed042b2', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea760aaa4aa4a-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_cb6e493a6f6db664fc48581c6ed042b2
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n(청년농업인 영농정착지원) 청년농업인들을 위한 유통판로 지원은 어떤것들이 있나요?,청년농업인이 안정적인 영농정착을 할 수 있도록 네이버쇼핑, 현대그린푸드 등과 협업하여 유통,판로 개척을 지원해 드리고 있습니다.\n\n(농식품 청년기업 성장펀드) 농식품 청년기업 성장펀드는 어떤 지원사업인가요?,우수한 기술력과 성장 가능성이 높은 농식품 청년기업이 안정적으로 성장할 수 있도록 정책 펀드 조성을 통해 사업화 자금 등을 지원하는 사업입니다. \n'창업 초기(Start-up)', '사업화(Step-up)', '후속투자 유치(Scale-up)' 등 각 성장단계별 전용 펀드를 통해 민간 투자자(펀드 운용사)에게 인정받은 기업은 기술개발, 사업화 등에 필요한 자금을 지원받을 수 있습니다. \n자세한 사항은 탄탄창업가이드>농식품 청년기업 성장펀드 첨부파일을 확인해 주세요.\n\n(융자금)후계농 정책자금의 신청 및 실행 시기는 언제인가요?,청년농업인 및 후계농업인은 선정 후 5년까지 정책자금 신청 및 사용이 가능합니다.\n\n<대출 가능 기간>\n\n’20년 선정자 ‘24.12.31까지\n\n’21년 선정자 ‘25.12.31까지\n\n’22년 선정자 ‘26.12.31까지\n\n’23년 선정자 ‘27.12.31까지\n\n’24년 선정자 ‘28.12.31까지\n\n- 단, 당해연도까지 후계농업경영인 경영교육을 반드시 수료하셔야 대출 신청이 가능합니다. \n\n- 스마트팜보육센터 수료생 → 보육센터 수료증으로 대체 가능 \n\n- 청년농업인 선정자 → 청년농업인 선정자 대상 온라인 설명회 수료증으로 대체 가능\n\n자세한 교육 과정 및 신청방법은 청년농업인 카페(cafe.naver.com/koreayoungfarmer)의 농업교육정보 알리미를 참고 바랍니다."}, {'role': 'user', 'content': 'What are some specific distribution channels and support programs available for young farmers in South Korea?'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:32:40 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'1857'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9993'), (b'x-ratelimit-remaining-tokens', b'59438'), (b'x-ratelimit-reset-requests', b'53.517s'), (b'x-ratelimit-reset-tokens', b'562ms'), (b'x-request-id', b'req_11976371c5a026fd57394de8cef60e62'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea762cd98f691-NRT'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:32:40 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '1857', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9993', 'x-ratelimit-remaining-tokens': '59438', 'x-ratelimit-reset-requests': '53.517s', 'x-ratelimit-reset-tokens': '562ms', 'x-request-id': 'req_11976371c5a026fd57394de8cef60e62', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea762cd98f691-NRT', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_11976371c5a026fd57394de8cef60e62
+Error loading chat history: 'ConversationBufferMemory' object has no attribute 'load'
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': 'Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.\n\nChat History:\n\nHuman: 대파 키우기\nAssistant: 대파는 선선한 기후를 좋아하며, 파 생육 온도는 15~25℃ 정도인 것으로 알려져 있습니다. 대파는 내한·내건성이 있지만 토양이 과습되면 잘 약해진다고 합니다. 대파를 재배할 때에는 적기에 파종하고 적정 크기의 묘를 정식으로 심어주는 것이 중요합니다. 또한, 정식 후에는 잡초와 병해충을 적기에 방제해야 합니다. 상품성을 향상시키기 위해 북주기를 통해 뿌리나 밑줄기를 흙으로 두둑하게 덮어주는 것이 좋습니다. 이러한 기본적인 사항들을 준수하면 대파를 키우는데 도움이 될 것입니다.\nHuman: 123\nAssistant: I don\'t have information on green onions specifically, but I can provide general advice for growing onions.\nHuman: 123123\nAssistant: I don\'t understand the question. Can you please provide more context or clarify what you need help with?\nHuman: 123123123\nAssistant: I don\'t know the answer to your question.\nHuman: 123123123\nAssistant: I need help finding information on distribution channels and support for young farmers.\nHuman: 양파 키우기\nAssistant: 양파는 선선한 기후를 좋아합니다. 그러나 높은 온도에서는 잎 끝이 마르는 증상이 발생할 수 있으며, 25℃ 이상의 고온에서는 생육에 장애가 될 수 있습니다. 양파의 발아와 생육에는 적절한 온도와 광선이 중요하며, 양파의 구 비대에는 적정한 일장이 있어야 합니다. 양파는 내한·내건성이 있지만 토양 과습에는 약하기 때문에 주의해야 합니다.\nHuman: 123123\nAssistant: I don\'t know the answer to that question.\nHuman: 12312312312\nAssistant: I am looking for information on the specific distribution channels and support programs available for young farmers, such as collaborations with platforms like Naver Shopping and Hyundai Green Food to help establish distribution channels.\nHuman: 123123123\nAssistant: Young farmers in South Korea are supported in establishing stable farming practices through collaborations with platforms like Naver Shopping and Hyundai Green Food to help them explore distribution channels. Additionally, there are support programs like the Youth Farmer Agricultural Settlement Support to aid in this process.\nHuman: 12312312312\nAssistant: For young farmers in South Korea, there are various distribution channels and support programs available to help them establish stable farming practices. Some of the support includes collaboration with platforms like Naver Shopping and Hyundai Green Food to assist in distribution and market development. Additionally, there are funding programs like the Youth Farm Succession Policy Fund, which allows selected young farmers to apply for and use policy funds for up to 5 years after selection. To get more detailed information on the education process and application methods, individuals can refer to the Young Farmers Cafe (cafe.naver.com/koreayoungfarmer). Furthermore, the Agriculture and Food Young Enterprise Growth Fund supports young agriculture and food businesses with high technological capabilities and growth potential by providing funds for business development and stability through different stages such as Start-up, Step-up, and Scale-up. For specific details on these programs, individuals can review the relevant attachments in the Solid Start-up Guide.\nHuman: 12312312312\nAssistant: Specific distribution channels and support programs available for young farmers in South Korea include collaboration with platforms like Naver Shopping and Hyundai Green Food to support distribution and market development. Additionally, there is the "Nongshik Young Enterprise Growth Fund" which supports young agricultural companies with high technological capabilities and growth potential through policy fund formation to provide business funds, etc. Another option is the "Youth Farmer and Successor Policy Fund," which allows selected young and successor farmers to apply for and use policy funds for up to 5 years after selection.\nFollow Up Input: 123123123\nStandalone question:'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E85D567D0>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFDE33BF0> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E85D57110>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:32:53 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'468'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9994'), (b'x-ratelimit-remaining-tokens', b'58906'), (b'x-ratelimit-reset-requests', b'47.542s'), (b'x-ratelimit-reset-tokens', b'1.094s'), (b'x-request-id', b'req_3a1980c417f6528e9fe52fbadf908d42'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea7bdf95030d9-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:32:53 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '468', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9994', 'x-ratelimit-remaining-tokens': '58906', 'x-ratelimit-reset-requests': '47.542s', 'x-ratelimit-reset-tokens': '1.094s', 'x-request-id': 'req_3a1980c417f6528e9fe52fbadf908d42', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea7bdf95030d9-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_3a1980c417f6528e9fe52fbadf908d42
+Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'post_parser': <function Embeddings.create.<locals>.parser at 0x0000022E81FC1760>, 'json_data': {'input': [[3923, 3230, 1862, 7620, 527, 2561, 369, 3995, 20957, 304, 4987, 12126, 30]], 'model': 'text-embedding-ada-002', 'encoding_format': 'base64'}}
+Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+close.started
+close.complete
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E85DEE950>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000022EFD3FE600> server_hostname='api.openai.com' timeout=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000022E85D863D0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:32:53 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'openai-model', b'text-embedding-ada-002'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'25'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999986'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'0s'), (b'x-request-id', b'req_148c0501513f04caf478d40d1bb34d67'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea7c2c805aa53-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:32:53 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-allow-origin': '*', 'openai-model': 'text-embedding-ada-002', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '25', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '3000', 'x-ratelimit-limit-tokens': '1000000', 'x-ratelimit-remaining-requests': '2999', 'x-ratelimit-remaining-tokens': '999986', 'x-ratelimit-reset-requests': '20ms', 'x-ratelimit-reset-tokens': '0s', 'x-request-id': 'req_148c0501513f04caf478d40d1bb34d67', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea7c2c805aa53-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_148c0501513f04caf478d40d1bb34d67
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n(청년농업인 영농정착지원) 청년농업인들을 위한 유통판로 지원은 어떤것들이 있나요?,청년농업인이 안정적인 영농정착을 할 수 있도록 네이버쇼핑, 현대그린푸드 등과 협업하여 유통,판로 개척을 지원해 드리고 있습니다.\n\n(융자금)후계농 정책자금의 신청 및 실행 시기는 언제인가요?,청년농업인 및 후계농업인은 선정 후 5년까지 정책자금 신청 및 사용이 가능합니다.\n\n<대출 가능 기간>\n\n’20년 선정자 ‘24.12.31까지\n\n’21년 선정자 ‘25.12.31까지\n\n’22년 선정자 ‘26.12.31까지\n\n’23년 선정자 ‘27.12.31까지\n\n’24년 선정자 ‘28.12.31까지\n\n- 단, 당해연도까지 후계농업경영인 경영교육을 반드시 수료하셔야 대출 신청이 가능합니다. \n\n- 스마트팜보육센터 수료생 → 보육센터 수료증으로 대체 가능 \n\n- 청년농업인 선정자 → 청년농업인 선정자 대상 온라인 설명회 수료증으로 대체 가능\n\n자세한 교육 과정 및 신청방법은 청년농업인 카페(cafe.naver.com/koreayoungfarmer)의 농업교육정보 알리미를 참고 바랍니다.\n\n(농식품 청년기업 성장펀드) 농식품 청년기업 성장펀드는 어떤 지원사업인가요?,우수한 기술력과 성장 가능성이 높은 농식품 청년기업이 안정적으로 성장할 수 있도록 정책 펀드 조성을 통해 사업화 자금 등을 지원하는 사업입니다. \n'창업 초기(Start-up)', '사업화(Step-up)', '후속투자 유치(Scale-up)' 등 각 성장단계별 전용 펀드를 통해 민간 투자자(펀드 운용사)에게 인정받은 기업은 기술개발, 사업화 등에 필요한 자금을 지원받을 수 있습니다. \n자세한 사항은 탄탄창업가이드>농식품 청년기업 성장펀드 첨부파일을 확인해 주세요."}, {'role': 'user', 'content': 'What specific support programs are available for young farmers in South Korea?'}], 'model': 'gpt-3.5-turbo', 'n': 1, 'stream': False, 'temperature': 0.7}}
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 12 Jul 2024 05:32:56 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'user-6gooegy6nkbnabcwwvym7mjd'), (b'openai-processing-ms', b'1920'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'60000'), (b'x-ratelimit-remaining-requests', b'9993'), (b'x-ratelimit-remaining-tokens', b'59445'), (b'x-ratelimit-reset-requests', b'55.071s'), (b'x-ratelimit-reset-tokens', b'555ms'), (b'x-request-id', b'req_73940a07ebbe0e08d2bdf682f421054a'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8a1ea7c4fcb530d9-ICN'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 12 Jul 2024 05:32:56 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'openai-organization': 'user-6gooegy6nkbnabcwwvym7mjd', 'openai-processing-ms': '1920', 'openai-version': '2020-10-01', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '60000', 'x-ratelimit-remaining-requests': '9993', 'x-ratelimit-remaining-tokens': '59445', 'x-ratelimit-reset-requests': '55.071s', 'x-ratelimit-reset-tokens': '555ms', 'x-request-id': 'req_73940a07ebbe0e08d2bdf682f421054a', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': '8a1ea7c4fcb530d9-ICN', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+request_id: req_73940a07ebbe0e08d2bdf682f421054a
+Unhandled exception in post creation: 'utf-8' codec can't decode byte 0xfe in position 443: invalid start byte
+Internal Server Error: /community/post/create/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-6\community\forms.py changed, reloading.
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
+=======
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Watching for file changes with StatReloader
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -13331,6 +14147,7 @@ Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
@@ -13338,19 +14155,36 @@ Starting new HTTPS connection (1): us-api.i.posthog.com:443
 https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
 C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-6\community\forms.py changed, reloading.
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
+=======
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Watching for file changes with StatReloader
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -13361,6 +14195,7 @@ Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
@@ -13380,10 +14215,21 @@ Starting new HTTP connection (1): apis.data.go.kr:80
 http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=6.6&om=14.0&vldpha=404.0&posifert_K=1.207&posifert_Ca=5.35&posifert_Mg=2.93&vldsia=266.0&selc=0 HTTP/11" 200 279
 C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Unhandled exception in post creation: 'utf-8' codec can't decode byte 0xfe in position 443: invalid start byte
+Internal Server Error: /community/post/create/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-6\prediction\models.py changed, reloading.
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
 Creating converter from 3 to 5
@@ -13393,6 +14239,14 @@ load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+=======
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -13403,6 +14257,7 @@ Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
@@ -13414,10 +14269,18 @@ Starting new HTTP connection (1): apis.data.go.kr:80
 http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
 C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
 Creating converter from 3 to 5
@@ -13427,6 +14290,14 @@ load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+=======
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -13437,6 +14308,7 @@ Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
@@ -13447,10 +14319,18 @@ http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrEx
 Internal Server Error: /soil/get-soil-fertilizer-info/
 C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
 Creating converter from 3 to 5
@@ -13460,6 +14340,14 @@ load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+=======
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -13470,6 +14358,7 @@ Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
@@ -13495,10 +14384,18 @@ Starting new HTTP connection (1): apis.data.go.kr:80
 http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01002&acid=5.3&om=25.3&vldpha=226.0&posifert_K=2.225&posifert_Ca=6.12&posifert_Mg=2.42&vldsia=5&selc=1.09 HTTP/11" 200 265
 C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
 Creating converter from 3 to 5
@@ -13508,6 +14405,14 @@ load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+=======
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -13518,6 +14423,7 @@ Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
@@ -13525,10 +14431,18 @@ Starting new HTTPS connection (1): us-api.i.posthog.com:443
 https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
 C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
 Creating converter from 3 to 5
@@ -13538,6 +14452,14 @@ load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+=======
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -13548,6 +14470,7 @@ Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
@@ -13555,10 +14478,18 @@ Starting new HTTPS connection (1): us-api.i.posthog.com:443
 https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
 C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
 Creating converter from 3 to 5
@@ -13568,6 +14499,14 @@ load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+=======
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -13578,6 +14517,7 @@ Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
@@ -13615,10 +14555,18 @@ Starting new HTTP connection (1): apis.data.go.kr:80
 http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01004&acid=6.1&om=16.0&vldpha=249.0&posifert_K=0.407&posifert_Ca=4.84&posifert_Mg=1.44&vldsia=5&selc=0.55 HTTP/11" 200 271
 C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
 Creating converter from 3 to 5
@@ -13628,6 +14576,14 @@ load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+=======
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -13638,6 +14594,7 @@ Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
@@ -13651,19 +14608,41 @@ Starting new HTTP connection (1): apis.data.go.kr:80
 http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=5.2&om=14.0&vldpha=371.0&posifert_K=1.347&posifert_Ca=4.4&posifert_Mg=1.62&vldsia=61.0&selc=0 HTTP/11" 200 281
 C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
+=======
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Watching for file changes with StatReloader
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -13674,6 +14653,7 @@ Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
@@ -13681,19 +14661,41 @@ Starting new HTTPS connection (1): us-api.i.posthog.com:443
 https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
 C:\Users\User\Desktop\빅프\bigproject28-fe-6\soil\views.py changed, reloading.
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Unauthorized: /prediction/predict/
+Bad Request: /login/login/
+Bad Request: /login/login/
+Bad Request: /login/login/
+Bad Request: /login/login/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-6\prediction\views.py changed, reloading.
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
+<<<<<<< HEAD
 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 NumExpr defaulting to 8 threads.
+=======
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Watching for file changes with StatReloader
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -13704,6 +14706,7 @@ Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
 load_ssl_context verify=True cert=None trust_env=True http2=False
+<<<<<<< HEAD
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
 load_ssl_context verify=True cert=None trust_env=True http2=False
 load_verify_locations cafile='C:\\Users\\User\\anaconda3\\Lib\\site-packages\\certifi\\cacert.pem'
@@ -13751,3 +14754,13 @@ Starting new HTTP connection (1): apis.data.go.kr:80
 http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
 Starting new HTTP connection (1): apis.data.go.kr:80
 http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01001&acid=5.3&om=25.3&vldpha=226.0&posifert_K=2.225&posifert_Ca=6.12&posifert_Mg=2.42&vldsia=5&selc=1.09 HTTP/11" 200 283
+=======
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Bad Request: /login/login/
+Bad Request: /login/login/
+Bad Request: /login/login/
+>>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
