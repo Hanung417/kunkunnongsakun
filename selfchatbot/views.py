@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from django.contrib.auth.decorators import login_required
+from aivle_big.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from .models import Chatbot

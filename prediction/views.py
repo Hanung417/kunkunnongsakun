@@ -7,10 +7,12 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNet
-from django.contrib.auth.decorators import login_required
-from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError
-from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError, InvalidRequestError
+from aivle_big.decorators import login_required
+from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError, InvalidRequestError, UnauthorizedError
 import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 # CSV 파일 경로
 CSV_FILE_PATH = 'prediction/all_crop_data.csv'  # 수익률 예측
@@ -229,8 +231,11 @@ def predict_income(request):
         return JsonResponse({'status': 'error', 'message': str(e), 'code': e.error_code, 'status_code': e.status_code}, status=e.status_code)
     except InvalidRequestError as e:
         return JsonResponse({'status': 'error', 'message': str(e), 'code': e.error_code, 'status_code': e.status_code}, status=e.status_code)
+    except InternalServerError as e:
+        return JsonResponse({'status': 'error', 'message': e.message, 'code': e.error_code, 'status_code': e.status_code}, status=e.status_code)
     except Exception as e:
-        raise InternalServerError(f"An unexpected error occurred: {str(e)}", code=500)
+        logger.error(f"Unexpected error: {str(e)}")
+        raise InternalServerError(f"An unexpected error occurred: {str(e)}")
     
 @login_required
 def session_history(request):
