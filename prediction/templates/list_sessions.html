@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Prediction Sessions</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Prediction Sessions</h1>
+    <ul id="sessionsList"></ul>
+
+    <script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: "/list_sessions/",
+            success: function(sessions) {
+                sessions.forEach(function(session) {
+                    $("#sessionsList").append('<li>' + session.session_name + ' - ' + session.created_at + '</li>');
+                });
+            },
+            error: function() {
+                alert("Error loading sessions");
+            }
+        });
+    });
+    </script>
+</body>
+</html>
