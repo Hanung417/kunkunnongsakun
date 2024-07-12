@@ -41,8 +41,6 @@ const TableRow = styled.tr`
   &:nth-child(even) {
     background-color: #f9f9f9;
   }
-
- 
 `;
 
 const TableCell = styled.td`
@@ -164,7 +162,7 @@ const MyPostTemplate = () => {
                     <PostTitle>{post.title}</PostTitle>
                   </StyledLink>
                 </TableCell>
-                <TableCell>{post.user_id}</TableCell>
+                <TableCell>{post.user__username}</TableCell>
                 <TableCell>{new Date(post.creation_date).toLocaleDateString()}</TableCell>
                 <TableCell>
                   <IconButton onClick={() => handleEdit(post.id)}>

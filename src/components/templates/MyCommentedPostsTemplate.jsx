@@ -127,7 +127,7 @@ const MyCommentedPostsTemplate = () => {
                     <PostTitle>{post.title}</PostTitle>
                   </StyledLink>
                 </TableCell>
-                <TableCell>{post.user_id}</TableCell>
+                <TableCell>{post.user__username}</TableCell>
                 <TableCell>{new Date(post.creation_date).toLocaleDateString()}</TableCell>
               </TableRow>
             ))}

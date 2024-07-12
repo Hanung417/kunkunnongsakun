@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { FaArrowLeft, FaHome } from "react-icons/fa"; // FaHome 추가
+import { FaArrowLeft, FaHome } from "react-icons/fa"; 
 
 const Container = styled.div`
   display: flex;
@@ -133,7 +133,7 @@ const CreatePostButton = styled(Link)`
 const SellBoardTemplate = () => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate(); // useNavigate 추가
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -141,6 +141,8 @@ const SellBoardTemplate = () => {
         const response = await axios.get("http://localhost:8000/community/", {
           params: { post_type: 'sell' }
         });
+        const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
+        setPosts(sortedPosts);
         setPosts(response.data);
       } catch (error) {
         console.error("Failed to fetch posts", error);

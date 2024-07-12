@@ -141,6 +141,8 @@ const BuyBoardTemplate = () => {
         const response = await axios.get("http://localhost:8000/community/", {
           params: { post_type: 'buy' }
         });
+        const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
+        setPosts(sortedPosts);
         setPosts(response.data);
       } catch (error) {
         console.error("Failed to fetch posts", error);
