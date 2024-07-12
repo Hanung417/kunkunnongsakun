@@ -197,7 +197,7 @@ def comment_delete(request, comment_id):
 @login_required
 def my_post_list(request):
     try:
-        posts = Post.objects.filter(user=request.user).values('id', 'title', 'content', 'user_id', 'creation_date')
+        posts = Post.objects.filter(user=request.user).values('id', 'title', 'content', 'user__username', 'creation_date')
         return JsonResponse(list(posts), safe=False)
     except DatabaseError as e:
         logger.error(f"Database error fetching user's posts: {str(e)}")
@@ -209,8 +209,9 @@ def my_commented_posts(request):
     try:
         comments = Comment.objects.filter(user=request.user).values('post').distinct()
         post_ids = [comment['post'] for comment in comments]
-        posts = Post.objects.filter(id__in=post_ids).values('id', 'title', 'content', 'user_id', 'creation_date')
+        posts = Post.objects.filter(id__in=post_ids).values('id', 'title', 'content', 'user__username', 'creation_date')
         return JsonResponse(list(posts), safe=False)
     except DatabaseError as e:
         logger.error(f"Database error fetching commented posts: {str(e)}")
         raise InternalServerError("Database error occurred while fetching posts commented by user")
+
