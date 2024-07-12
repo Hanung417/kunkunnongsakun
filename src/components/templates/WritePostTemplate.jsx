@@ -1,11 +1,38 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // useNavigate 추가
+import { FaArrowLeft } from "react-icons/fa"; // FaArrowLeft 추가
 
 const Container = styled.div`
   padding: 24px;
   background-color: #f5f5f5;
+`;
+
+const TitleBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+`;
+
+const BackButton = styled.button`
+  position: absolute;
+  left: 0;
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #4aaa87;
+
+  &:hover {
+    color: #3e8e75;
+  }
+
+  & > svg {
+    font-size: 24px;
+  }
 `;
 
 const Title = styled.h1`
@@ -87,7 +114,6 @@ const WritePostTemplate = () => {
   const [content, setContent] = useState("");
   const [postType, setPostType] = useState("buy");
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -143,9 +169,18 @@ const WritePostTemplate = () => {
     }
   };
 
+  const handleBackClick = () => {
+    navigate(-1); // 이전 페이지로 이동
+  };
+
   return (
     <Container>
-      <Title>글 작성</Title>
+      <TitleBar>
+        <BackButton onClick={handleBackClick}>
+          <FaArrowLeft />
+        </BackButton>
+        <Title>글 작성</Title>
+      </TitleBar>
       <Form onSubmit={handleSubmit}>
         <Label htmlFor="title">제목</Label>
         <Input
@@ -181,6 +216,15 @@ const WritePostTemplate = () => {
               onChange={handlePostTypeChange}
             />
             판매 게시판
+          </RadioLabel>
+          <RadioLabel>
+            <Input
+              type="radio"
+              value="exchange"
+              checked={postType === "exchange"}
+              onChange={handlePostTypeChange}
+            />
+            품앗이 게시판
           </RadioLabel>
         </RadioGroup>
         <Button type="submit">작성하기</Button>

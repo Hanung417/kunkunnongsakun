@@ -50,7 +50,7 @@ const BoardTemplate = () => {
         <FaShoppingCart size={24} />
         구매 게시판
       </BoardLink>
-      <BoardLink>
+      <BoardLink to="/exchangeboard">
         <FaHandsHelping size={24} />
         품앗이 게시판
       </BoardLink>
