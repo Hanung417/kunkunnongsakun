@@ -42,9 +42,7 @@ const TableRow = styled.tr`
     background-color: #f9f9f9;
   }
 
-  &:hover {
-    background-color: #f1f1f1;
-  }
+ 
 `;
 
 const TableCell = styled.td`

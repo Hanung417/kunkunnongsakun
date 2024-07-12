@@ -2,10 +2,37 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Container = styled.div`
   padding: 24px;
   background-color: #f5f5f5;
+`;
+
+const TitleBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+`;
+
+const BackButton = styled.button`
+  position: absolute;
+  left: 0;
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #4aaa87;
+
+  &:hover {
+    color: #3e8e75;
+  }
+
+  & > svg {
+    font-size: 24px;
+  }
 `;
 
 const Title = styled.h1`
@@ -90,7 +117,8 @@ const EditPostTemplate = () => {
   const { id } = useParams();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [postType, setPostType] = useState("");
+  const [postType, setPostType] = useState("buy"); // 기본값을 'buy'로 설정
+  const [image, setImage] = useState(null); // 이미지 상태 추가
   const navigate = useNavigate();
 
   // CSRF 토큰을 얻기 위한 함수
@@ -114,9 +142,10 @@ const EditPostTemplate = () => {
     const fetchPost = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/community/post/${id}/`);
+        console.log(response.data); // 서버 응답 로그
         setTitle(response.data.title);
         setContent(response.data.content);
-        setPostType(response.data.post_type);
+        setPostType(response.data.post_type); // 서버에서 불러온 postType을 설정
       } catch (error) {
         console.error("Failed to fetch post", error);
       }
@@ -139,21 +168,35 @@ const EditPostTemplate = () => {
     setPostType(event.target.value);
   };
 
+  const handleImageChange = (event) => {
+    setImage(event.target.files[0]);
+  };
+
   // 폼 제출 핸들러
   const handleSubmit = async (event) => {
     event.preventDefault();
     const csrfToken = getCSRFToken();
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("post_type", postType);
+    if (image) {
+      formData.append("image", image);
+    }
+
     try {
-      await axios.post(`http://localhost:8000/community/post/${id}/edit/`, {
-        title,
-        content,
-        post_type: postType, // 게시글 종류 포함
-      }, {
-        headers: {
-          'X-CSRFToken': csrfToken
-        },
-        withCredentials: true
-      });
+      await axios.post(
+        `http://localhost:8000/community/post/${id}/edit/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "X-CSRFToken": csrfToken,
+          },
+          withCredentials: true,
+        }
+      );
       alert("글 수정 성공");
       navigate(`/post/${id}`);
     } catch (error) {
@@ -161,9 +204,18 @@ const EditPostTemplate = () => {
     }
   };
 
+  const handleBackClick = () => {
+    navigate(-1); // 이전 페이지로 이동
+  };
+
   return (
     <Container>
-      <Title>글 수정</Title>
+      <TitleBar>
+        <BackButton onClick={handleBackClick}>
+          <FaArrowLeft />
+        </BackButton>
+        <Title>글 수정</Title>
+      </TitleBar>
       <Form onSubmit={handleSubmit}>
         <Label htmlFor="title">제목</Label>
         <Input
@@ -184,13 +236,21 @@ const EditPostTemplate = () => {
         <Label htmlFor="post_type">게시글 종류</Label>
         <Select
           id="post_type"
-          value={postType}
+          value={postType} // 서버에서 불러온 postType을 디폴트 값으로 설정
           onChange={handlePostTypeChange}
           required
         >
           <option value="buy">구매 게시판</option>
           <option value="sell">판매 게시판</option>
+          <option value="exchange">품앗이 게시판</option>
         </Select>
+        <Label htmlFor="image">이미지</Label>
+        <Input
+          type="file"
+          id="image"
+          accept="image/*"
+          onChange={handleImageChange}
+        />
         <Button type="submit">수정하기</Button>
       </Form>
     </Container>
