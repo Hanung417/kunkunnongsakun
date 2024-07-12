@@ -11694,3 +11694,5 @@ Starting component SegmentAPI
 Collection langchain is not created.
 Starting new HTTPS connection (1): us-api.i.posthog.com:443
 https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Authentication error: Invalid email or password
+Unauthorized: /login/login/
