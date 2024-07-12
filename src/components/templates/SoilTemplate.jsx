@@ -286,6 +286,7 @@ const SoilTest = () => {
       const response = await axios.post('http://localhost:8000/soil/get-soil-fertilizer-info/',
         JSON.stringify({
           crop_code: cropName,
+          address: address,
           acid: sanitizedSample.ACID,
           om: sanitizedSample.OM,
           vldpha: sanitizedSample.VLDPHA,
@@ -293,7 +294,8 @@ const SoilTest = () => {
           posifert_Ca: sanitizedSample.POSIFERT_CA,
           posifert_Mg: sanitizedSample.POSIFERT_MG,
           vldsia: sanitizedSample.VLDSIA,
-          selc: sanitizedSample.SELC
+          selc: sanitizedSample.SELC,
+          PNU_Nm: sanitizedSample.PNU_Nm
         }),
         {
           headers: {
