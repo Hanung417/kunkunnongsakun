@@ -18,7 +18,6 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError, UnauthorizedError, InvalidRequestError, DuplicateResourceError
 from django.db import DatabaseError, IntegrityError
-from django.contrib.auth.forms import UserChangeForm
 
 logger = logging.getLogger(__name__)
 
@@ -134,7 +133,6 @@ def logout_view(request):
     logout(request)
     return JsonResponse({'status': 'success', 'message': 'User logged out successfully'})
 
-@login_required
 def auth_check(request):
     return JsonResponse({
         'is_authenticated': request.user.is_authenticated,
@@ -142,7 +140,6 @@ def auth_check(request):
     })
 
 @csrf_exempt
-@login_required
 def change_password(request):
     if request.method == 'POST':
         try:
@@ -175,7 +172,7 @@ def delete_account(request):
             raise InternalServerError("Failed to delete account")
     else:
         raise InvalidRequestError("POST method only allowed")
-
+    
 # username 변경 API
 @csrf_exempt
 @login_required
@@ -198,3 +195,66 @@ def change_username(request):
             raise InternalServerError("Failed to change username")
     else:
         raise InvalidRequestError("POST method only allowed")
+
+# 비밀번호 재설정 API
+@csrf_exempt
+def password_reset_request(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            email = data.get('email')
+
+            if not email:
+                raise ValueError('이메일 주소가 필요합니다.')
+
+            # 여기서 비밀번호 재설정 메일 전송 로직을 추가합니다.
+            user = User.objects.filter(email=email).first()
+            if user is not None:
+                # 임시 비밀번호 생성
+                temporary_password = ''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', k=10))
+                user.set_password(temporary_password)
+                user.save()
+
+                # 이메일 전송
+                send_mail(
+                    '비밀번호 재설정',
+                    f'임시 비밀번호는 {temporary_password} 입니다.',
+                    settings.DEFAULT_FROM_EMAIL,
+                    [email],
+                    fail_silently=False,
+                )
+                return JsonResponse({'message': '이메일로 임시 비밀번호가 전송되었습니다.'})
+            else:
+                raise ValueError('해당 이메일 주소로 등록된 사용자가 없습니다.')
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+
+    else:
+        return JsonResponse({'error': 'POST 요청만 지원됩니다.'}, status=405)
+    
+@csrf_exempt
+def password_reset(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            email = data.get('email')
+            temporary_password = data.get('temporary_password')
+            new_password = data.get('new_password')
+
+            if not email or not temporary_password or not new_password:
+                raise ValueError('이메일, 임시 비밀번호, 새로운 비밀번호가 필요합니다.')
+
+            user = User.objects.filter(email=email).first()
+            if user is not None and user.check_password(temporary_password):
+                user.set_password(new_password)
+                user.save()
+                return JsonResponse({'message': '새로운 비밀번호로 변경되었습니다.'})
+            else:
+                raise ValueError('잘못된 이메일 또는 임시 비밀번호입니다.')
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+
+    else:
+        return JsonResponse({'error': 'POST 요청만 지원됩니다.'}, status=405)
