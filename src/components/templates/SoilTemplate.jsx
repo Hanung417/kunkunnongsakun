@@ -192,6 +192,7 @@ const SoilTest = () => {
   const [showCropList, setShowCropList] = useState(false);
   const [error, setError] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedSoilSample, setSelectedSoilSample] = useState(null);
 
   const inputRef = useRef(null);
 
@@ -203,7 +204,10 @@ const SoilTest = () => {
   };
 
   const handleAddressChange = (e) => setAddress(e.target.value);
-  const handleSampleChange = (e) => setSelectedSample(e.target.value);
+  const handleSampleChange = (e) => {
+    setSelectedSample(e.target.value);
+    setSelectedSoilSample(soilData.find(sample => sample.No === e.target.value));
+  };
 
   const getCSRFToken = () => {
     let cookieValue = null;
@@ -249,6 +253,8 @@ const SoilTest = () => {
       );
       setSoilData(response.data.soil_data);
       setSelectedSample(null); // Reset selected sample
+      setFertilizerData(null); // Reset fertilizer data
+      setSelectedSoilSample(null); // Reset selected soil sample
       setError(null);
       setModalIsOpen(true); // Show modal when soil data is fetched
     } catch (err) {
@@ -263,20 +269,31 @@ const SoilTest = () => {
       return;
     }
 
-    const latestSoilSample = soilData.find(sample => sample.No === selectedSample); // 선택된 토양 샘플 데이터를 사용
+    const latestSoilSample = soilData.find(sample => sample.No === selectedSample);
+    const sanitizedSample = {
+      ...latestSoilSample,
+      ACID: latestSoilSample.ACID ?? 0,
+      OM: latestSoilSample.OM ?? 0,
+      VLDPHA: latestSoilSample.VLDPHA ?? 0,
+      POSIFERT_K: latestSoilSample.POSIFERT_K ?? 0,
+      POSIFERT_CA: latestSoilSample.POSIFERT_CA ?? 0,
+      POSIFERT_MG: latestSoilSample.POSIFERT_MG ?? 0,
+      VLDSIA: latestSoilSample.VLDSIA ?? 0,
+      SELC: latestSoilSample.SELC ?? 0
+    };
     const csrfToken = getCSRFToken();
     try {
       const response = await axios.post('http://localhost:8000/soil/get-soil-fertilizer-info/',
         JSON.stringify({
           crop_code: cropName,
-          acid: latestSoilSample.ACID,
-          om: latestSoilSample.OM,
-          vldpha: latestSoilSample.VLDPHA,
-          posifert_K: latestSoilSample.POSIFERT_K,
-          posifert_Ca: latestSoilSample.POSIFERT_CA,
-          posifert_Mg: latestSoilSample.POSIFERT_MG,
-          vldsia: latestSoilSample.VLDSIA,
-          selc: latestSoilSample.SELC
+          acid: sanitizedSample.ACID,
+          om: sanitizedSample.OM,
+          vldpha: sanitizedSample.VLDPHA,
+          posifert_K: sanitizedSample.POSIFERT_K,
+          posifert_Ca: sanitizedSample.POSIFERT_CA,
+          posifert_Mg: sanitizedSample.POSIFERT_MG,
+          vldsia: sanitizedSample.VLDSIA,
+          selc: sanitizedSample.SELC
         }),
         {
           headers: {
@@ -287,6 +304,7 @@ const SoilTest = () => {
         }
       );
       setFertilizerData(response.data.data);
+      setSelectedSoilSample(sanitizedSample); // Set selected sample
       setError(null);
       setModalIsOpen(false); // Close modal when analysis is done
     } catch (err) {
@@ -319,6 +337,11 @@ const SoilTest = () => {
 
   const closeModal = () => {
     setModalIsOpen(false);
+  };
+
+  const formatValue = (value) => {
+    const num = Number(value);
+    return num < 1 ? `${num}` : num.toString();
   };
 
   return (
@@ -369,78 +392,121 @@ const SoilTest = () => {
           <Button onClick={closeModal}>닫기</Button>
         </ButtonContainer>
       </Modal>
-      {fertilizerData && (
+      {selectedSoilSample && fertilizerData && (
         <RecommendationContainer>
+          <RecommendationTitle>토양 분석 데이터</RecommendationTitle>
+          <TableContainer>
+            <Table>
+              <thead>
+                <tr>
+                  <TableHeader>항목</TableHeader>
+                  <TableHeader>값</TableHeader>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <TableData>산도(ACID)</TableData>
+                  <TableData>{formatValue(selectedSoilSample.ACID)} (pH)</TableData>
+                </tr>
+                <tr>
+                  <TableData>유기물(OM)</TableData>
+                  <TableData>{formatValue(selectedSoilSample.OM)} (g/kg)</TableData>
+                </tr>
+                <tr>
+                  <TableData>인산(VLDPHA)</TableData>
+                  <TableData>{formatValue(selectedSoilSample.VLDPHA)} (mg/kg)</TableData>
+                </tr>
+                <tr>
+                  <TableData>칼륨(K)</TableData>
+                  <TableData>{formatValue(selectedSoilSample.POSIFERT_K)} (cmol+/kg)</TableData>
+                </tr>
+                <tr>
+                  <TableData>칼슘(Ca)</TableData>
+                  <TableData>{formatValue(selectedSoilSample.POSIFERT_CA)} (cmol+/kg)</TableData>
+                </tr>
+                <tr>
+                  <TableData>마그네슘(Mg)</TableData>
+                  <TableData>{formatValue(selectedSoilSample.POSIFERT_MG)} (cmol+/kg)</TableData>
+                </tr>
+                <tr>
+                  <TableData>규산(VLDSIA)</TableData>
+                  <TableData>{formatValue(selectedSoilSample.VLDSIA)} (mg/kg)</TableData>
+                </tr>
+                <tr>
+                  <TableData>전기전도도(SELC)</TableData>
+                  <TableData>{formatValue(selectedSoilSample.SELC)} (dS/m)</TableData>
+                </tr>
+              </tbody>
+            </Table>
+          </TableContainer>
           <RecommendationTitle>비료 추천 데이터</RecommendationTitle>
           <TableContainer>
             <Table>
               <thead>
                 <tr>
                   <TableHeader>항목</TableHeader>
-                  {fertilizerData.map((item, index) => (
-                    <TableHeader key={index}>{item.crop_Nm}</TableHeader>
-                  ))}
+                  <TableHeader>값</TableHeader>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <TableData>밑거름_질소 처방량(kg/10a)</TableData>
+                  <TableData>밑거름_질소 처방량</TableData>
                   {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.pre_Fert_N}</TableData>
+                    <TableData key={index}>{item.pre_Fert_N} (kg/10a)</TableData>
                   ))}
                 </tr>
                 <tr>
-                  <TableData>밑거름_인산 처방량(kg/10a)</TableData>
+                  <TableData>밑거름_인산 처방량</TableData>
                   {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.pre_Fert_P}</TableData>
+                    <TableData key={index}>{item.pre_Fert_P} (kg/10a)</TableData>
                   ))}
                 </tr>
                 <tr>
-                  <TableData>밑거름_칼리 처방량(kg/10a)</TableData>
+                  <TableData>밑거름_칼리 처방량</TableData>
                   {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.pre_Fert_K}</TableData>
+                    <TableData key={index}>{item.pre_Fert_K} (kg/10a)</TableData>
                   ))}
                 </tr>
                 <tr>
-                  <TableData>웃거름_질소 처방량(kg/10a)</TableData>
+                  <TableData>웃거름_질소 처방량</TableData>
                   {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.post_Fert_N}</TableData>
+                    <TableData key={index}>{item.post_Fert_N} (kg/10a)</TableData>
                   ))}
                 </tr>
                 <tr>
-                  <TableData>웃거름_인산 처방량(kg/10a)</TableData>
+                  <TableData>웃거름_인산 처방량</TableData>
                   {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.post_Fert_P}</TableData>
+                    <TableData key={index}>{item.post_Fert_P} (kg/10a)</TableData>
                   ))}
                 </tr>
                 <tr>
-                  <TableData>웃거름_칼리 처방량(kg/10a)</TableData>
+                  <TableData>웃거름_칼리 처방량</TableData>
                   {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.post_Fert_K}</TableData>
+                    <TableData key={index}>{item.post_Fert_K} (kg/10a)</TableData>
                   ))}
                 </tr>
                 <tr>
-                  <TableData>우분퇴비 처방량(kg/10a)</TableData>
+                  <TableData>우분퇴비 처방량</TableData>
                   {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.pre_Compost_Cattl}</TableData>
+                    <TableData key={index}>{item.pre_Compost_Cattl} (kg/10a)</TableData>
                   ))}
                 </tr>
                 <tr>
-                  <TableData>돈분퇴비 처방량(kg/10a)</TableData>
+                  <TableData>돈분퇴비 처방량</TableData>
                   {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.pre_Compost_Pig}</TableData>
+                    <TableData key={index}>{item.pre_Compost_Pig} (kg/10a)</TableData>
                   ))}
                 </tr>
                 <tr>
-                  <TableData>계분퇴비 처방량(kg/10a)</TableData>
+                  <TableData>계분퇴비 처방량</TableData>
                   {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.pre_Compost_Chick}</TableData>
+                    <TableData key={index}>{item.pre_Compost_Chick} (kg/10a)</TableData>
                   ))}
                 </tr>
                 <tr>
-                  <TableData>혼합퇴비 처방량(kg/10a)</TableData>
+                  <TableData>혼합퇴비 처방량</TableData>
                   {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.pre_Compost_Mix}</TableData>
+                    <TableData key={index}>{item.pre_Compost_Mix}(kg/10a)</TableData>
                   ))}
                 </tr>
               </tbody>
@@ -453,3 +519,4 @@ const SoilTest = () => {
 };
 
 export default SoilTest;
+

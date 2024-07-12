@@ -4,6 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import ChangePasswordModal from "./ChangePasswordModal";
 import ChangeUsernameModal from "./ChangeUsernameModal"; // 새로운 모달 컴포넌트 추가
+import DeleteAccountModal from "./DeleteAccountModal"; // 회원 탈퇴 모달 컴포넌트 추가
 
 const Container = styled.div`
   display: flex;
@@ -44,7 +45,8 @@ const Button = styled.button`
 const MyPageTemplate = () => {
   const [username, setUsername] = useState("");
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
-  const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(false); // 새로운 상태 추가
+  const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(false);
+  const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false); // 회원 탈퇴 모달 상태 추가
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -69,7 +71,7 @@ const MyPageTemplate = () => {
   };
 
   const handleAccountDeletion = () => {
-    navigate("/delete_account");
+    setIsDeleteAccountModalOpen(true);
   };
 
   const handleViewMyPosts = () => {
@@ -85,7 +87,7 @@ const MyPageTemplate = () => {
       <Title>마이페이지</Title>
       <UserInfo>Username: {username}</UserInfo>
       <Button onClick={handlePasswordChange}>비밀번호 변경</Button>
-      <Button onClick={handleUsernameChange}>사용자 이름 변경</Button> {/* 사용자 이름 변경 버튼 추가 */}
+      <Button onClick={handleUsernameChange}>사용자 이름 변경</Button>
       <Button onClick={handleAccountDeletion}>회원 탈퇴</Button>
       <Button onClick={handleViewMyPosts}>내가 쓴 글</Button>
       <Button onClick={handleViewMyCommentedPosts}>내가 댓글 단 글</Button>
@@ -97,7 +99,11 @@ const MyPageTemplate = () => {
       <ChangeUsernameModal
         isOpen={isUsernameModalOpen}
         onRequestClose={() => setIsUsernameModalOpen(false)}
-        setUsername={setUsername} // 새로운 사용자 이름 모달 컴포넌트 추가
+        setUsername={setUsername}
+      />
+      <DeleteAccountModal
+        isOpen={isDeleteAccountModalOpen}
+        onRequestClose={() => setIsDeleteAccountModalOpen(false)}
       />
     </Container>
   );
