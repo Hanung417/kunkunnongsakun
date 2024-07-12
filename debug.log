@@ -14940,3 +14940,1138 @@ Bad Request: /login/login/
 Bad Request: /login/login/
 >>>>>>> 939cbe9076941c2e9be8b75d6154b352557195c4
 >>>>>>> a1fab88ea775f491c407b14ef9beb727a09d13f7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Authentication error: Invalid email or password
+Unauthorized: /login/login/
+Authentication error: Invalid email or password
+Unauthorized: /login/login/
+Authentication error: Invalid email or password
+Unauthorized: /login/login/
+Unexpected error: 'list' object has no attribute 'split'
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=156 HTTP/11" 200 None
+Unexpected error: name 'start_date' is not defined
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=156 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Unexpected error: predict_prices() missing 1 required positional argument: 'df_2'
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=156 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=226&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Method Not Allowed (GET): /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=159 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Unexpected error: Object of type int64 is not JSON serializable
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=159 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Unexpected error: Object of type int64 is not JSON serializable
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=159 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Unexpected error: Object of type int64 is not JSON serializable
+Internal Server Error: /prediction/predict/
+Traceback (most recent call last):
+  File "C:\Users\lhu07\anaconda3\envs\big_project\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lhu07\anaconda3\envs\big_project\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\lhu07\anaconda3\envs\big_project\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view prediction.views.predict_income didn't return an HttpResponse object. It returned None instead.
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=159 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Unexpected error: Object of type int64 is not JSON serializable
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=159 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Unexpected error: Object of type int64 is not JSON serializable
+Internal Server Error: /prediction/predict/
+Traceback (most recent call last):
+  File "C:\Users\lhu07\anaconda3\envs\big_project\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lhu07\anaconda3\envs\big_project\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\lhu07\anaconda3\envs\big_project\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view prediction.views.predict_income didn't return an HttpResponse object. It returned None instead.
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=159 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Unexpected error: Object of type int64 is not JSON serializable
+Internal Server Error: /prediction/predict/
+Traceback (most recent call last):
+  File "C:\Users\lhu07\anaconda3\envs\big_project\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lhu07\anaconda3\envs\big_project\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\lhu07\anaconda3\envs\big_project\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view prediction.views.predict_income didn't return an HttpResponse object. It returned None instead.
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=159 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=256&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=256&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Unexpected error: Object of type int64 is not JSON serializable
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=159 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=256&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=256&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Unexpected error: int() argument must be a string, a bytes-like object or a real number, not 'dict'
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=159 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=256&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=256&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Unexpected error: Object of type int64 is not JSON serializable
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=159 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=256&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=256&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Unexpected error: Object of type int64 is not JSON serializable
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=159 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Unexpected error: Object of type int64 is not JSON serializable
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=159 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=200&p_itemcode=247&p_kindcode=&p_productrankcode=&p_countrycode=2100&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=156 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=400&p_itemcode=415&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=400&p_itemcode=415&p_kindcode=&p_productrankcode=&p_countrycode=2401&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=133 HTTP/11" 200 None
+Unexpected error: null value in column "session_id" of relation "prediction_predictionsession" violates not-null constraint
+DETAIL:  Failing row contains (25, null, Default Prediction Session, 123123123, 대전, 0, 2024-07-12 18:09:30.881514+00, 15, 사과).
+
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=133 HTTP/11" 200 None
+Unexpected error: null value in column "session_id" of relation "prediction_predictionsession" violates not-null constraint
+DETAIL:  Failing row contains (28, null, Default Prediction Session, 123123123, 대전, 0, 2024-07-12 18:11:45.022864+00, 15, 사과).
+
+Internal Server Error: /prediction/predict/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\prediction\models.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Starting new HTTP connection (1): apis.data.go.kr:80
+http://apis.data.go.kr:80 "GET /1360000/AsosDalyInfoService/getWthrDataList?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&pageNo=1&numOfRows=365&dataType=XML&dataCd=ASOS&dateCd=DAY&startDt=20230713&endDt=20240712&stnIds=133 HTTP/11" 200 None
+Starting new HTTP connection (1): www.kamis.or.kr:80
+http://www.kamis.or.kr:80 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=400&p_itemcode=411&p_kindcode=&p_productrankcode=&p_countrycode=2501&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 302 140
+Starting new HTTPS connection (1): www.kamis.or.kr:443
+https://www.kamis.or.kr:443 "GET /service/price/xml.do?action=periodProductList&p_productclscode=02&p_startday=20230713&p_endday=20240711&p_itemcategorycode=400&p_itemcode=411&p_kindcode=&p_productrankcode=&p_countrycode=2501&p_convert_kg_yn=Y&p_cert_key=5d554929-4444-4cf8-9c58-618f30877777&p_cert_id=4540&p_returntype=xml HTTP/11" 200 None
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\login\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Authentication error: Invalid email
+Forbidden: /login/login/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\login\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Authentication error: Invalid email
+Forbidden: /login/login/
+Not Found: /favicon.ico
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\login\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\login\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Authentication error: Invalid email
+Forbidden: /login/login/
+Authentication error: Invalid password
+Forbidden: /login/login/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\aivle_big\middleware.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Authentication error: Invalid password
+Forbidden: /login/login/
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Authentication error: Invalid password
+Forbidden: /login/login/
+E:\빅프로젝트_34조\bigproject28_be\bigproject28-fe-7\login\views.py changed, reloading.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15

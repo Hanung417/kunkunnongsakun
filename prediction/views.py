@@ -15,6 +15,8 @@ from .models import PredictionSession, PredictionResult
 from django.db import transaction
 import json
 import logging
+import uuid
+session_id = str(uuid.uuid4())
 
 logger = logging.getLogger(__name__)
 
@@ -159,19 +161,31 @@ def convert_values(data):
 def predict_income(request):
     try:
         data = json.loads(request.body)
-        session_id = data.get('session_id', '')
+        session_id = data.get('session_id')
         session_name = data.get('session_name', 'Default Prediction Session')
         land_area = float(data['land_area'])
-        crop_names = data['crop_names'].split(',')  # Assuming a comma-separated string of crop names
-        crop_ratios = [float(ratio) for ratio in data['crop_ratios']]
-        region = data['region']
+        
+        if isinstance(data['crop_names'], list):
+            crop_names = data['crop_names']
+        elif isinstance(data['crop_names'], str):
+            crop_names = data['crop_names'].split(',')
+        else:
+            return JsonResponse({'error': 'Invalid format for crop_names'}, status=400)
 
+        crop_ratios = [float(ratio) for ratio in data['crop_ratios']]
+        
         if sum(crop_ratios) != 1:
             return JsonResponse({'error': 'The sum of crop ratios must equal 1'}, status=400)
 
-        df = read_csv_data()  # Assuming this function is defined to read your data
-        total_predicted_value = 0
+        region = data['region']
+        df = read_csv_data()
+        df_2 = fetch_weather_data(region)
+        if df_2 is None or df_2.empty:
+            return JsonResponse({'error': 'Weather data could not be found'}, status=404)
 
+        total_predicted_value = 0
+        crop_results = []
+        
         with transaction.atomic():
             prediction_session = PredictionSession.objects.create(
                 user=request.user,
@@ -182,30 +196,51 @@ def predict_income(request):
                 region=region,
                 total_income=0
             )
-
+            
+            start_date = df_2['tm'].iloc[0].strftime('%Y%m%d')
+            end_date = df_2['tm'].iloc[-1].strftime('%Y%m%d')
+        
             for crop_name, crop_ratio in zip(crop_names, crop_ratios):
                 adjusted_income, adjusted_data, latest_year = fetch_crop_data(crop_name, df, land_area, crop_ratio)
                 if adjusted_income is None:
-                    raise NotFoundError(f"Data for {crop_name} could not be found.", code=404)
+                    return JsonResponse({'error': f"Data for {crop_name} could not be found"}, status=404)
+                
+                total_predicted_value += int(adjusted_income)
+                
+                df_1 = fetch_market_prices(crop_name, region, start_date, end_date)
+                if df_1 is None or df_1.empty:
+                    return JsonResponse({'error': f"Market data for {crop_name} could not be found"}, status=404)
 
-                total_predicted_value += adjusted_income
+                merged_df = pd.merge(df_2, df_1, on='tm', how='left')
+                merged_df.drop('itemname', axis=1, inplace=True)
+                
+                # Ensure the predicted value is converted to native Python int type for JSON serialization
+                pred_value = int(predict_prices(merged_df, df_2))
 
-                pred_value = predict_prices(adjusted_data)  # Assuming this returns an int
                 PredictionResult.objects.create(
                     session=prediction_session,
                     crop_name=crop_name,
-                    predicted_income=adjusted_income,
-                    adjusted_data=adjusted_data,
-                    price=pred_value,
+                    predicted_income=int(adjusted_income),  # Conversion to native Python int
+                    adjusted_data=convert_values(adjusted_data),
+                    price=int(pred_value),
                     latest_year=latest_year
                 )
-
-            prediction_session.total_income = total_predicted_value
+                
+                df_1_json = df_1.to_json(orient='records', date_format='iso')
+                crop_results.append({
+                'crop_name': crop_name,
+                'latest_year': int(latest_year),
+                'adjusted_data': convert_values(adjusted_data),
+                'price': int(pred_value),
+                'crop_chart_data': json.loads(df_1_json)
+                })
+            
+            prediction_session.total_income = int(total_predicted_value)
             prediction_session.save()
 
         return JsonResponse({
-            'total_income': total_predicted_value,
-            'results': [result for result in prediction_session.results.all().values('crop_name', 'predicted_income', 'price', 'latest_year')]
+            'total_income': int(total_predicted_value),
+            'results': crop_results
         }, status=200)
 
     except json.JSONDecodeError:

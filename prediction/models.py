@@ -4,8 +4,8 @@ from django.utils import timezone
 
 class PredictionSession(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    session_id = models.CharField(max_length=128, default='default_session_id')
-    session_name = models.CharField(max_length=255, blank=True, default='Unnamed Session')
+    session_id = models.CharField(max_length=36, default=None, null=True, blank=True)
+    session_name = models.CharField(max_length=255, default=None, null=True, blank=True)
     crop_names = models.CharField(max_length=100, default='default_crop')
     land_area = models.FloatField(default=1.0)  # Assume a logical default if applicable
     region = models.CharField(max_length=100, default='default_region')
