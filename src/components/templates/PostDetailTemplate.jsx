@@ -311,9 +311,6 @@ const PostDetailTemplate = () => {
     return <Container>게시글을 찾을 수 없습니다.</Container>;
   }
 
-  const imageUrl = `${process.env.REACT_APP_API_URL}${post.image}`;
-
-
   return (
     <Container>
       <TitleBar>
@@ -327,7 +324,7 @@ const PostDetailTemplate = () => {
         <span>작성일: {new Date(post.creation_date).toLocaleDateString()}</span>
       </PostMeta>
       <PostContent>{post.content}</PostContent>
-      {post.image && <PostImage src={imageUrl} alt="Post Image" />}
+      {post.image && <PostImage src={post.image} alt="Post Image" />}
       <CommentList>{renderComments(comments)}</CommentList>
 
       <CommentForm onSubmit={handleSubmitComment}>
