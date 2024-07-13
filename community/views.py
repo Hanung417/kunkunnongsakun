@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
+from aivle_big.decorators import login_required
 from django.http import JsonResponse
 from django.db import DatabaseError, IntegrityError
 from django.db.models import Count
@@ -27,19 +27,23 @@ def post_list(request):
 def post_detail(request, post_id):
     try:
         post = get_object_or_404(Post, pk=post_id)
-        comments = list(post.comments.all().values('id', 'content', 'user__username', 'user_id', 'created_at'))
+        comments = list(post.comments.all().values('id', 'content', 'user__username', 'user_id', 'created_at', 'parent_id'))
         post_data = {
             'id': post.id,
             'title': post.title,
             'content': post.content,
+            'post_type': post.post_type, 
             'user_id': post.user.username,
             'creation_date': post.creation_date,
-            'comments': comments
+            'image': post.image.url if post.image else None,  # 이미지 URL 추가
+            'comments': comments,
         }
         return JsonResponse(post_data)
     except DatabaseError as e:
         logger.error(f"Database error on retrieving post details: {str(e)}")
         raise InternalServerError("Database error occurred while retrieving post details.")
+
+
 
 @csrf_exempt
 @login_required
@@ -47,13 +51,12 @@ def post_create(request):
     if request.method != 'POST':
         raise InvalidRequestError("POST method only allowed")
     try:
-        data = json.loads(request.body)
-        form = PostForm(data)
+        form = PostForm(request.POST, request.FILES)
         if not form.is_valid():
             raise ValidationError("Form validation failed", details=form.errors)
         post = form.save(commit=False)
         post.user = request.user
-        post.post_type = data.get('post_type')
+        post.post_type = request.POST.get('post_type')
         post.save()
         return JsonResponse({'id': post.pk, 'status': 'success'}, status=201)
     except IntegrityError as e:
@@ -62,8 +65,6 @@ def post_create(request):
     except DatabaseError as e:
         logger.error(f"Database error on creating post: {str(e)}")
         raise InternalServerError("Database error occurred while creating post.")
-    except json.JSONDecodeError:
-        raise ValidationError("Invalid JSON format")
     except Exception as e:
         logger.error(f"Unhandled exception in post creation: {str(e)}")
         raise InternalServerError("An unexpected error occurred while creating the post.")
@@ -126,12 +127,15 @@ def comment_create(request, post_id):
         comment = form.save(commit=False)
         comment.user = request.user
         comment.post = get_object_or_404(Post, pk=post_id)
+        comment.parent_id = data.get('parent_id')
         comment.save()
         return JsonResponse({
             'id': comment.id,
             'content': comment.content,
             'user_id': comment.user.id,
-            'created_at': comment.created_at
+            'user__username': comment.user.username,
+            'created_at': comment.created_at,
+            'parent_id': comment.parent_id
         }, status=201)
     except Post.DoesNotExist:
         raise NotFoundError("Post related to the comment not found")
@@ -193,7 +197,7 @@ def comment_delete(request, comment_id):
 @login_required
 def my_post_list(request):
     try:
-        posts = Post.objects.filter(user=request.user).values('id', 'title', 'content', 'user_id', 'creation_date')
+        posts = Post.objects.filter(user=request.user).values('id', 'title', 'content', 'user__username', 'creation_date')
         return JsonResponse(list(posts), safe=False)
     except DatabaseError as e:
         logger.error(f"Database error fetching user's posts: {str(e)}")
@@ -205,8 +209,9 @@ def my_commented_posts(request):
     try:
         comments = Comment.objects.filter(user=request.user).values('post').distinct()
         post_ids = [comment['post'] for comment in comments]
-        posts = Post.objects.filter(id__in=post_ids).values('id', 'title', 'content', 'user_id', 'creation_date')
+        posts = Post.objects.filter(id__in=post_ids).values('id', 'title', 'content', 'user__username', 'creation_date')
         return JsonResponse(list(posts), safe=False)
     except DatabaseError as e:
         logger.error(f"Database error fetching commented posts: {str(e)}")
         raise InternalServerError("Database error occurred while fetching posts commented by user")
+

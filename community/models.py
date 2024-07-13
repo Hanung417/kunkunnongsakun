@@ -8,6 +8,7 @@ class Post(models.Model):
     content = models.TextField()
     creation_date = models.DateTimeField(auto_now_add=True)
     post_type = models.CharField(max_length=10)
+    image = models.ImageField(upload_to='images/', blank=True, null=True)  # 이미지 필드 추가
 
     class Meta:
         db_table = 'post'
@@ -20,6 +21,7 @@ class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE) #대댓글 기능 추가
 
     class Meta:
         db_table = 'comment'

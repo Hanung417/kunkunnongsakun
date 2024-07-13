@@ -11594,13 +11594,18 @@ Starting new HTTP connection (1): apis.data.go.kr:80
 http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/SoilExam/getSoilExamList?serviceKey=XMihbktoJgeXAASWbeYTDZaWDPRL08q%2Fi%2B1Sml2083f1m3gcyPJ2T1YwIrbry0Fe%2BHA1R4EU0S%2BzNL4LjuGBbQ%3D%3D&Page_Size=200&Page_No=1&BJD_Code=2920011400 HTTP/11" 200 571
 Starting new HTTP connection (1): apis.data.go.kr:80
 http://apis.data.go.kr:80 "GET /1390802/SoilEnviron/FrtlzrUseExp/getSoilFrtlzrExprnInfo?serviceKey=1%2FeYLkvnjZNKzzUpbpb%2B%2FVWWmZExnS0ave8VahtkI0X3CiletYaxBgBnlvunpx8tckfsXBogJJIQJayprpZbmA%3D%3D&crop_Code=01003&acid=5.2&om=14.0&vldpha=371.0&posifert_K=1.347&posifert_Ca=4.4&posifert_Mg=1.62&vldsia=61.0&selc=0 HTTP/11" 200 286
+<<<<<<< HEAD
+=======
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+>>>>>>> e8835701c68c64ea45ca6c358bac617cb1f84113
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+<<<<<<< HEAD
+=======
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
 Creating converter from 7 to 5
 Creating converter from 5 to 7
@@ -11676,6 +11681,7 @@ Starting new HTTPS connection (1): us-api.i.posthog.com:443
 https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
 C:\Users\200778\Desktop\minju-git\be\login\urls.py changed, reloading.
 Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+>>>>>>> e8835701c68c64ea45ca6c358bac617cb1f84113
 Creating converter from 7 to 5
 Creating converter from 5 to 7
 Creating converter from 7 to 5
@@ -11683,6 +11689,11 @@ Creating converter from 5 to 7
 Creating converter from 3 to 5
 No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
 Watching for file changes with StatReloader
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+
 Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
 Starting component System
 Starting component Posthog
@@ -11692,41 +11703,11 @@ Starting component QuotaEnforcer
 Starting component LocalSegmentManager
 Starting component SegmentAPI
 Collection langchain is not created.
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
+load_ssl_context verify=True cert=None trust_env=True http2=False
+load_verify_locations cafile='C:\\Users\\lhu07\\anaconda3\\envs\\big_project\\Library\\ssl\\cacert.pem'
 Starting new HTTPS connection (1): us-api.i.posthog.com:443
 https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
 Authentication error: Invalid email or password
 Unauthorized: /login/login/
-Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
-Creating converter from 7 to 5
-Creating converter from 5 to 7
-Creating converter from 7 to 5
-Creating converter from 5 to 7
-Creating converter from 3 to 5
-No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
-Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
-Creating converter from 7 to 5
-Creating converter from 5 to 7
-Creating converter from 7 to 5
-Creating converter from 5 to 7
-Creating converter from 3 to 5
-No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
-Watching for file changes with StatReloader
-Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
-Starting component System
-Starting component Posthog
-Starting component OpenTelemetryClient
-Starting component SqliteDB
-Starting component QuotaEnforcer
-Starting component LocalSegmentManager
-Starting component SegmentAPI
-Collection langchain is not created.
-Starting new HTTPS connection (1): us-api.i.posthog.com:443
-https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
-Internal Server Error: /accounts/login/
-Internal Server Error: /accounts/login/
-Internal Server Error: /accounts/login/
-Internal Server Error: /accounts/login/
-Internal Server Error: /accounts/login/
-Internal Server Error: /accounts/login/
-Internal Server Error: /accounts/login/
-Internal Server Error: /accounts/login/

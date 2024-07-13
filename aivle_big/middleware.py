@@ -1,4 +1,4 @@
-# middleware.py
+from django.core.exceptions import PermissionDenied
 from django.http import JsonResponse
 from .exceptions import (
     ValidationError, BadRequestError, MissingPartError, DuplicateResourceError,
@@ -50,14 +50,14 @@ class CustomExceptionMiddleware:
                 'status_code': exception.status_code
             }
             return JsonResponse(response_data, status=exception.status_code)
-        elif isinstance(exception, UnauthorizedError):
+        elif isinstance(exception, UnauthorizedError) or isinstance(exception, PermissionDenied):
             response_data = {
                 'status': 'error',
-                'message': exception.message,
-                'code': exception.error_code,
-                'status_code': exception.status_code
+                'message': "Authentication failed" if isinstance(exception, PermissionDenied) else exception.message,
+                'code': 1201 if isinstance(exception, PermissionDenied) else exception.error_code,
+                'status_code': 401
             }
-            return JsonResponse(response_data, status=exception.status_code)
+            return JsonResponse(response_data, status=401)
         elif isinstance(exception, AccessDeniedError):
             response_data = {
                 'status': 'error',
@@ -106,11 +106,11 @@ class CustomExceptionMiddleware:
                 'status_code': exception.status_code
             }
             return JsonResponse(response_data, status=exception.status_code)
-        response_data = {
-            'status': 'error',
-            'message': 'Unexpected error occurred',
-            'code': 2000,
-            'status_code': 500
-        }
-        return JsonResponse(response_data, status=500)
-
+        else:
+            response_data = {
+                'status': 'error',
+                'message': 'Unexpected error occurred',
+                'code': 2000,
+                'status_code': 500
+            }
+            return JsonResponse(response_data, status=500)

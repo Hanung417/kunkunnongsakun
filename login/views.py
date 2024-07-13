@@ -15,7 +15,7 @@ from .models import User
 from cryptography.fernet import Fernet
 from django.conf import settings
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
+from aivle_big.decorators import login_required
 from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError, UnauthorizedError, InvalidRequestError, DuplicateResourceError
 from django.db import DatabaseError, IntegrityError
 
@@ -72,8 +72,14 @@ def login(request):
             if not email or not password:
                 raise ValidationError("Email and password are required")
 
-            user = authenticate(request, email=email, password=password)
+            # Check if a user with this email exists
+            try:
+                user = User.objects.get(email=email)
+            except User.DoesNotExist:
+                raise UnauthorizedError("Invalid email")
 
+            # Now authenticate the user with the password
+            user = authenticate(request, email=email, password=password)
             if user:
                 auth_login(request, user)
                 response = JsonResponse({
@@ -86,13 +92,13 @@ def login(request):
                 response.set_cookie('sessionid', request.session.session_key)
                 return response
             else:
-                raise UnauthorizedError("Invalid email or password")
+                raise UnauthorizedError("Invalid password")
 
         except json.JSONDecodeError:
             raise ValidationError("Invalid JSON format")
         except UnauthorizedError as e:
             logger.error(f"Authentication error: {str(e)}")
-            raise UnauthorizedError("Invalid email or password")
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=403)
         except ValidationError as e:
             logger.error(f"Validation error: {str(e)}")
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
@@ -139,8 +145,6 @@ def auth_check(request):
         'username': request.user.username,
     })
 
-# 비밀번호 변경 API
-@login_required
 @csrf_exempt
 def change_password(request):
     if request.method == 'POST':
@@ -149,8 +153,7 @@ def change_password(request):
             form = PasswordChangeForm(user=request.user, data=data)
             if form.is_valid():
                 user = form.save()
-                update_session_auth_hash(request, user) 
-                logout(request) # 비밀번호 변경 후 로그아웃
+                update_session_auth_hash(request, user)
                 return JsonResponse({'status': 'success', 'message': 'Password changed successfully'})
             else:
                 raise ValidationError("Form validation failed", details=form.errors)

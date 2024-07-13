@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
-from django.contrib.auth.decorators import login_required
+from aivle_big.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 import requests
 import xml.etree.ElementTree as ET
 import pandas as pd
 import json
 from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError, InvalidRequestError, BadRequestError, MissingPartError
+from .models import crop_data
 
 @csrf_exempt
 def get_crop_names(request):
@@ -72,6 +73,8 @@ def soil_exam_result(request):
         soil_data = get_soil_exam_data(b_code)
         if soil_data is None:
             raise NotFoundError("Soil examination data could not be found", code=404)
+        
+        
 
         result = {
             'crop_name': crop_name,
@@ -94,7 +97,8 @@ def soil_exam_result(request):
 
 crop_code = pd.read_csv('soil/crop_code.csv')
 
-
+@login_required
+@csrf_exempt
 def get_soil_fertilizer_info(request):
     if request.method != 'POST':
         raise InvalidRequestError("Invalid request method")
@@ -111,6 +115,19 @@ def get_soil_fertilizer_info(request):
     try:
         data = json.loads(request.body)
         name = data.get('crop_code')
+        user_id = request.user.id
+        session_id = request.session.session_key
+        address = data.get('address')
+        detailed_address = data.get('PNU_Nm')
+        
+        crop_instance = crop_data(
+        user_id=user_id,
+        session_id=session_id,
+        crop_name=name,
+        address=address,
+        detailed_address=detailed_address
+        )
+        crop_instance.save()
 
         if not name:
             raise MissingPartError("Missing crop code")

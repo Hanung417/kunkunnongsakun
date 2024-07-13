@@ -107,7 +107,6 @@ DATABASES = {
 }
 
 DATABASE_ROUTERS = ['aivle_big.routers.SchemaRouter']
-
 AUTH_USER_MODEL = 'login.User'
 
 

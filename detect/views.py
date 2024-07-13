@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 from django.utils import timezone
-from django.contrib.auth.decorators import login_required
+from aivle_big.decorators import login_required
 from .models import Pest, PestDetection
 from .utils import process_image
 from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError
