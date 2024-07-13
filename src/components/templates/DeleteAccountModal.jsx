@@ -93,6 +93,7 @@ const DeleteAccountModal = ({ isOpen, onRequestClose }) => {
 
         alert("회원 탈퇴 성공")
         // 회원 탈퇴하면 어디 페이지로 가지,,,,,
+        window.location.reload();
         navigate('/');
       })
       .catch((error) => {

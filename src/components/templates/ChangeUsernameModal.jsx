@@ -57,6 +57,7 @@ const ChangeUsernameModal = ({ isOpen, onRequestClose, setUsername }) => {
         }
       );
       setUsername(newUsername);
+      window.location.reload();
       onRequestClose();
     } catch (error) {
       console.error("Failed to change username", error);
