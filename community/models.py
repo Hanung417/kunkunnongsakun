@@ -1,6 +1,7 @@
 # community/models.py
 from django.db import models
 from django.conf import settings
+from aivle_big.storage_backends import PostBoardStorage
 
 class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -8,7 +9,12 @@ class Post(models.Model):
     content = models.TextField()
     creation_date = models.DateTimeField(auto_now_add=True)
     post_type = models.CharField(max_length=10)
-    image = models.ImageField(upload_to='images/', blank=True, null=True)  # 이미지 필드 추가
+    image = models.ImageField(
+        upload_to='post/', 
+        storage=PostBoardStorage(),  # Using custom storage backend
+        blank=True, 
+        null=True
+    )
 
     class Meta:
         db_table = 'post'

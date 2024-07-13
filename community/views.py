@@ -27,21 +27,33 @@ def post_list(request):
 def post_detail(request, post_id):
     try:
         post = get_object_or_404(Post, pk=post_id)
-        comments = list(post.comments.all().values('id', 'content', 'user__username', 'user_id', 'created_at', 'parent_id'))
+        comments = list(post.comments.all().values(
+            'id', 'content', 'user__username', 'user_id', 'created_at', 'parent_id'
+        ))
+
+        # Ensure the image URL is correctly handled
+        if post.image and hasattr(post.image, 'url'):
+            image_url = post.image.url
+        else:
+            image_url = None
+
         post_data = {
             'id': post.id,
             'title': post.title,
             'content': post.content,
-            'post_type': post.post_type, 
+            'post_type': post.post_type,
             'user_id': post.user.username,
             'creation_date': post.creation_date,
-            'image': post.image.url if post.image else None,  
+            'image': image_url,
             'comments': comments,
         }
         return JsonResponse(post_data)
     except DatabaseError as e:
         logger.error(f"Database error on retrieving post details: {str(e)}")
-        raise InternalServerError("Database error occurred while retrieving post details.")
+        return JsonResponse({'error': 'Database error occurred while retrieving post details.'}, status=500)
+    except Exception as e:
+        logger.error(f"Unhandled exception on retrieving post details: {str(e)}")
+        return JsonResponse({'error': 'An unexpected error occurred.'}, status=500)
 
 
 
