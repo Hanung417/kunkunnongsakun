@@ -1,6 +1,6 @@
 // chat.js
 import axios from 'axios';
-
+import { instance } from './instance';
 const baseURL = 'http://localhost:8000';
 
 export const fetchChatSessions = async () => {
@@ -68,4 +68,16 @@ const getCookie = (name) => {
     }
   }
   return cookieValue;
+};
+
+export const updateSessionName = async (sessionId, newSessionName) => {
+  try {
+    const response = await instance.patch(`selfchatbot/update_session_name/${sessionId}/`, {
+      session_name: newSessionName,
+    });
+    return response;
+  } catch (error) {
+    console.error('Error updating session name:', error);
+    throw error;
+  }
 };
