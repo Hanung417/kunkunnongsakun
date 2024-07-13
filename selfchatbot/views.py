@@ -8,7 +8,7 @@ from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerE
 import logging
 import json
 import os
-
+from django.views.decorators.http import require_http_methods
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -120,3 +120,31 @@ def delete_session(request, session_id):
 
 def error_page(request):
     return render(request, 'error_page.html')
+
+@csrf_exempt
+@login_required
+@require_http_methods(["PATCH"])
+def update_session_name(request, session_id):
+    try:
+        data = json.loads(request.body)
+        new_session_name = data.get('session_name')
+
+        if not new_session_name:
+            raise ValidationError("New session name is required", code=400)
+
+        sessions = Chatbot.objects.filter(session_id=session_id, user_id=request.user.id)
+        if not sessions.exists():
+            raise NotFoundError("Session not found", code=404)
+
+        sessions.update(session_name=new_session_name)
+
+        return JsonResponse({'status': 'success', 'message': 'Session name updated successfully'})
+    except json.JSONDecodeError:
+        raise ValidationError("Invalid JSON format", code=400)
+    except ValidationError as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    except NotFoundError as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=404)
+    except Exception as e:
+        logger.error(f"Error updating session name: {str(e)}")
+        raise InternalServerError("Failed to update session name", code=500)
