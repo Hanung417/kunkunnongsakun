@@ -35,6 +35,7 @@ def post_detail(request, post_id):
             'post_type': post.post_type, 
             'user_id': post.user.username,
             'creation_date': post.creation_date,
+            'image': post.image.url if post.image else None,  # 이미지 URL 추가
             'comments': comments,
         }
         return JsonResponse(post_data)
@@ -42,19 +43,20 @@ def post_detail(request, post_id):
         logger.error(f"Database error on retrieving post details: {str(e)}")
         raise InternalServerError("Database error occurred while retrieving post details.")
 
+
+
 @csrf_exempt
 @login_required
 def post_create(request):
     if request.method != 'POST':
         raise InvalidRequestError("POST method only allowed")
     try:
-        data = json.loads(request.body)
-        form = PostForm(data)
+        form = PostForm(request.POST, request.FILES)
         if not form.is_valid():
             raise ValidationError("Form validation failed", details=form.errors)
         post = form.save(commit=False)
         post.user = request.user
-        post.post_type = data.get('post_type')
+        post.post_type = request.POST.get('post_type')
         post.save()
         return JsonResponse({'id': post.pk, 'status': 'success'}, status=201)
     except IntegrityError as e:
@@ -63,8 +65,6 @@ def post_create(request):
     except DatabaseError as e:
         logger.error(f"Database error on creating post: {str(e)}")
         raise InternalServerError("Database error occurred while creating post.")
-    except json.JSONDecodeError:
-        raise ValidationError("Invalid JSON format")
     except Exception as e:
         logger.error(f"Unhandled exception in post creation: {str(e)}")
         raise InternalServerError("An unexpected error occurred while creating the post.")
