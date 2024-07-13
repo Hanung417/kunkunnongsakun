@@ -199,7 +199,7 @@ const ExpectedReturnTemplate = () => {
     }
   };
 
-  const generateLineChartData = (cropChartData) => {
+  const generateLineChartData = (cropChartData, cropName) => {
     const labels = cropChartData.map(data => data.tm);
     const data = cropChartData.map(data => data.price);
 
@@ -207,7 +207,7 @@ const ExpectedReturnTemplate = () => {
       labels,
       datasets: [
         {
-          label: 'Market Price Over Time',
+          label: cropName,
           data: data,
           fill: false,
           borderColor: 'rgb(75, 192, 192)',
@@ -271,17 +271,17 @@ const ExpectedReturnTemplate = () => {
           {adjustedDataList[selectedCropIndex] && Object.keys(adjustedDataList[selectedCropIndex]).length > 0 ? (
             <Bar data={generateBarChartData(adjustedDataList[selectedCropIndex], cropNames[selectedCropIndex])} options={options} />
           ) : (
-            '차트 데이터'
+            '차트 데이터를 불러오는 과정에서 문제가 생겼습니다.'
           )}
         </FixedLargeBox>
         <FixedWideBox>
           {resultData.results && resultData.results[selectedCropIndex].crop_chart_data ? (
             <Line
-              data={generateLineChartData(resultData.results[selectedCropIndex].crop_chart_data)}
+              data={generateLineChartData(resultData.results[selectedCropIndex].crop_chart_data, cropNames[selectedCropIndex])}
               options={lineChartOptions}
             />
           ) : (
-            '로딩중..'
+            '라인 데이터를 불러오는 과정에서 문제가 생겼습니다.'
           )}
         </FixedWideBox>
       </SectionContainer>

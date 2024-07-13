@@ -1,8 +1,10 @@
+// PostDetailTemplate.js
+
 import React, { useState, useEffect, useCallback } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // useNavigate 추가
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { instance } from "../../apis/instance";
-import { FaArrowLeft } from "react-icons/fa"; // 화살표 아이콘 추가
+import axios from "axios";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Container = styled.div`
   display: flex;
@@ -162,19 +164,19 @@ const CommentButton = styled.button`
 
 const PostDetailTemplate = () => {
   const { id } = useParams();
-  const navigate = useNavigate(); // useNavigate 훅 추가
+  const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
-  const [replyCommentId, setReplyCommentId] = useState(null); // 대댓글을 달 댓글의 ID
-  const [newReply, setNewReply] = useState(""); // 대댓글 내용
+  const [replyCommentId, setReplyCommentId] = useState(null);
+  const [newReply, setNewReply] = useState("");
   const [editCommentId, setEditCommentId] = useState(null);
   const [editCommentContent, setEditCommentContent] = useState("");
-  const currentUserId = localStorage.getItem("userId"); // 로컬스토리지에서 현재 사용자 ID 가져오기
+  const currentUserId = localStorage.getItem("userId");
 
   const fetchPost = useCallback(async () => {
     try {
-      const response = await instance.get(`community/post/${id}/`);
+      const response = await axios.get(`http://localhost:8000/community/post/${id}/`);
       setPost(response.data);
       setComments(response.data.comments || []);
     } catch (error) {
@@ -201,12 +203,9 @@ const PostDetailTemplate = () => {
   const handleSubmitComment = async (event) => {
     event.preventDefault();
     try {
-      await instance.post(
-        `community/post/${id}/comment/create/`,
-        {
-          content: newComment,
-        }
-      );
+      await axios.post(`http://localhost:8000/community/post/${id}/comment/create/`, {
+        content: newComment,
+      });
       await fetchPost();
       setNewComment("");
     } catch (error) {
@@ -217,13 +216,10 @@ const PostDetailTemplate = () => {
   const handleSubmitReply = async (event) => {
     event.preventDefault();
     try {
-      await instance.post(
-        `community/post/${id}/comment/create/`,
-        {
-          content: newReply,
-          parent_id: replyCommentId, // 대댓글의 부모 ID 설정
-        }
-      );
+      await axios.post(`http://localhost:8000/community/post/${id}/comment/create/`, {
+        content: newReply,
+        parent_id: replyCommentId,
+      });
       await fetchPost();
       setNewReply("");
       setReplyCommentId(null);
@@ -234,12 +230,9 @@ const PostDetailTemplate = () => {
 
   const handleEditComment = async (commentId) => {
     try {
-      await instance.post(
-        `community/comment/${commentId}/edit/`,
-        {
-          content: editCommentContent,
-        }
-      );
+      await axios.post(`http://localhost:8000/community/comment/${commentId}/edit/`, {
+        content: editCommentContent,
+      });
       await fetchPost();
       setEditCommentId(null);
       setEditCommentContent("");
@@ -250,7 +243,7 @@ const PostDetailTemplate = () => {
 
   const handleDeleteComment = async (commentId) => {
     try {
-      await instance.post(`community/comment/${commentId}/delete/`);
+      await axios.post(`http://localhost:8000/community/comment/${commentId}/delete/`);
       await fetchPost();
     } catch (error) {
       console.error("Failed to delete comment", error);
@@ -267,11 +260,7 @@ const PostDetailTemplate = () => {
             <CommentAuthor>{comment.user__username}</CommentAuthor>
             <CommentMeta>{new Date(comment.created_at).toLocaleString()}</CommentMeta>
             {editCommentId === comment.id ? (
-              <CommentTextarea
-                rows="2"
-                value={editCommentContent}
-                onChange={handleEditCommentChange}
-              />
+              <CommentTextarea rows="2" value={editCommentContent} onChange={handleEditCommentChange} />
             ) : (
               <CommentContent>{comment.content}</CommentContent>
             )}
@@ -322,8 +311,6 @@ const PostDetailTemplate = () => {
     return <Container>게시글을 찾을 수 없습니다.</Container>;
   }
 
-  const imageUrl = `${process.env.REACT_APP_API_URL}${post.image}`;
-
   return (
     <Container>
       <TitleBar>
@@ -337,7 +324,7 @@ const PostDetailTemplate = () => {
         <span>작성일: {new Date(post.creation_date).toLocaleDateString()}</span>
       </PostMeta>
       <PostContent>{post.content}</PostContent>
-      {post.image && <PostImage src={imageUrl} alt="Post Image" />}
+      {post.image && <PostImage src={post.image} alt="Post Image" />}
       <CommentList>{renderComments(comments)}</CommentList>
 
       <CommentForm onSubmit={handleSubmitComment}>

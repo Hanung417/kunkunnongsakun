@@ -25,7 +25,7 @@ const LeftSection = styled.div`
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 1px; /* 뒤로가기 버튼과 로고 사이의 간격을 1px로 설정 */
+  margin-left: 1px; 
 `;
 
 const LogoImage = styled.img`
@@ -34,7 +34,7 @@ const LogoImage = styled.img`
 
 const Title = styled.div`
   position: absolute;
-  left: 50%;
+  left: 45%;
   transform: translateX(-50%);
   font-size: 20px;
   font-weight: 800;
@@ -110,7 +110,7 @@ const PageTopBar = () => {
     "/soil": "토양 분석",
     "/diagnosis": "병해충 진단",
     "/info": "병해충 진단 결과",
-    "/croptest": "수익 예측 - 작물 선택",
+    "/croptest": "수익 예측",
   };
 
   const pageTitle = pageTitles[location.pathname] || "";

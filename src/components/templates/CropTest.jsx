@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 import styled from "styled-components";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -30,6 +30,7 @@ const InputContainer = styled.div`
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   width: 100%;
   max-width: 500px;
+  position: realative;
 `;
 
 const Input = styled.input`
@@ -42,20 +43,11 @@ const Input = styled.input`
   font-size: 0.9rem;
 `;
 
-const Select = styled.select`
-  padding: 10px;
-  margin-bottom: 10px;
-  width: 100%;
-  border: 2px solid #dfe6e9;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 0.9rem;
-`;
 
 const Button = styled.button`
   padding: 10px 20px;
   margin-top: 10px;
-  background-color: #6c5ce7;
+  background-color: #4aaa87;
   color: white;
   border: none;
   border-radius: 5px;
@@ -65,7 +57,7 @@ const Button = styled.button`
   width: 100%;
 
   &:hover {
-    background-color: #341f97;
+    background-color: #6dc4b0;
   }
 `;
 
@@ -84,6 +76,7 @@ const CropContainer = styled.div`
   padding: 15px;
   border-radius: 10px;
   margin-bottom: 10px;
+  position: relative;
 `;
 
 const ErrorMessage = styled.p`
@@ -97,21 +90,90 @@ const ErrorMessage = styled.p`
   max-width: 600px;
 `;
 
+const CropList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 470px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 1;
+  top: 100%%;
+  max-height: 200px;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  
+  &:hover {
+    overflow-y: auto; /* Enable scrolling when hovering */
+  }
+
+  &::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Webkit browsers */
+  }
+`;
+
+const CropItem = styled.div`
+  padding: 8px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    background-color: #f1f1f1;
+  }
+  &:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+  }
+`;
+
+const Select = styled.select`
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 2px solid #dfe6e9;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 0.9rem;
+`;
+
 const CropTest = () => {
-  // 나머지 코드는 동일하게 유지
   const [landArea, setLandArea] = useState("");
   const [region, setRegion] = useState("");
   const [crops, setCrops] = useState([{ name: "", ratio: "" }]);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
+  const [cropNames, setCropNames] = useState([]);
+  const [filteredCropNames, setFilteredCropNames] = useState([]);
+  const [showCropList, setShowCropList] = useState(false);
   const navigate = useNavigate();
+  const inputRef = useRef(null);
 
-  const cropOptions = ["고구마", "감자", "배추", "양배추", "시금치", "상추", "수박", "참외", "오이", "호박", "토마토", "딸기", "무", "당근", "풋고추", "파", "생강", "파프리카", "방울토마토", "참깨", "들깨", "사과", "배", "복숭아", "포도", "감귤", "단감", "참다래"]; // 드롭다운 작물 목록
+
+  useEffect(() => {
+    const fetchCropNames = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/prediction/get_crop_names/');
+        setCropNames(response.data.crop_names);
+        setFilteredCropNames(response.data.crop_names);
+      } catch (err) {
+        setError('작물 이름을 불러오는 중 오류가 발생했습니다.');
+      }
+    };
+    fetchCropNames();
+  }, []);
 
   const handleInputChange = (index, event) => {
     const values = [...crops];
     values[index][event.target.name] = event.target.value;
     setCrops(values);
+    if (event.target.name === 'name') {
+      setFilteredCropNames(cropNames.filter(crop => crop.toLowerCase().includes(event.target.value.toLowerCase())));
+      setShowCropList(true);
+    }
   };
 
   const addCrop = () => {
@@ -195,6 +257,26 @@ const CropTest = () => {
     return cookieValue;
   };
 
+  const handleCropSelect = (index, crop) => {
+    const values = [...crops];
+    values[index].name = crop;
+    setCrops(values);
+    setShowCropList(false);
+  };
+
+  const handleClickOutside = (event) => {
+    if (inputRef.current && !inputRef.current.contains(event.target)) {
+      setShowCropList(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <PageContainer>
       <Title>수익 예측 테스트</Title>
@@ -218,16 +300,23 @@ const CropTest = () => {
         </Select>
         {crops.map((crop, index) => (
           <CropContainer key={index}>
-            <Select
+            <Input
+              type="text"
               name="name"
+              placeholder="작물 검색"
               value={crop.name}
               onChange={(event) => handleInputChange(index, event)}
-            >
-              <option value="">작물 선택</option>
-              {cropOptions.map((option, idx) => (
-                <option key={idx} value={option}>{option}</option>
-              ))}
-            </Select>
+              onClick={() => setShowCropList(true)}
+            />
+            {showCropList && filteredCropNames.length > 0 && (
+              <CropList>
+                {filteredCropNames.map((cropName, idx) => (
+                  <CropItem key={idx} onClick={() => handleCropSelect(index, cropName)}>
+                    {cropName}
+                  </CropItem>
+                ))}
+              </CropList>
+            )}
             <Input
               type="text"
               placeholder="작물별 비율"
