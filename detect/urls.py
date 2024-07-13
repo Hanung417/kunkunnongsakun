@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name = 'selfchatbot'
+app_name = 'detect'
 
 urlpatterns = [
     path('upload/', views.upload_image_for_detection, name='upload_image'),
