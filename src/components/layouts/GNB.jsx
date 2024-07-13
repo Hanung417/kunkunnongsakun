@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   FaHome,
-  FaMapMarkedAlt,
-  FaChartBar,
+  FaBug,
+  FaChartLine,
   FaUser,
   FaCommentDots,
 } from "react-icons/fa";
@@ -83,11 +83,11 @@ export const GNB = () => {
           </IconWrapper>
           <MenuText isActive={currentPage === "/"}>홈</MenuText>
         </MenuLink>
-        <MenuLink to="/soil" className={currentPage === "/soil" ? "active" : ""}>
-          <IconWrapper isActive={currentPage === "/soil"}>
-            <FaMapMarkedAlt size={24} />
+        <MenuLink to="/diagnosis" className={currentPage === "/diagnosis" ? "active" : ""}>
+          <IconWrapper isActive={currentPage === "/diagnosis"}>
+            <FaBug size={24} />
           </IconWrapper>
-          <MenuText isActive={currentPage === "/soil"}>토양</MenuText>
+          <MenuText isActive={currentPage === "/diagnosis"}>병해충 진단</MenuText>
         </MenuLink>
         <ChatIconWrapper
           isActive={currentPage === "/chatlist"}
@@ -96,22 +96,22 @@ export const GNB = () => {
           <ChatIcon />
         </ChatIconWrapper>
         <MenuLink
-          to="/board"
-          className={currentPage === "/board" ? "active" : ""}
+          to="/expectedreturn"
+          className={currentPage === "/expectedreturn" ? "active" : ""}
         >
-          <IconWrapper isActive={currentPage === "/board"}>
-            <FaChartBar size={24} />
+          <IconWrapper isActive={currentPage === "/expectedreturn"}>
+            <FaChartLine size={24} />
           </IconWrapper>
-          <MenuText isActive={currentPage === "/board"}>게시판</MenuText>
+          <MenuText isActive={currentPage === "/expectedreturn"}>수익 예측</MenuText>
         </MenuLink>
         <MenuLink
           to="/mypage"
-          className={currentPage === "/profile" ? "active" : ""}
+          className={currentPage === "/mypage" ? "active" : ""}
         >
-          <IconWrapper isActive={currentPage === "/profile"}>
+          <IconWrapper isActive={currentPage === "/mypage"}>
             <FaUser size={24} />
           </IconWrapper>
-          <MenuText isActive={currentPage === "/profile"}>프로필</MenuText>
+          <MenuText isActive={currentPage === "/mypage"}>MY</MenuText>
         </MenuLink>
       </Wrapper>
     </Nav>

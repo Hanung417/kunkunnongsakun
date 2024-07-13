@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import ChangePasswordModal from "./ChangePasswordModal";
-import ChangeUsernameModal from "./ChangeUsernameModal"; // 새로운 모달 컴포넌트 추가
-import DeleteAccountModal from "./DeleteAccountModal"; // 회원 탈퇴 모달 컴포넌트 추가
+import ChangeUsernameModal from "./ChangeUsernameModal";
+import DeleteAccountModal from "./DeleteAccountModal";
 
 const Container = styled.div`
   display: flex;
@@ -23,9 +23,37 @@ const Title = styled.h1`
   color: #333;
 `;
 
-const UserInfo = styled.div`
-  font-size: 18px;
+const Tabs = styled.div`
+  display: flex;
+  justify-content: center;
   margin-bottom: 24px;
+`;
+
+const TabButton = styled.button`
+  padding: 12px 16px;
+  font-size: 16px;
+  color: ${({ isActive }) => (isActive ? "white" : "#4aaa87")};
+  background-color: ${({ isActive }) => (isActive ? "#4aaa87" : "white")};
+  border: 1px solid #4aaa87;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 4px;
+
+  &:hover {
+    background-color: ${({ isActive }) => (isActive ? "#3b8b6d" : "#6dc4b0")};
+    color: white;
+  }
+`;
+
+const TabContent = styled.div`
+  display: ${({ isActive }) => (isActive ? "block" : "none")};
+  width: 100%;
+  max-width: 600px;
+  background-color: white;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 `;
 
 const Button = styled.button`
@@ -44,9 +72,10 @@ const Button = styled.button`
 
 const MyPageTemplate = () => {
   const [username, setUsername] = useState("");
+  const [activeTab, setActiveTab] = useState("profile");
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(false);
-  const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false); // 회원 탈퇴 모달 상태 추가
+  const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -85,12 +114,35 @@ const MyPageTemplate = () => {
   return (
     <Container>
       <Title>마이페이지</Title>
-      <UserInfo>Username: {username}</UserInfo>
-      <Button onClick={handlePasswordChange}>비밀번호 변경</Button>
-      <Button onClick={handleUsernameChange}>사용자 이름 변경</Button>
-      <Button onClick={handleAccountDeletion}>회원 탈퇴</Button>
-      <Button onClick={handleViewMyPosts}>내가 쓴 글</Button>
-      <Button onClick={handleViewMyCommentedPosts}>내가 댓글 단 글</Button>
+      <Tabs>
+        <TabButton isActive={activeTab === "profile"} onClick={() => setActiveTab("profile")}>
+          프로필
+        </TabButton>
+        <TabButton isActive={activeTab === "settings"} onClick={() => setActiveTab("settings")}>
+          설정
+        </TabButton>
+        <TabButton isActive={activeTab === "activity"} onClick={() => setActiveTab("activity")}>
+          활동
+        </TabButton>
+      </Tabs>
+
+      <TabContent isActive={activeTab === "profile"}>
+        <h2>프로필</h2>
+        <p>Username: {username}</p>
+        <Button onClick={handlePasswordChange}>비밀번호 변경</Button>
+        <Button onClick={handleUsernameChange}>사용자 이름 변경</Button>
+      </TabContent>
+
+      <TabContent isActive={activeTab === "settings"}>
+        <h2>설정</h2>
+        <Button onClick={handleAccountDeletion}>회원 탈퇴</Button>
+      </TabContent>
+
+      <TabContent isActive={activeTab === "activity"}>
+        <h2>활동</h2>
+        <Button onClick={handleViewMyPosts}>내가 쓴 글</Button>
+        <Button onClick={handleViewMyCommentedPosts}>내가 댓글 단 글</Button>
+      </TabContent>
 
       <ChangePasswordModal
         isOpen={isPasswordModalOpen}

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios"; // axios 사용
+import axios from "axios";
+import logoImg from "../../images/logo.png";
 
 const TopBars = styled.nav`
   display: flex;
@@ -15,12 +16,22 @@ const TopBars = styled.nav`
   z-index: 1000;
 `;
 
-const Logo = styled.div`
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
+
+const LogoImage = styled.img`
+  width: 40px;
+`;
+
+const LogoText = styled.div`
   font-size: 20px;
   font-weight: 800;
   color: #4aaa87;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  cursor: pointer; /* Add cursor pointer for visual indication */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 8px;
 `;
 
 const RightSection = styled.div`
@@ -33,7 +44,7 @@ const TopBarButton = styled.button`
   background-color: #4aaa87;
   color: #ffffff;
   font-family: 'Freesentation', sans-serif;
-  font-weight: 600; /* SemiBold */
+  font-weight: 600;
   border: none;
   border-radius: 4px;
   font-size: 16px;
@@ -61,7 +72,7 @@ const getCookie = (name) => {
   return cookieValue;
 };
 
-const TopBar = () => {
+const MainTopBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
@@ -112,7 +123,10 @@ const TopBar = () => {
 
   return (
     <TopBars>
-      <Logo onClick={handleLogoClick}> 꾼꾼농사꾼 </Logo>
+      <LogoContainer onClick={handleLogoClick}>
+        <LogoImage src={logoImg} alt="Logo" />
+        <LogoText>꾼꾼농사꾼</LogoText>
+      </LogoContainer>
       <RightSection>
         {isLoggedIn ? (
           <>
@@ -127,4 +141,4 @@ const TopBar = () => {
   );
 };
 
-export default TopBar;
+export default MainTopBar;

@@ -1,8 +1,10 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { GNB } from "./GNB";
-import TopBar from "./TopBar";
+import MainTopBar from "./MainTopBar";
+import PageTopBar from "./PageTopBar";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 
 const Container = styled.div`
   padding-bottom: 40px;
@@ -10,9 +12,12 @@ const Container = styled.div`
 `;
 
 export const MainLayout = ({ isLoggedIn, onLogout }) => {
+  const location = useLocation();
+  const isMainPage = location.pathname === "/";
+
   return (
     <Container>
-      <TopBar isLoggedIn={isLoggedIn} onLogout={onLogout} />
+      {isMainPage ? <MainTopBar /> : <PageTopBar />}
       <Outlet />
       <GNB />
     </Container>
