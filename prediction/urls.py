@@ -9,5 +9,8 @@ urlpatterns = [
     path('list_sessions/', views.list_prediction_sessions, name='list_prediction_sessions'),
     path('session_details/<str:session_id>/', views.prediction_session_details, name='prediction_session_details'),
     path('delete_session/<str:session_id>/', views.delete_prediction_session, name='delete_prediction_session'),
+    path('get_crop_names/', views.get_crop_names, name='get_crop_names'),
+    path('get_region_names/', views.get_region_names, name='get_region_names'),
+
 ]
 
