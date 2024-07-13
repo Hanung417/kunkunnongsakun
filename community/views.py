@@ -35,7 +35,7 @@ def post_detail(request, post_id):
             'post_type': post.post_type, 
             'user_id': post.user.username,
             'creation_date': post.creation_date,
-            'image': post.image.url if post.image else None,  # 이미지 URL 추가
+            'image': post.image.url if post.image else None,  
             'comments': comments,
         }
         return JsonResponse(post_data)
