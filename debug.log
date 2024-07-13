@@ -11927,3 +11927,27 @@ Importing XbmImagePlugin
 Importing XpmImagePlugin
 Importing XVThumbImagePlugin
 C:\Users\200778\Desktop\minju-git\be\community\views.py changed, reloading.
+Falling back to TensorFlow client; we recommended you install the Cloud TPU client directly with pip install cloud-tpu-client.
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 7 to 5
+Creating converter from 5 to 7
+Creating converter from 3 to 5
+No training configuration found in the save file, so the model was *not* compiled. Compile it manually.
+Watching for file changes with StatReloader
+Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Starting component System
+Starting component Posthog
+Starting component OpenTelemetryClient
+Starting component SqliteDB
+Starting component QuotaEnforcer
+Starting component LocalSegmentManager
+Starting component SegmentAPI
+Collection langchain is not created.
+Starting new HTTPS connection (1): us-api.i.posthog.com:443
+https://us-api.i.posthog.com:443 "POST /batch/ HTTP/11" 200 15
+Internal Server Error: /media/post/다운로드.webp
+Internal Server Error: /media/post/다운로드_KWsgLC8.webp
+Internal Server Error: /media/post/unnamed.jpg
+Internal Server Error: /media/post/다운로드_ElTfPbD.webp
+C:\Users\200778\Desktop\minju-git\be\aivle_big\settings.py changed, reloading.
