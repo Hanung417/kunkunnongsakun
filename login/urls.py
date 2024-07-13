@@ -9,7 +9,7 @@ app_name = 'login'
 # Update your urlpatterns to include this new view
 urlpatterns = [
     path('login/', views.login, name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+    path('logout/', views.logout_view, name='logout'),
     path('check_username/', views.check_username, name='check_username'),
     path('send_verification_email/', views.send_verification_email, name='send_verification_email'),
     path('password_reset/', views.password_reset_request, name='password_reset_request'),#password_reset

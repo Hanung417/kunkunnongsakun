@@ -134,10 +134,41 @@ def send_verification_email(request):
         logger.error(f"Error sending verification email: {str(e)}")
         raise InternalServerError("Failed to send verification email")
 
+# @csrf_exempt
+# def logout_view(request):
+#     logout(request)
+#     return JsonResponse({'status': 'success', 'message': 'User logged out successfully'})
+
 @csrf_exempt
 def logout_view(request):
-    logout(request)
-    return JsonResponse({'status': 'success', 'message': 'User logged out successfully'})
+    try:
+        if request.method == 'POST':
+            logout(request)
+            return JsonResponse({'status': 'success', 'message': 'User logged out successfully'})
+        else:
+            raise InvalidRequestError("Method not allowed")
+    except InvalidRequestError as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': e.message,
+            'code': e.error_code,
+            'status_code': e.status_code
+        }, status=e.status_code)
+    except UnauthorizedError as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': e.message,
+            'code': e.error_code,
+            'status_code': e.status_code
+        }, status=e.status_code)
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': "Unexpected error occurred",
+            'code': 2000,
+            'status_code': 500
+        }, status=500)
+        
 
 def auth_check(request):
     return JsonResponse({
