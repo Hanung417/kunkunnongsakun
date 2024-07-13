@@ -16,6 +16,7 @@ import MyPageTemplate from "./components/templates/MyPageTemplate";
 import CropTest from "./components/templates/CropTest";
 import MyPostTemplate from "./components/templates/MyPostTemplate";
 import EditPostTemplate from "./components/templates/EditPostTemplate";
+import ExchangeBoardTemplate from "./components/templates/ExchangeBoardTemplate";
 
 // 용범 페이지 병합
 import ExpectedReturnPage from "./pages/ExpectedReturnPage";
@@ -25,6 +26,7 @@ import FertilizerPage from './pages/FertilizerPage';
 import DiagnosisPage from './pages/DiagnosisPage';
 import InfoPage from './pages/InfoPage';
 import MyCommentedPostsTemplate from "./components/templates/MyCommentedPostsTemplate";
+
 
 
 function App() {
@@ -40,6 +42,7 @@ function App() {
           <Route path="board" element={<BoardPage />} />
           <Route path="buyboard" element={<BuyBoardPage />} />
           <Route path="sellboard" element={<SellBoardPage />} />
+          <Route path="exchangeboard" element={<ExchangeBoardTemplate />} />
           <Route path="post/:id" element={<PostDetailPage />} />
           <Route path="post/create" element={<WritePostPage />} />
           <Route path="chatlist" element={<ChatListPage />} />

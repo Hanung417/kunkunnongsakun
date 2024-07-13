@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
@@ -39,19 +39,24 @@ const Content = styled.div`
 `;
 
 const UploadContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 2px dashed #ccc;
   width: 80%;
-  
+  max-width: 500px;
+  max-height: 500px;
   text-align: center;
   margin-bottom: 20px;
   background-color: #fff;
   border-radius: 10px;
+  overflow: hidden; /* 추가: 이미지가 컨테이너를 벗어나지 않도록 함 */
 `;
 
 const ImagePreview = styled.img`
-  max-width: 100%;
-  height: auto;
-  margin-top: 20px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 추가: 이미지가 컨테이너에 맞게 조정됨 */
   border-radius: 10px;
 `;
 
@@ -66,6 +71,15 @@ const ResultContainer = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between; /* 버튼 사이에 여백 추가 */
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+`;
+
 const DiagnoseButton = styled.button`
   background-color: #4aaa87;
   color: white;
@@ -74,7 +88,6 @@ const DiagnoseButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   font-size: 1.3em;
-  margin-top: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: 'Freesentation', sans-serif; /* Apply custom font here */
 
@@ -83,11 +96,21 @@ const DiagnoseButton = styled.button`
   }
 `;
 
+const CameraButton = styled.button`
+  background: url('/camera-icon.png') no-repeat center center;
+  background-size: contain;
+  width: 48px; /* 버튼의 크기를 조정 */
+  height: 48px; /* 버튼의 크기를 조정 */
+  border: none;
+  cursor: pointer;
+`;
+
 const DiagnosisTemplate = () => {
   const [image, setImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [result, setResult] = useState("");
   const navigate = useNavigate();
+  const cameraInputRef = useRef(null);
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -139,6 +162,20 @@ const DiagnosisTemplate = () => {
     }
   };
 
+  const openCamera = () => {
+    if (cameraInputRef.current) {
+      cameraInputRef.current.click();
+    }
+  };
+
+  const handleCameraInputChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setImage(URL.createObjectURL(file));
+      setSelectedFile(file); // 파일 저장
+    }
+  };
+
   return (
     <PageContainer>
       <HeaderContainer>
@@ -153,8 +190,19 @@ const DiagnosisTemplate = () => {
             <p>사진 업로드</p>
           )}
         </UploadContainer>
-        <DiagnoseButton onClick={handleDiagnose}>진단</DiagnoseButton>
+        <ButtonContainer>
+          <DiagnoseButton onClick={handleDiagnose}>진단</DiagnoseButton>
+          <CameraButton onClick={openCamera} />
+        </ButtonContainer>
         {result && <ResultContainer>{result}</ResultContainer>}
+        <input
+          type="file"
+          accept="image/*"
+          capture="camera"
+          ref={cameraInputRef}
+          style={{ display: 'none' }}
+          onChange={handleCameraInputChange}
+        />
       </Content>
     </PageContainer>
   );

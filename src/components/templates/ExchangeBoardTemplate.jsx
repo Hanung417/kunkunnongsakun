@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { FaArrowLeft, FaHome } from "react-icons/fa"; 
+import { FaArrowLeft, FaHome } from "react-icons/fa"; // FaHome 추가
 
 const Container = styled.div`
   display: flex;
@@ -130,16 +130,16 @@ const CreatePostButton = styled(Link)`
   }
 `;
 
-const SellBoardTemplate = () => {
+const ExchangeBoardTemplate = () => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate(); // useNavigate 추가
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get("http://localhost:8000/community/", {
-          params: { post_type: 'sell' }
+          params: { post_type: 'exchange' }
         });
         const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
         setPosts(sortedPosts);
@@ -178,7 +178,7 @@ const SellBoardTemplate = () => {
             <FaHome />
           </IconButton>
         </ButtonGroup>
-        <Title>판매 게시판</Title>
+        <Title>품앗이 게시판</Title>
       </TitleBar>
       <SearchBar
         type="text"
@@ -186,7 +186,7 @@ const SellBoardTemplate = () => {
         value={searchTerm}
         onChange={handleSearchChange}
       />
-      <CreatePostButton to="/post/create?post_type=sell">글 작성</CreatePostButton>
+      <CreatePostButton to="/post/create?post_type=exchange">글 작성</CreatePostButton>
       <PostList>
         <Table>
           <TableHeader>
@@ -215,4 +215,4 @@ const SellBoardTemplate = () => {
   );
 };
 
-export default SellBoardTemplate;
+export default ExchangeBoardTemplate;

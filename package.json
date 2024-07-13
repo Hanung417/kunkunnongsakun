@@ -22,6 +22,7 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.24.0",
     "react-scripts": "5.0.1",
+    "react-webcam": "^7.2.0",
     "stream-browserify": "^3.0.0",
     "styled-components": "^6.1.11",
     "web-vitals": "^2.1.4"
@@ -49,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }

@@ -41,10 +41,6 @@ const TableRow = styled.tr`
   &:nth-child(even) {
     background-color: #f9f9f9;
   }
-
-  &:hover {
-    background-color: #f1f1f1;
-  }
 `;
 
 const TableCell = styled.td`
@@ -117,7 +113,8 @@ const MyPostTemplate = () => {
           },
           withCredentials: true
         });
-        setPosts(response.data);
+        const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
+        setPosts(sortedPosts);
       } catch (error) {
         console.error("Failed to fetch posts", error);
       }
@@ -166,7 +163,7 @@ const MyPostTemplate = () => {
                     <PostTitle>{post.title}</PostTitle>
                   </StyledLink>
                 </TableCell>
-                <TableCell>{post.user_id}</TableCell>
+                <TableCell>{post.user__username}</TableCell>
                 <TableCell>{new Date(post.creation_date).toLocaleDateString()}</TableCell>
                 <TableCell>
                   <IconButton onClick={() => handleEdit(post.id)}>
