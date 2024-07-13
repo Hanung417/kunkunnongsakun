@@ -147,7 +147,7 @@ const DiagnosisTemplate = () => {
     const csrfToken = getCSRFToken();
 
     try {
-      const response = await axios.post('http://localhost:8000/upload/', formData, {
+      const response = await axios.post('http://localhost:8000/detect/upload/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'X-CSRFToken': csrfToken,
