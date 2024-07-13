@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from django.shortcuts import render
 from django.contrib.auth import views as auth_views
 from detect.views import upload_image_for_detection
@@ -18,3 +20,6 @@ urlpatterns = [
     path('upload/', upload_image_for_detection, name='upload_image'),
     path('soil/', include('soil.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
