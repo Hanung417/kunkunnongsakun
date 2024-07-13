@@ -4,7 +4,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.shortcuts import render
 from django.contrib.auth import views as auth_views
-from detect.views import upload_image_for_detection
 
 def index(request):
     return render(request,'index.html')
@@ -17,7 +16,7 @@ urlpatterns = [
     path('community/', include('community.urls')),
     path('selfchatbot/', include('selfchatbot.urls', namespace='selfchatbot')),
     path('prediction/', include('prediction.urls')), # predict 병합
-    path('upload/', upload_image_for_detection, name='upload_image'),
+    path('detect/', include('detect.urls')),
     path('soil/', include('soil.urls')),
 ]
 
