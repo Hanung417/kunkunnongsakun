@@ -25,6 +25,25 @@ CSV_FILE_PATH = 'prediction/all_crop_data.csv'  # 수익률 예측
 CSV_FILE_PATH_1 = 'prediction/predict_code.csv'  # 품목 코드
 re = {'서울': ['1101', '108'], '부산': ['2100', '159'], '대구': ['2200', '143'], '광주': ['2401', '156'], '대전': ['2501', '133']}
 
+def get_crop_names(request):
+    if request.method != 'GET':
+        return JsonResponse({'error': 'Invalid request method. Only GET is allowed.'}, status=405)
+    try:
+        crop_df= pd.read_csv(CSV_FILE_PATH_1)
+        crop_names = crop_df['품목명'].dropna().tolist()
+        return JsonResponse({'crop_names': crop_names})
+    except Exception as e:
+        return JsonResponse({'error': f"An unexpected error occured: {str(e)}"}, status=500)
+
+def get_region_names(request):
+    if request.method != 'GET':
+        return JsonResponse({'error': 'Invalid request method. Only GET is allowed'}, status=400)
+    try:
+        region_names = list(re.keys())
+        return JsonResponse({'region_names': region_names})
+    except Exception as e:
+        return JsonResponse({'error': f"An unexpected error occured: {str(e)}"}, status = 500)
+
 def read_csv_data():
     df = pd.read_csv(CSV_FILE_PATH, encoding='utf-8')
     df['소득률 (%)'] = df['소득률 (%)'].astype(str)
