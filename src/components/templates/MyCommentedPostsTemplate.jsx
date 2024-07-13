@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import axios from "axios";
 
 const Container = styled.div`
@@ -41,9 +41,6 @@ const TableRow = styled.tr`
     background-color: #f9f9f9;
   }
 
-  &:hover {
-    background-color: #f1f1f1;
-  }
 `;
 
 const TableCell = styled.td`
@@ -72,7 +69,6 @@ const PostTitle = styled.span`
 
 const MyCommentedPostsTemplate = () => {
   const [posts, setPosts] = useState([]);
-  const navigate = useNavigate();
 
   const getCSRFToken = () => {
     let cookieValue = null;
@@ -99,7 +95,8 @@ const MyCommentedPostsTemplate = () => {
           },
           withCredentials: true
         });
-        setPosts(response.data);
+        const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
+        setPosts(sortedPosts);
       } catch (error) {
         console.error("Failed to fetch posts", error);
       }

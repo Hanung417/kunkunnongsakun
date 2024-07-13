@@ -113,7 +113,7 @@ const WritePostTemplate = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [postType, setPostType] = useState("buy");
-  const [image, setImage] = useState(null); // 이미지 상태 추가
+  const [image, setImage] = useState(null);
   const navigate = useNavigate();
 
   const handleTitleChange = (event) => {
@@ -129,16 +129,16 @@ const WritePostTemplate = () => {
   };
 
   const handleImageChange = (event) => {
-    setImage(event.target.files[0]); // 선택한 파일을 이미지 상태로 설정
+    setImage(event.target.files[0]);
   };
 
   const getCSRFToken = () => {
     let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
+    if (document.cookie && document.cookie !== "") {
+      const cookies = document.cookie.split(";");
       for (let i = 0; i < cookies.length; i++) {
         const cookie = cookies[i].trim();
-        if (cookie.substring(0, 10) === 'csrftoken=') {
+        if (cookie.substring(0, 10) === "csrftoken=") {
           cookieValue = decodeURIComponent(cookie.substring(10));
           break;
         }
@@ -150,12 +150,13 @@ const WritePostTemplate = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const csrfToken = getCSRFToken();
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
     formData.append("post_type", postType);
     if (image) {
-      formData.append("image", image); // 이미지 파일 추가
+      formData.append("image", image);
     }
 
     try {
@@ -207,13 +208,6 @@ const WritePostTemplate = () => {
           onChange={handleContentChange}
           required
         />
-        <Label htmlFor="image">이미지 업로드</Label>
-        <Input
-          type="file"
-          id="image"
-          accept="image/*"
-          onChange={handleImageChange}
-        />
         <RadioGroup>
           <RadioLabel>
             <Input
@@ -243,6 +237,13 @@ const WritePostTemplate = () => {
             품앗이 게시판
           </RadioLabel>
         </RadioGroup>
+        <Label htmlFor="image">이미지 추가</Label>
+        <Input
+          type="file"
+          id="image"
+          accept="image/jpeg, image/png, image/jpg" // 특정 확장자만 허용
+          onChange={handleImageChange}
+        />
         <Button type="submit">작성하기</Button>
       </Form>
     </Container>

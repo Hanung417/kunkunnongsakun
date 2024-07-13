@@ -113,7 +113,8 @@ const MyPostTemplate = () => {
           },
           withCredentials: true
         });
-        setPosts(response.data);
+        const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
+        setPosts(sortedPosts);
       } catch (error) {
         console.error("Failed to fetch posts", error);
       }
