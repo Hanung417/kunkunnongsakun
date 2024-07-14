@@ -26,7 +26,12 @@ import FertilizerPage from './pages/FertilizerPage';
 import DiagnosisPage from './pages/DiagnosisPage';
 import InfoPage from './pages/InfoPage';
 import MyCommentedPostsTemplate from "./components/templates/MyCommentedPostsTemplate";
+import CropSelectionPage from "./components/templates/CropSelectionPage";
+import SessionDetails from "./components/templates/SessionDetails";
 
+
+// 병해충 세션 리스트 페이지
+import DiagnosisListTemplate from "./components/templates/DiagnosisListTemplate";
 
 
 function App() {
@@ -66,6 +71,9 @@ function App() {
           <Route path="/fertilizer" element={<FertilizerPage />} />
           <Route path="/diagnosis" element={<DiagnosisPage />} />
           <Route path="/info" element={<InfoPage />} />
+          <Route path="/diagnosislist" element={<DiagnosisListTemplate />} />
+          <Route path="/cropselection" element={<CropSelectionPage />} />
+          <Route path="/sessiondetails" element={<SessionDetails />} />
         </Route>
       </Routes>
     </BrowserRouter>
