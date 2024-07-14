@@ -83,11 +83,11 @@ export const GNB = () => {
           </IconWrapper>
           <MenuText isActive={currentPage === "/"}>홈</MenuText>
         </MenuLink>
-        <MenuLink to="/diagnosis" className={currentPage === "/diagnosis" ? "active" : ""}>
-          <IconWrapper isActive={currentPage === "/diagnosis"}>
+        <MenuLink to="/diagnosislist" className={currentPage === "/diagnosislist" ? "active" : ""}>
+          <IconWrapper isActive={currentPage === "/diagnosislist"}>
             <FaBug size={24} />
           </IconWrapper>
-          <MenuText isActive={currentPage === "/diagnosis"}>병해충 진단</MenuText>
+          <MenuText isActive={currentPage === "/diagnosislist"}>병해충 진단</MenuText>
         </MenuLink>
         <ChatIconWrapper
           isActive={currentPage === "/chatlist"}
@@ -96,13 +96,13 @@ export const GNB = () => {
           <ChatIcon />
         </ChatIconWrapper>
         <MenuLink
-          to="/croptest"
-          className={currentPage === "/croptest" ? "active" : ""}
+          to="/cropselection"
+          className={currentPage === "/cropselection" ? "active" : ""}
         >
-          <IconWrapper isActive={currentPage === "/croptest"}>
+          <IconWrapper isActive={currentPage === "/cropselection"}>
             <FaChartLine size={24} />
           </IconWrapper>
-          <MenuText isActive={currentPage === "/croptest"}>수익 예측</MenuText>
+          <MenuText isActive={currentPage === "/cropselection"}>수익 예측</MenuText>
         </MenuLink>
         <MenuLink
           to="/mypage"

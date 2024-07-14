@@ -135,7 +135,7 @@ const CropSelectionPage = () => {
   return (
     <PageContainer>
       <Title>세션 목록</Title>
-      <Button onClick={() => navigate('/CropSelection')}>추가</Button>
+      <Button onClick={() => navigate('/croptest')}>추가</Button>
       {error && <p>{error}</p>}
       <SessionList>
         {sessions.map(session => (
