@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ const InputContainer = styled.div`
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   width: 100%;
   max-width: 500px;
-  position: realative;
+  position: relative;
 `;
 
 const Input = styled.input`
@@ -42,7 +42,6 @@ const Input = styled.input`
   box-sizing: border-box;
   font-size: 0.9rem;
 `;
-
 
 const Button = styled.button`
   padding: 10px 20px;
@@ -59,16 +58,6 @@ const Button = styled.button`
   &:hover {
     background-color: #6dc4b0;
   }
-`;
-
-const ResultContainer = styled.div`
-  margin-top: 20px;
-  width: 100%;
-  max-width: 600px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 `;
 
 const CropContainer = styled.div`
@@ -102,18 +91,18 @@ const CropList = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   position: absolute;
   z-index: 1;
-  top: 100%%;
+  top: 100%;
   max-height: 200px;
   overflow-y: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  
+
   &:hover {
-    overflow-y: auto; /* Enable scrolling when hovering */
+    overflow-y: auto;
   }
 
   &::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Webkit browsers */
+    display: none;
   }
 `;
 
@@ -122,9 +111,11 @@ const CropItem = styled.div`
   width: 100%;
   text-align: center;
   cursor: pointer;
+
   &:hover {
     background-color: #f1f1f1;
   }
+
   &:not(:last-child) {
     border-bottom: 1px solid #ccc;
   }
@@ -144,14 +135,12 @@ const CropTest = () => {
   const [landArea, setLandArea] = useState("");
   const [region, setRegion] = useState("");
   const [crops, setCrops] = useState([{ name: "", ratio: "" }]);
-  const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [cropNames, setCropNames] = useState([]);
   const [filteredCropNames, setFilteredCropNames] = useState([]);
   const [showCropList, setShowCropList] = useState(false);
   const navigate = useNavigate();
   const inputRef = useRef(null);
-
 
   useEffect(() => {
     const fetchCropNames = async () => {
@@ -196,10 +185,10 @@ const CropTest = () => {
     }
     crops.forEach((crop, index) => {
       if (!crop.name || crop.name.trim() === "") {
-        newErrors.push(` ${index + 1}번째 작물명을 입력해주세요. `);
+        newErrors.push(`${index + 1}번째 작물명을 입력해주세요.`);
       }
       if (!crop.ratio || crop.ratio.trim() === "" || isNaN(crop.ratio)) {
-        newErrors.push(`${index + 1}번째 작물의 비율을 입력해주세요. `);
+        newErrors.push(`${index + 1}번째 작물의 비율을 입력해주세요.`);
       }
     });
     return newErrors;
@@ -212,13 +201,14 @@ const CropTest = () => {
       setError(inputErrors.join("\n"));  // 모든 에러 메시지를 하나의 문자열로 결합
       return;
     }
-  
+
     try {
       const response = await axios.post('http://localhost:8000/prediction/predict/', {
         land_area: landArea,
         crop_names: crops.map(crop => crop.name),
         crop_ratios: crops.map(crop => crop.ratio),
-        region: region
+        region: region,
+        session_id: `session_${Date.now()}`,  // 고유한 세션 ID 생성
       }, {
         headers: {
           'Content-Type': 'application/json',
@@ -226,11 +216,10 @@ const CropTest = () => {
         },
         withCredentials: true
       });
-  
+
       if (response.data.error) {
         setError(response.data.error);
       } else {
-        setResult(response.data);
         navigate('/ExpectedReturn', { state: { landArea, cropNames: crops.map(crop => crop.name), result: response.data } });
       }
     } catch (error) {
@@ -240,7 +229,6 @@ const CropTest = () => {
         : 'Error fetching prediction');
     }
   };
-  
 
   const getCSRFToken = () => {
     let cookieValue = null;
@@ -279,7 +267,7 @@ const CropTest = () => {
 
   return (
     <PageContainer>
-      <Title>수익 예측 테스트</Title>
+      <Title>작물 정보 선택</Title>
       <InputContainer>
         <Input
           type="text"
@@ -330,23 +318,7 @@ const CropTest = () => {
         <Button onClick={addCrop}>작물 추가</Button>
         <Button onClick={handleSubmit}>제출</Button>
       </InputContainer>
-      {error ? (
-        <ErrorMessage>{error}</ErrorMessage>
-      ) : (
-        result && (
-          <ResultContainer>
-            <h2>Total Income: {result.total_income}</h2>
-            {result.results.map((res, index) => (
-              <CropContainer key={index}>
-                <h3>{res.crop_name}</h3>
-                <p>Latest Year: {res.latest_year}</p>
-                <p>Adjusted Data: {JSON.stringify(res.adjusted_data)}</p>
-                <p>Predicted Price: {res.price}</p>
-              </CropContainer>
-            ))}
-          </ResultContainer>
-        )
-      )}
+      {error && <ErrorMessage>{error}</ErrorMessage>}
     </PageContainer>
   );
 };
