@@ -117,11 +117,10 @@ const EditPostTemplate = () => {
   const { id } = useParams();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [postType, setPostType] = useState("buy"); // 기본값을 'buy'로 설정
-  const [image, setImage] = useState(null); // 이미지 상태 추가
+  const [postType, setPostType] = useState("buy");
+  const [image, setImage] = useState(null);
   const navigate = useNavigate();
 
-  // CSRF 토큰을 얻기 위한 함수
   const getCSRFToken = () => {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -137,15 +136,14 @@ const EditPostTemplate = () => {
     return cookieValue;
   };
 
-  // 글 데이터를 서버에서 불러오는 useEffect
   useEffect(() => {
     const fetchPost = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/community/post/${id}/`);
-        console.log(response.data); // 서버 응답 로그
+        console.log("Fetched post data:", response.data);
         setTitle(response.data.title);
         setContent(response.data.content);
-        setPostType(response.data.post_type); // 서버에서 불러온 postType을 설정
+        setPostType(response.data.post_type);
       } catch (error) {
         console.error("Failed to fetch post", error);
       }
@@ -153,17 +151,14 @@ const EditPostTemplate = () => {
     fetchPost();
   }, [id]);
 
-  // 제목 변경 핸들러
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
 
-  // 내용 변경 핸들러
   const handleContentChange = (event) => {
     setContent(event.target.value);
   };
 
-  // 게시글 종류 변경 핸들러
   const handlePostTypeChange = (event) => {
     setPostType(event.target.value);
   };
@@ -172,7 +167,6 @@ const EditPostTemplate = () => {
     setImage(event.target.files[0]);
   };
 
-  // 폼 제출 핸들러
   const handleSubmit = async (event) => {
     event.preventDefault();
     const csrfToken = getCSRFToken();
@@ -186,7 +180,7 @@ const EditPostTemplate = () => {
     }
 
     try {
-      await axios.post(
+      const response = await axios.post(
         `http://localhost:8000/community/post/${id}/edit/`,
         formData,
         {
@@ -197,15 +191,17 @@ const EditPostTemplate = () => {
           withCredentials: true,
         }
       );
-      alert("글 수정 성공");
+      console.log("Edit response:", response.data);
+      alert("글 수정 성공!");
       navigate(`/post/${id}`);
     } catch (error) {
       console.error("Failed to edit post", error);
+      alert("글 수정 실패! 다시 시도해주세요.");
     }
   };
 
   const handleBackClick = () => {
-    navigate(-1); // 이전 페이지로 이동
+    navigate(-1);
   };
 
   return (
@@ -236,7 +232,7 @@ const EditPostTemplate = () => {
         <Label htmlFor="post_type">게시글 종류</Label>
         <Select
           id="post_type"
-          value={postType} // 서버에서 불러온 postType을 디폴트 값으로 설정
+          value={postType}
           onChange={handlePostTypeChange}
           required
         >
