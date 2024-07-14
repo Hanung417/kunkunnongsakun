@@ -177,14 +177,27 @@ def auth_check(request):
     })
 
 @csrf_exempt
+@csrf_exempt
+@login_required
 def change_password(request):
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
+            old_password = data.get('old_password')
+            new_password1 = data.get('new_password1')
+            new_password2 = data.get('new_password2')
+
+            if new_password1 == old_password:
+                raise ValidationError("새 비밀번호는 기존 비밀번호와 달라야 합니다.")
+            
+            if new_password1 != new_password2:
+                raise ValidationError("새 비밀번호와 새 비밀번호 확인이 일치하지 않습니다.")
+            
             form = PasswordChangeForm(user=request.user, data=data)
             if form.is_valid():
                 user = form.save()
                 update_session_auth_hash(request, user)
+                logout(request)
                 return JsonResponse({'status': 'success', 'message': 'Password changed successfully'})
             else:
                 raise ValidationError("Form validation failed", details=form.errors)
