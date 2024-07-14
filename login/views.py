@@ -76,7 +76,7 @@ def login(request):
             try:
                 user = User.objects.get(email=email)
             except User.DoesNotExist:
-                raise UnauthorizedError("Invalid email")
+                raise UnauthorizedError("존재하지 않는 이메일입니다.")
 
             # Now authenticate the user with the password
             user = authenticate(request, email=email, password=password)
@@ -92,7 +92,7 @@ def login(request):
                 response.set_cookie('sessionid', request.session.session_key)
                 return response
             else:
-                raise UnauthorizedError("Invalid password")
+                raise UnauthorizedError("비밀번호가 일치하지 않습니다.")
 
         except json.JSONDecodeError:
             raise ValidationError("Invalid JSON format")
