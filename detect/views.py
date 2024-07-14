@@ -31,7 +31,7 @@ def upload_image_for_detection(request):
         try:
             pest_info = Pest.objects.get(id=pest_id)
         except Pest.DoesNotExist:
-            pest_info = Pest.objects.get(id=16)
+            pest_info = Pest.objects.get(id=13)
             confidence = 0.0
             # raise NotFoundError("Pest not found.")
 
