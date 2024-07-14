@@ -87,16 +87,20 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
 
     axios.post('http://localhost:8000/login/change_password/', formData, { withCredentials: true })
       .then((response) => {
-        setMessage("비밀번호가 성공적으로 변경되었습니다.");
-        setError("");
-        alert("비밀번호 변경 성공, 다시 로그인 필요");
-        window.location.reload();
-        navigate('/login');
-
+        if (response.data.status === 'success') {
+          setMessage("비밀번호가 성공적으로 변경되었습니다.");
+          setError("");
+          alert("비밀번호 변경 성공, 다시 로그인 필요");
+          window.location.reload();
+          navigate('/login');
+        } else {
+          setError(response.data.message || "비밀번호 변경 중 오류가 발생했습니다.");
+          setMessage("");
+        }
       })
       .catch((error) => {
         if (error.response) {
-          setError(error.response.data.errors || "비밀번호 변경 중 오류가 발생했습니다.");
+          setError(error.response.data.message || "비밀번호 변경 중 오류가 발생했습니다.");
           setMessage("");
         }
       });

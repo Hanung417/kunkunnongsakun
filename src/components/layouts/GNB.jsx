@@ -96,13 +96,13 @@ export const GNB = () => {
           <ChatIcon />
         </ChatIconWrapper>
         <MenuLink
-          to="/expectedreturn"
-          className={currentPage === "/expectedreturn" ? "active" : ""}
+          to="/croptest"
+          className={currentPage === "/croptest" ? "active" : ""}
         >
-          <IconWrapper isActive={currentPage === "/expectedreturn"}>
+          <IconWrapper isActive={currentPage === "/croptest"}>
             <FaChartLine size={24} />
           </IconWrapper>
-          <MenuText isActive={currentPage === "/expectedreturn"}>수익 예측</MenuText>
+          <MenuText isActive={currentPage === "/croptest"}>수익 예측</MenuText>
         </MenuLink>
         <MenuLink
           to="/mypage"
