@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { checkUsername, sendVerificationEmail, signupUser } from "../../apis/user";
+import { checkUsername, sendVerificationEmail, signupUser } from "../../../apis/user";
 import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`

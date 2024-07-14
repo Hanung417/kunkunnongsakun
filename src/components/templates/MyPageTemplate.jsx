@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import ChangePasswordModal from "./ChangePasswordModal";
-import ChangeUsernameModal from "./ChangeUsernameModal";
+import ChangePasswordModal from "./user/ChangePasswordModal";
+import ChangeUsernameModal from "./user/ChangeUsernameModal";
 import DeleteAccountModal from "./DeleteAccountModal";
 
 const Container = styled.div`

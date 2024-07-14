@@ -93,8 +93,6 @@ const PageTopBar = () => {
   const location = useLocation();
 
   const pageTitles = {
-    "/signup": "회원가입",
-    "/login": "로그인",
     "/password_reset": "비밀번호 찾기",
     "/board": "게시판",
     "/buyboard": "구매 게시판",
