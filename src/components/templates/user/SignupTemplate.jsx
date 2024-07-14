@@ -107,37 +107,77 @@ const SignupTemplate = () => {
   const [passwordError, setPasswordError] = useState("");
   const [signupError, setSignupError] = useState("");
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    // 비밀번호는 6자 이상, 하나 이상의 숫자, 하나 이상의 대문자, 하나 이상의 소문자, 하나 이상의 특수 문자를 포함해야 합니다.
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    return passwordRegex.test(password);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+
+    if (name === "email") {
+      if (!validateEmail(value)) {
+        setEmailError("올바른 이메일 형식을 입력하세요.");
+      } else {
+        setEmailError("");
+      }
+    }
+
+    if (name === "password1") {
+      if (!validatePassword(value)) {
+        setPasswordError("비밀번호는 6자 이상, 하나 이상의 숫자, 대문자, 소문자, 특수 문자를 포함해야 합니다.");
+      } else {
+        setPasswordError("");
+      }
+    }
   };
 
   const handleUsernameCheck = () => {
     const username = formData.username;
+    if (username.trim() === "") {
+      setUsernameError("Username cannot be empty.");
+      return;
+    }
     checkUsername(username)
       .then((response) => {
         if (response.data.is_taken) {
-          setUsernameError("This username is already taken.");
+          setUsernameError("이미 사용중인 이름입니다.");
         } else {
           setUsernameError("");
         }
       })
-      .catch((error) => {
+      .catch(() => {
         setUsernameError("An error occurred while checking the username.");
       });
   };
 
   const handleSendVerificationCode = () => {
     const email = formData.email;
+    if (email.trim() === "") {
+      setEmailError("Email cannot be empty.");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setEmailError("올바른 이메일 형식을 입력하세요.");
+      return;
+    }
     sendVerificationEmail(email)
-      .then((response) => {
+      .then(() => {
         setVerificationCodeSent(true);
         setVerificationCodeError("");
       })
       .catch((error) => {
-        setVerificationCodeError(
-          "An error occurred while sending the verification code."
-        );
+        const message = error.response && error.response.data && error.response.data.message
+          ? error.response.data.message
+          : "An error occurred while sending the verification code.";
+        setVerificationCodeError(message);
       });
   };
 
@@ -145,15 +185,17 @@ const SignupTemplate = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { username, email, verification_code, password1, password2 } =
-      formData;
+    const { username, email, verification_code, password1, password2 } = formData;
+
+    if (password1 !== password2) {
+      setPasswordError("Passwords do not match.");
+      return;
+    }
 
     signupUser({ username, email, verification_code, password1, password2 })
-      .then((response) => {
-        console.log(response.data);
+      .then(() => {
         alert("회원가입 성공");
         navigate("/login"); // 회원가입 성공 시 로그인 페이지로 이동
-
       })
       .catch((error) => {
         if (error.response) {
@@ -178,7 +220,6 @@ const SignupTemplate = () => {
           } else {
             setPasswordError("");
           }
-          // Handle other errors as needed
         } else {
           setSignupError("An error occurred during signup.");
         }
