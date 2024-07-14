@@ -31,7 +31,7 @@ def upload_image_for_detection(request):
         try:
             pest_info = Pest.objects.get(id=pest_id)
         except Pest.DoesNotExist:
-            pest_info = Pest.objects.get(id=1)
+            pest_info = Pest.objects.get(id=16)
             confidence = 0.0
             # raise NotFoundError("Pest not found.")
 
@@ -72,7 +72,7 @@ def list_detection_sessions(request):
         session_list = [{
             'session_id': session.id,
             'pest_name': session.pest.pest_name,
-            'detection_date': session.detection_date.strftime('%Y-%m-%d %H:%M'),
+            'detection_date': timezone.localtime(session.detection_date).strftime('%Y-%m-%d %H:%M:%S'),
             'confidence': session.confidence
         } for session in sessions]
         return JsonResponse(session_list, safe=False)
@@ -93,7 +93,7 @@ def detection_session_details(request, session_id):
             'pesticide_name': session.pest.pesticide_name,
             'detection_date': session.detection_date.strftime('%Y-%m-%d %H:%M'),
             'confidence': session.confidence,
-            'image_url': session.pest.image_url
+            'image_url': session.image.url
         }
         return JsonResponse(details)
     except PestDetection.DoesNotExist:
