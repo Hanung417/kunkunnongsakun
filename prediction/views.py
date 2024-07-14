@@ -16,6 +16,7 @@ from django.db import transaction
 import json
 import logging
 import uuid
+from django.utils import timezone
 session_id = str(uuid.uuid4())
 
 logger = logging.getLogger(__name__)
@@ -288,13 +289,28 @@ def prediction_session_details(request, session_id):
     try:
         session = PredictionSession.objects.get(session_id=session_id, user=request.user)
         results = session.results.all().order_by('crop_name')
-        details = [{
-            'crop_name': result.crop_name,
-            'predicted_income': result.predicted_income,
-            'adjusted_data': result.adjusted_data,
-            'price': result.price,
-            'latest_year': result.latest_year
-        } for result in results]
+        details = []
+
+        start_date = (timezone.now() - timezone.timedelta(days=365)).strftime('%Y%m%d')
+        end_date = timezone.now().strftime('%Y%m%d')
+
+        for result in results:
+            df_1 = fetch_market_prices(result.crop_name, session.region, start_date, end_date)
+            if df_1 is not None and not df_1.empty:
+                df_1_json = df_1.to_json(orient='records', date_format='iso')
+                crop_chart_data_parsed = json.loads(df_1_json)
+            else:
+                crop_chart_data_parsed = []
+
+            details.append({
+                'crop_name': result.crop_name,
+                'predicted_income': result.predicted_income,
+                'adjusted_data': result.adjusted_data,
+                'price': result.price,
+                'latest_year': result.latest_year,
+                'crop_chart_data': crop_chart_data_parsed
+            })
+
         return JsonResponse({
             'session_id': session.session_id,
             'session_name': session.session_name,
