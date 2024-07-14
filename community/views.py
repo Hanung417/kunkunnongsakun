@@ -80,21 +80,18 @@ def post_create(request):
     except Exception as e:
         logger.error(f"Unhandled exception in post creation: {str(e)}")
         raise InternalServerError("An unexpected error occurred while creating the post.")
-
+    
 @login_required
 def post_edit(request, post_id):
     if request.method != 'POST':
         raise InvalidRequestError("POST method only allowed")
     try:
         post = get_object_or_404(Post, pk=post_id)
-        data = json.loads(request.body)
-        form = PostForm(data, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)
         if not form.is_valid():
             raise ValidationError("Form validation failed", details=form.errors)
         form.save()
         return JsonResponse({'status': 'success'}, status=200)
-    except json.JSONDecodeError:
-        raise ValidationError("Invalid JSON format")
     except Post.DoesNotExist:
         raise NotFoundError("Post not found")
     except IntegrityError as e:
