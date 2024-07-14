@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from 'axios';
+import { FaTrash } from 'react-icons/fa';
 
 const PageContainer = styled.div`
   display: flex;
@@ -63,12 +64,14 @@ const SessionInfo = styled.div`
 `;
 
 const DeleteButton = styled.button`
-  background: url('/trash-icon.png') no-repeat center center;
-  background-size: contain;
-  width: 24px;
-  height: 24px;
+  background: none;
   border: none;
+  color: #e53e3e;
   cursor: pointer;
+  font-size: 18px;
+  &:hover {
+    color: #c53030;
+  }
 `;
 
 const AddButton = styled.button`
@@ -118,9 +121,29 @@ const ListTemplate = () => {
     }
   };
 
+  const getCSRFToken = () => {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, 10) === 'csrftoken=') {
+          cookieValue = decodeURIComponent(cookie.substring(10));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  };
+  
+
   const handleDeleteSession = async (sessionId) => {
+    const csrfToken = getCSRFToken(); // CSRF 토큰 가져오기
     try {
       await axios.delete(`http://localhost:8000/detect/delete_detection_session/${sessionId}/`, {
+        headers: {
+          'X-CSRFToken': csrfToken
+        },
         withCredentials: true,
       });
       setSessions(sessions.filter(session => session.session_id !== sessionId));
@@ -128,6 +151,7 @@ const ListTemplate = () => {
       console.error('Failed to delete session', error);
     }
   };
+  
 
   const handleAddClick = () => {
     navigate('/diagnosis');
@@ -150,7 +174,9 @@ const ListTemplate = () => {
               <DeleteButton onClick={(e) => {
                 e.stopPropagation();
                 handleDeleteSession(session.session_id);
-              }} />
+              }}>
+                <FaTrash />
+              </DeleteButton>              
             </SessionItem>
           ))}
         </SessionList>
