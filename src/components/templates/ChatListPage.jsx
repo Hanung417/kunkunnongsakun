@@ -105,22 +105,33 @@ const ChatListPage = () => {
   const [editingSession, setEditingSession] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchSessions = async () => {
-      try {
-        const response = await fetchChatSessions();
-        const filteredSessions = response.data.filter(session => session.session_id !== null);
-        setChatSessions(filteredSessions);
-      } catch (error) {
-        console.error('Error fetching chat sessions:', error);
-      }
-    };
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
-    fetchSessions();
-  }, []);
+  useEffect(() => {
+    if (isLoggedIn) {
+      const fetchSessions = async () => {
+        try {
+          const response = await fetchChatSessions();
+          const filteredSessions = response.data.filter(session => session.session_id !== null);
+          setChatSessions(filteredSessions);
+        } catch (error) {
+          console.error('Error fetching chat sessions:', error);
+        }
+      };
+
+      fetchSessions();
+    }
+  }, [isLoggedIn]);
 
   const startNewChat = () => {
-    setIsModalOpen(true);
+    if (!isLoggedIn) {
+      const newSessionId = uuidv4();
+      localStorage.setItem('sessionId', newSessionId);
+      localStorage.setItem('sessionName', 'Anonymous Session');
+      navigate(`/chat/${newSessionId}?session_name=Anonymous%20Session`);
+    } else {
+      setIsModalOpen(true);
+    }
   };
 
   const handleNewChatSubmit = async () => {
@@ -170,40 +181,46 @@ const ChatListPage = () => {
   return (
     <Container>
       <Title>대화 목록</Title>
-      <ChatList>
-        {chatSessions.map(session => (
-          <ChatListItem key={session.session_id} onClick={() => openChat(session.session_id, session.session_name)}>
-            <span>
-              {session.session_name || session.session_id}
-            </span>
-            <div>
-              <EditButton onClick={(e) => { e.stopPropagation(); editSession(session); }}>
-                <FaEdit />
-              </EditButton>
-              <DeleteButton onClick={(e) => { e.stopPropagation(); deleteSession(session.session_id); }}>
-                <FaTrash />
-              </DeleteButton>
-            </div>
-          </ChatListItem>
-        ))}
-      </ChatList>
-      <NewChatButton onClick={startNewChat}>새 대화 생성</NewChatButton>
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={() => setIsModalOpen(false)}
-        style={customStyles}
-        contentLabel="새 대화 생성"
-      >
-        <h2>{editingSession ? '대화 제목 수정' : '새 대화 생성'}</h2>
-        <input
-          type="text"
-          value={newSessionName}
-          onChange={(e) => setNewSessionName(e.target.value)}
-          placeholder="대화 제목"
-          required
-        />
-        <Button onClick={handleNewChatSubmit}>{editingSession ? '수정' : '생성'}</Button>
-      </Modal>
+      {isLoggedIn ? (
+        <>
+          <ChatList>
+            {chatSessions.map(session => (
+              <ChatListItem key={session.session_id} onClick={() => openChat(session.session_id, session.session_name)}>
+                <span>
+                  {session.session_name || session.session_id}
+                </span>
+                <div>
+                  <EditButton onClick={(e) => { e.stopPropagation(); editSession(session); }}>
+                    <FaEdit />
+                  </EditButton>
+                  <DeleteButton onClick={(e) => { e.stopPropagation(); deleteSession(session.session_id); }}>
+                    <FaTrash />
+                  </DeleteButton>
+                </div>
+              </ChatListItem>
+            ))}
+          </ChatList>
+          <NewChatButton onClick={startNewChat}>새 대화 생성</NewChatButton>
+          <Modal
+            isOpen={isModalOpen}
+            onRequestClose={() => setIsModalOpen(false)}
+            style={customStyles}
+            contentLabel="새 대화 생성"
+          >
+            <h2>{editingSession ? '대화 제목 수정' : '새 대화 생성'}</h2>
+            <input
+              type="text"
+              value={newSessionName}
+              onChange={(e) => setNewSessionName(e.target.value)}
+              placeholder="대화 제목"
+              required
+            />
+            <Button onClick={handleNewChatSubmit}>{editingSession ? '수정' : '생성'}</Button>
+          </Modal>
+        </>
+      ) : (
+        <NewChatButton onClick={startNewChat}>바로 챗봇 이용하기</NewChatButton>
+      )}
     </Container>
   );
 };

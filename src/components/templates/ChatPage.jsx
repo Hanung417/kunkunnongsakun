@@ -87,25 +87,28 @@ const ChatPage = () => {
 
   const params = new URLSearchParams(location.search);
   const sessionName = params.get('session_name');
+  const isLoggedIn = localStorage.getItem('userId') !== null;
 
   useEffect(() => {
-    localStorage.setItem('sessionId', sessionId);
-    localStorage.setItem('sessionName', sessionName);
-    const fetchHistory = async () => {
-      try {
-        const response = await fetchChatHistory(sessionId);
-        const orderedMessages = response.data.flatMap(chat => [
-          { isUser: true, text: chat.question, timestamp: chat.timestamp },
-          { isUser: false, text: chat.answer, timestamp: chat.timestamp }
-        ]);
-        setMessages(orderedMessages);
-      } catch (error) {
-        console.error('Error fetching chat history:', error);
-      }
-    };
+    if (isLoggedIn) {
+      localStorage.setItem('sessionId', sessionId);
+      localStorage.setItem('sessionName', sessionName);
+      const fetchHistory = async () => {
+        try {
+          const response = await fetchChatHistory(sessionId);
+          const orderedMessages = response.data.flatMap(chat => [
+            { isUser: true, text: chat.question, timestamp: chat.timestamp },
+            { isUser: false, text: chat.answer, timestamp: chat.timestamp }
+          ]);
+          setMessages(orderedMessages);
+        } catch (error) {
+          console.error('Error fetching chat history:', error);
+        }
+      };
 
-    fetchHistory();
-  }, [sessionId, sessionName]);
+      fetchHistory();
+    }
+  }, [sessionId, sessionName, isLoggedIn]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -116,7 +119,12 @@ const ChatPage = () => {
     };
     setMessages([...messages, userMessage]);
 
-    const messageData = { question: inputValue, session_id: sessionId, session_name: sessionName, user_id: localStorage.getItem('userId') };
+    const messageData = {
+      question: inputValue,
+      session_id: sessionId,
+      session_name: sessionName,
+      user_id: isLoggedIn ? localStorage.getItem('userId') : null
+    };
 
     try {
       const response = await sendChatMessage(messageData);

@@ -77,23 +77,28 @@ const MainTopBar = () => {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
+   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
         const response = await axios.get('http://localhost:8000/login/auth_check/', { withCredentials: true });
         if (response.data.is_authenticated) {
           setIsLoggedIn(true);
           setUsername(response.data.username);
+          localStorage.setItem('isLoggedIn', 'true');
         } else {
           setIsLoggedIn(false);
+          localStorage.setItem('isLoggedIn', 'false');
         }
       } catch (error) {
         console.error("Failed to check auth status:", error);
+        setIsLoggedIn(false);
+        localStorage.setItem('isLoggedIn', 'false');
       }
     };
 
     checkAuthStatus();
   }, []);
+
 
   const handleLogout = async () => {
     const csrftoken = getCookie('csrftoken');
@@ -110,6 +115,7 @@ const MainTopBar = () => {
       );
       setIsLoggedIn(false);
       setUsername("");
+      localStorage.setItem('isLoggedIn', 'true');
       alert("로그아웃이 완료되었습니다.");
       navigate("/");
     } catch (error) {
