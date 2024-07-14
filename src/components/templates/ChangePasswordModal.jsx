@@ -89,10 +89,10 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
       .then((response) => {
         setMessage("비밀번호가 성공적으로 변경되었습니다.");
         setError("");
-        alert("비밀번호 변겅 성공, 다시 로그인 필요")
-
-        // 비밀번호 변경 성공 시 로그인 페이지로 리디렉션
+        alert("비밀번호 변경 성공, 다시 로그인 필요");
+        window.location.reload();
         navigate('/login');
+
       })
       .catch((error) => {
         if (error.response) {
