@@ -17,6 +17,7 @@ import json
 import logging
 import uuid
 from django.utils import timezone
+from django.views.decorators.http import require_http_methods
 session_id = str(uuid.uuid4())
 
 logger = logging.getLogger(__name__)
@@ -280,7 +281,7 @@ def list_prediction_sessions(request):
         'land_area': session.land_area,
         'region': session.region,
         'total_income': session.total_income,
-        'created_at': session.created_at.strftime('%Y-%m-%d %H:%M:%S')
+        'created_at': session.created_at.now().strftime('%Y-%m-%d %H:%M')
     } for session in sessions]
     return JsonResponse(session_list, safe=False)
 
@@ -337,3 +338,29 @@ def delete_prediction_session(request, session_id):
     
 def submit_prediction_view(request):
     return render(request, 'prediction.html')
+
+@csrf_exempt
+@login_required
+@require_http_methods(["PATCH"])
+def update_session_name(request, session_id):
+    try:
+        data = json.loads(request.body)
+        new_session_name = data.get('session_name')
+
+        if not new_session_name:
+            raise ValidationError("New session name is required", code=400)
+
+        session = PredictionSession.objects.get(user=request.user, session_id=session_id)
+        session.session_name = new_session_name
+        session.save()
+
+        return JsonResponse({'status': 'success', 'message': 'Session name updated successfully'})
+    except json.JSONDecodeError:
+        raise ValidationError("Invalid JSON format", code=400)
+    except ValidationError as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    except NotFoundError as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=404)
+    except Exception as e:
+        logger.error(f"Error updating session name: {str(e)}")
+        raise InternalServerError("Failed to update session name", code=500)

@@ -73,7 +73,7 @@ def list_detection_sessions(request):
         session_list = [{
             'session_id': session.id,
             'pest_name': session.pest.pest_name,
-            'detection_date': timezone.localtime(session.detection_date).strftime('%Y-%m-%d %H:%M:%S'),
+            'detection_date': timezone.localtime(session.detection_date).strftime('%Y-%m-%d %H:%M'),
             'confidence': session.confidence
         } for session in sessions]
         return JsonResponse(session_list, safe=False)
