@@ -101,7 +101,7 @@ const MainTemplate = () => {
           <h2>농업 GPT</h2>
           <p>농업 전문 챗봇</p>
         </MenuCard>
-        <MenuCard to="/soil">
+        <MenuCard to="/soillist">
           <h2>토양 분석</h2>
           <p>적합한 비료 추천</p>
         </MenuCard>

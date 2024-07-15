@@ -32,6 +32,8 @@ import SessionDetails from "./components/templates/SessionDetails";
 
 // 병해충 세션 리스트 페이지
 import DiagnosisListTemplate from "./components/templates/DiagnosisListTemplate";
+// 토양 세션 리스트 페이지
+import SoilListTemplate from "./components/templates/SoilListTemplate";
 
 
 function App() {
@@ -68,6 +70,7 @@ function App() {
           <Route path="/crops" element={<CropsPage />} />
           <Route path="/expectedreturn" element={<ExpectedReturnPage />} />
           <Route path="/soil" element={<SoilPage />} />
+          <Route path="/soillist" element={<SoilListTemplate />} />
           <Route path="/fertilizer" element={<FertilizerPage />} />
           <Route path="/diagnosis" element={<DiagnosisPage />} />
           <Route path="/info" element={<InfoPage />} />
