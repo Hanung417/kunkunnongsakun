@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom"; // useLocation 추가
+import { useNavigate, useLocation } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 
 const Container = styled.div`
@@ -53,6 +53,11 @@ const Label = styled.label`
   font-size: 16px;
   color: #555;
   margin-bottom: 8px;
+`;
+
+const Required = styled.span`
+  color: red;
+  margin-left: 4px;
 `;
 
 const Input = styled.input`
@@ -109,27 +114,34 @@ const RadioLabel = styled.label`
   margin-right: 16px;
 `;
 
+const ErrorMessage = styled.span`
+  color: red;
+  font-size: 14px;
+  margin-top: -12px;
+  margin-bottom: 16px;
+`;
+
 const WritePostTemplate = () => {
   const navigate = useNavigate();
-  const location = useLocation(); // useLocation 사용
+  const location = useLocation(); 
 
-  // 쿼리 파라미터에서 post_type 값을 가져옵니다.
   const queryParams = new URLSearchParams(location.search);
   const postTypeQueryParam = queryParams.get("post_type");
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [postType, setPostType] = useState(postTypeQueryParam || "buy"); // 초기값 설정
+  const [postType, setPostType] = useState(postTypeQueryParam || "buy");
   const [image, setImage] = useState(null);
 
-  // postTypeQueryParam이 변경될 때마다 postType 상태를 업데이트합니다.
+  const [titleError, setTitleError] = useState("");
+  const [contentError, setContentError] = useState("");
+
   useEffect(() => {
     if (postTypeQueryParam) {
       setPostType(postTypeQueryParam);
     }
   }, [postTypeQueryParam]);
 
-  // getCSRFToken 함수를 handleSubmit 함수 위로 이동합니다.
   const getCSRFToken = () => {
     let cookieValue = null;
     if (document.cookie && document.cookie !== "") {
@@ -163,6 +175,26 @@ const WritePostTemplate = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    let isValid = true;
+    if (title.trim() === "") {
+      setTitleError("제목을 입력하세요.");
+      isValid = false;
+    } else {
+      setTitleError("");
+    }
+
+    if (content.trim() === "") {
+      setContentError("내용을 입력하세요.");
+      isValid = false;
+    } else {
+      setContentError("");
+    }
+
+    if (!isValid) {
+      return;
+    }
+
     const csrfToken = getCSRFToken();
 
     const formData = new FormData();
@@ -205,23 +237,29 @@ const WritePostTemplate = () => {
         </BackButton>
         <Title>글 작성</Title>
       </TitleBar>
-      <Form onSubmit={handleSubmit}>
-        <Label htmlFor="title">제목</Label>
+      <Form onSubmit={handleSubmit} noValidate>
+        <Label htmlFor="title">제목<Required>*</Required></Label>
         <Input
           type="text"
           id="title"
           value={title}
           onChange={handleTitleChange}
+          onInvalid={(e) => e.preventDefault()}
           required
         />
-        <Label htmlFor="content">내용</Label>
+        {titleError && <ErrorMessage>{titleError}</ErrorMessage>}
+        
+        <Label htmlFor="content">내용<Required>*</Required></Label>
         <Textarea
           id="content"
           rows="10"
           value={content}
           onChange={handleContentChange}
+          onInvalid={(e) => e.preventDefault()}
           required
         />
+        {contentError && <ErrorMessage>{contentError}</ErrorMessage>}
+        
         <RadioGroup>
           <RadioLabel>
             <Input
@@ -251,11 +289,11 @@ const WritePostTemplate = () => {
             품앗이 게시판
           </RadioLabel>
         </RadioGroup>
-        <Label htmlFor="image">이미지 추가</Label>
+        <Label htmlFor="image">이미지</Label>
         <Input
           type="file"
           id="image"
-          accept="image/jpeg, image/png, image/jpg" // 특정 확장자만 허용
+          accept="image/jpeg, image/png, image/jpg"
           onChange={handleImageChange}
         />
         <Button type="submit">작성하기</Button>

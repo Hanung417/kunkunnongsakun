@@ -163,6 +163,11 @@ const CommentButton = styled.button`
   &:hover {
     background-color: #3e8e75;
   }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
 `;
 
 const getCSRFToken = () => {
@@ -336,7 +341,7 @@ const PostDetailTemplate = () => {
                   value={newReply}
                   onChange={handleReplyChange}
                 />
-                <CommentButton type="submit">댓글 작성</CommentButton>
+                <CommentButton type="submit" disabled={!newReply.trim()}>댓글 작성</CommentButton>
               </CommentForm>
             </CommentItem>
           )}
@@ -372,7 +377,7 @@ const PostDetailTemplate = () => {
           value={newComment}
           onChange={handleCommentChange}
         />
-        <CommentButton type="submit">댓글 작성</CommentButton>
+        <CommentButton type="submit" disabled={!newComment.trim()}>댓글 작성</CommentButton>
       </CommentForm>
     </Container>
   );
