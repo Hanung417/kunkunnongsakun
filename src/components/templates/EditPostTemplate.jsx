@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { fetchPost, updatePost } from "../../apis/board"; // 경로 수정
 
 const Container = styled.div`
   padding: 24px;
@@ -121,34 +121,18 @@ const EditPostTemplate = () => {
   const [image, setImage] = useState(null);
   const navigate = useNavigate();
 
-  const getCSRFToken = () => {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, 10) === 'csrftoken=') {
-          cookieValue = decodeURIComponent(cookie.substring(10));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  };
-
   useEffect(() => {
-    const fetchPost = async () => {
+    const loadPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/community/post/${id}/`);
-        console.log("Fetched post data:", response.data);
-        setTitle(response.data.title);
-        setContent(response.data.content);
-        setPostType(response.data.post_type);
+        const data = await fetchPost(id);
+        setTitle(data.title);
+        setContent(data.content);
+        setPostType(data.post_type);
       } catch (error) {
         console.error("Failed to fetch post", error);
       }
     };
-    fetchPost();
+    loadPost();
   }, [id]);
 
   const handleTitleChange = (event) => {
@@ -169,7 +153,6 @@ const EditPostTemplate = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const csrfToken = getCSRFToken();
 
     const formData = new FormData();
     formData.append("title", title);
@@ -180,18 +163,7 @@ const EditPostTemplate = () => {
     }
 
     try {
-      const response = await axios.post(
-        `http://localhost:8000/community/post/${id}/edit/`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            "X-CSRFToken": csrfToken,
-          },
-          withCredentials: true,
-        }
-      );
-      console.log("Edit response:", response.data);
+      await updatePost(id, formData);
       alert("글 수정 성공!");
       navigate(`/post/${id}`);
     } catch (error) {

@@ -227,7 +227,7 @@ const SignupTemplate = () => {
     signupUser({ username, email, verification_code, password1, password2 })
       .then(() => {
         setIsSignupSuccess(true); // 회원가입 성공 상태 설정
-        setModalTitle("성공"); // 성공 시 모달 타이틀 설정
+        setModalTitle("알림"); // 성공 시 모달 타이틀 설정
         setModalContent("회원가입 성공");
         setIsModalOpen(true);
       })

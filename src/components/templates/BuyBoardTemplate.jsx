@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { FaArrowLeft, FaHome } from "react-icons/fa";
+import { fetchPosts } from "../../apis/board";
 
 const Container = styled.div`
   display: flex;
@@ -136,19 +136,16 @@ const BuyBoardTemplate = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const loadPosts = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/community/", {
-          params: { post_type: 'buy' }
-        });
-        const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
+        const data = await fetchPosts("buy");
+        const sortedPosts = data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
         setPosts(sortedPosts);
-        setPosts(response.data);
       } catch (error) {
         console.error("Failed to fetch posts", error);
       }
     };
-    fetchPosts();
+    loadPosts();
   }, []);
 
   const filteredPosts = posts.filter((post) =>
