@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom"; // useLocation 추가
 import { FaArrowLeft } from "react-icons/fa";
 
 const Container = styled.div`
@@ -110,11 +110,40 @@ const RadioLabel = styled.label`
 `;
 
 const WritePostTemplate = () => {
+  const navigate = useNavigate();
+  const location = useLocation(); // useLocation 사용
+
+  // 쿼리 파라미터에서 post_type 값을 가져옵니다.
+  const queryParams = new URLSearchParams(location.search);
+  const postTypeQueryParam = queryParams.get("post_type");
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [postType, setPostType] = useState("buy");
+  const [postType, setPostType] = useState(postTypeQueryParam || "buy"); // 초기값 설정
   const [image, setImage] = useState(null);
-  const navigate = useNavigate();
+
+  // postTypeQueryParam이 변경될 때마다 postType 상태를 업데이트합니다.
+  useEffect(() => {
+    if (postTypeQueryParam) {
+      setPostType(postTypeQueryParam);
+    }
+  }, [postTypeQueryParam]);
+
+  // getCSRFToken 함수를 handleSubmit 함수 위로 이동합니다.
+  const getCSRFToken = () => {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, 10) === "csrftoken=") {
+          cookieValue = decodeURIComponent(cookie.substring(10));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  };
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -132,21 +161,6 @@ const WritePostTemplate = () => {
     setImage(event.target.files[0]);
   };
 
-  const getCSRFToken = () => {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-      const cookies = document.cookie.split(";");
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, 10) === "csrftoken=") {
-          cookieValue = decodeURIComponent(cookie.substring(10));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const csrfToken = getCSRFToken();
@@ -158,20 +172,6 @@ const WritePostTemplate = () => {
     if (image) {
       formData.append("image", image);
     }
-    const getCSRFToken = () => {
-      let cookieValue = null;
-     if (document.cookie && document.cookie !== "") {
-       const cookies = document.cookie.split(";");
-       for (let i = 0; i < cookies.length; i++) {
-         const cookie = cookies[i].trim();
-          if (cookie.substring(0, 10) === "csrftoken=") {
-          cookieValue = decodeURIComponent(cookie.substring(10));
-          break;
-          }
-        }
-      }
-      return cookieValue;
-    };
 
     try {
       const response = await axios.post(
