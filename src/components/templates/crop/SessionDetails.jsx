@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Bar, Line } from 'react-chartjs-2';
-import axios from 'axios';
+import { getSessionDetails } from '../../../apis/crop'; // axios 호출을 분리한 파일에서 가져옴
+import Chart from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
-import { Chart, registerables } from 'chart.js';
 
-Chart.register(...registerables);
+//Chart.register(...Chart.registerables);
 
 const PageContainer = styled.div`
   display: flex;
@@ -98,21 +98,6 @@ const FixedWideBox = styled(BarChartBox)`
     height: 600px;
   }
 `;
-
-const getCSRFToken = () => {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== '') {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, 10) === 'csrftoken=') {
-        cookieValue = decodeURIComponent(cookie.substring(10));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-};
 
 const generateLineChartData = (crop_chart_data, cropName) => {
   const labels = crop_chart_data.map(data => new Date(data.tm));
@@ -233,16 +218,8 @@ const SessionDetails = () => {
 
   useEffect(() => {
     const fetchSessionDetails = async () => {
-      const csrfToken = getCSRFToken();
-
       try {
-        const response = await axios.get(`http://localhost:8000/prediction/session_details/${session_id}/`, {
-          headers: {
-            'X-CSRFToken': csrfToken,
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          },
-          withCredentials: true,
-        });
+        const response = await getSessionDetails(session_id);
         setSessionDetails(response.data);
 
         const resultData = response.data;

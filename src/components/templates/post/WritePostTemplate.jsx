@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
+import { createPost } from "../../../apis/post";
 import { FaArrowLeft } from "react-icons/fa";
-import { createPost } from "../../apis/board"; // 경로 수정
-import axios from "axios";
 
 const Container = styled.div`
   padding: 24px;
@@ -143,21 +142,6 @@ const WritePostTemplate = () => {
     }
   }, [postTypeQueryParam]);
 
-  const getCSRFToken = () => {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-      const cookies = document.cookie.split(";");
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, 10) === "csrftoken=") {
-          cookieValue = decodeURIComponent(cookie.substring(10));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  };
-
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
@@ -196,8 +180,6 @@ const WritePostTemplate = () => {
       return;
     }
 
-    const csrfToken = getCSRFToken();
-
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
@@ -207,22 +189,10 @@ const WritePostTemplate = () => {
     }
 
     try {
-      const data = await createPost(formData, csrfToken);
-
-      const response = await axios.post(
-        "http://localhost:8000/community/post/create/",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            "X-CSRFToken": getCSRFToken(),
-          },
-          withCredentials: true,
-        }
-      );
-
+      const response = await createPost(formData);
       alert("글 작성 성공");
-      navigate(`/post/${data.id}`);
+      console.log("Created post", response.data);
+      navigate(`/post/${response.data.id}`);
     } catch (error) {
       console.error("Failed to create post", error);
     }

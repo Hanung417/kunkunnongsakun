@@ -12,23 +12,19 @@ import LoginTemplate from "./components/templates/user/LoginTemplate";
 import ChatPage from "./components/templates/ChatPage";
 import ChatListPage from "./components/templates/ChatListPage";
 import PasswordResetTemplate from "./components/templates/user/PasswordResetTemplate";
-import MyPageTemplate from "./components/templates/MyPageTemplate";
-import CropTest from "./components/templates/CropTest";
-import MyPostTemplate from "./components/templates/MyPostTemplate";
-import EditPostTemplate from "./components/templates/EditPostTemplate";
-import ExchangeBoardTemplate from "./components/templates/ExchangeBoardTemplate";
+import MyPageTemplate from "./components/templates/user/MyPageTemplate";
+import CropTest from "./components/templates/crop/CropTest";
+import MyPostTemplate from "./components/templates/post/MyPostTemplate";
+import EditPostTemplate from "./components/templates/post/EditPostTemplate";
+import ExchangeBoardTemplate from "./components/templates/post/ExchangeBoardTemplate";
 
-// 용범 페이지 병합
 import ExpectedReturnPage from "./pages/ExpectedReturnPage";
-import CropsPage from './pages/CropsPage';
 import SoilPage from './pages/SoilPage';
 import FertilizerPage from './pages/FertilizerPage';
 import DiagnosisPage from './pages/DiagnosisPage';
 import InfoPage from './pages/InfoPage';
-import MyCommentedPostsTemplate from "./components/templates/MyCommentedPostsTemplate";
-import CropSelectionPage from "./components/templates/CropSelectionPage";
-import SessionDetails from "./components/templates/SessionDetails";
-
+import MyCommentedPostsTemplate from "./components/templates/post/MyCommentedPostsTemplate";
+import CropSelectionPage from "./components/templates/crop/CropSelectionPage";
 
 // 병해충 세션 리스트 페이지
 import DiagnosisListTemplate from "./components/templates/DiagnosisListTemplate";
@@ -37,6 +33,7 @@ import SoilListTemplate from "./components/templates/SoilListTemplate";
 import SoilDataDetails from "./components/templates/SoilDataDetails";
 
 import NotFoundPage from "./pages/NotFoundPage";
+import SessionDetails from "./components/templates/crop/SessionDetails";
 function App() {
 
   return (
@@ -52,7 +49,7 @@ function App() {
           <Route path="/mypage" element={<MyPageTemplate />} />
           <Route path="*" element={<NotFoundPage /> } />
 
-          {/*board*/}
+          {/*post*/}
           <Route path="board" element={<BoardPage />} />
           <Route path="buyboard" element={<BuyBoardPage />} />
           <Route path="sellboard" element={<SellBoardPage />} />
@@ -69,7 +66,6 @@ function App() {
 
           {/*ai*/}
           <Route path="/croptest" element={<CropTest />} />
-          <Route path="/crops" element={<CropsPage />} />
           <Route path="/expectedreturn" element={<ExpectedReturnPage />} />
           <Route path="/soil" element={<SoilPage />} />
           <Route path="/soillist" element={<SoilListTemplate />} />

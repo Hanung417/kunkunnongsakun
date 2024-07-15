@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Link 추가
 import styled from "styled-components";
-import { FaEdit, FaTrash } from 'react-icons/fa';
-import { fetchUserPosts, deletePost } from "../../apis/board"; // 경로 수정
+import { Link, useNavigate } from "react-router-dom";
+import { fetchMyPosts, deletePost } from "../../../apis/post";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 const Container = styled.div`
   display: flex;
@@ -89,16 +89,16 @@ const MyPostTemplate = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const loadPosts = async () => {
+    const fetchPosts = async () => {
       try {
-        const data = await fetchUserPosts();
-        const sortedPosts = data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
+        const response = await fetchMyPosts();
+        const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
         setPosts(sortedPosts);
       } catch (error) {
         console.error("Failed to fetch posts", error);
       }
     };
-    loadPosts();
+    fetchPosts();
   }, []);
 
   const handleEdit = (postId) => {
@@ -108,7 +108,7 @@ const MyPostTemplate = () => {
   const handleDelete = async (postId) => {
     try {
       await deletePost(postId);
-      setPosts(posts.filter(post => post.id !== postId));
+      setPosts(posts.filter((post) => post.id !== postId));
     } catch (error) {
       console.error("Failed to delete post", error);
     }

@@ -1,4 +1,4 @@
-import PostDetailTemplate from "../components/templates/PostDetailTemplate";
+import PostDetailTemplate from "../components/templates/post/PostDetailTemplate";
 
 const PostDetailPage = () => {
   return <PostDetailTemplate />;

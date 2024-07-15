@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
+import { fetchPosts } from "../../../apis/post";
 import { FaArrowLeft, FaHome } from "react-icons/fa";
-import { fetchPosts } from "../../apis/board"; // 경로 수정
 
 const Container = styled.div`
   display: flex;
@@ -83,7 +83,7 @@ const TableCell = styled.td`
   padding: 12px;
   border-bottom: 1px solid #ccc;
   font-size: 14px;
-  color: ${(props) => (props.header ? "aliceblue" : "black")};
+  color: ${(props) => (props.$header ? "aliceblue" : "black")};
   text-align: left;
 `;
 
@@ -130,22 +130,22 @@ const CreatePostButton = styled(Link)`
   }
 `;
 
-const ExchangeBoardTemplate = () => {
+const SellBoardTemplate = () => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    const loadPosts = async () => {
+    const fetchPostsData = async () => {
       try {
-        const data = await fetchPosts("exchange");
-        const sortedPosts = data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
+        const response = await fetchPosts("sell");
+        const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
         setPosts(sortedPosts);
       } catch (error) {
         console.error("Failed to fetch posts", error);
       }
     };
-    loadPosts();
+    fetchPostsData();
   }, []);
 
   const filteredPosts = posts.filter((post) =>
@@ -175,7 +175,7 @@ const ExchangeBoardTemplate = () => {
             <FaHome />
           </IconButton>
         </ButtonGroup>
-        <Title>품앗이 게시판</Title>
+        <Title>판매 게시판</Title>
       </TitleBar>
       <SearchBar
         type="text"
@@ -183,14 +183,14 @@ const ExchangeBoardTemplate = () => {
         value={searchTerm}
         onChange={handleSearchChange}
       />
-      <CreatePostButton to="/post/create?post_type=exchange">글 작성</CreatePostButton>
+      <CreatePostButton to="/post/create?post_type=sell">글 작성</CreatePostButton>
       <PostList>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableCell header>제목</TableCell>
-              <TableCell header>작성자</TableCell>
-              <TableCell header>작성일</TableCell>
+              <TableCell $header>제목</TableCell>
+              <TableCell $header>작성자</TableCell>
+              <TableCell $header>작성일</TableCell>
             </TableRow>
           </TableHeader>
           <tbody>
@@ -212,4 +212,4 @@ const ExchangeBoardTemplate = () => {
   );
 };
 
-export default ExchangeBoardTemplate;
+export default SellBoardTemplate;

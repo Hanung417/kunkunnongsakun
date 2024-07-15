@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { fetchPostDetail, createComment, createReply, editComment, deleteComment } from "../../../apis/post";
 import { FaArrowLeft } from "react-icons/fa";
-import { fetchPost, createComment, updateComment, deleteComment } from "../../apis/board"; // 경로 수정
 
 const Container = styled.div`
   display: flex;
@@ -182,19 +182,19 @@ const PostDetailTemplate = () => {
   const [editCommentContent, setEditCommentContent] = useState("");
   const currentUserId = localStorage.getItem("userId");
 
-  const loadPost = useCallback(async () => {
+  const fetchPost = useCallback(async () => {
     try {
-      const data = await fetchPost(id);
-      setPost(data);
-      setComments(data.comments || []);
+      const response = await fetchPostDetail(id);
+      setPost(response.data);
+      setComments(response.data.comments || []);
     } catch (error) {
       console.error("Failed to fetch post", error);
     }
   }, [id]);
 
   useEffect(() => {
-    loadPost();
-  }, [loadPost]);
+    fetchPost();
+  }, [fetchPost]);
 
   const handleCommentChange = (event) => {
     setNewComment(event.target.value);
@@ -212,7 +212,7 @@ const PostDetailTemplate = () => {
     event.preventDefault();
     try {
       await createComment(id, { content: newComment });
-      await loadPost();
+      await fetchPost();
       setNewComment("");
     } catch (error) {
       console.error("Failed to post comment", error);
@@ -222,8 +222,8 @@ const PostDetailTemplate = () => {
   const handleSubmitReply = async (event) => {
     event.preventDefault();
     try {
-      await createComment(id, { content: newReply, parent_id: replyCommentId });
-      await loadPost();
+      await createReply(id, { content: newReply, parent_id: replyCommentId });
+      await fetchPost();
       setNewReply("");
       setReplyCommentId(null);
     } catch (error) {
@@ -233,8 +233,8 @@ const PostDetailTemplate = () => {
 
   const handleEditComment = async (commentId) => {
     try {
-      await updateComment(commentId, { content: editCommentContent });
-      await loadPost();
+      await editComment(commentId, { content: editCommentContent });
+      await fetchPost();
       setEditCommentId(null);
       setEditCommentContent("");
     } catch (error) {
@@ -245,7 +245,7 @@ const PostDetailTemplate = () => {
   const handleDeleteComment = async (commentId) => {
     try {
       await deleteComment(commentId);
-      await loadPost();
+      await fetchPost();
     } catch (error) {
       console.error("Failed to delete comment", error);
     }

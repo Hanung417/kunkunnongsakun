@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Bar, Line } from 'react-chartjs-2';
-import Chart from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
 
 const PageContainer = styled.div`
@@ -219,7 +218,7 @@ const ExpectedReturnTemplate = () => {
 
   const lineChartOptions = {
     responsive: true,
-    maintainAspectRatio: false, 
+    maintainAspectRatio: false,
     scales: {
       x: {
         type: 'time',

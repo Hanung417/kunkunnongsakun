@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
+import { fetchPost, editPost } from "../../../apis/post";
 import { FaArrowLeft } from "react-icons/fa";
-import { fetchPost, updatePost } from "../../apis/board"; // 경로 수정
 
 const Container = styled.div`
   padding: 24px;
@@ -122,17 +122,17 @@ const EditPostTemplate = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const loadPost = async () => {
+    const fetchData = async () => {
       try {
-        const data = await fetchPost(id);
-        setTitle(data.title);
-        setContent(data.content);
-        setPostType(data.post_type);
+        const response = await fetchPost(id);
+        setTitle(response.data.title);
+        setContent(response.data.content);
+        setPostType(response.data.post_type);
       } catch (error) {
         console.error("Failed to fetch post", error);
       }
     };
-    loadPost();
+    fetchData();
   }, [id]);
 
   const handleTitleChange = (event) => {
@@ -153,7 +153,6 @@ const EditPostTemplate = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
@@ -163,7 +162,7 @@ const EditPostTemplate = () => {
     }
 
     try {
-      await updatePost(id, formData);
+      const response = await editPost(id, formData);
       alert("글 수정 성공!");
       navigate(`/post/${id}`);
     } catch (error) {

@@ -1,4 +1,4 @@
-import CropsTemplate from "../components/templates/CropsTemplate";
+import CropsTemplate from "../components/templates/crop/CropsTemplate";
 
 const CropsPage = () => {
   return <CropsTemplate />;

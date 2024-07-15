@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { getCropNames, predictCrops } from "../../../apis/crop";
 
 const PageContainer = styled.div`
   display: flex;
@@ -145,7 +145,7 @@ const CropTest = () => {
   useEffect(() => {
     const fetchCropNames = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/prediction/get_crop_names/');
+        const response = await getCropNames();
         setCropNames(response.data.crop_names);
         setFilteredCropNames(response.data.crop_names);
       } catch (err) {
@@ -194,7 +194,7 @@ const CropTest = () => {
     return newErrors;
   };
 
-  const handleSubmit = async (e) => {
+ const handleSubmit = async (e) => {
     e.preventDefault();
     const inputErrors = validateInput();
     if (inputErrors.length > 0) {
@@ -203,18 +203,12 @@ const CropTest = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:8000/prediction/predict/', {
+      const response = await predictCrops({
         land_area: landArea,
         crop_names: crops.map(crop => crop.name),
         crop_ratios: crops.map(crop => crop.ratio),
         region: region,
         session_id: `session_${Date.now()}`,  // 고유한 세션 ID 생성
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': getCSRFToken(),
-        },
-        withCredentials: true
       });
 
       if (response.data.error) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { getCropList, deleteCrop } from '../../../apis/crop'; // 새로운 import 추가
 
 const PageContainer = styled.div`
   display: flex;
@@ -77,21 +77,6 @@ const DeleteButton = styled.button`
   cursor: pointer;
 `;
 
-const getCSRFToken = () => {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== '') {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; cookies.length > i; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, 10) === 'csrftoken=') {
-        cookieValue = decodeURIComponent(cookie.substring(10));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-};
-
 const CropSelectionPage = () => {
   const [sessions, setSessions] = useState([]);
   const [error, setError] = useState(null);
@@ -100,12 +85,7 @@ const CropSelectionPage = () => {
   useEffect(() => {
     const fetchSessions = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/prediction/list_sessions/', {
-          headers: {
-            'X-CSRFToken': getCSRFToken(),
-          },
-          withCredentials: true,
-        });
+        const response = await getCropList();
         setSessions(response.data);
       } catch (err) {
         setError('세션 정보를 불러오는 중 오류가 발생했습니다.');
@@ -116,12 +96,7 @@ const CropSelectionPage = () => {
 
   const handleDelete = async (sessionId) => {
     try {
-      await axios.delete(`http://localhost:8000/prediction/delete_session/${sessionId}/`, {
-        headers: {
-          'X-CSRFToken': getCSRFToken(),
-        },
-        withCredentials: true,
-      });
+      await deleteCrop(sessionId);
       setSessions(sessions.filter(session => session.session_id !== sessionId));
     } catch (err) {
       setError('세션 삭제 중 오류가 발생했습니다.');

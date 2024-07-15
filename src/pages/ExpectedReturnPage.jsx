@@ -1,4 +1,4 @@
-import ExpectedReturnTemplate from "../components/templates/ExpectedReturnTemplate";
+import ExpectedReturnTemplate from "../components/templates/crop/ExpectedReturnTemplate";
 
 const ExpectedReturnPage = () => {
   return <ExpectedReturnTemplate />;

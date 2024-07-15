@@ -1,4 +1,4 @@
-import WritePostTemplate from "../components/templates/WritePostTemplate";
+import WritePostTemplate from "../components/templates/post/WritePostTemplate";
 
 const WritePostPage = () => {
   return <WritePostTemplate />;

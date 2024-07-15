@@ -1,4 +1,4 @@
-import BuyBoardTemplate from "../components/templates/BuyBoardTemplate";
+import BuyBoardTemplate from "../components/templates/post/BuyBoardTemplate";
 
 const BuyBoardPage = () => {
   return <BuyBoardTemplate />;
