@@ -198,7 +198,6 @@ def auth_check(request):
     })
 
 @csrf_exempt
-@csrf_exempt
 @login_required
 def change_password(request):
     if request.method == 'POST':
@@ -208,11 +207,15 @@ def change_password(request):
             new_password1 = data.get('new_password1')
             new_password2 = data.get('new_password2')
 
+            # Check if the old password is correct
+            if not request.user.check_password(old_password):
+                return JsonResponse({'status': 'error', 'message': "현재 비밀번호가 일치하지 않습니다."}, status=400)
+
             if new_password1 == old_password:
-                raise ValidationError("새 비밀번호는 기존 비밀번호와 달라야 합니다.")
+                return JsonResponse({'status': 'error', 'message': "새 비밀번호는 기존 비밀번호와 달라야 합니다."}, status=400)
             
             if new_password1 != new_password2:
-                raise ValidationError("새 비밀번호와 새 비밀번호 확인이 일치하지 않습니다.")
+                return JsonResponse({'status': 'error', 'message': "새 비밀번호와 새 비밀번호 확인이 일치하지 않습니다."}, status=400)
             
             form = PasswordChangeForm(user=request.user, data=data)
             if form.is_valid():
@@ -221,14 +224,16 @@ def change_password(request):
                 logout(request)
                 return JsonResponse({'status': 'success', 'message': 'Password changed successfully'})
             else:
-                raise ValidationError("Form validation failed", details=form.errors)
+                return JsonResponse({'status': 'error', 'message': "Form validation failed", 'details': form.errors}, status=400)
         except json.JSONDecodeError:
-            raise ValidationError("Invalid JSON format")
+            return JsonResponse({'status': 'error', 'message': "Invalid JSON format"}, status=400)
+        except ValidationError as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
         except Exception as e:
             logger.error(f"Error changing password: {str(e)}")
-            raise InternalServerError("Failed to change password")
+            return JsonResponse({'status': 'error', 'message': "Failed to change password"}, status=500)
     else:
-        raise InvalidRequestError("POST method only allowed")
+        return JsonResponse({'status': 'error', 'message': "POST method only allowed"}, status=405)
 
 @csrf_exempt
 @login_required
