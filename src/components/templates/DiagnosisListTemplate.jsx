@@ -56,6 +56,9 @@ const SessionItem = styled.div`
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  &:hover {
+    background-color: #ddd;
+  }
 `;
 
 const SessionInfo = styled.div`
@@ -78,14 +81,15 @@ const DeleteButton = styled.button`
 const AddButton = styled.button`
   background-color: #4aaa87;
   color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 1.3em;
+  font-size: 1.5rem;
+  width: 100%;
+  text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-
+  margin-bottom: 20px;  
   &:hover {
     background-color: #3b8b6d;
   }
@@ -171,40 +175,41 @@ const ListTemplate = () => {
   };
 
   return (
-    <PageContainer>
-      <HeaderContainer>
-        <Title>병해충 진단 세션 목록</Title>
-      </HeaderContainer>
-      <Content>
-        <SessionList>
-          {sessions.map(session => (
-            <SessionItem key={session.session_id} onClick={() => handleSessionClick(session.session_id)}>
-              <SessionInfo>
-                <div>{session.pest_name}</div>
-                <div>{session.detection_date}</div>
-                <div>Confidence: {session.confidence}</div>
-              </SessionInfo>
-              <DeleteButton onClick={(e) => {
-                e.stopPropagation();
-                openDeleteModal(session.session_id);
-              }}>
-                <FaTrash />
-              </DeleteButton>
-            </SessionItem>
-          ))}
-        </SessionList>
-        <AddButton onClick={handleAddClick}>새 진단 추가</AddButton>
-      </Content>
-      <CustomModal
-        isOpen={isModalOpen}
-        onRequestClose={closeModal}
-        title="삭제 확인"
-        content="이 항목을 삭제하시겠습니까?"
-        onConfirm={handleDeleteSession}
-        closeModal={closeModal}  // 추가된 prop
-      />
-    </PageContainer>
-  );
+  <PageContainer>
+    <HeaderContainer>
+      <Title>병해충 진단 세션 목록</Title>
+    </HeaderContainer>
+    <Content>
+      <AddButton onClick={handleAddClick}>새로운 진단 시작하기</AddButton>
+      <SessionList>
+        {sessions.map(session => (
+          <SessionItem key={session.session_id} onClick={() => handleSessionClick(session.session_id)}>
+            <SessionInfo>
+              <div>{session.pest_name}</div>
+              <div>{session.detection_date}</div>
+              <div>Confidence: {session.confidence}</div>
+            </SessionInfo>
+            <DeleteButton onClick={(e) => {
+              e.stopPropagation();
+              openDeleteModal(session.session_id);
+            }}>
+              <FaTrash />
+            </DeleteButton>
+          </SessionItem>
+        ))}
+      </SessionList>
+    </Content>
+    <CustomModal
+      isOpen={isModalOpen}
+      onRequestClose={closeModal}
+      title="삭제 확인"
+      content="이 항목을 삭제하시겠습니까?"
+      onConfirm={handleDeleteSession}
+      closeModal={closeModal}  // 추가된 prop
+    />
+  </PageContainer>
+);
+
 };
 
 export default ListTemplate;

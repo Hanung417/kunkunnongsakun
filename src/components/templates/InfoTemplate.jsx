@@ -32,12 +32,18 @@ const LayoutContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   width: 100%;
-  max-width: 900px; // 최대 너비
-  margin-top: 20px; // 헤더와 분리하기 위해 여백 추가
-  padding: 20px; // 내부 콘텐츠 패딩
-  background-color: #fff; 
-  border-radius: 10px;  // 둥근 모서리
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  max-width: 900px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
+
+const ImageTitle = styled.h2`
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 16px;
 `;
 
 const ImageContainer = styled.div`
@@ -45,39 +51,53 @@ const ImageContainer = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  margin: 0 auto;
-  aspe
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  background-color: #fff;
 `;
 
 const Image = styled.img`
-  width: 100%; 
-  height: auto; 
-  object-fit: cover; 
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 `;
 
 const InfoContainer = styled.div`
-  grid-column: span 2;  // 두개의 열을 모두 차지
+  grid-column: span 2;
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin-top: 20px;
 `;
 
+const ImageBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 16px;
+  align-items: center;
+  border: 2px solid #4aaa87;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
+
 const InfoBox = styled.div`
   border: 2px solid #4aaa87;
   margin: 4px 16px;
-  padding: 14px; /* Increased padding for better spacing */
-  text-align: left; /* Align text to the left for readability */
-  border-radius: 10px; /* Rounded corners for each info box */
+  padding: 14px;
+  text-align: left;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
 const InfoLabel = styled.p`
   font-weight: bold;
-  margin-bottom: 8px; /* Reduced margin bottom for compact layout */
+  margin-bottom: 8px;
 `;
 
-const InfoText = styled.p`
-`;
+const InfoText = styled.p``;
 
 const BackButton = styled.button`
   background-color: #4aaa87;
@@ -94,7 +114,6 @@ const BackButton = styled.button`
     background-color: #3b8b6d;
   }
 `;
-
 
 const InfoTemplate = () => {
   const location = useLocation();
@@ -113,31 +132,37 @@ const InfoTemplate = () => {
         <Title> 병해충 진단 결과 </Title>
       </HeaderContainer>
       <LayoutContainer>
-        <ImageContainer>
-          {db_image_url ? <Image src={db_image_url} alt="Pest from DB" /> : <p>No Image Available</p>}
-        </ImageContainer>
-        <ImageContainer>
-          {user_image_url ? <Image src={user_image_url} alt="User uploaded Pest" /> : <p>No Image Available</p>}
-        </ImageContainer>
+        <ImageBox>
+          <ImageTitle>병해충 이미지</ImageTitle>
+          <ImageContainer>
+            {db_image_url ? <Image src={db_image_url} alt="Pest from DB" /> : <p>No Image Available</p>}
+          </ImageContainer>
+        </ImageBox>
+        <ImageBox>
+          <ImageTitle>사용자 업로드 이미지</ImageTitle>
+          <ImageContainer>
+            {user_image_url ? <Image src={user_image_url} alt="User uploaded Pest" /> : <p>No Image Available</p>}
+          </ImageContainer>
+        </ImageBox>
         <InfoContainer>
           <InfoBox>
-            <InfoLabel>Pest Name</InfoLabel>
+            <InfoLabel>질병 이름</InfoLabel>
             <InfoText>{pest_name}</InfoText>
           </InfoBox>
           <InfoBox>
-            <InfoLabel>Occurrence Environment</InfoLabel>
+            <InfoLabel>발생환경</InfoLabel>
             <InfoText>{occurrence_environment}</InfoText>
           </InfoBox>
           <InfoBox>
-            <InfoLabel>Symptom Description</InfoLabel>
+            <InfoLabel>증상 설명</InfoLabel>
             <InfoText>{symptom_description}</InfoText>
           </InfoBox>
           <InfoBox>
-            <InfoLabel>Prevention Methods</InfoLabel>
+            <InfoLabel>예방 방법</InfoLabel>
             <InfoText>{prevention_methods}</InfoText>
           </InfoBox>
           <InfoBox>
-            <InfoLabel>Pesticide Name</InfoLabel>
+            <InfoLabel>농약 처방 정보</InfoLabel>
             <InfoText>{pesticide_name}</InfoText>
           </InfoBox>
         </InfoContainer>
