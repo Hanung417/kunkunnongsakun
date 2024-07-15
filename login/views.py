@@ -29,9 +29,18 @@ def signup(request):
         try:
             data = json.loads(request.body)
             form = UserRegistrationForm(data)
+            # 이메일 인증번호 확인
+            submitted_verification_code = data.get('verification_code')
+            session_verification_code = request.session.get('verification_code')
+
+            if submitted_verification_code != session_verification_code:
+                return JsonResponse({'status': 'error', 'message': 'Invalid verification code.'}, status=400)
+
             if form.is_valid():
                 user = form.save()
                 auth_login(request, user)
+                # 성공적으로 회원가입 후 세션에서 인증번호 제거
+                #del request.session['verification_code']
                 return JsonResponse({'status': 'success', 'message': 'User registered and logged in.'})
             else:
                 raise ValidationError("Form validation failed", details=form.errors)
@@ -44,6 +53,7 @@ def signup(request):
             raise InternalServerError("An error occurred during user registration")
     else:
         raise InvalidRequestError("Only GET and POST methods are allowed")
+
 
 @require_GET
 def check_username(request):
@@ -117,12 +127,21 @@ def send_verification_email(request):
         if User.objects.filter(email=email).exists():
             raise DuplicateResourceError("이미 사용중인 이메일입니다.")
         verification_code = random.randint(1000, 9999)
+        html_message = f'''
+        <html>
+        <body>
+            <p style="font-size: 18px;">Your verification code is:</p>
+            <p style="font-size: 24px; font-weight: bold;">{verification_code}</p>
+        </body>
+        </html>
+        '''
         send_mail(
             'Your Verification Code',
-            f'Your verification code is {verification_code}',
+            '',
             settings.DEFAULT_FROM_EMAIL,
             [email],
             fail_silently=False,
+            html_message=html_message,
         )
         request.session['verification_code'] = str(verification_code)
         return JsonResponse({'message': '이메일로 인증번호가 발송되었습니다.'})
@@ -216,14 +235,25 @@ def change_password(request):
 def delete_account(request):
     if request.method == 'POST':
         try:
+            data = json.loads(request.body)
+            password = data.get('password')
+
+            if not password:
+                return JsonResponse({'status': 'error', 'message': '비밀번호를 입력해주세요.'}, status=400)
+
             user = request.user
+
+            if not user.check_password(password):
+                return JsonResponse({'status': 'error', 'message': '비밀번호가 일치하지 않습니다.'}, status=400)
+
             user.delete()
             return JsonResponse({'status': 'success', 'message': 'Account deleted successfully'})
         except Exception as e:
             logger.error(f"Error deleting account: {str(e)}")
-            raise InternalServerError("Failed to delete account")
+            return JsonResponse({'status': 'error', 'message': 'Failed to delete account'}, status=500)
     else:
-        raise InvalidRequestError("POST method only allowed")
+        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+
     
 # username 변경 API
 @csrf_exempt
@@ -310,3 +340,4 @@ def password_reset(request):
 
     else:
         return JsonResponse({'error': 'POST 요청만 지원됩니다.'}, status=405)
+    
