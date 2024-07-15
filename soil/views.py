@@ -8,6 +8,7 @@ import pandas as pd
 import json
 from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError, InvalidRequestError, BadRequestError, MissingPartError
 from .models import crop_data
+from django.utils import timezone
 
 @csrf_exempt
 def get_crop_names(request):
@@ -113,6 +114,8 @@ def get_soil_fertilizer_info(request):
         return str(max(min_val, min(value, max_val)))
 
     try:
+        request.session.create()
+        
         data = json.loads(request.body)
         name = data.get('crop_code')
         user_id = request.user.id
@@ -120,14 +123,6 @@ def get_soil_fertilizer_info(request):
         address = data.get('address')
         detailed_address = data.get('PNU_Nm')
         
-        crop_instance = crop_data(
-        user_id=user_id,
-        session_id=session_id,
-        crop_name=name,
-        address=address,
-        detailed_address=detailed_address
-        )
-        crop_instance.save()
 
         if not name:
             raise MissingPartError("Missing crop code")
@@ -183,6 +178,21 @@ def get_soil_fertilizer_info(request):
                 'pre_Compost_Mix': item.find('pre_Compost_Mix').text if item.find('pre_Compost_Mix') is not None else None,
             }
             data.append(item_data)
+            
+            # 'serviceKey'와 'crop_Code'를 제외한 딕셔너리 생성
+            filtered_params = {k: v for k, v in params.items() if k not in ['serviceKey', 'crop_Code']}
+            
+            crop_instance = crop_data(
+            user_id=user_id,
+            session_id=session_id,
+            crop_name=name,
+            address=address,
+            detailed_address=detailed_address,
+            created_at=timezone.now(),
+            soil_data = filtered_params,
+            fertilizer_data = item_data
+            )
+            crop_instance.save()
 
         return JsonResponse({'data': data})
 
@@ -194,3 +204,34 @@ def get_soil_fertilizer_info(request):
         raise InternalServerError(f"HTTP error: {str(e)}")
     except Exception as e:
         raise InternalServerError(str(e))
+    
+ # user_id별로 저장된 결과목록 반환
+def get_crop_data_by_user(request):
+    user_id  = request.user.id
+    # 주어진 user_id에 해당하는 모든 CropData 객체를 최신순으로 가져옵니다.
+    crop_instances = crop_data.objects.filter(user_id=user_id).order_by('-created_at')
+    
+    # 여러 개의 인스턴스를 JSON 형식으로 반환
+    data = [
+        {
+            'user_id': crop_instance.user_id,
+            'session_id': crop_instance.session_id,
+            'crop_name': crop_instance.crop_name,
+            'address': crop_instance.address,
+            'detailed_address': crop_instance.detailed_address,
+            'created_at': crop_instance.created_at,  # 날짜 형식을 ISO 형식으로 변환
+            'soil_data': crop_instance.soil_data,
+            'fertilizer_data': crop_instance.fertilizer_data,
+        }
+        for crop_instance in crop_instances
+    ]
+
+    return JsonResponse(data, safe=False)
+#해당되는 session_id 데이터 삭제
+def delete_soil_data_by_session(request, session_id):
+    if request.method == 'DELETE':
+        crop_data.objects.filter(session_id=session_id).delete()
+        return JsonResponse({'message': 'Data deleted successfully'})
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
+    
+    
