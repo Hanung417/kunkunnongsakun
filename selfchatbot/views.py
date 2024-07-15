@@ -131,9 +131,11 @@ def update_session_name(request, session_id):
         if not new_session_name:
             raise ValidationError("New session name is required", code=400)
 
-        session = Chatbot.objects.get(user=request.user, session_id=session_id)
-        session.session_name = new_session_name
-        session.save()
+        sessions = Chatbot.objects.filter(session_id=session_id, user_id=request.user.id)
+        if not sessions.exists():
+            raise NotFoundError("Session not found", code=404)
+
+        sessions.update(session_name=new_session_name)
 
         return JsonResponse({'status': 'success', 'message': 'Session name updated successfully'})
     except json.JSONDecodeError:
@@ -145,3 +147,4 @@ def update_session_name(request, session_id):
     except Exception as e:
         logger.error(f"Error updating session name: {str(e)}")
         raise InternalServerError("Failed to update session name", code=500)
+
