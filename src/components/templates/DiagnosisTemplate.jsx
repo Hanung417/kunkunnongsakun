@@ -2,7 +2,7 @@ import React, { useCallback, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
-import axios from 'axios';
+import { uploadImage } from "../../apis/predict";
 
 const PageContainer = styled.div`
   display: flex;
@@ -120,40 +120,14 @@ const DiagnosisTemplate = () => {
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
-  const getCSRFToken = () => {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, 10) === 'csrftoken=') {
-          cookieValue = decodeURIComponent(cookie.substring(10));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  };
-
   const handleDiagnose = async () => {
     if (!selectedFile) {
       setResult('이미지를 업로드해주세요');
       return;
     }
 
-    const formData = new FormData();
-    formData.append('image', selectedFile);
-
-    const csrfToken = getCSRFToken();
-
     try {
-      const response = await axios.post('http://localhost:8000/detect/upload/', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'X-CSRFToken': csrfToken,
-        },
-        withCredentials: true,
-      });
+      const response = await uploadImage(selectedFile);
       setResult(response.data.result);
       navigate('/Info', { state: { diagnosisResult: response.data } }); // 결과를 InfoPage로 전달
     } catch (error) {
