@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams, useLocation } from 'react-router-dom';
 import { fetchChatHistory, sendChatMessage } from '../../apis/chat';
-import userProfileImage from '../../images/user_icon.jpg'; // 상대 경로로 수정
-import botProfileImage from '../../images/big_logo.png'; // 상대 경로로 수정
+import userProfileImage from '../../images/user_icon.jpg';
+import botProfileImage from '../../images/big_logo.png';
 
 const Container = styled.div`
   display: flex;
@@ -48,7 +48,7 @@ const MessageList = styled.ul`
 
 const MessageContainer = styled.li`
   display: flex;
-  align-items: flex-start; /* 프로필 이미지 위에 메시지 표시 */
+  align-items: flex-start;
   margin-bottom: 12px;
   justify-content: ${({ isUser }) => (isUser ? 'flex-end' : 'flex-start')};
 
@@ -65,7 +65,7 @@ const Message = styled.div`
   position: relative;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   word-break: break-word;
-  margin-top: 8px; /* 메시지를 프로필 이미지 아래로 배치 */
+  margin-top: 8px;
 
   @media (max-width: 768px) {
     padding: 8px 10px;
@@ -73,15 +73,15 @@ const Message = styled.div`
 `;
 
 const ProfileImage = styled.img`
-  width: 50px; /* 프로필 이미지 크기를 증가 */
-  height: 50px; /* 프로필 이미지 크기를 증가 */
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   margin-right: ${({ isUser }) => (isUser ? '0' : '10px')};
   margin-left: ${({ isUser }) => (isUser ? '10px' : '0')};
 
   @media (max-width: 768px) {
-    width: 40px; /* 모바일 화면에서는 크기 조정 */
-    height: 40px; /* 모바일 화면에서는 크기 조정 */
+    width: 40px;
+    height: 40px;
     margin-right: ${({ isUser }) => (isUser ? '0' : '6px')};
     margin-left: ${({ isUser }) => (isUser ? '6px' : '0')};
   }

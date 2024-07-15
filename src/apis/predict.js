@@ -26,3 +26,34 @@ export const uploadImage = (file) => {
     },
   });
 };
+
+export const getSoilCropData = () => {
+  return instance.get('/soil/crop_data/');
+};
+
+export const deleteSoilData = (sessionId) => {
+  return instance.delete(`/soil/delete_soil_data/${sessionId}/`, {
+    headers: {
+    },
+  });
+};
+
+export const getCropNames = () => {
+  return instance.get('/soil/get-crop-names/');
+};
+
+export const getSoilExamData = (cropName, address) => {
+  return instance.post('/soil/soil_exam/', JSON.stringify({ crop_name: cropName, address }), {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
+export const getSoilFertilizerInfo = (data) => {
+  return instance.post('/soil/get-soil-fertilizer-info/', JSON.stringify(data), {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};

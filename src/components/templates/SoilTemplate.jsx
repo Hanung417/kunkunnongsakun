@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import Modal from 'react-modal';
+import { getCropNames, getSoilExamData, getSoilFertilizerInfo } from "../../apis/predict";
 
 const Container = styled.div`
   display: flex;
@@ -94,9 +94,9 @@ const CropList = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   position: absolute;
   z-index: 1;
-  top: 40px; /* Adjust this value if needed */
-  max-height: 200px; /* Fixed height */
-  overflow-y: auto; /* Enable vertical scrolling */
+  top: 40px;
+  max-height: 200px;
+  overflow-y: auto;
 `;
 
 const CropItem = styled.div`
@@ -209,54 +209,29 @@ const SoilTest = () => {
     setSelectedSoilSample(soilData.find(sample => sample.No === e.target.value));
   };
 
-  const getCSRFToken = () => {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, 10) === 'csrftoken=') {
-          cookieValue = decodeURIComponent(cookie.substring(10));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  };
-
-  const fetchCropNames = async () => {
-    try {
-      const response = await axios.get('http://localhost:8000/soil/get-crop-names/');
-      setCropNames(response.data.crop_names);
-      setFilteredCropNames(response.data.crop_names); // 초기값 설정
-    } catch (err) {
-      setError('작물 이름을 불러오는 중 오류가 발생했습니다.');
-    }
-  };
-
   useEffect(() => {
-    fetchCropNames();
+    const fetchData = async () => {
+      try {
+        const response = await getCropNames();
+        setCropNames(response.data.crop_names);
+        setFilteredCropNames(response.data.crop_names);
+      } catch (err) {
+        setError('작물 이름을 불러오는 중 오류가 발생했습니다.');
+      }
+    };
+
+    fetchData();
   }, []);
 
   const fetchSoilExamData = async () => {
-    const csrfToken = getCSRFToken();
     try {
-      const response = await axios.post('http://localhost:8000/soil/soil_exam/',
-        JSON.stringify({ crop_name: cropName, address }),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrfToken,
-          },
-          withCredentials: true,
-        }
-      );
+      const response = await getSoilExamData(cropName, address);
       setSoilData(response.data.soil_data);
-      setSelectedSample(null); // Reset selected sample
-      setFertilizerData(null); // Reset fertilizer data
-      setSelectedSoilSample(null); // Reset selected soil sample
+      setSelectedSample(null);
+      setFertilizerData(null);
+      setSelectedSoilSample(null);
       setError(null);
-      setModalIsOpen(true); // Show modal when soil data is fetched
+      setModalIsOpen(true);
     } catch (err) {
       setError(err.response.data.error);
       setSoilData([]);
@@ -281,34 +256,25 @@ const SoilTest = () => {
       VLDSIA: latestSoilSample.VLDSIA ?? 0,
       SELC: latestSoilSample.SELC ?? 0
     };
-    const csrfToken = getCSRFToken();
+
     try {
-      const response = await axios.post('http://localhost:8000/soil/get-soil-fertilizer-info/',
-        JSON.stringify({
-          crop_code: cropName,
-          address: address,
-          acid: sanitizedSample.ACID,
-          om: sanitizedSample.OM,
-          vldpha: sanitizedSample.VLDPHA,
-          posifert_K: sanitizedSample.POSIFERT_K,
-          posifert_Ca: sanitizedSample.POSIFERT_CA,
-          posifert_Mg: sanitizedSample.POSIFERT_MG,
-          vldsia: sanitizedSample.VLDSIA,
-          selc: sanitizedSample.SELC,
-          PNU_Nm: sanitizedSample.PNU_Nm
-        }),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrfToken,
-          },
-          withCredentials: true,
-        }
-      );
+      const response = await getSoilFertilizerInfo({
+        crop_code: cropName,
+        address: address,
+        acid: sanitizedSample.ACID,
+        om: sanitizedSample.OM,
+        vldpha: sanitizedSample.VLDPHA,
+        posifert_K: sanitizedSample.POSIFERT_K,
+        posifert_Ca: sanitizedSample.POSIFERT_CA,
+        posifert_Mg: sanitizedSample.POSIFERT_MG,
+        vldsia: sanitizedSample.VLDSIA,
+        selc: sanitizedSample.SELC,
+        PNU_Nm: sanitizedSample.PNU_Nm
+      });
       setFertilizerData(response.data.data);
-      setSelectedSoilSample(sanitizedSample); // Set selected sample
+      setSelectedSoilSample(sanitizedSample);
       setError(null);
-      setModalIsOpen(false); // Close modal when analysis is done
+      setModalIsOpen(false);
     } catch (err) {
       setError(err.response.data.error);
       setFertilizerData(null);
@@ -521,4 +487,3 @@ const SoilTest = () => {
 };
 
 export default SoilTest;
-

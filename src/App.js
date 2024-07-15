@@ -17,23 +17,18 @@ import CropTest from "./components/templates/crop/CropTest";
 import MyPostTemplate from "./components/templates/post/MyPostTemplate";
 import EditPostTemplate from "./components/templates/post/EditPostTemplate";
 import ExchangeBoardTemplate from "./components/templates/post/ExchangeBoardTemplate";
-
 import ExpectedReturnPage from "./pages/ExpectedReturnPage";
 import SoilPage from './pages/SoilPage';
-import FertilizerPage from './pages/FertilizerPage';
 import DiagnosisPage from './pages/DiagnosisPage';
 import InfoPage from './pages/InfoPage';
 import MyCommentedPostsTemplate from "./components/templates/post/MyCommentedPostsTemplate";
 import CropSelectionPage from "./components/templates/crop/CropSelectionPage";
-
-// 병해충 세션 리스트 페이지
 import DiagnosisListTemplate from "./components/templates/DiagnosisListTemplate";
-// 토양 세션 리스트 페이지
 import SoilListTemplate from "./components/templates/SoilListTemplate";
 import SoilDataDetails from "./components/templates/SoilDataDetails";
-
 import NotFoundPage from "./pages/NotFoundPage";
 import SessionDetails from "./components/templates/crop/SessionDetails";
+
 function App() {
 
   return (
@@ -69,7 +64,6 @@ function App() {
           <Route path="/expectedreturn" element={<ExpectedReturnPage />} />
           <Route path="/soil" element={<SoilPage />} />
           <Route path="/soillist" element={<SoilListTemplate />} />
-          <Route path="/fertilizer" element={<FertilizerPage />} />
           <Route path="/soil_details" element={<SoilDataDetails />} />
           <Route path="/diagnosis" element={<DiagnosisPage />} />
           <Route path="/info" element={<InfoPage />} />

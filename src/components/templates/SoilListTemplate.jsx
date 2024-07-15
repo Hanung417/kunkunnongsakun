@@ -1,9 +1,10 @@
+// SoilListTemplate.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import axios from 'axios';
 import { FaTrash } from 'react-icons/fa';
-import CustomModal from '../atoms/DeleteModal';  // 확장자 .jsx를 명시합니다.
+import CustomModal from '../atoms/DeleteModal';
+import { getSoilCropData, deleteSoilData } from "../../apis/predict";
 
 const PageContainer = styled.div`
   display: flex;
@@ -121,48 +122,25 @@ const SoilListTemplate = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchSoilData = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/soil/crop_data/', {
-          withCredentials: true,
-        });
+        const response = await getSoilCropData();
         setSoilData(response.data);
       } catch (error) {
         console.error('Failed to fetch soil data', error);
       }
     };
 
-    fetchSoilData();
+    fetchData();
   }, []);
 
   const handleSoilDataClick = (data) => {
-    navigate(`/soil_details`, { state: { soilData: data.soil_data, fertilizerData: data.fertilizer_data, crop: data.crop_name } });
-  };
-
-  const getCSRFToken = () => {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, 10) === 'csrftoken=') {
-          cookieValue = decodeURIComponent(cookie.substring(10));
-          break;
-        }
-      }
-    }
-    return cookieValue;
+    navigate('/soil_details', { state: { soilData: data.soil_data, fertilizerData: data.fertilizer_data, crop: data.crop_name } });
   };
 
   const handleDeleteSoilData = async () => {
-    const csrfToken = getCSRFToken(); // CSRF 토큰 가져오기
     try {
-      await axios.delete(`http://localhost:8000/soil/delete_soil_data/${selectedSessionId}/`, {
-        headers: {
-          'X-CSRFToken': csrfToken
-        },
-        withCredentials: true,
-      });
+      await deleteSoilData(selectedSessionId);
       setSoilData(soilData.filter(soil => soil.session_id !== selectedSessionId));
       closeModal();
     } catch (error) {
@@ -184,7 +162,6 @@ const SoilListTemplate = () => {
     navigate('/soil'); // '/soil' 경로로 이동
   };
 
-  // 데이터를 세션 ID별로 그룹화
   const groupedData = soilData.reduce((acc, item) => {
     if (!acc[item.session_id]) {
       acc[item.session_id] = [];
