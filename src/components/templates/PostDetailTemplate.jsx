@@ -67,7 +67,12 @@ const PostContent = styled.p`
 
 const PostImage = styled.img`
   max-width: 100%;
+  max-height: 400px; // 이미지의 최대 높이 설정
+  width: auto; // 너비는 자동 조정
+  height: auto; // 높이는 자동 조정
   margin-top: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 const CommentList = styled.ul`
@@ -157,6 +162,11 @@ const CommentButton = styled.button`
 
   &:hover {
     background-color: #3e8e75;
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
   }
 `;
 
@@ -331,7 +341,7 @@ const PostDetailTemplate = () => {
                   value={newReply}
                   onChange={handleReplyChange}
                 />
-                <CommentButton type="submit">댓글 작성</CommentButton>
+                <CommentButton type="submit" disabled={!newReply.trim()}>댓글 작성</CommentButton>
               </CommentForm>
             </CommentItem>
           )}
@@ -367,7 +377,7 @@ const PostDetailTemplate = () => {
           value={newComment}
           onChange={handleCommentChange}
         />
-        <CommentButton type="submit">댓글 작성</CommentButton>
+        <CommentButton type="submit" disabled={!newComment.trim()}>댓글 작성</CommentButton>
       </CommentForm>
     </Container>
   );

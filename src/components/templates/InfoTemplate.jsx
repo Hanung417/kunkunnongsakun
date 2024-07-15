@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const PageContainer = styled.div`
@@ -29,37 +29,38 @@ const Title = styled.h1`
 
 const LayoutContainer = styled.div`
   display: grid;
-  grid-template-columns: 100%;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   width: 100%;
-  max-width: 900px; /* Increased max-width for better content spacing */
-  margin-top: 20px; /* Added margin-top for separation from header */
-  padding: 20px; /* Added padding for inner content */
-  background-color: #fff; /* White background for content area */
-  border-radius: 10px; /* Rounded corners for visual appeal */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  max-width: 900px; // 최대 너비
+  margin-top: 20px; // 헤더와 분리하기 위해 여백 추가
+  padding: 20px; // 내부 콘텐츠 패딩
+  background-color: #fff; 
+  border-radius: 10px;  // 둥근 모서리
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 `;
 
 const ImageContainer = styled.div`
-  width: 60%;
-  aspect-ratio: 1 / 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Ensure image does not overflow container */
-  margin: 0 auto; /* Center the container horizontally */
+  overflow: hidden;
+  margin: 0 auto;
+  aspe
 `;
 
 const Image = styled.img`
-  width: 100%; /* Ensure the image takes up 100% of its container */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: cover; /* Maintain aspect ratio and cover the container */
+  width: 100%; 
+  height: auto; 
+  object-fit: cover; 
 `;
 
 const InfoContainer = styled.div`
+  grid-column: span 2;  // 두개의 열을 모두 차지
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-top: 20px;
 `;
 
 const InfoBox = styled.div`
@@ -78,15 +79,33 @@ const InfoLabel = styled.p`
 const InfoText = styled.p`
 `;
 
+const BackButton = styled.button`
+  background-color: #4aaa87;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.3em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+
+  &:hover {
+    background-color: #3b8b6d;
+  }
+`;
+
+
 const InfoTemplate = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { diagnosisResult } = location.state || {};
 
   if (!diagnosisResult) {
     return <div>No diagnosis result available.</div>;
   }
 
-  const { pest_name, occurrence_environment, symptom_description, prevention_methods, pesticide_name, image_url } = diagnosisResult;
+  const { pest_name, occurrence_environment, symptom_description, prevention_methods, pesticide_name, user_image_url, db_image_url } = diagnosisResult;
 
   return (
     <PageContainer>
@@ -95,7 +114,10 @@ const InfoTemplate = () => {
       </HeaderContainer>
       <LayoutContainer>
         <ImageContainer>
-          {image_url ? <Image src={image_url} alt="Pest" /> : <p>No Image Available</p>}
+          {db_image_url ? <Image src={db_image_url} alt="Pest from DB" /> : <p>No Image Available</p>}
+        </ImageContainer>
+        <ImageContainer>
+          {user_image_url ? <Image src={user_image_url} alt="User uploaded Pest" /> : <p>No Image Available</p>}
         </ImageContainer>
         <InfoContainer>
           <InfoBox>
@@ -120,6 +142,7 @@ const InfoTemplate = () => {
           </InfoBox>
         </InfoContainer>
       </LayoutContainer>
+      <BackButton onClick={() => navigate('/diagnosislist')}>목록보기</BackButton>
     </PageContainer>
   );
 };
