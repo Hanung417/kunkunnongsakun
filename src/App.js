@@ -34,8 +34,9 @@ import SessionDetails from "./components/templates/SessionDetails";
 import DiagnosisListTemplate from "./components/templates/DiagnosisListTemplate";
 // 토양 세션 리스트 페이지
 import SoilListTemplate from "./components/templates/SoilListTemplate";
+import SoilDataDetails from "./components/templates/SoilDataDetails";
 
-
+import NotFoundPage from "./pages/NotFoundPage";
 function App() {
 
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path="/password_reset" element={<PasswordResetTemplate />} />
           <Route path="/" element={<MainPage />} />
           <Route path="/mypage" element={<MyPageTemplate />} />
+          <Route path="*" element={<NotFoundPage /> } />
 
           {/*board*/}
           <Route path="board" element={<BoardPage />} />
@@ -72,6 +74,7 @@ function App() {
           <Route path="/soil" element={<SoilPage />} />
           <Route path="/soillist" element={<SoilListTemplate />} />
           <Route path="/fertilizer" element={<FertilizerPage />} />
+          <Route path="/soil_details" element={<SoilDataDetails />} />
           <Route path="/diagnosis" element={<DiagnosisPage />} />
           <Route path="/info" element={<InfoPage />} />
           <Route path="/diagnosislist" element={<DiagnosisListTemplate />} />

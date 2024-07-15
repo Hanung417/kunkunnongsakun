@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
+import { sendTemporaryPassword, resetPassword, getCSRFToken } from '../../../apis/user';
 
 const Container = styled.div`
   display: flex;
@@ -94,65 +94,40 @@ const PasswordResetTemplate = () => {
     setNewPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const csrfToken = getCSRFToken();
 
-    axios.post('http://localhost:8000/login/password_reset/', { email }, {
-      headers: {
-        'X-CSRFToken': csrfToken,
-        'Content-Type': 'application/json'
-      },
-      withCredentials: true
-    })
-    .then((response) => {
+    try {
+      const response = await sendTemporaryPassword(email, {
+        headers: { 'X-CSRFToken': csrfToken },
+        withCredentials: true
+      });
+
       setMessage("임시 비밀번호가 이메일로 전송되었습니다.");
       setError("");
-    })
-    .catch((error) => {
-      if (error.response) {
-        setError(error.response.data.message || "비밀번호 재설정 중 오류가 발생했습니다.");
-        setMessage("");
-      }
-    });
+    } catch (error) {
+      setError(error.response?.data?.message || "비밀번호 재설정 중 오류가 발생했습니다.");
+      setMessage("");
+    }
   };
 
-  const handlePasswordReset = (e) => {
+  const handlePasswordReset = async (e) => {
     e.preventDefault();
     const csrfToken = getCSRFToken();
 
-    axios.post('http://localhost:8000/login/password_reset_done/', { email, temporary_password: temporaryPassword, new_password: newPassword }, {
-      headers: {
-        'X-CSRFToken': csrfToken,
-        'Content-Type': 'application/json'
-      },
-      withCredentials: true
-    })
-    .then((response) => {
+    try {
+      const response = await resetPassword({ email, temporary_password: temporaryPassword, new_password: newPassword }, {
+        headers: { 'X-CSRFToken': csrfToken },
+        withCredentials: true
+      });
+
       setMessage("새로운 비밀번호로 변경되었습니다.");
       setError("");
-    })
-    .catch((error) => {
-      if (error.response) {
-        setError(error.response.data.message || "비밀번호 변경 중 오류가 발생했습니다.");
-        setMessage("");
-      }
-    });
-  };
-
-  const getCSRFToken = () => {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, 10) === 'csrftoken=') {
-          cookieValue = decodeURIComponent(cookie.substring(10));
-          break;
-        }
-      }
+    } catch (error) {
+      setError(error.response?.data?.message || "비밀번호 변경 중 오류가 발생했습니다.");
+      setMessage("");
     }
-    return cookieValue;
   };
 
   return (

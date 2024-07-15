@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
+import { checkAuthStatus, logoutUser } from "../../apis/user";
 import logoImg from "../../images/logo.png";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaUser, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import CustomModal from "../atoms/CustomModal";
 
 const TopBars = styled.nav`
   display: flex;
@@ -53,42 +54,20 @@ const RightSection = styled.div`
   align-items: center;
 `;
 
-const TopBarButton = styled.button`
-  padding: 8px 20px;
-  background-color: #4aaa87;
-  color: #ffffff;
-  font-family: 'Freesentation', sans-serif;
-  font-weight: 600;
+const IconButton = styled.button`
+  background: none;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  color: #4aaa87;
   cursor: pointer;
+  margin-left: 16px;
 `;
-
-const UsernameText = styled.span`
-  font-size: 16px;
-  margin-right: 10px;
-`;
-
-const getCookie = (name) => {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.startsWith(name + "=")) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-};
 
 const PageTopBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -114,9 +93,9 @@ const PageTopBar = () => {
   const pageTitle = pageTitles[location.pathname] || "";
 
   useEffect(() => {
-    const checkAuthStatus = async () => {
+    const checkAuth = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/login/auth_check/', { withCredentials: true });
+        const response = await checkAuthStatus();
         if (response.data.is_authenticated) {
           setIsLoggedIn(true);
           setUsername(response.data.username);
@@ -128,29 +107,24 @@ const PageTopBar = () => {
       }
     };
 
-    checkAuthStatus();
+    checkAuth();
   }, []);
 
   const handleLogout = async () => {
-    const csrftoken = getCookie('csrftoken');
     try {
-      await axios.post(
-        'http://localhost:8000/login/logout/',
-        {},
-        {
-          headers: {
-            'X-CSRFToken': csrftoken
-          },
-          withCredentials: true
-        }
-      );
+      await logoutUser();
       setIsLoggedIn(false);
       setUsername("");
-      alert("로그아웃이 완료되었습니다.");
-      navigate("/");
+      setModalContent("로그아웃이 완료되었습니다.");
+      setIsModalOpen(true);
     } catch (error) {
       console.error("Failed to logout:", error);
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    navigate("/");
   };
 
   const handleBackClick = () => {
@@ -171,13 +145,20 @@ const PageTopBar = () => {
       <RightSection>
         {isLoggedIn ? (
           <>
-            <UsernameText>{username}님</UsernameText>
-            <TopBarButton onClick={handleLogout}>로그아웃</TopBarButton>
+            <IconButton onClick={() => navigate("/mypage")}>
+              <FaUser title={`${username}님`} />
+            </IconButton>
+            <IconButton onClick={handleLogout}>
+              <FaSignOutAlt title="로그아웃" />
+            </IconButton>
           </>
         ) : (
-          <TopBarButton onClick={() => navigate("/login")}>로그인</TopBarButton>
+          <IconButton onClick={() => navigate("/login")}>
+            <FaSignInAlt title="로그인" />
+          </IconButton>
         )}
       </RightSection>
+      <CustomModal isOpen={isModalOpen} onRequestClose={closeModal} title="알림" content={modalContent} />
     </TopBars>
   );
 };

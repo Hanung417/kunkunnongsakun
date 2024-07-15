@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { createPost } from "../../apis/board"; // 경로 수정
+import axios from "axios";
 
 const Container = styled.div`
   padding: 24px;
@@ -123,7 +124,7 @@ const ErrorMessage = styled.span`
 
 const WritePostTemplate = () => {
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
 
   const queryParams = new URLSearchParams(location.search);
   const postTypeQueryParam = queryParams.get("post_type");
@@ -206,6 +207,8 @@ const WritePostTemplate = () => {
     }
 
     try {
+      const data = await createPost(formData, csrfToken);
+
       const response = await axios.post(
         "http://localhost:8000/community/post/create/",
         formData,
@@ -217,9 +220,9 @@ const WritePostTemplate = () => {
           withCredentials: true,
         }
       );
+
       alert("글 작성 성공");
-      console.log("Created post", response.data);
-      navigate(`/post/${response.data.id}`);
+      navigate(`/post/${data.id}`);
     } catch (error) {
       console.error("Failed to create post", error);
     }
@@ -248,7 +251,7 @@ const WritePostTemplate = () => {
           required
         />
         {titleError && <ErrorMessage>{titleError}</ErrorMessage>}
-        
+
         <Label htmlFor="content">내용<Required>*</Required></Label>
         <Textarea
           id="content"
@@ -259,7 +262,7 @@ const WritePostTemplate = () => {
           required
         />
         {contentError && <ErrorMessage>{contentError}</ErrorMessage>}
-        
+
         <RadioGroup>
           <RadioLabel>
             <Input

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom"; // Link 추가
 import styled from "styled-components";
-import { Link} from "react-router-dom";
-import axios from "axios";
+import { FaEdit, FaTrash } from 'react-icons/fa';
+import { fetchUserPosts, deletePost } from "../../apis/board"; // 경로 수정
 
 const Container = styled.div`
   display: flex;
@@ -18,8 +19,8 @@ const Title = styled.h1`
 `;
 
 const PostList = styled.div`
-  display: grid;
-  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
 `;
 
 const Table = styled.table`
@@ -40,7 +41,6 @@ const TableRow = styled.tr`
   &:nth-child(even) {
     background-color: #f9f9f9;
   }
-
 `;
 
 const TableCell = styled.td`
@@ -49,6 +49,7 @@ const TableCell = styled.td`
   font-size: 14px;
   color: ${(props) => (props.header ? "aliceblue" : "black")};
   text-align: left;
+  width: ${(props) => props.width || "auto"};
 `;
 
 const StyledLink = styled(Link)`
@@ -67,53 +68,64 @@ const PostTitle = styled.span`
   text-overflow: ellipsis;
 `;
 
-const MyCommentedPostsTemplate = () => {
-  const [posts, setPosts] = useState([]);
+const IconButton = styled.button`
+  padding: 6px;
+  margin: 0;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
 
-  const getCSRFToken = () => {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, 10) === 'csrftoken=') {
-          cookieValue = decodeURIComponent(cookie.substring(10));
-          break;
-        }
-      }
-    }
-    return cookieValue;
+  &:hover {
+    color: #4aaa87;
   }
 
+  &:focus {
+    outline: none;
+  }
+`;
+
+const MyPostTemplate = () => {
+  const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const fetchPosts = async () => {
+    const loadPosts = async () => {
       try {
-        const csrfToken = getCSRFToken();
-        const response = await axios.get("http://localhost:8000/community/mycommentedposts/", {
-          headers: {
-            'X-CSRFToken': csrfToken
-          },
-          withCredentials: true
-        });
-        const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
+        const data = await fetchUserPosts();
+        const sortedPosts = data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
         setPosts(sortedPosts);
       } catch (error) {
         console.error("Failed to fetch posts", error);
       }
     };
-    fetchPosts();
+    loadPosts();
   }, []);
+
+  const handleEdit = (postId) => {
+    navigate(`/post/edit/${postId}`);
+  };
+
+  const handleDelete = async (postId) => {
+    try {
+      await deletePost(postId);
+      setPosts(posts.filter(post => post.id !== postId));
+    } catch (error) {
+      console.error("Failed to delete post", error);
+    }
+  };
 
   return (
     <Container>
-      <Title>내가 댓글을 단 글</Title>
+      <Title>내가 작성한 글</Title>
       <PostList>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableCell header>제목</TableCell>
-              <TableCell header>작성자</TableCell>
-              <TableCell header>작성일</TableCell>
+              <TableCell header width="40%">제목</TableCell>
+              <TableCell header width="20%">작성자</TableCell>
+              <TableCell header width="20%">작성일</TableCell>
+              <TableCell header width="10%">수정</TableCell>
+              <TableCell header width="10%">삭제</TableCell>
             </TableRow>
           </TableHeader>
           <tbody>
@@ -126,6 +138,16 @@ const MyCommentedPostsTemplate = () => {
                 </TableCell>
                 <TableCell>{post.user__username}</TableCell>
                 <TableCell>{new Date(post.creation_date).toLocaleDateString()}</TableCell>
+                <TableCell>
+                  <IconButton onClick={() => handleEdit(post.id)}>
+                    <FaEdit />
+                  </IconButton>
+                </TableCell>
+                <TableCell>
+                  <IconButton onClick={() => handleDelete(post.id)}>
+                    <FaTrash />
+                  </IconButton>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>
@@ -135,4 +157,4 @@ const MyCommentedPostsTemplate = () => {
   );
 };
 
-export default MyCommentedPostsTemplate;
+export default MyPostTemplate;

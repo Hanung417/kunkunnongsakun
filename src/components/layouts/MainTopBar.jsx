@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
+import { checkAuthStatus, logoutUser } from "../../apis/user";
 import logoImg from "../../images/logo.png";
+import CustomModal from "../atoms/CustomModal";
 
 const TopBars = styled.nav`
   display: flex;
@@ -57,30 +58,17 @@ const UsernameText = styled.span`
   margin-right: 10px;
 `;
 
-const getCookie = (name) => {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.startsWith(name + "=")) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-};
-
 const MainTopBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
   const navigate = useNavigate();
 
-   useEffect(() => {
-    const checkAuthStatus = async () => {
+  useEffect(() => {
+    const checkAuth = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/login/auth_check/', { withCredentials: true });
+        const response = await checkAuthStatus();
         if (response.data.is_authenticated) {
           setIsLoggedIn(true);
           setUsername(response.data.username);
@@ -96,31 +84,25 @@ const MainTopBar = () => {
       }
     };
 
-    checkAuthStatus();
+    checkAuth();
   }, []);
 
-
   const handleLogout = async () => {
-    const csrftoken = getCookie('csrftoken');
     try {
-      await axios.post(
-        'http://localhost:8000/login/logout/',
-        {},
-        {
-          headers: {
-            'X-CSRFToken': csrftoken
-          },
-          withCredentials: true
-        }
-      );
+      await logoutUser();
       setIsLoggedIn(false);
       setUsername("");
       localStorage.setItem('isLoggedIn', 'true');
-      alert("로그아웃이 완료되었습니다.");
-      navigate("/");
+      setModalContent("로그아웃이 완료되었습니다.");
+      setIsModalOpen(true);
     } catch (error) {
       console.error("Failed to logout:", error);
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    navigate("/");
   };
 
   const handleLogoClick = () => {
@@ -143,6 +125,7 @@ const MainTopBar = () => {
           <TopBarButton onClick={() => navigate("/login")}>로그인</TopBarButton>
         )}
       </RightSection>
+      <CustomModal isOpen={isModalOpen} onRequestClose={closeModal} title="알림" content={modalContent} />
     </TopBars>
   );
 };

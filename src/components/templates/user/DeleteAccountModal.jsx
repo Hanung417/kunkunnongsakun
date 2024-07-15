@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
 import Modal from "react-modal";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { deleteAccount, getCSRFToken } from "../../../apis/user"; // import from user.js
 
 const customStyles = {
   content: {
@@ -83,28 +83,25 @@ const DeleteAccountModal = ({ isOpen, onRequestClose }) => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const csrfToken = getCSRFToken();
 
-    axios.post('http://localhost:8000/login/delete_account/', { password }, { withCredentials: true })
-      .then((response) => {
-        setMessage("계정이 성공적으로 삭제되었습니다.");
-        setError("");
-        alert("회원 탈퇴 성공");
-        setTimeout(() => {
-          navigate('/');
-          window.location.reload();
-        }, 2000);
-      })
-      .catch((error) => {
-        if (error.response) {
-          setError(error.response.data.message || "계정 삭제 중 오류가 발생했습니다.");
-          setMessage("");
-        } else {
-          setError("계정 삭제 중 오류가 발생했습니다.");
-          setMessage("");
-        }
+    try {
+      await deleteAccount(password, {
+        headers: { "X-CSRFToken": csrfToken },
+        withCredentials: true
       });
+      setMessage("계정이 성공적으로 삭제되었습니다.");
+      setError("");
+      setTimeout(() => {
+        navigate('/');
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      setError(error.response?.data?.message || "계정 삭제 중 오류가 발생했습니다.");
+      setMessage("");
+    }
   };
 
   return (

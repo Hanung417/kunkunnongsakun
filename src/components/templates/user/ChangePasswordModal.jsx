@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { changePassword, getCSRFToken } from "../../../apis/user";
+import CustomModal from "../../atoms/CustomModal"; // Import your custom modal component
 
 const customStyles = {
   content: {
@@ -59,6 +60,10 @@ const Button = styled.button`
   &:hover {
     background-color: #6dc4b0;
   }
+  &:disabled {
+    background-color: #9e9e9e;
+    cursor: not-allowed;
+  }
 `;
 
 const ErrorMessage = styled.div`
@@ -74,36 +79,47 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
     new_password2: ""
   });
   const [error, setError] = useState("");
-  const [message, setMessage] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true); // Add state for button disable
+  const [modalContent, setModalContent] = useState("");
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false); // Add state for success modal
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const { old_password, new_password1, new_password2 } = formData;
+    setIsButtonDisabled(!(old_password && new_password1 && new_password2));
+  }, [formData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const csrfToken = getCSRFToken();
 
-    axios.post('http://localhost:8000/login/change_password/', formData, { withCredentials: true })
-      .then((response) => {
-        if (response.data.status === 'success') {
-          setMessage("비밀번호가 성공적으로 변경되었습니다.");
-          setError("");
-          alert("비밀번호 변경 성공, 다시 로그인 필요");
-          window.location.reload();
-          navigate('/login');
-        } else {
-          setError(response.data.message || "비밀번호 변경 중 오류가 발생했습니다.");
-          setMessage("");
-        }
-      })
-      .catch((error) => {
-        if (error.response) {
-          setError(error.response.data.message || "비밀번호 변경 중 오류가 발생했습니다.");
-          setMessage("");
-        }
+    try {
+      const response = await changePassword(formData, {
+        headers: { "X-CSRFToken": csrfToken },
+        withCredentials: true
       });
+
+      if (response.data.status === 'success') {
+        setModalContent("비밀번호가 성공적으로 변경되었습니다. 다시 로그인을 진행해주세요.");
+        setIsSuccessModalOpen(true);
+        setError("");
+      } else {
+        setError(response.data.message || "비밀번호 변경 중 오류가 발생했습니다.");
+      }
+    } catch (error) {
+      setError(error.response?.data?.message || "비밀번호 변경 중 오류가 발생했습니다.");
+    }
+  };
+
+  const closeModal = () => {
+    setIsSuccessModalOpen(false);
+    navigate('/login'); // Redirect to login page after successful password change
   };
 
   return (
@@ -152,9 +168,14 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
           />
         </InputGroup>
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        {message && <div>{message}</div>}
-        <Button type="submit">비밀번호 변경</Button>
+        <Button type="submit" disabled={isButtonDisabled}>비밀번호 변경</Button>
       </Form>
+      <CustomModal
+        isOpen={isSuccessModalOpen}
+        onRequestClose={closeModal}
+        title="알림"
+        content={modalContent}
+      />
     </Modal>
   );
 };
