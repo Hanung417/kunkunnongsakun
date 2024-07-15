@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from 'axios';
 import { FaTrash } from 'react-icons/fa';
+import CustomModal from '../atoms/DeleteModal';
 
 const PageContainer = styled.div`
   display: flex;
@@ -92,6 +93,8 @@ const AddButton = styled.button`
 
 const ListTemplate = () => {
   const [sessions, setSessions] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [sessionIdToDelete, setSessionIdToDelete] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -137,16 +140,17 @@ const ListTemplate = () => {
   };
   
 
-  const handleDeleteSession = async (sessionId) => {
+  const handleDeleteSession = async () => {
     const csrfToken = getCSRFToken(); // CSRF 토큰 가져오기
     try {
-      await axios.delete(`http://localhost:8000/detect/delete_detection_session/${sessionId}/`, {
+      await axios.delete(`http://localhost:8000/detect/delete_detection_session/${sessionIdToDelete}/`, {
         headers: {
           'X-CSRFToken': csrfToken
         },
         withCredentials: true,
       });
-      setSessions(sessions.filter(session => session.session_id !== sessionId));
+      setSessions(sessions.filter(session => session.session_id !== sessionIdToDelete));
+      setIsModalOpen(false);
     } catch (error) {
       console.error('Failed to delete session', error);
     }
@@ -155,6 +159,15 @@ const ListTemplate = () => {
 
   const handleAddClick = () => {
     navigate('/diagnosis');
+  };
+
+  const openDeleteModal = (sessionId) => {
+    setSessionIdToDelete(sessionId);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -173,7 +186,7 @@ const ListTemplate = () => {
               </SessionInfo>
               <DeleteButton onClick={(e) => {
                 e.stopPropagation();
-                handleDeleteSession(session.session_id);
+                openDeleteModal(session.session_id);
               }}>
                 <FaTrash />
               </DeleteButton>              
@@ -182,6 +195,14 @@ const ListTemplate = () => {
         </SessionList>
         <AddButton onClick={handleAddClick}>새 진단 추가</AddButton>
       </Content>
+      <CustomModal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        title="삭제 확인"
+        content="이 항목을 삭제하시겠습니까?"
+        onConfirm={handleDeleteSession}
+        closeModal={closeModal}  // 추가된 prop
+      />
     </PageContainer>
   );
 };
