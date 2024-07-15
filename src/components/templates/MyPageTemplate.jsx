@@ -5,6 +5,7 @@ import styled from "styled-components";
 import ChangePasswordModal from "./user/ChangePasswordModal";
 import ChangeUsernameModal from "./user/ChangeUsernameModal";
 import DeleteAccountModal from "./user/DeleteAccountModal";
+import CustomModal from "../atoms/CustomModal";
 
 const Container = styled.div`
   display: flex;
@@ -76,6 +77,9 @@ const MyPageTemplate = () => {
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(false);
   const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -109,6 +113,11 @@ const MyPageTemplate = () => {
 
   const handleViewMyCommentedPosts = () => {
     navigate("/my_commented_posts");
+  };
+
+  const closeSuccessModal = () => {
+    setIsSuccessModalOpen(false);
+    window.location.reload();
   };
 
   return (
@@ -152,10 +161,18 @@ const MyPageTemplate = () => {
         isOpen={isUsernameModalOpen}
         onRequestClose={() => setIsUsernameModalOpen(false)}
         setUsername={setUsername}
+        setIsSuccessModalOpen={setIsSuccessModalOpen}
+        setSuccessMessage={setSuccessMessage}
       />
       <DeleteAccountModal
         isOpen={isDeleteAccountModalOpen}
         onRequestClose={() => setIsDeleteAccountModalOpen(false)}
+      />
+      <CustomModal
+        isOpen={isSuccessModalOpen}
+        onRequestClose={closeSuccessModal}
+        title="알림"
+        content={successMessage}
       />
     </Container>
   );
