@@ -1,3 +1,4 @@
+// CustomModal.jsx
 import React from 'react';
 import styled from 'styled-components';
 import Modal from 'react-modal';
@@ -33,30 +34,38 @@ const ModalContent = styled.p`
   text-align: center;
 `;
 
-const CloseButton = styled.button`
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+const Button = styled.button`
   padding: 12px 16px;
   font-size: 16px;
   font-weight: bold;
   color: white;
-  background-color: #2faa9a;
+  background-color: ${({ confirm }) => (confirm ? '#4aaa87' : '#e53e3e')};
   border: none;
   border-radius: 4px;
   cursor: pointer;
   &:hover {
-    background-color: #6dc4b0;
+    background-color: ${({ confirm }) => (confirm ? '#3b8b6d' : '#c53030')};
   }
 `;
 
-const CustomModal = ({ isOpen, onRequestClose, title, content }) => (
+const CustomModal = ({ isOpen, onRequestClose, title, content, onConfirm, closeModal }) => (
   <ModalContainer
     isOpen={isOpen}
     onRequestClose={onRequestClose}
-    contentLabel="Error Message"
+    contentLabel="Delete Confirmation"
     ariaHideApp={false}
   >
     <ModalTitle>{title}</ModalTitle>
     <ModalContent>{content}</ModalContent>
-    <CloseButton onClick={onRequestClose}>닫기</CloseButton>
+    <ButtonContainer>
+      <Button confirm onClick={onConfirm}>확인</Button>
+      <Button onClick={closeModal}>닫기</Button>
+    </ButtonContainer>
   </ModalContainer>
 );
 

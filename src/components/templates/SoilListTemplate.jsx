@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from 'axios';
 import { FaTrash } from 'react-icons/fa';
-import Modal from 'react-modal';
+import CustomModal from '../atoms/DeleteModal';  // 확장자 .jsx를 명시합니다.
 
 const PageContainer = styled.div`
   display: flex;
@@ -114,103 +114,10 @@ const AddButton = styled.button`
   }
 `;
 
-const ModalContent = styled.div`
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  overflow-y: auto;
-
-  @media (max-width: 600px) {
-    padding: 10px;
-  }
-`;
-
-const CloseButton = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #aaa;
-
-  &:hover {
-    color: #000;
-  }
-`;
-
-const RecommendationContainer = styled.div`
-  margin-top: 20px;
-  width: 100%;
-  max-width: 600px;
-
-  @media (max-width: 600px) {
-    width: 100%;
-  }
-`;
-
-const RecommendationTitle = styled.h2`
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-
-  @media (max-width: 600px) {
-    font-size: 1rem;
-    margin-bottom: 5px;
-  }
-`;
-
-const TableContainer = styled.div`
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-
-  @media (max-width: 600px) {
-    margin-bottom: 10px;
-  }
-`;
-
-const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-`;
-
-const TableHeader = styled.th`
-  border: 1px solid #ccc;
-  padding: 8px;
-  background-color: #f2f2f2;
-
-  @media (max-width: 600px) {
-    padding: 4px;
-    font-size: 0.8rem;
-  }
-`;
-
-const TableData = styled.td`
-  border: 1px solid #ccc;
-  padding: 8px;
-
-  @media (max-width: 600px) {
-    padding: 4px;
-    font-size: 0.8rem;
-  }
-`;
-
-const formatValue = (value) => {
-  const parsedValue = parseFloat(value);
-  return isNaN(parsedValue) ? 'N/A' : (parsedValue % 1 ? parsedValue.toFixed(2) : parsedValue.toString());
-};
-
 const SoilListTemplate = () => {
   const [soilData, setSoilData] = useState([]);
-  const [selectedSoilData, setSelectedSoilData] = useState(null);
-  const [fertilizerData, setFertilizerData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedSessionId, setSelectedSessionId] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -228,17 +135,8 @@ const SoilListTemplate = () => {
     fetchSoilData();
   }, []);
 
-  const handleSoilDataClick = (sessionId) => {
-    const selectedSession = soilData.find((session) => session.session_id === sessionId);
-    if (selectedSession) {
-      setSelectedSoilData(selectedSession.soil_data);
-      setFertilizerData(selectedSession.fertilizer_data);
-      setIsModalOpen(true);
-    }
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const handleSoilDataClick = (data) => {
+    navigate(`/soil_details`, { state: { soilData: data.soil_data, fertilizerData: data.fertilizer_data, crop: data.crop_name } });
   };
 
   const getCSRFToken = () => {
@@ -256,19 +154,30 @@ const SoilListTemplate = () => {
     return cookieValue;
   };
 
-  const handleDeleteSoilData = async (sessionId) => {
+  const handleDeleteSoilData = async () => {
     const csrfToken = getCSRFToken(); // CSRF 토큰 가져오기
     try {
-      await axios.delete(`http://localhost:8000/soil/delete_soil_data/${sessionId}/`, {
+      await axios.delete(`http://localhost:8000/soil/delete_soil_data/${selectedSessionId}/`, {
         headers: {
           'X-CSRFToken': csrfToken
         },
         withCredentials: true,
       });
-      setSoilData(soilData.filter(soil => soil.session_id !== sessionId));
+      setSoilData(soilData.filter(soil => soil.session_id !== selectedSessionId));
+      closeModal();
     } catch (error) {
       console.error('Failed to delete soil data', error);
     }
+  };
+
+  const openModal = (sessionId) => {
+    setSelectedSessionId(sessionId);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedSessionId(null);
   };
 
   const handleAddClick = () => {
@@ -292,20 +201,20 @@ const SoilListTemplate = () => {
       <Content>
         <SessionList>
           {Object.keys(groupedData).map(sessionId => (
-            <SessionItem key={sessionId} onClick={() => handleSoilDataClick(sessionId)}>
+            <SessionItem key={sessionId} onClick={() => handleSoilDataClick(groupedData[sessionId][0])}>
               <SessionInfo>
                 {groupedData[sessionId].map(soil => (
                   <div key={soil.id}>
-                    <div>Crop Name: {soil.crop_name}</div>
-                    <div>Address: {soil.address}</div>
-                    <div>Detailed Address: {soil.detailed_address}</div>
-                    <div>Created At: {soil.created_at}</div>
+                    <div>작물 이름 : {soil.crop_name}</div>
+                    <div>주소 : {soil.address}</div>
+                    <div>상세 주소 : {soil.detailed_address}</div>
+                    <div>시간 : {soil.created_at}</div>
                   </div>
                 ))}
               </SessionInfo>
               <DeleteButton onClick={(e) => {
                 e.stopPropagation();
-                handleDeleteSoilData(sessionId);
+                openModal(sessionId);
               }}>
                 <FaTrash />
               </DeleteButton>
@@ -314,138 +223,14 @@ const SoilListTemplate = () => {
         </SessionList>
         <AddButton onClick={handleAddClick}>새 토양 데이터 추가</AddButton>
       </Content>
-
-      <Modal
+      <CustomModal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
-        contentLabel="Soil Data Modal"
-        ariaHideApp={false}
-        style={{
-          overlay: {
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          },
-          content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-            width: '80%',
-            maxWidth: '400px',
-            borderRadius: '10px',
-            padding: '20px',
-            maxHeight: '80vh',
-            overflow: 'hidden',
-          },
-        }}
-      >
-        {selectedSoilData && (
-          <ModalContent>
-            <CloseButton onClick={closeModal}>&times;</CloseButton>
-            <RecommendationContainer>
-              <RecommendationTitle>토양 분석 데이터</RecommendationTitle>
-              <TableContainer>
-                <Table>
-                  <thead>
-                    <tr>
-                      <TableHeader>항목</TableHeader>
-                      <TableHeader>값</TableHeader>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <TableData>산도(ACID)</TableData>
-                      <TableData>{formatValue(selectedSoilData.acid)} (pH)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>유기물(OM)</TableData>
-                      <TableData>{formatValue(selectedSoilData.om)} (g/kg)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>인산(VLDPHA)</TableData>
-                      <TableData>{formatValue(selectedSoilData.vldpha)} (mg/kg)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>칼륨(K)</TableData>
-                      <TableData>{formatValue(selectedSoilData.posifert_K)} (cmol+/kg)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>칼슘(Ca)</TableData>
-                      <TableData>{formatValue(selectedSoilData.posifert_Ca)} (cmol+/kg)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>마그네슘(Mg)</TableData>
-                      <TableData>{formatValue(selectedSoilData.posifert_Mg)} (cmol+/kg)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>규산(VLDSIA)</TableData>
-                      <TableData>{formatValue(selectedSoilData.vldsia)} (mg/kg)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>전기전도도(SELC)</TableData>
-                      <TableData>{formatValue(selectedSoilData.selc)} (dS/m)</TableData>
-                    </tr>
-                  </tbody>
-                </Table>
-              </TableContainer>
-              <RecommendationTitle>비료 추천 데이터</RecommendationTitle>
-              <TableContainer>
-                <Table>
-                  <thead>
-                    <tr>
-                      <TableHeader>항목</TableHeader>
-                      <TableHeader>값</TableHeader>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <TableData>밑거름_질소 처방량</TableData>
-                      <TableData>{fertilizerData.pre_Fert_N} (kg/10a)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>밑거름_인산 처방량</TableData>
-                      <TableData>{fertilizerData.pre_Fert_P} (kg/10a)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>밑거름_칼리 처방량</TableData>
-                      <TableData>{fertilizerData.pre_Fert_K} (kg/10a)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>웃거름_질소 처방량</TableData>
-                      <TableData>{fertilizerData.post_Fert_N} (kg/10a)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>웃거름_인산 처방량</TableData>
-                      <TableData>{fertilizerData.post_Fert_P} (kg/10a)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>웃거름_칼리 처방량</TableData>
-                      <TableData>{fertilizerData.post_Fert_K} (kg/10a)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>우분퇴비 처방량</TableData>
-                      <TableData>{fertilizerData.pre_Compost_Cattl} (kg/10a)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>돈분퇴비 처방량</TableData>
-                      <TableData>{fertilizerData.pre_Compost_Pig} (kg/10a)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>계분퇴비 처방량</TableData>
-                      <TableData>{fertilizerData.pre_Compost_Chick} (kg/10a)</TableData>
-                    </tr>
-                    <tr>
-                      <TableData>혼합퇴비 처방량</TableData>
-                      <TableData>{fertilizerData.pre_Compost_Mix} (kg/10a)</TableData>
-                    </tr>
-                  </tbody>
-                </Table>
-              </TableContainer>
-            </RecommendationContainer>
-          </ModalContent>
-        )}
-      </Modal>
+        title="삭제 확인"
+        content="정말로 이 토양 데이터를 삭제하시겠습니까?"
+        onConfirm={handleDeleteSoilData}
+        closeModal={closeModal}
+      />
     </PageContainer>
   );
 };

@@ -90,15 +90,18 @@ const DeleteAccountModal = ({ isOpen, onRequestClose }) => {
       .then((response) => {
         setMessage("계정이 성공적으로 삭제되었습니다.");
         setError("");
-
-        alert("회원 탈퇴 성공")
-        // 회원 탈퇴하면 어디 페이지로 가지,,,,,
-        window.location.reload();
-        navigate('/');
+        alert("회원 탈퇴 성공");
+        setTimeout(() => {
+          navigate('/');
+          window.location.reload();
+        }, 2000);
       })
       .catch((error) => {
         if (error.response) {
-          setError(error.response.data.errors || "계정 삭제 중 오류가 발생했습니다.");
+          setError(error.response.data.message || "계정 삭제 중 오류가 발생했습니다.");
+          setMessage("");
+        } else {
+          setError("계정 삭제 중 오류가 발생했습니다.");
           setMessage("");
         }
       });

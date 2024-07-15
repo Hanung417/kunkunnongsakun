@@ -206,7 +206,21 @@ const WritePostTemplate = () => {
     }
 
     try {
+<<<<<<< HEAD
       const data = await createPost(formData, csrfToken);
+=======
+      const response = await axios.post(
+        "http://localhost:8000/community/post/create/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "X-CSRFToken": getCSRFToken(),
+          },
+          withCredentials: true,
+        }
+      );
+>>>>>>> b6ec59747871123d9d9d3bb283682905282d0348
       alert("글 작성 성공");
       navigate(`/post/${data.id}`);
     } catch (error) {
