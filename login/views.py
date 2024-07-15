@@ -115,7 +115,7 @@ def send_verification_email(request):
         data = json.loads(request.body)
         email = data['email']
         if User.objects.filter(email=email).exists():
-            raise DuplicateResourceError("This email is already in use")
+            raise DuplicateResourceError("이미 사용중인 이메일입니다.")
         verification_code = random.randint(1000, 9999)
         send_mail(
             'Your Verification Code',
@@ -125,11 +125,13 @@ def send_verification_email(request):
             fail_silently=False,
         )
         request.session['verification_code'] = str(verification_code)
-        return JsonResponse({'message': 'Verification code sent!'})
+        return JsonResponse({'message': '이메일로 인증번호가 발송되었습니다.'})
     except KeyError:
         raise ValidationError("Email field is required")
     except json.JSONDecodeError:
         raise ValidationError("Invalid JSON format")
+    except DuplicateResourceError as e:
+        return JsonResponse({'message': str(e)}, status=409)
     except Exception as e:
         logger.error(f"Error sending verification email: {str(e)}")
         raise InternalServerError("Failed to send verification email")
