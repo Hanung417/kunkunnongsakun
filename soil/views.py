@@ -219,7 +219,7 @@ def get_crop_data_by_user(request):
             'crop_name': crop_instance.crop_name,
             'address': crop_instance.address,
             'detailed_address': crop_instance.detailed_address,
-            'created_at': crop_instance.created_at,  # 날짜 형식을 ISO 형식으로 변환
+            'created_at': crop_instance.created_at.strftime('%Y-%m-%d %H:%M:%S'),
             'soil_data': crop_instance.soil_data,
             'fertilizer_data': crop_instance.fertilizer_data,
         }
