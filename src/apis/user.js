@@ -18,3 +18,11 @@ export const signupUser = (formData) => {
 export const loginUser = (email, password) => {
   return instance.post("/login/login/", { email, password });
 };
+
+export const checkAuthStatus = () => {
+  return instance.get('login/auth_check/');
+};
+
+export const logoutUser = () => {
+  return instance.post('login/logout/', {});
+};
