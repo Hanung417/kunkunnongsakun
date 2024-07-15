@@ -53,7 +53,8 @@ def upload_image_for_detection(request):
             'prevention_methods': pest_info.prevention_methods,
             'pesticide_name': pest_info.pesticide_name,
             'confidence': confidence,
-            'image_url': detection.image.url  # Return the URL of the image in S3
+            'user_image_url': detection.image.url, # 사용자가 넣은 이미지
+            'db_image_url': detection.pest.image_url # 디비에 있는 이미지
         }
         return JsonResponse(data, status=200)
 
@@ -93,7 +94,8 @@ def detection_session_details(request, session_id):
             'pesticide_name': session.pest.pesticide_name,
             'detection_date': session.detection_date.strftime('%Y-%m-%d %H:%M'),
             'confidence': session.confidence,
-            'image_url': session.image.url
+            'user_image_url': session.image.url, # 사용자가 넣은 이미지
+            'db_image_url': session.pest.image_url # 디비에 있는 이미지
         }
         return JsonResponse(details)
     except PestDetection.DoesNotExist:
