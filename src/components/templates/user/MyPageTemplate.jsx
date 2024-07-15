@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import styled from "styled-components";
+import { checkAuthStatus } from "../../../apis/user";
 import ChangePasswordModal from "./ChangePasswordModal";
 import ChangeUsernameModal from "./ChangeUsernameModal";
 import DeleteAccountModal from "./DeleteAccountModal";
@@ -81,7 +81,7 @@ const MyPageTemplate = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/login/auth_check/", { withCredentials: true });
+        const response = await checkAuthStatus();
         setUsername(response.data.username);
       } catch (error) {
         console.error("Failed to fetch user data", error);
