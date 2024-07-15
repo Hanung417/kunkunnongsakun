@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { createPost } from "../../apis/board"; // 경로 수정
 
 const Container = styled.div`
   padding: 24px;
@@ -206,20 +206,9 @@ const WritePostTemplate = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/community/post/create/",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            "X-CSRFToken": csrfToken,
-          },
-          withCredentials: true,
-        }
-      );
+      const data = await createPost(formData, csrfToken);
       alert("글 작성 성공");
-      console.log("Created post", response.data);
-      navigate(`/post/${response.data.id}`);
+      navigate(`/post/${data.id}`);
     } catch (error) {
       console.error("Failed to create post", error);
     }

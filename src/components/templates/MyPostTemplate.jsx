@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom"; // Link 추가
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { fetchUserPosts, deletePost } from "../../apis/board"; // 경로 수정
 
 const Container = styled.div`
   display: flex;
@@ -88,38 +88,17 @@ const MyPostTemplate = () => {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
 
-  const getCSRFToken = () => {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, 10) === 'csrftoken=') {
-          cookieValue = decodeURIComponent(cookie.substring(10));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  }
-
   useEffect(() => {
-    const fetchPosts = async () => {
+    const loadPosts = async () => {
       try {
-        const csrfToken = getCSRFToken();
-        const response = await axios.get("http://localhost:8000/community/myposts/", {
-          headers: {
-            'X-CSRFToken': csrfToken
-          },
-          withCredentials: true
-        });
-        const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
+        const data = await fetchUserPosts();
+        const sortedPosts = data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
         setPosts(sortedPosts);
       } catch (error) {
         console.error("Failed to fetch posts", error);
       }
     };
-    fetchPosts();
+    loadPosts();
   }, []);
 
   const handleEdit = (postId) => {
@@ -128,13 +107,7 @@ const MyPostTemplate = () => {
 
   const handleDelete = async (postId) => {
     try {
-      const csrfToken = getCSRFToken();
-      await axios.post(`http://localhost:8000/community/post/${postId}/delete/`, {}, {
-        headers: {
-          'X-CSRFToken': csrfToken
-        },
-        withCredentials: true
-      });
+      await deletePost(postId);
       setPosts(posts.filter(post => post.id !== postId));
     } catch (error) {
       console.error("Failed to delete post", error);

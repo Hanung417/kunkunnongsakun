@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
 import { FaArrowLeft } from "react-icons/fa";
+import { fetchPost, createComment, updateComment, deleteComment } from "../../apis/board"; // 경로 수정
 
 const Container = styled.div`
   display: flex;
@@ -170,21 +170,6 @@ const CommentButton = styled.button`
   }
 `;
 
-const getCSRFToken = () => {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== '') {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, 10) === 'csrftoken=') {
-        cookieValue = decodeURIComponent(cookie.substring(10));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-};
-
 const PostDetailTemplate = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -197,19 +182,19 @@ const PostDetailTemplate = () => {
   const [editCommentContent, setEditCommentContent] = useState("");
   const currentUserId = localStorage.getItem("userId");
 
-  const fetchPost = useCallback(async () => {
+  const loadPost = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/community/post/${id}/`);
-      setPost(response.data);
-      setComments(response.data.comments || []);
+      const data = await fetchPost(id);
+      setPost(data);
+      setComments(data.comments || []);
     } catch (error) {
       console.error("Failed to fetch post", error);
     }
   }, [id]);
 
   useEffect(() => {
-    fetchPost();
-  }, [fetchPost]);
+    loadPost();
+  }, [loadPost]);
 
   const handleCommentChange = (event) => {
     setNewComment(event.target.value);
@@ -226,15 +211,8 @@ const PostDetailTemplate = () => {
   const handleSubmitComment = async (event) => {
     event.preventDefault();
     try {
-      await axios.post(`http://localhost:8000/community/post/${id}/comment/create/`, {
-        content: newComment,
-      }, {
-        headers: {
-          'X-CSRFToken': getCSRFToken(),
-        },
-        withCredentials: true,
-      });
-      await fetchPost();
+      await createComment(id, { content: newComment });
+      await loadPost();
       setNewComment("");
     } catch (error) {
       console.error("Failed to post comment", error);
@@ -244,16 +222,8 @@ const PostDetailTemplate = () => {
   const handleSubmitReply = async (event) => {
     event.preventDefault();
     try {
-      await axios.post(`http://localhost:8000/community/post/${id}/comment/create/`, {
-        content: newReply,
-        parent_id: replyCommentId,
-      }, {
-        headers: {
-          'X-CSRFToken': getCSRFToken(),
-        },
-        withCredentials: true,
-      });
-      await fetchPost();
+      await createComment(id, { content: newReply, parent_id: replyCommentId });
+      await loadPost();
       setNewReply("");
       setReplyCommentId(null);
     } catch (error) {
@@ -263,15 +233,8 @@ const PostDetailTemplate = () => {
 
   const handleEditComment = async (commentId) => {
     try {
-      await axios.post(`http://localhost:8000/community/comment/${commentId}/edit/`, {
-        content: editCommentContent,
-      }, {
-        headers: {
-          'X-CSRFToken': getCSRFToken(),
-        },
-        withCredentials: true,
-      });
-      await fetchPost();
+      await updateComment(commentId, { content: editCommentContent });
+      await loadPost();
       setEditCommentId(null);
       setEditCommentContent("");
     } catch (error) {
@@ -281,13 +244,8 @@ const PostDetailTemplate = () => {
 
   const handleDeleteComment = async (commentId) => {
     try {
-      await axios.post(`http://localhost:8000/community/comment/${commentId}/delete/`, {}, {
-        headers: {
-          'X-CSRFToken': getCSRFToken(),
-        },
-        withCredentials: true,
-      });
-      await fetchPost();
+      await deleteComment(commentId);
+      await loadPost();
     } catch (error) {
       console.error("Failed to delete comment", error);
     }
