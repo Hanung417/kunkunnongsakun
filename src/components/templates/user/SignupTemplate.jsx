@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { checkUsername, sendVerificationEmail, signupUser } from "../../../apis/user";
 import { useNavigate } from "react-router-dom";
+import CustomModal from "../../atoms/CustomModal";
 
 const Container = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const Container = styled.div`
 
 const Title = styled.h1`
   font-size: 24px;
-  margin-bottom: 32px;
+  margin-bottom: 18px;
   color: #333;
 `;
 
@@ -27,15 +28,15 @@ const Form = styled.form`
   max-width: 600px;
   background-color: white;
   padding: 24px;
-  border: 1px solid #2faa9a;
+  border: 1px solid #e5e7eb;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 `;
 
 const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 `;
 
 const Label = styled.label`
@@ -76,17 +77,27 @@ const Button = styled.button`
   font-size: 14px;
   height: 44px; 
   color: white;
-  background-color: #2faa9a;
+  background-color: #4aaa87;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   &:hover {
     background-color: #6dc4b0;
   }
+  &:disabled {
+    background-color: #9e9e9e;
+    cursor: not-allowed;
+  }
 `;
 
 const ErrorMessage = styled.div`
   color: red;
+  font-size: 12px;
+  margin-top: 4px;
+`;
+
+const SuccessMessage = styled.div`
+  color: green;
   font-size: 12px;
   margin-top: 4px;
 `;
@@ -101,11 +112,24 @@ const SignupTemplate = () => {
   });
 
   const [usernameError, setUsernameError] = useState("");
+  const [usernameAvailable, setUsernameAvailable] = useState("");
   const [emailError, setEmailError] = useState("");
   const [verificationCodeSent, setVerificationCodeSent] = useState(false);
   const [verificationCodeError, setVerificationCodeError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [signupError, setSignupError] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const [modalTitle, setModalTitle] = useState("오류"); // 모달 타이틀 상태 추가
+
+  const [isSignupSuccess, setIsSignupSuccess] = useState(false); // 회원가입 성공 상태 추가
+
+  useEffect(() => {
+    const { username, email, verification_code, password1, password2 } = formData;
+    const isFormFilled = username && email && verification_code && password1 && password2;
+    setIsButtonDisabled(!isFormFilled || usernameError || emailError || passwordError);
+  }, [formData, usernameError, emailError, passwordError]);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -113,9 +137,7 @@ const SignupTemplate = () => {
   };
 
   const validatePassword = (password) => {
-    // 비밀번호는 6자 이상, 하나 이상의 숫자, 하나 이상의 대문자, 하나 이상의 소문자, 하나 이상의 특수 문자를 포함해야 합니다.
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-    return passwordRegex.test(password);
+    return password.length >= 6;
   };
 
   const handleChange = (e) => {
@@ -132,7 +154,7 @@ const SignupTemplate = () => {
 
     if (name === "password1") {
       if (!validatePassword(value)) {
-        setPasswordError("비밀번호는 6자 이상, 하나 이상의 숫자, 대문자, 소문자, 특수 문자를 포함해야 합니다.");
+        setPasswordError("비밀번호는 6자 이상이어야 합니다.");
       } else {
         setPasswordError("");
       }
@@ -142,26 +164,30 @@ const SignupTemplate = () => {
   const handleUsernameCheck = () => {
     const username = formData.username;
     if (username.trim() === "") {
-      setUsernameError("Username cannot be empty.");
+      setUsernameError("이름을 입력해주세요");
+      setUsernameAvailable("");
       return;
     }
     checkUsername(username)
       .then((response) => {
         if (response.data.is_taken) {
           setUsernameError("이미 사용중인 이름입니다.");
+          setUsernameAvailable("");
         } else {
           setUsernameError("");
+          setUsernameAvailable("사용 가능한 이름입니다.");
         }
       })
       .catch(() => {
-        setUsernameError("An error occurred while checking the username.");
+        setUsernameError("이름 중복체크에서 오류가 발생했습니다.");
+        setUsernameAvailable("");
       });
   };
 
   const handleSendVerificationCode = () => {
     const email = formData.email;
     if (email.trim() === "") {
-      setEmailError("Email cannot be empty.");
+      setEmailError("이메일을 입력해주세요");
       return;
     }
     if (!validateEmail(email)) {
@@ -171,13 +197,16 @@ const SignupTemplate = () => {
     sendVerificationEmail(email)
       .then(() => {
         setVerificationCodeSent(true);
-        setVerificationCodeError("");
+        setVerificationCodeError("이메일로 인증번호가 발송되었습니다. 메일함을 확인해주세요");
       })
       .catch((error) => {
         const message = error.response && error.response.data && error.response.data.message
           ? error.response.data.message
-          : "An error occurred while sending the verification code.";
+          : "인증번호 전송에서 오류가 발생했습니다.";
         setVerificationCodeError(message);
+        setModalTitle("오류"); // 오류 시 모달 타이틀 설정
+        setModalContent(message);
+        setIsModalOpen(true);
       });
   };
 
@@ -188,18 +217,28 @@ const SignupTemplate = () => {
     const { username, email, verification_code, password1, password2 } = formData;
 
     if (password1 !== password2) {
-      setPasswordError("Passwords do not match.");
+      setPasswordError("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+      setModalTitle("오류"); // 오류 시 모달 타이틀 설정
+      setModalContent("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+      setIsModalOpen(true);
       return;
     }
 
     signupUser({ username, email, verification_code, password1, password2 })
       .then(() => {
-        alert("회원가입 성공");
-        navigate("/login"); // 회원가입 성공 시 로그인 페이지로 이동
+        setIsSignupSuccess(true); // 회원가입 성공 상태 설정
+        setModalTitle("성공"); // 성공 시 모달 타이틀 설정
+        setModalContent("회원가입 성공");
+        setIsModalOpen(true);
       })
       .catch((error) => {
         if (error.response) {
           const errors = error.response.data;
+          setModalTitle("오류"); // 오류 시 모달 타이틀 설정
+          if (errors.message) {
+            setModalContent(errors.message);
+            setIsModalOpen(true);
+          }
           if (errors.username) {
             setUsernameError(errors.username[0]);
           } else {
@@ -222,8 +261,17 @@ const SignupTemplate = () => {
           }
         } else {
           setSignupError("An error occurred during signup.");
+          setModalContent("An error occurred during signup.");
+          setIsModalOpen(true);
         }
       });
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    if (isSignupSuccess) {
+      navigate("/login"); // 회원가입 성공 시 로그인 페이지로 이동
+    }
   };
 
   return (
@@ -242,6 +290,7 @@ const SignupTemplate = () => {
             required
           />
           {usernameError && <ErrorMessage>{usernameError}</ErrorMessage>}
+          {usernameAvailable && <SuccessMessage>{usernameAvailable}</SuccessMessage>}
         </InputGroup>
         <EmailGroup>
           <Label>이메일</Label>
@@ -254,26 +303,24 @@ const SignupTemplate = () => {
               placeholder="이메일"
               required
             />
-            <Button type="button" onClick={handleSendVerificationCode}>
+            <Button type="button" onClick={handleSendVerificationCode} disabled={!validateEmail(formData.email)}>
               인증번호
             </Button>
           </EmailInputWrapper>
           {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
           {verificationCodeError && <ErrorMessage>{verificationCodeError}</ErrorMessage>}
         </EmailGroup>
-        {verificationCodeSent && (
-          <InputGroup>
-            <Label>인증번호</Label>
-            <Input
-              type="text"
-              name="verification_code"
-              value={formData.verification_code}
-              onChange={handleChange}
-              placeholder="인증번호"
-              required
-            />
-          </InputGroup>
-        )}
+        <InputGroup>
+          <Label>인증번호</Label>
+          <Input
+            type="text"
+            name="verification_code"
+            value={formData.verification_code}
+            onChange={handleChange}
+            placeholder="인증번호"
+            required
+          />
+        </InputGroup>
         <InputGroup>
           <Label>비밀번호</Label>
           <Input
@@ -284,7 +331,6 @@ const SignupTemplate = () => {
             placeholder="비밀번호"
             required
           />
-          {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
         </InputGroup>
         <InputGroup>
           <Label>비밀번호 확인</Label>
@@ -296,10 +342,12 @@ const SignupTemplate = () => {
             placeholder="비밀번호 확인"
             required
           />
+          {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
           {signupError && <ErrorMessage>{signupError}</ErrorMessage>}
         </InputGroup>
-        <Button type="submit">가입하기</Button>
+        <Button type="submit" disabled={isButtonDisabled}>가입하기</Button>
       </Form>
+      <CustomModal isOpen={isModalOpen} onRequestClose={closeModal} title={modalTitle} content={modalContent} />
     </Container>
   );
 };

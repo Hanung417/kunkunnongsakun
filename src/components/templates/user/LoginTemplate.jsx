@@ -60,7 +60,7 @@ const Button = styled.button`
   padding: 12px 16px;
   font-size: 16px;
   font-weight: bold;
-  height: 44px; /* Adjust height to match input field */
+  height: 44px; 
   color: white;
   background-color: ${({ disabled }) => (disabled ? '#9e9e9e' : '#4aaa87')};
   border: none;
@@ -107,6 +107,8 @@ const LoginTemplate = () => {
   const [loginError, setLoginError] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const [modalTitle, setModalTitle] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -146,24 +148,32 @@ const LoginTemplate = () => {
       .then((response) => {
         const { status, message, user_id } = response.data;
         if (status === "success") {
-          // 사용자 정보를 로컬 스토리지에 저장
           localStorage.setItem("userId", user_id);
           localStorage.setItem("isLoggedIn", "true");
-          // 로그인 후의 동작을 정의, 예: 리다이렉트
-          alert("로그인이 완료되었습니다.");
-          navigate('/');
+          setModalContent("로그인이 완료되었습니다.");
+          setModalTitle("성공");
+          setIsModalOpen(true);
+          setTimeout(() => {
+            setIsModalOpen(false);
+            navigate('/');
+          }, 2000);
         } else {
           setLoginError(message);
+          setModalContent(message);
+          setModalTitle("오류");
           setIsModalOpen(true);
         }
       })
       .catch((error) => {
         if (error.response) {
           const { data } = error.response;
-          setLoginError(data.message || "An error occurred during login.");
+          setLoginError(data.message || "로그인 과정에서 오류가 발생했습니다.");
+          setModalContent(data.message || "로그인 과정에서 오류가 발생했습니다.");
         } else {
-          setLoginError("An error occurred during login.");
+          setLoginError("로그인 과정에서 오류가 발생했습니다.");
+          setModalContent("로그인 과정에서 오류가 발생했습니다.");
         }
+        setModalTitle("오류");
         setIsModalOpen(true);
       });
   };
@@ -211,8 +221,8 @@ const LoginTemplate = () => {
       <CustomModal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
-        title="오류"
-        content={loginError}
+        title={modalTitle}
+        content={modalContent}
       />
     </Container>
   );

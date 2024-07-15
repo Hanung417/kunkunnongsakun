@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import ChangePasswordModal from "./user/ChangePasswordModal";
 import ChangeUsernameModal from "./user/ChangeUsernameModal";
-import DeleteAccountModal from "./DeleteAccountModal";
+import DeleteAccountModal from "./user/DeleteAccountModal";
 
 const Container = styled.div`
   display: flex;

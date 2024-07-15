@@ -1,5 +1,3 @@
-// PostDetailTemplate.js
-
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -162,6 +160,21 @@ const CommentButton = styled.button`
   }
 `;
 
+const getCSRFToken = () => {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, 10) === 'csrftoken=') {
+        cookieValue = decodeURIComponent(cookie.substring(10));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+};
+
 const PostDetailTemplate = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -205,6 +218,11 @@ const PostDetailTemplate = () => {
     try {
       await axios.post(`http://localhost:8000/community/post/${id}/comment/create/`, {
         content: newComment,
+      }, {
+        headers: {
+          'X-CSRFToken': getCSRFToken(),
+        },
+        withCredentials: true,
       });
       await fetchPost();
       setNewComment("");
@@ -219,6 +237,11 @@ const PostDetailTemplate = () => {
       await axios.post(`http://localhost:8000/community/post/${id}/comment/create/`, {
         content: newReply,
         parent_id: replyCommentId,
+      }, {
+        headers: {
+          'X-CSRFToken': getCSRFToken(),
+        },
+        withCredentials: true,
       });
       await fetchPost();
       setNewReply("");
@@ -232,6 +255,11 @@ const PostDetailTemplate = () => {
     try {
       await axios.post(`http://localhost:8000/community/comment/${commentId}/edit/`, {
         content: editCommentContent,
+      }, {
+        headers: {
+          'X-CSRFToken': getCSRFToken(),
+        },
+        withCredentials: true,
       });
       await fetchPost();
       setEditCommentId(null);
@@ -243,7 +271,12 @@ const PostDetailTemplate = () => {
 
   const handleDeleteComment = async (commentId) => {
     try {
-      await axios.post(`http://localhost:8000/community/comment/${commentId}/delete/`);
+      await axios.post(`http://localhost:8000/community/comment/${commentId}/delete/`, {}, {
+        headers: {
+          'X-CSRFToken': getCSRFToken(),
+        },
+        withCredentials: true,
+      });
       await fetchPost();
     } catch (error) {
       console.error("Failed to delete comment", error);

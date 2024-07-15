@@ -52,7 +52,7 @@ const CustomModal = ({ isOpen, onRequestClose, title, content }) => (
     isOpen={isOpen}
     onRequestClose={onRequestClose}
     contentLabel="Error Message"
-    ariaHideApp={false} // 추가: 테스트 및 개발을 위한 설정
+    ariaHideApp={false}
   >
     <ModalTitle>{title}</ModalTitle>
     <ModalContent>{content}</ModalContent>

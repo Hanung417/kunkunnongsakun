@@ -135,7 +135,7 @@ const ListTemplate = () => {
     }
     return cookieValue;
   };
-  
+
 
   const handleDeleteSession = async (sessionId) => {
     const csrfToken = getCSRFToken(); // CSRF 토큰 가져오기
@@ -151,7 +151,7 @@ const ListTemplate = () => {
       console.error('Failed to delete session', error);
     }
   };
-  
+
 
   const handleAddClick = () => {
     navigate('/diagnosis');
@@ -176,7 +176,7 @@ const ListTemplate = () => {
                 handleDeleteSession(session.session_id);
               }}>
                 <FaTrash />
-              </DeleteButton>              
+              </DeleteButton>
             </SessionItem>
           ))}
         </SessionList>
