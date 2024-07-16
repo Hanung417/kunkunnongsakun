@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { fetchDetectionSessions, fetchSessionDetails, deleteDetectionSession } from "../../apis/predict";
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaPlus } from 'react-icons/fa';
 import ConfirmModal from '../atoms/ConfirmModal';
 
 const PageContainer = styled.div`
@@ -17,11 +17,9 @@ const PageContainer = styled.div`
 const HeaderContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #4aaa87;
-  color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
@@ -56,8 +54,11 @@ const SessionItem = styled.div`
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
   &:hover {
-    background-color: #ddd;
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -78,21 +79,34 @@ const DeleteButton = styled.button`
   }
 `;
 
-const AddButton = styled.button`
+const AddButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 16px;
   background-color: #4aaa87;
   color: white;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1.5rem;
-  width: 100%;
-  text-align: center;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;  
+  transition: background-color 0.3s;
   &:hover {
     background-color: #6dc4b0;
   }
+`;
+
+const AddButtonIcon = styled(FaPlus)`
+  margin-right: 8px;
+`;
+
+const AddButtonText = styled.span`
+  font-size: 1.2rem;
+`;
+
+const EmptyMessage = styled.div`
+  text-align: center;
+  color: #888;
+  font-size: 1.2rem;
+  margin-top: 50px;
 `;
 
 const DiagnosisListTemplate = () => {
@@ -117,7 +131,7 @@ const DiagnosisListTemplate = () => {
   const handleSessionClick = async (sessionId) => {
     try {
       const response = await fetchSessionDetails(sessionId);
-      navigate('/info', { state: { diagnosisResult: response.data } }); // InfoTemplate에 세션 상세 정보를 전달
+      navigate('/info', { state: { diagnosisResult: response.data } });
     } catch (error) {
       console.error('Failed to fetch session details', error);
       alert('Failed to load the details for this session.');
@@ -150,27 +164,33 @@ const DiagnosisListTemplate = () => {
   return (
     <PageContainer>
       <HeaderContainer>
-        <Title>병해충 진단 목록</Title>
+        <AddButtonContainer onClick={handleAddClick}>
+          <AddButtonIcon />
+          <AddButtonText>새 진단 시작</AddButtonText>
+        </AddButtonContainer>
       </HeaderContainer>
       <Content>
-        <AddButton onClick={handleAddClick}>새 진단 시작</AddButton>
-        <SessionList>
-          {sessions.map(session => (
-            <SessionItem key={session.session_id} onClick={() => handleSessionClick(session.session_id)}>
-              <SessionInfo>
-                <div>{session.pest_name}</div>
-                <div>{session.detection_date}</div>
-                <div>Confidence: {session.confidence}</div>
-              </SessionInfo>
-              <DeleteButton onClick={(e) => {
-                e.stopPropagation();
-                openDeleteModal(session.session_id);
-              }}>
-                <FaTrash />
-              </DeleteButton>
-            </SessionItem>
-          ))}
-        </SessionList>
+        {sessions.length === 0 ? (
+          <EmptyMessage>첫 진단을 시작해보세요!</EmptyMessage>
+        ) : (
+          <SessionList>
+            {sessions.map(session => (
+              <SessionItem key={session.session_id} onClick={() => handleSessionClick(session.session_id)}>
+                <SessionInfo>
+                  <div>{session.pest_name}</div>
+                  <div>{session.detection_date}</div>
+                  <div>Confidence: {session.confidence}</div>
+                </SessionInfo>
+                <DeleteButton onClick={(e) => {
+                  e.stopPropagation();
+                  openDeleteModal(session.session_id);
+                }}>
+                  <FaTrash />
+                </DeleteButton>
+              </SessionItem>
+            ))}
+          </SessionList>
+        )}
       </Content>
       <ConfirmModal
         isOpen={isModalOpen}

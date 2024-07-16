@@ -6,7 +6,7 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px;
+  padding: 20px;
   background-color: #f9f9f9;
   height: 100%;
 `;
@@ -128,9 +128,6 @@ const InfoTemplate = () => {
 
   return (
     <PageContainer>
-      <HeaderContainer>
-        <Title> 병해충 진단 결과 </Title>
-      </HeaderContainer>
       <LayoutContainer>
         <ImageBox>
           <ImageTitle>병해충 이미지</ImageTitle>
