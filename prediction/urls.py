@@ -11,6 +11,6 @@ urlpatterns = [
     path('delete_session/<str:session_id>/', views.delete_prediction_session, name='delete_prediction_session'),
     path('get_crop_names/', views.get_crop_names, name='get_crop_names'),
     path('get_region_names/', views.get_region_names, name='get_region_names'),
-
+    path('update_session_name/<str:session_id>/', views.update_session_name, name='update_session_name'),
 ]
 
