@@ -9,7 +9,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 16px;
-  background-color: #f2f2f2;
 `;
 
 const PostList = styled.div`
