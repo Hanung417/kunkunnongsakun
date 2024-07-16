@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FaTrash } from 'react-icons/fa';
-import CustomModal from '../atoms/DeleteModal';
+import ConfirmModal from "../atoms/ConfirmModal";
 import { getSoilCropData, deleteSoilData } from "../../apis/predict";
 
 const PageContainer = styled.div`
@@ -200,13 +200,19 @@ const SoilListTemplate = () => {
         </SessionList>
         <AddButton onClick={handleAddClick}>새 토양 데이터 추가</AddButton>
       </Content>
-      <CustomModal
+      <ConfirmModal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         title="삭제 확인"
         content="정말로 이 토양 데이터를 삭제하시겠습니까?"
         onConfirm={handleDeleteSoilData}
         closeModal={closeModal}
+        confirmText="삭제"
+        cancelText="취소"
+        confirmColor="#e53e3e"
+        confirmHoverColor="#c53030"
+        cancelColor="#4aaa87"
+        cancelHoverColor="#3b8b6d"
       />
     </PageContainer>
   );
