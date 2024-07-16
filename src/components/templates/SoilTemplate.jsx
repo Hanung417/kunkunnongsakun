@@ -193,6 +193,7 @@ const SoilTest = () => {
   const [error, setError] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedSoilSample, setSelectedSoilSample] = useState(null);
+  const [isFetching, setIsFetching] = useState(false); // 상태 추가
 
   const inputRef = useRef(null);
 
@@ -244,6 +245,12 @@ const SoilTest = () => {
       return;
     }
 
+    if (isFetching) {
+      return; // 이미 fetching 중이라면 아무것도 하지 않음
+    }
+
+    setIsFetching(true); // 비활성화 시작
+
     const latestSoilSample = soilData.find(sample => sample.No === selectedSample);
     const sanitizedSample = {
       ...latestSoilSample,
@@ -278,6 +285,8 @@ const SoilTest = () => {
     } catch (err) {
       setError(err.response.data.error);
       setFertilizerData(null);
+    } finally {
+      setIsFetching(false); // 비활성화 종료
     }
   };
 
@@ -356,7 +365,7 @@ const SoilTest = () => {
           ))}
         </Select>
         <ButtonContainer>
-          <Button onClick={fetchFertilizerData} disabled={!selectedSample}>분석하기</Button>
+          <Button onClick={fetchFertilizerData} disabled={isFetching || !selectedSample}>분석하기</Button>
           <Button onClick={closeModal}>닫기</Button>
         </ButtonContainer>
       </Modal>
