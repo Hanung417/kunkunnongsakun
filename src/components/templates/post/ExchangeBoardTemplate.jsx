@@ -2,61 +2,20 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchPosts } from "../../../apis/post";
-import { FaArrowLeft, FaHome } from "react-icons/fa";
+import { FaPen } from "react-icons/fa";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 16px;
-  background-color: #f9f9f9;
-`;
-
-const TitleBar = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: center;
-  position: relative;
-`;
-
-const ButtonGroup = styled.div`
-  position: absolute;
-  left: 0;
-  display: flex;
-  align-items: center;
-`;
-
-const IconButton = styled.button`
-  padding: 8px 16px;
-  font-size: 16px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: #4aaa87;
-
-  &:hover {
-    color: #3e8e75;
-  }
-
-  & > svg {
-    font-size: 24px;
-  }
-
-  &:not(:last-child) {
-    margin-right: 8px;
-  }
-`;
-
-const Title = styled.h1`
-  font-size: 24px;
-  margin-bottom: 32px;
-  color: #333;
+  background-color: #f2f2f2;
 `;
 
 const PostList = styled.div`
   display: grid;
   gap: 1rem;
+  width: 100%;
 `;
 
 const Table = styled.table`
@@ -80,7 +39,7 @@ const TableRow = styled.tr`
 `;
 
 const TableCell = styled.td`
-  padding: 12px;
+  padding: 8px;
   border-bottom: 1px solid #ccc;
   font-size: 14px;
   color: ${(props) => (props.$header ? "aliceblue" : "black")};
@@ -103,12 +62,27 @@ const PostTitle = styled.span`
   text-overflow: ellipsis;
 `;
 
-const SearchBar = styled.input`
-  font-size: 16px;
+const CommentCount = styled.span`
+  font-size: 14px;
+  color: gray;
+  margin-left: 8px;
+`;
+
+const SearchBar = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  padding: 16px;
+`;
+
+const SearchInput = styled.input`
+  font-size: 14px;
   border: 2px solid #4aaa87;
   padding: 8px;
   border-radius: 12px;
-  margin-bottom: 16px;
+  flex: 1;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   &:focus {
     outline: none;
@@ -117,14 +91,16 @@ const SearchBar = styled.input`
 `;
 
 const CreatePostButton = styled(Link)`
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 8px 16px;
-  margin-bottom: 16px;
-  font-size: 16px;
+  font-size: 14px;
   color: white;
   background-color: #4aaa87;
   border-radius: 8px;
   text-decoration: none;
+  margin-left: 8px;
   &:hover {
     background-color: #6dc4b0;
   }
@@ -136,16 +112,16 @@ const ExchangeBoardTemplate = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchPostsData = async () => {
       try {
-        const response = await fetchPosts('exchange');
+        const response = await fetchPosts("exchange");
         const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
         setPosts(sortedPosts);
       } catch (error) {
         console.error("Failed to fetch posts", error);
       }
     };
-    fetchData();
+    fetchPostsData();
   }, []);
 
   const filteredPosts = posts.filter((post) =>
@@ -156,34 +132,19 @@ const ExchangeBoardTemplate = () => {
     setSearchTerm(event.target.value);
   };
 
-  const handleBackClick = () => {
-    navigate(-1);
-  };
-
-  const handleHomeClick = () => {
-    navigate('/');
-  };
-
   return (
     <Container>
-      <TitleBar>
-        <ButtonGroup>
-          <IconButton onClick={handleBackClick}>
-            <FaArrowLeft />
-          </IconButton>
-          <IconButton onClick={handleHomeClick}>
-            <FaHome />
-          </IconButton>
-        </ButtonGroup>
-        <Title>품앗이 게시판</Title>
-      </TitleBar>
-      <SearchBar
-        type="text"
-        placeholder="제목을 검색하세요"
-        value={searchTerm}
-        onChange={handleSearchChange}
-      />
-      <CreatePostButton to="/post/create?post_type=exchange">글 작성</CreatePostButton>
+      <SearchBar>
+        <SearchInput
+          type="text"
+          placeholder="제목을 검색하세요"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+        <CreatePostButton to="/post/create?post_type=exchange">
+          <FaPen style={{ marginRight: '8px' }} /> 글 작성
+        </CreatePostButton>
+      </SearchBar>
       <PostList>
         <Table>
           <TableHeader>
@@ -198,7 +159,8 @@ const ExchangeBoardTemplate = () => {
               <TableRow key={post.id}>
                 <TableCell>
                   <StyledLink to={`/post/${post.id}`}>
-                    <PostTitle>{`${post.title} (${post.comment_count})`}</PostTitle>
+                    <PostTitle>{post.title}</PostTitle>
+                    <CommentCount>({post.comment_count})</CommentCount>
                   </StyledLink>
                 </TableCell>
                 <TableCell>{post.user__username}</TableCell>

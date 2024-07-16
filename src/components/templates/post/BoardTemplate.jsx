@@ -41,7 +41,7 @@ const Title = styled.h1`
 const BoardTemplate = () => {
   return (
     <Container>
-      <Title>게시판 목록</Title>
+      <Title></Title>
       <BoardLink to="/sellboard">
         <FaStore size={24} />
         판매 게시판
