@@ -42,7 +42,8 @@ def post_detail(request, post_id):
             'title': post.title,
             'content': post.content,
             'post_type': post.post_type,
-            'user_id': post.user.username,
+            'user_id': post.user.id,
+            'username': post.user.username,
             'creation_date': post.creation_date,
             'image': image_url,
             'comments': comments,
@@ -223,4 +224,3 @@ def my_commented_posts(request):
     except DatabaseError as e:
         logger.error(f"Database error fetching commented posts: {str(e)}")
         raise InternalServerError("Database error occurred while fetching posts commented by user")
-
