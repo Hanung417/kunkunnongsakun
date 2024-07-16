@@ -197,12 +197,14 @@ const CropSelectionPage = () => {
     navigate('/sessiondetails', { state: { ...session } });
   };
 
-  const handleEditClick = (session) => {
+  const handleEditClick = (session, e) => {
+    e.stopPropagation();
     setEditingSession(session);
     setNewSessionName(session.session_name);
   };
 
-  const handleSaveClick = async (sessionId) => {
+  const handleSaveClick = async (sessionId, e) => {
+    e.stopPropagation();
     try {
       await updateSessionName(sessionId, newSessionName);
       const updatedSessions = sessions.map(session => {
@@ -223,7 +225,8 @@ const CropSelectionPage = () => {
     }
   };
 
-  const openDeleteModal = (sessionId) => {
+  const openDeleteModal = (sessionId, e) => {
+    e.stopPropagation();
     setSessionIdToDelete(sessionId);
     setIsModalOpen(true);
   };
@@ -247,7 +250,7 @@ const CropSelectionPage = () => {
                   value={newSessionName}
                   onChange={(e) => setNewSessionName(e.target.value)}
                 />
-                <SaveButton onClick={() => handleSaveClick(session.session_id)}>저장</SaveButton>
+                <SaveButton onClick={(e) => handleSaveClick(session.session_id, e)}>저장</SaveButton>
               </>
             ) : (
               <>
@@ -261,10 +264,10 @@ const CropSelectionPage = () => {
                   <div>{session.created_at}</div>
                 </SessionDetails>
                 <ButtonContainer>
-                  <EditButton onClick={() => handleEditClick(session)}>
+                  <EditButton onClick={(e) => handleEditClick(session, e)}>
                     <FaEdit />
                   </EditButton>
-                  <DeleteButton onClick={(e) => { e.stopPropagation(); openDeleteModal(session.session_id); }}>
+                  <DeleteButton onClick={(e) => openDeleteModal(session.session_id, e)}>
                     <FaTrash />
                   </DeleteButton>
                 </ButtonContainer>

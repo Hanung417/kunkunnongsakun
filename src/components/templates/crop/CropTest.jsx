@@ -92,17 +92,13 @@ const List = styled.div`
   position: absolute;
   z-index: 1;
   top: 100%;
-  max-height: 200px;
-  overflow-y: hidden;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  &:hover {
-    overflow-y: auto;
-  }
+  max-height: 200px; /* 고정된 높이 설정 */
+  overflow-y: auto; /* 스크롤 사용 */
+  -ms-overflow-style: none; /* Internet Explorer에서 스크롤바 숨기기 */
+  scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
 
   &::-webkit-scrollbar {
-    display: none;
+    display: none; /* Webkit 기반 브라우저에서 스크롤바 숨기기 */
   }
 `;
 
@@ -201,18 +197,22 @@ const CropTest = () => {
     }
 
     try {
+      const session_id = `session_${Date.now()}`;  // 고유한 세션 ID 생성
       const response = await predictCrops({
         land_area: landArea,
         crop_names: crops.map(crop => crop.name),
         crop_ratios: crops.map(crop => crop.ratio),
         region: region,
-        session_id: `session_${Date.now()}`,  // 고유한 세션 ID 생성
+        session_id: session_id,
       });
 
       if (response.data.error) {
-        setError(response.data.error);
+        const errorMessage = String(response.data.error) === "0"
+          ? '해당지역의 도매시장에서 판매하지 않는 작물입니다'
+          : response.data.error;
+        setError(errorMessage);
       } else {
-        navigate('/expectedreturn', { state: { landArea, cropNames: crops.map(crop => crop.name), result: response.data } });
+        navigate('/SessionDetails', { state: { landArea, cropNames: crops.map(crop => crop.name), result: response.data, session_id } });
       }
     } catch (error) {
       console.error('Error fetching prediction', error);
@@ -260,7 +260,7 @@ const CropTest = () => {
       }
     });
 
-    if (!regionRef.current.contains(event.target)) {
+    if (regionRef.current && !regionRef.current.contains(event.target)) {
       setShowRegionList(false);
     }
   };

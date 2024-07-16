@@ -17,7 +17,6 @@ import CropTest from "./components/templates/crop/CropTest";
 import MyPostTemplate from "./components/templates/post/MyPostTemplate";
 import EditPostTemplate from "./components/templates/post/EditPostTemplate";
 import ExchangeBoardTemplate from "./components/templates/post/ExchangeBoardTemplate";
-import ExpectedReturnPage from "./pages/ExpectedReturnPage";
 import SoilPage from './pages/SoilPage';
 import DiagnosisPage from './pages/DiagnosisPage';
 import InfoPage from './pages/InfoPage';
@@ -61,7 +60,6 @@ function App() {
 
           {/*ai*/}
           <Route path="/croptest" element={<CropTest />} />
-          <Route path="/expectedreturn" element={<ExpectedReturnPage />} />
           <Route path="/soil" element={<SoilPage />} />
           <Route path="/soillist" element={<SoilListTemplate />} />
           <Route path="/soil_details" element={<SoilDataDetails />} />

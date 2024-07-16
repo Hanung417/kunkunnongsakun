@@ -4,9 +4,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Bar, Line } from 'react-chartjs-2';
 import { getSessionDetails } from '../../../apis/crop'; // axios 호출을 분리한 파일에서 가져옴
 import Chart from 'chart.js/auto';
+import { CategoryScale, TimeScale } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 
-//Chart.register(...Chart.registerables);
+Chart.register(CategoryScale, TimeScale);
 
 const PageContainer = styled.div`
   display: flex;
@@ -99,16 +100,66 @@ const FixedWideBox = styled(BarChartBox)`
   }
 `;
 
-const generateLineChartData = (crop_chart_data, cropName) => {
-  const labels = crop_chart_data.map(data => new Date(data.tm));
-  const data = crop_chart_data.map(data => data.price);
+const columns = [
+  "총수입 (원)", "총생산비 (원)", "총경영비", "총중간재비",
+  "농약비", "수도광열비", "소득구비", "보통비료비",
+  "고용노동비", "자가노동비", "부가가치 (원)", "소득 (원)",
+];
+
+const generateBarChartData = (adjustedData, cropName) => {
+  const labels = columns;
+  const data = columns.map(column => adjustedData[column]);
 
   return {
     labels,
     datasets: [
       {
         label: cropName,
-        data: data,
+        data,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(75, 192, 192, 0.6)',
+          'rgba(153, 102, 255, 0.6)',
+          'rgba(255, 159, 64, 0.6)',
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(75, 192, 192, 0.6)',
+          'rgba(153, 102, 255, 0.6)',
+          'rgba(255, 159, 64, 0.6)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+        ],
+        borderWidth: 1,
+      }
+    ]
+  };
+};
+
+const generateLineChartData = (cropChartData, cropName) => {
+  const labels = cropChartData.map(data => new Date(data.tm));
+  const data = cropChartData.map(data => data.price);
+
+  return {
+    labels,
+    datasets: [
+      {
+        label: cropName,
+        data,
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
         tension: 0.1
@@ -116,6 +167,7 @@ const generateLineChartData = (crop_chart_data, cropName) => {
     ]
   };
 };
+
 
 const lineChartOptions = {
   responsive: true,
@@ -162,62 +214,19 @@ const barChartOptions = {
 const SessionDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { session_id } = location.state;
+  const [selectedCropIndex, setSelectedCropIndex] = useState(0);
   const [sessionDetails, setSessionDetails] = useState(null);
   const [barChartData, setBarChartData] = useState(null);
   const [lineChartData, setLineChartData] = useState(null);
-  const [selectedCropIndex, setSelectedCropIndex] = useState(0);
-
-  const columns = ["총수입 (원)", "총생산비 (원)", "총경영비", "총중간재비",
-    "농약비", "수도광열비", "소득구비", "보통비료비",
-    "고용노동비", "자가노동비", "부가가치 (원)", "소득 (원)",];
-
-  const generateBarChartData = (adjustedData, cropName) => {
-    const labels = columns;
-    const data = columns.map(column => adjustedData[column]);
-
-    return {
-      labels,
-      datasets: [
-        {
-          label: cropName,
-          data,
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 159, 64, 0.6)',
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 159, 64, 0.6)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1,
-        },
-      ],
-    };
-  };
 
   useEffect(() => {
     const fetchSessionDetails = async () => {
+      const session_id = location.state?.session_id;
+      if (!session_id) {
+        console.error('No session ID found');
+        navigate('/');
+        return;
+      }
       try {
         const response = await getSessionDetails(session_id);
         setSessionDetails(response.data);
@@ -247,7 +256,7 @@ const SessionDetails = () => {
     };
 
     fetchSessionDetails();
-  }, [session_id, navigate]);
+  }, [location.state, navigate]);
 
   if (!sessionDetails || !barChartData || !lineChartData) {
     return <div>Loading...</div>;
