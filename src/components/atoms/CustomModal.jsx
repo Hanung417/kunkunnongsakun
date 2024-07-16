@@ -33,30 +33,38 @@ const ModalContent = styled.p`
   text-align: center;
 `;
 
-const CloseButton = styled.button`
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+const Button = styled.button`
   padding: 12px 16px;
   font-size: 16px;
   font-weight: bold;
   color: white;
-  background-color: #2faa9a;
+  background-color: ${({ confirm, isError }) => (confirm ? '#e53e3e' : isError ? '#e53e3e' : '#4aaa87')};
   border: none;
   border-radius: 4px;
   cursor: pointer;
   &:hover {
-    background-color: #6dc4b0;
+    background-color: ${({ confirm, isError }) => (confirm ? '#c53030' : isError ? '#c53030' : '#3b8b6d')};
   }
 `;
 
-const CustomModal = ({ isOpen, onRequestClose, title, content }) => (
+const CustomModal = ({ isOpen, onRequestClose, title, content, onConfirm, showConfirmButton, isError }) => (
   <ModalContainer
     isOpen={isOpen}
     onRequestClose={onRequestClose}
-    contentLabel="Error Message"
+    contentLabel={title}
     ariaHideApp={false}
   >
     <ModalTitle>{title}</ModalTitle>
     <ModalContent>{content}</ModalContent>
-    <CloseButton onClick={onRequestClose}>닫기</CloseButton>
+    <ButtonContainer>
+      {showConfirmButton && <Button confirm onClick={onConfirm}>삭제</Button>}
+      <Button onClick={onRequestClose} isError={isError}>{showConfirmButton ? "취소" : "확인"}</Button>
+    </ButtonContainer>
   </ModalContainer>
 );
 

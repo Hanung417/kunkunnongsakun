@@ -1,4 +1,3 @@
-// CustomModal.jsx
 import React from 'react';
 import styled from 'styled-components';
 import Modal from 'react-modal';
@@ -44,16 +43,29 @@ const Button = styled.button`
   font-size: 16px;
   font-weight: bold;
   color: white;
-  background-color: ${({ confirm }) => (confirm ? '#4aaa87' : '#e53e3e')};
+  background-color: ${({ color }) => color || '#e53e3e'};
   border: none;
   border-radius: 4px;
   cursor: pointer;
   &:hover {
-    background-color: ${({ confirm }) => (confirm ? '#3b8b6d' : '#c53030')};
+    background-color: ${({ hoverColor }) => hoverColor || '#c53030'};
   }
 `;
 
-const CustomModal = ({ isOpen, onRequestClose, title, content, onConfirm, closeModal }) => (
+const ConfirmModal = ({
+  isOpen,
+  onRequestClose,
+  title,
+  content,
+  onConfirm,
+  closeModal,
+  confirmText = '확인',
+  cancelText = '닫기',
+  confirmColor = '#4aaa87',
+  confirmHoverColor = '#3b8b6d',
+  cancelColor = '#e53e3e',
+  cancelHoverColor = '#c53030'
+}) => (
   <ModalContainer
     isOpen={isOpen}
     onRequestClose={onRequestClose}
@@ -63,10 +75,14 @@ const CustomModal = ({ isOpen, onRequestClose, title, content, onConfirm, closeM
     <ModalTitle>{title}</ModalTitle>
     <ModalContent>{content}</ModalContent>
     <ButtonContainer>
-      <Button confirm onClick={onConfirm}>확인</Button>
-      <Button onClick={closeModal}>닫기</Button>
+      <Button color={confirmColor} hoverColor={confirmHoverColor} onClick={onConfirm}>
+        {confirmText}
+      </Button>
+      <Button color={cancelColor} hoverColor={cancelHoverColor} onClick={closeModal}>
+        {cancelText}
+      </Button>
     </ButtonContainer>
   </ModalContainer>
 );
 
-export default CustomModal;
+export default ConfirmModal;
