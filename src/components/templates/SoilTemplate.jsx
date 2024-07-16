@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Modal from 'react-modal';
 import { getCropNames, getSoilExamData, getSoilFertilizerInfo } from "../../apis/predict";
@@ -64,12 +65,12 @@ const Button = styled.button`
     cursor: not-allowed;
   }
   margin-bottom: 16px;
-  margin-right: 8px;
 `;
 
 const ErrorMessage = styled.p`
   color: red;
   margin-bottom: 16px;
+  margin-top: -16px; /* Add negative margin to pull the error message closer to the input */
 `;
 
 const Select = styled.select`
@@ -159,10 +160,24 @@ const TableData = styled.td`
 
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center; /* 가운데 정렬 */
+  width: 100%;
+  margin-top: 16px;
+`;
+
+const ExternalButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
   width: 100%;
   max-width: 400px;
-  margin-bottom: 16px;
+  margin-top: 16px;
+`;
+
+const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 `;
 
 const customStyles = {
@@ -194,6 +209,8 @@ const SoilTest = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedSoilSample, setSelectedSoilSample] = useState(null);
   const [isFetching, setIsFetching] = useState(false); // 상태 추가
+  const [analysisDone, setAnalysisDone] = useState(false); // 분석 완료 상태 추가
+  const navigate = useNavigate(); // 네비게이트 추가
 
   const inputRef = useRef(null);
 
@@ -227,6 +244,15 @@ const SoilTest = () => {
   const fetchSoilExamData = async () => {
     try {
       const response = await getSoilExamData(cropName, address);
+      if (response.data.soil_data.length === 0) {
+        setError('현재 주소에 해당하는 데이터가 없습니다.');
+        setSoilData([]);
+        setSelectedSample(null);
+        setFertilizerData(null);
+        setSelectedSoilSample(null);
+        setModalIsOpen(false);
+        return;
+      }
       setSoilData(response.data.soil_data);
       setSelectedSample(null);
       setFertilizerData(null);
@@ -234,7 +260,7 @@ const SoilTest = () => {
       setError(null);
       setModalIsOpen(true);
     } catch (err) {
-      setError(err.response.data.error);
+      setError('작물이름과 주소를 정확히 입력해 주세요.');
       setSoilData([]);
     }
   };
@@ -282,6 +308,7 @@ const SoilTest = () => {
       setSelectedSoilSample(sanitizedSample);
       setError(null);
       setModalIsOpen(false);
+      setAnalysisDone(true); // 분석 완료 상태 설정
     } catch (err) {
       setError(err.response.data.error);
       setFertilizerData(null);
@@ -321,6 +348,10 @@ const SoilTest = () => {
     return num < 1 ? `${num}` : num.toString();
   };
 
+  const handleBackToList = () => {
+    navigate('/soillist');
+  };
+
   return (
     <Container>
       <BoxContainer>
@@ -346,28 +377,35 @@ const SoilTest = () => {
         <InputContainer>
           <Input type="text" value={address} onChange={handleAddressChange} placeholder="예) 광주광역시 수완동" />
         </InputContainer>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <Button onClick={fetchSoilExamData}>주소 검색</Button>
       </BoxContainer>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {!analysisDone && (
+        <ExternalButtonContainer>
+          <Button onClick={handleBackToList}>목록보기</Button>
+        </ExternalButtonContainer>
+      )}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Soil Samples Modal"
       >
-        <h2>상세 주소</h2>
-        <Select onChange={handleSampleChange}>
-          <option value="">선택</option>
-          {soilData.map(sample => (
-            <option key={sample.No} value={sample.No}>
-              {sample.PNU_Nm}
-            </option>
-          ))}
-        </Select>
-        <ButtonContainer>
-          <Button onClick={fetchFertilizerData} disabled={isFetching || !selectedSample}>분석하기</Button>
-          <Button onClick={closeModal}>닫기</Button>
-        </ButtonContainer>
+        <ModalContent>
+          <h2>상세 주소</h2>
+          <Select onChange={handleSampleChange}>
+            <option value="">선택</option>
+            {soilData.map(sample => (
+              <option key={sample.No} value={sample.No}>
+                {sample.PNU_Nm}
+              </option>
+            ))}
+          </Select>
+          <ButtonContainer>
+            <Button onClick={fetchFertilizerData} disabled={isFetching || !selectedSample}>분석하기</Button>
+            <Button onClick={closeModal}>닫기</Button>
+          </ButtonContainer>
+        </ModalContent>
       </Modal>
       {selectedSoilSample && fertilizerData && (
         <RecommendationContainer>
@@ -489,6 +527,9 @@ const SoilTest = () => {
               </tbody>
             </Table>
           </TableContainer>
+          <ButtonContainer>
+            <Button onClick={handleBackToList}>목록보기</Button>
+          </ButtonContainer>
         </RecommendationContainer>
       )}
     </Container>
