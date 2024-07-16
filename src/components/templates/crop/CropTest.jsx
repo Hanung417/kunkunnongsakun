@@ -212,7 +212,7 @@ const CropTest = () => {
       if (response.data.error) {
         setError(response.data.error);
       } else {
-        navigate('/resultdetails', { state: { landArea, cropNames: crops.map(crop => crop.name), result: response.data } });
+        navigate('/expectedreturn', { state: { landArea, cropNames: crops.map(crop => crop.name), result: response.data } });
       }
     } catch (error) {
       console.error('Error fetching prediction', error);
