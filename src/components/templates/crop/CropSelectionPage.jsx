@@ -155,17 +155,23 @@ const CropSelectionPage = () => {
   const [newSessionName, setNewSessionName] = useState('');
   const navigate = useNavigate();
 
+ const fetchSessions = async () => {
+    try {
+      const response = await getCropList();
+      const updatedSessions = response.data.map(session => ({
+        ...session,
+        session_name: `${session.crop_names} | 면적: ${session.land_area} | 지역: ${session.region} | 생성일: ${session.created_at}`,
+      }));
+      setSessions(updatedSessions);
+    } catch (err) {
+      setError('세션 정보를 불러오는 중 오류가 발생했습니다.');
+    }
+  };
+
   useEffect(() => {
-    const fetchSessions = async () => {
-      try {
-        const response = await getCropList();
-        setSessions(response.data);
-      } catch (err) {
-        setError('세션 정보를 불러오는 중 오류가 발생했습니다.');
-      }
-    };
     fetchSessions();
   }, []);
+
 
   const handleDelete = async (sessionId) => {
     try {
