@@ -281,7 +281,7 @@ def list_prediction_sessions(request):
         'land_area': session.land_area,
         'region': session.region,
         'total_income': session.total_income,
-        'created_at': session.created_at.now().strftime('%Y-%m-%d %H:%M')
+        'created_at': timezone.localtime(session.created_at).strftime('%Y-%m-%d %H:%M')
     } for session in sessions]
     return JsonResponse(session_list, safe=False)
 
@@ -318,7 +318,7 @@ def prediction_session_details(request, session_id):
             'land_area': session.land_area,
             'region': session.region,
             'total_income': session.total_income,
-            'created_at': session.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+            'created_at': timezone.localtime(session.created_at).strftime('%Y-%m-%d %H:%M'),
             'results': details
         })
     except PredictionSession.DoesNotExist:
