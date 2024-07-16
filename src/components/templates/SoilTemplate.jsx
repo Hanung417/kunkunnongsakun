@@ -344,7 +344,7 @@ const SoilTest = () => {
           )}
         </InputContainer>
         <InputContainer>
-          <Input type="text" value={address} onChange={handleAddressChange} placeholder="주소" />
+          <Input type="text" value={address} onChange={handleAddressChange} placeholder="예) 광주광역시 수완동" />
         </InputContainer>
         <Button onClick={fetchSoilExamData}>주소 검색</Button>
       </BoxContainer>
