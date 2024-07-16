@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const PageContainer = styled.div`
@@ -100,6 +100,33 @@ const TableData = styled.td`
   }
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+const Button = styled.button`
+  background-color: #4aaa87;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+
+  &:hover {
+    background-color: #3b8b6d;
+  }
+
+  @media (max-width: 600px) {
+    padding: 8px 16px;
+    font-size: 0.8em;
+  }
+`;
+
 const formatValue = (value) => {
   const parsedValue = parseFloat(value);
   if (isNaN(parsedValue)) return 'N/A';
@@ -110,6 +137,11 @@ const formatValue = (value) => {
 const SoilDataDetails = () => {
   const { state } = useLocation();
   const { soilData, fertilizerData, crop } = state || {};
+  const navigate = useNavigate();
+
+  const handleBackToList = () => {
+    navigate('/soillist');
+  };
 
   return (
     <PageContainer>
@@ -217,6 +249,9 @@ const SoilDataDetails = () => {
               </tbody>
             </Table>
           </TableContainer>
+          <ButtonContainer>
+            <Button onClick={handleBackToList}>목록보기</Button>
+          </ButtonContainer>
         </RecommendationContainer>
       )}
     </PageContainer>
