@@ -196,7 +196,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const SoilTest = () => {
+const SoilTemplate = () => {
   const [cropName, setCropName] = useState('');
   const [address, setAddress] = useState('');
   const [soilData, setSoilData] = useState([]);
@@ -536,4 +536,4 @@ const SoilTest = () => {
   );
 };
 
-export default SoilTest;
+export default SoilTemplate;

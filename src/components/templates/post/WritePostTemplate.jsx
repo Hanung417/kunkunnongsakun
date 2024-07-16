@@ -7,10 +7,7 @@ import CustomModal from "../../atoms/CustomModal"; // CustomModal 컴포넌트 �
 const Container = styled.div`
   max-width: 600px;
   margin: 0 auto;
-  padding: 24px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 20px;
 `;
 
 const Form = styled.form`
