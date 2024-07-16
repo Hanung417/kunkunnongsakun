@@ -26,3 +26,10 @@ export const predictCrops = (data) => {
 export const getSessionDetails = (sessionId) => {
   return instance.get(`prediction/session_details/${sessionId}/`);
 };
+
+// 세션 이름 변경
+export const updateSessionName = (sessionId, newSessionName) => {
+  return instance.patch(`/prediction/update_session_name/${sessionId}/`, {
+    session_name: newSessionName,
+  });
+};

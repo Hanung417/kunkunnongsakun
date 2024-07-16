@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { getCropList, deleteCrop, updateSessionName } from '../../../apis/crop';
 
 const colors = {
   background: '#F7F7F7',
@@ -163,24 +163,6 @@ const getCSRFToken = () => {
   return cookieValue;
 };
 
-const updateSessionName = async (sessionId, newSessionName) => {
-  try {
-    await axios.patch(
-      `http://localhost:8000/prediction/update_session_name/${sessionId}/`,
-      { session_name: newSessionName },
-      {
-        headers: {
-          'X-CSRFToken': getCSRFToken(), // CSRF 토큰 추가
-        },
-        withCredentials: true,
-      }
-    );
-  } catch (error) {
-    console.error('Error updating session name:', error);
-    throw new Error('세션 이름을 업데이트하는 중 오류가 발생했습니다.');
-  }
-};
-
 const CropSelectionPage = () => {
   const [sessions, setSessions] = useState([]);
   const [error, setError] = useState(null);
@@ -189,48 +171,23 @@ const CropSelectionPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedSessions = localStorage.getItem('sessions');
-    if (storedSessions) {
-      setSessions(JSON.parse(storedSessions));
-    } else {
-      fetchSessions();
-    }
+    const fetchSessions = async () => {
+      try {
+        const response = await getCropList();
+        setSessions(response.data);
+      } catch (err) {
+        setError('세션 정보를 불러오는 중 오류가 발생했습니다.');
+      }
+    };
+    fetchSessions();
   }, []);
 
-  const fetchSessions = async () => {
-    try {
-      const response = await axios.get('http://localhost:8000/prediction/list_sessions/', {
-        headers: {
-          'X-CSRFToken': getCSRFToken(),
-        },
-        withCredentials: true,
-      });
-
-      const updatedSessions = response.data.map(session => ({
-        ...session,
-        session_name: `${session.crop_names} | 면적: ${session.land_area} | 지역: ${session.region} | 생성일: ${session.created_at}`,
-      }));
-
-      setSessions(updatedSessions);
-      localStorage.setItem('sessions', JSON.stringify(updatedSessions)); // 로컬 스토리지에 저장
-    } catch (err) {
-      setError('세션 정보를 불러오는 중 오류가 발생했습니다.');
-    }
-  };
-
   const handleDelete = async (sessionId) => {
-    if (window.confirm('이 세션을 삭제하시겠습니까?')) {
-      try {
-        await axios.delete(`http://localhost:8000/prediction/delete_session/${sessionId}/`, {
-          headers: {
-            'X-CSRFToken': getCSRFToken(),
-          },
-          withCredentials: true,
-        });
-        fetchSessions();
-      } catch (err) {
-        setError('세션 삭제 중 오류가 발생했습니다.');
-      }
+    try {
+      await deleteCrop(sessionId);
+      setSessions(sessions.filter(session => session.session_id !== sessionId));
+    } catch (err) {
+      setError('세션 삭제 중 오류가 발생했습니다.');
     }
   };
 
@@ -246,7 +203,7 @@ const CropSelectionPage = () => {
   const handleSaveClick = async (sessionId) => {
     try {
       await updateSessionName(sessionId, newSessionName);
-      
+
       // 수정된 세션 이름을 바로 반영하기 위해 상태를 업데이트합니다.
       const updatedSessions = sessions.map(session => {
         if (session.session_id === sessionId) {
