@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
 import { uploadImage } from "../../apis/predict";
+import { FaCamera, FaFile } from "react-icons/fa";
+import CustomModal from '../atoms/CustomModal';
 
 const PageContainer = styled.div`
   display: flex;
@@ -10,23 +12,7 @@ const PageContainer = styled.div`
   align-items: center;
   padding: 16px;
   background-color: #f9f9f9;
-  height: 100%;
-`;
-
-const HeaderContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  background-color: #4aaa87;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
-
-const Title = styled.h1`
-  font-size: 1.3rem;
-  margin: 0;
+  min-height: 100vh;
 `;
 
 const Content = styled.div`
@@ -40,24 +26,36 @@ const Content = styled.div`
 
 const UploadContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px dashed #ccc;
+  border: 2px dashed #4aaa87;
   width: 80%;
   max-width: 500px;
-  max-height: 500px;
+  height: 300px;
   text-align: center;
   margin-bottom: 20px;
   background-color: #fff;
   border-radius: 10px;
-  overflow: hidden; /* 추가: 이미지가 컨테이너를 벗어나지 않도록 함 */
+  overflow: hidden;
+  cursor: pointer;
 `;
 
 const ImagePreview = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 추가: 이미지가 컨테이너에 맞게 조정됨 */
+  object-fit: cover;
   border-radius: 10px;
+`;
+
+const PlaceholderIcon = styled.div`
+  font-size: 3rem;
+  color: #ccc;
+`;
+
+const PlaceholderText = styled.p`
+  font-size: 1rem;
+  color: #aaa;
 `;
 
 const ResultContainer = styled.div`
@@ -73,7 +71,7 @@ const ResultContainer = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: space-between; /* 버튼 사이에 여백 추가 */
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: 600px;
@@ -87,52 +85,58 @@ const DiagnoseButton = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1.3em;
+  font-size: 1.2em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: 'Freesentation', sans-serif; /* Apply custom font here */
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
   &:hover {
     background-color: #3b8b6d;
   }
 `;
 
-const CameraButton = styled.button`
-  background: url('/camera-icon.png') no-repeat center center;
-  background-size: contain;
-  width: 48px; /* 버튼의 크기를 조정 */
-  height: 48px; /* 버튼의 크기를 조정 */
-  border: none;
+const CameraIcon = styled(FaCamera)`
+  color: #4aaa87;
+  font-size: 2rem;
   cursor: pointer;
+  &:hover {
+    color: #3b8b6d;
+  }
 `;
 
 const DiagnosisTemplate = () => {
   const [image, setImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [result, setResult] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
   const navigate = useNavigate();
   const cameraInputRef = useRef(null);
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
     setImage(URL.createObjectURL(file));
-    setSelectedFile(file); // 파일 저장
+    setSelectedFile(file);
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   const handleDiagnose = async () => {
     if (!selectedFile) {
-      setResult('이미지를 업로드해주세요');
+      setModalContent('이미지를 업로드해주세요');
+      setIsModalOpen(true);
       return;
     }
 
     try {
       const response = await uploadImage(selectedFile);
       setResult(response.data.result);
-      navigate('/Info', { state: { diagnosisResult: response.data } }); // 결과를 InfoPage로 전달
+      navigate('/info', { state: { diagnosisResult: response.data } });
     } catch (error) {
       console.error('Failed to upload image', error);
-      setResult('Error in diagnosing the image.');
+      setModalContent('Error in diagnosing the image.');
+      setIsModalOpen(true);
     }
   };
 
@@ -146,27 +150,32 @@ const DiagnosisTemplate = () => {
     const file = event.target.files[0];
     if (file) {
       setImage(URL.createObjectURL(file));
-      setSelectedFile(file); // 파일 저장
+      setSelectedFile(file);
     }
   };
 
   return (
     <PageContainer>
-      <HeaderContainer>
-        <Title>병해충 진단</Title>
-      </HeaderContainer>
       <Content>
         <UploadContainer {...getRootProps()}>
           <input {...getInputProps()} />
           {image ? (
             <ImagePreview src={image} alt="Uploaded" />
           ) : (
-            <p>사진 업로드</p>
+            <>
+              <PlaceholderIcon>
+                <FaFile />
+              </PlaceholderIcon>
+              <PlaceholderText>사진 업로드</PlaceholderText>
+            </>
           )}
         </UploadContainer>
         <ButtonContainer>
-          <DiagnoseButton onClick={handleDiagnose}>진단</DiagnoseButton>
-          <CameraButton onClick={openCamera} />
+          <DiagnoseButton onClick={handleDiagnose}>
+            <FaFile />
+            진단
+          </DiagnoseButton>
+          <CameraIcon onClick={openCamera} />
         </ButtonContainer>
         {result && <ResultContainer>{result}</ResultContainer>}
         <input
@@ -178,6 +187,13 @@ const DiagnosisTemplate = () => {
           onChange={handleCameraInputChange}
         />
       </Content>
+      <CustomModal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        title="알림"
+        content={modalContent}
+        showConfirmButton={false}
+      />
     </PageContainer>
   );
 };
