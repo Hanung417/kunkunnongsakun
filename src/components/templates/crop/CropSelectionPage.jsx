@@ -194,7 +194,7 @@ const CropSelectionPage = () => {
   };
 
   const handleSessionClick = (session) => {
-    navigate('/SessionDetails', { state: { ...session } });
+    navigate('/sessiondetails', { state: { ...session } });
   };
 
   const handleEditClick = (session) => {
@@ -239,7 +239,7 @@ const CropSelectionPage = () => {
       {error && <p>{error}</p>}
       <SessionList>
         {sessions.map(session => (
-          <SessionItem key={session.session_id}>
+          <SessionItem key={session.session_id} onClick={() => handleSessionClick(session)}>
             {editingSession?.session_id === session.session_id ? (
               <>
                 <EditInput
@@ -251,7 +251,7 @@ const CropSelectionPage = () => {
               </>
             ) : (
               <>
-                <SessionName onClick={() => handleSessionClick(session)}>
+                <SessionName>
                   {session.session_name}
                 </SessionName>
                 <SessionDetails>
