@@ -14,6 +14,7 @@ const PageContainer = styled.div`
   font-family: Arial, sans-serif;
   color: #333;
   padding: 20px;
+  overflow-y: auto; /* 스크롤 사용 */
 `;
 
 const Title = styled.h1`
@@ -79,12 +80,11 @@ const ErrorMessage = styled.p`
   max-width: 600px;
 `;
 
-const CropList = styled.div`
+const List = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 470px;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -106,7 +106,7 @@ const CropList = styled.div`
   }
 `;
 
-const CropItem = styled.div`
+const ListItem = styled.div`
   padding: 8px;
   width: 100%;
   text-align: center;
@@ -121,16 +121,6 @@ const CropItem = styled.div`
   }
 `;
 
-const Select = styled.select`
-  padding: 10px;
-  margin-bottom: 10px;
-  width: 100%;
-  border: 2px solid #dfe6e9;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 0.9rem;
-`;
-
 const CropTest = () => {
   const [landArea, setLandArea] = useState("");
   const [region, setRegion] = useState("");
@@ -138,9 +128,11 @@ const CropTest = () => {
   const [error, setError] = useState(null);
   const [cropNames, setCropNames] = useState([]);
   const [filteredCropNames, setFilteredCropNames] = useState([]);
-  const [showCropList, setShowCropList] = useState(false);
+  const [showCropList, setShowCropList] = useState([]);
+  const [showRegionList, setShowRegionList] = useState(false);
+  const regions = ["서울", "부산", "대구", "광주", "대전"];
   const navigate = useNavigate();
-  const inputRef = useRef(null);
+  const inputRefs = useRef([]);
 
   useEffect(() => {
     const fetchCropNames = async () => {
@@ -161,18 +153,24 @@ const CropTest = () => {
     setCrops(values);
     if (event.target.name === 'name') {
       setFilteredCropNames(cropNames.filter(crop => crop.toLowerCase().includes(event.target.value.toLowerCase())));
-      setShowCropList(true);
+      const newShowCropList = [...showCropList];
+      newShowCropList[index] = true;
+      setShowCropList(newShowCropList);
     }
   };
 
   const addCrop = () => {
     setCrops([...crops, { name: "", ratio: "" }]);
+    setShowCropList([...showCropList, false]);
   };
 
   const removeCrop = (index) => {
     const values = [...crops];
     values.splice(index, 1);
     setCrops(values);
+    const newShowCropList = [...showCropList];
+    newShowCropList.splice(index, 1);
+    setShowCropList(newShowCropList);
   };
 
   const validateInput = () => {
@@ -194,7 +192,7 @@ const CropTest = () => {
     return newErrors;
   };
 
- const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const inputErrors = validateInput();
     if (inputErrors.length > 0) {
@@ -214,7 +212,7 @@ const CropTest = () => {
       if (response.data.error) {
         setError(response.data.error);
       } else {
-        navigate('/ExpectedReturn', { state: { landArea, cropNames: crops.map(crop => crop.name), result: response.data } });
+        navigate('/resultdetails', { state: { landArea, cropNames: crops.map(crop => crop.name), result: response.data } });
       }
     } catch (error) {
       console.error('Error fetching prediction', error);
@@ -243,21 +241,38 @@ const CropTest = () => {
     const values = [...crops];
     values[index].name = crop;
     setCrops(values);
-    setShowCropList(false);
+    const newShowCropList = [...showCropList];
+    newShowCropList[index] = false;
+    setShowCropList(newShowCropList);
+  };
+
+  const handleRegionSelect = (region) => {
+    setRegion(region);
+    setShowRegionList(false);
   };
 
   const handleClickOutside = (event) => {
-    if (inputRef.current && !inputRef.current.contains(event.target)) {
-      setShowCropList(false);
+    inputRefs.current.forEach((ref, index) => {
+      if (ref && !ref.contains(event.target)) {
+        const newShowCropList = [...showCropList];
+        newShowCropList[index] = false;
+        setShowCropList(newShowCropList);
+      }
+    });
+
+    if (!regionRef.current.contains(event.target)) {
+      setShowRegionList(false);
     }
   };
+
+  const regionRef = useRef(null);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [showCropList, showRegionList]);
 
   return (
     <PageContainer>
@@ -269,36 +284,49 @@ const CropTest = () => {
           value={landArea}
           onChange={(e) => setLandArea(e.target.value)}
         />
-        <Select
-          value={region}
-          onChange={(e) => setRegion(e.target.value)}
-        >
-          <option value="">지역 선택</option>
-          <option value="서울">서울</option>
-          <option value="부산">부산</option>
-          <option value="대구">대구</option>
-          <option value="광주">광주</option>
-          <option value="대전">대전</option>
-        </Select>
+        <div style={{ position: 'relative' }} ref={regionRef}>
+          <Input
+            type="text"
+            placeholder="지역 선택"
+            value={region}
+            onClick={() => setShowRegionList(!showRegionList)}
+            readOnly
+          />
+          {showRegionList && (
+            <List>
+              {regions.map((region, index) => (
+                <ListItem key={index} onClick={() => handleRegionSelect(region)}>
+                  {region}
+                </ListItem>
+              ))}
+            </List>
+          )}
+        </div>
         {crops.map((crop, index) => (
-          <CropContainer key={index}>
-            <Input
-              type="text"
-              name="name"
-              placeholder="작물 검색"
-              value={crop.name}
-              onChange={(event) => handleInputChange(index, event)}
-              onClick={() => setShowCropList(true)}
-            />
-            {showCropList && filteredCropNames.length > 0 && (
-              <CropList>
-                {filteredCropNames.map((cropName, idx) => (
-                  <CropItem key={idx} onClick={() => handleCropSelect(index, cropName)}>
-                    {cropName}
-                  </CropItem>
-                ))}
-              </CropList>
-            )}
+          <CropContainer key={index} ref={(el) => (inputRefs.current[index] = el)}>
+            <div style={{ position: 'relative' }}>
+              <Input
+                type="text"
+                name="name"
+                placeholder="작물 검색"
+                value={crop.name}
+                onChange={(event) => handleInputChange(index, event)}
+                onClick={() => {
+                  const newShowCropList = [...showCropList];
+                  newShowCropList[index] = true;
+                  setShowCropList(newShowCropList);
+                }}
+              />
+              {showCropList[index] && filteredCropNames.length > 0 && (
+                <List>
+                  {filteredCropNames.map((cropName, idx) => (
+                    <ListItem key={idx} onClick={() => handleCropSelect(index, cropName)}>
+                      {cropName}
+                    </ListItem>
+                  ))}
+                </List>
+              )}
+            </div>
             <Input
               type="text"
               placeholder="작물별 비율"
