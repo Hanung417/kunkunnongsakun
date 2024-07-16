@@ -1,8 +1,8 @@
-// Comments.js
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-import { FaPaperPlane, FaArrowLeft } from "react-icons/fa";
+import { FaPaperPlane, FaEllipsisV } from "react-icons/fa";
 import { MdOutlineChatBubbleOutline } from "react-icons/md";
+import ConfirmModal from "../atoms/ConfirmModal";
 
 const CommentList = styled.ul`
   list-style-type: none;
@@ -95,7 +95,29 @@ const CommentButton = styled.button`
   color: #4aaa87;
   cursor: pointer;
   padding: 8px 16px;
-  font-size: 16px;
+  font-size: 20px;
+  &:hover {
+    color: #3e8e75;
+  }
+  &:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
+const EditCommentButton = styled.button`
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #4aaa87;
+  border-radius: 8px;
+  border: none;
+  color: whitesmoke;
+  cursor: pointer;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
   &:hover {
     color: #3e8e75;
   }
@@ -119,7 +141,67 @@ const ReplyButton = styled.button`
   }
 `;
 
-const Comments = ({
+const SettingsIcon = styled(FaEllipsisV)`
+  cursor: pointer;
+  font-size: 20px;
+  color: #888;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+`;
+
+const SettingsMenu = styled.div`
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  display: ${(props) => (props.show ? "block" : "none")};
+  z-index: 1;
+  animation: fadeIn 0.3s ease;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+
+const SettingsMenuItem = styled.button`
+  background: none;
+  border: none;
+  padding: 12px 24px;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background: #f5f5f5;
+    color: #4aaa87;
+  }
+
+  &:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+`;
+
+const Comment = ({
   comments,
   newComment,
   newReply,
@@ -138,6 +220,40 @@ const Comments = ({
   setEditCommentId,
   setEditCommentContent
 }) => {
+  const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+  const [selectedCommentId, setSelectedCommentId] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const settingsMenuRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (settingsMenuRef.current && !settingsMenuRef.current.contains(event.target)) {
+        setShowSettingsMenu(false);
+        setSelectedCommentId(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleSettingsClick = (commentId) => {
+    setShowSettingsMenu((prev) => !prev);
+    setSelectedCommentId(commentId);
+  };
+
+  const handleDeleteClick = (commentId) => {
+    setSelectedCommentId(commentId);
+    setIsDeleteModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsDeleteModalOpen(false);
+    setSelectedCommentId(null);
+  };
+
   const renderComments = (comments, parentId = null) => {
     return comments
       .filter((comment) => comment.parent_id === parentId)
@@ -148,31 +264,41 @@ const Comments = ({
             <CommentAuthor>{comment.user__username}</CommentAuthor>
             <CommentMeta>{new Date(comment.created_at).toLocaleString()}</CommentMeta>
             {editCommentId === comment.id ? (
-              <CommentTextarea rows="2" value={editCommentContent} onChange={handleEditCommentChange} />
+              <CommentForm
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleEditComment(comment.id);
+                }}
+              >
+                <CommentTextarea rows="2" value={editCommentContent} onChange={handleEditCommentChange} />
+                <EditCommentButton type="submit" disabled={!editCommentContent.trim()}>
+                  확인
+                </EditCommentButton>
+              </CommentForm>
             ) : (
               <CommentContent>{comment.content}</CommentContent>
             )}
             {String(currentUserId) === String(comment.user_id) && (
-              <CommentActions>
-                {editCommentId === comment.id ? (
-                  <button onClick={() => handleEditComment(comment.id)}>저장</button>
-                ) : (
-                  <button
-                    onClick={() => {
-                      setEditCommentId(comment.id);
-                      setEditCommentContent(comment.content);
-                    }}
-                  >
-                    수정
-                  </button>
-                )}
-                <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
-              </CommentActions>
+              <>
+                <SettingsIcon onClick={() => handleSettingsClick(comment.id)} />
+                <SettingsMenu show={showSettingsMenu && selectedCommentId === comment.id} ref={settingsMenuRef}>
+                    <SettingsMenuItem
+                      onClick={() => {
+                        setEditCommentId(comment.id);
+                        setEditCommentContent(comment.content);
+                        setShowSettingsMenu(false);
+                      }}
+                    >
+                      수정
+                    </SettingsMenuItem>
+                  <SettingsMenuItem onClick={() => handleDeleteClick(comment.id)}>삭제</SettingsMenuItem>
+                </SettingsMenu>
+              </>
             )}
             {parentId === null && (
               <CommentActions>
                 <button onClick={() => setReplyCommentId(comment.id)}>
-                  <FaArrowLeft /> 댓글
+                  <MdOutlineChatBubbleOutline /> 답글
                 </button>
               </CommentActions>
             )}
@@ -186,7 +312,7 @@ const Comments = ({
                   value={newReply}
                   onChange={handleReplyChange}
                 />
-                <CommentButton type="submit" disabled={!newReply.trim()}>댓글 작성</CommentButton>
+                <CommentButton type="submit" disabled={!newReply.trim()}><FaPaperPlane /></CommentButton>
               </CommentForm>
             </CommentItem>
           )}
@@ -210,8 +336,25 @@ const Comments = ({
           <FaPaperPlane />
         </CommentButton>
       </CommentForm>
+      <ConfirmModal
+        isOpen={isDeleteModalOpen}
+        onRequestClose={closeModal}
+        title="삭제 확인"
+        content="이 댓글을 삭제하시겠습니까?"
+        onConfirm={() => {
+          handleDeleteComment(selectedCommentId);
+          closeModal();
+        }}
+        closeModal={closeModal}
+        confirmText="삭제"
+        cancelText="취소"
+        confirmColor="#e53e3e"
+        confirmHoverColor="#c53030"
+        cancelColor="#4aaa87"
+        cancelHoverColor="#3b8b6d"
+      />
     </>
   );
 };
 
-export default Comments;
+export default Comment;

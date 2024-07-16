@@ -7,8 +7,29 @@ import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 
 const Container = styled.div`
-  padding-bottom: 40px;
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`;
+
+const Header = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+`;
+
+const Content = styled.div`
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 80px; /* Adjust this value based on the height of the GNB */
+`;
+
+const Footer = styled.div`
+  position: sticky;
+  padding-top: 60px;
+  z-index: 1000;
+  background-color: white;
 `;
 
 export const MainLayout = ({ isLoggedIn, onLogout }) => {
@@ -17,9 +38,13 @@ export const MainLayout = ({ isLoggedIn, onLogout }) => {
 
   return (
     <Container>
-      {isMainPage ? <MainTopBar /> : <PageTopBar />}
-      <Outlet />
-      <GNB />
+      <Header>{isMainPage ? <MainTopBar /> : <PageTopBar />}</Header>
+      <Content>
+        <Outlet />
+      </Content>
+      <Footer>
+        <GNB />
+      </Footer>
     </Container>
   );
 };

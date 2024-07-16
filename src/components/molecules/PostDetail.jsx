@@ -13,17 +13,20 @@ const PostMeta = styled.div`
 `;
 
 const PostContent = styled.div`
+  min-height: 150px; /* Set minimum height */
   margin-bottom: 12px;
   color: #333;
   font-size: 18px;
   line-height: 1.6;
   padding: 16px;
   background-color: #fafafa;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: left; /* Ensure text aligns to the left */
   word-break: break-word; /* Break long words for better readability */
+  display: flex;
+  align-items: flex-start; /* Align content to the top */
 `;
 
 const PostImage = styled.img`

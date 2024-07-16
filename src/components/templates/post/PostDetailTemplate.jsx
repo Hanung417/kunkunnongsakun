@@ -13,6 +13,21 @@ const Container = styled.div`
   padding: 24px;
 `;
 
+const PostContainer = styled.div`
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+`;
+
+const CommentsContainer = styled.div`
+  padding: 16px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+`;
+
 const PostDetailTemplate = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -92,9 +107,13 @@ const PostDetailTemplate = () => {
   };
 
   const handleEditComment = async (commentId) => {
+
     try {
       await editComment(commentId, { content: editCommentContent });
-      await fetchPost();
+      const updatedComments = comments.map((comment) =>
+        comment.id === commentId ? { ...comment, content: editCommentContent } : comment
+      );
+      setComments(updatedComments);
       setEditCommentId(null);
       setEditCommentContent("");
     } catch (error) {
@@ -105,7 +124,7 @@ const PostDetailTemplate = () => {
   const handleDeleteComment = async (commentId) => {
     try {
       await deleteComment(commentId);
-      await fetchPost();
+      setComments(comments.filter((comment) => comment.id !== commentId));
     } catch (error) {
       console.error("Failed to delete comment", error);
     }
@@ -146,36 +165,40 @@ const PostDetailTemplate = () => {
 
   return (
     <Container>
-      <PostDetails
-        post={post}
-        currentUserId={currentUserId}
-        showSettingsMenu={showSettingsMenu}
-        settingsMenuRef={settingsMenuRef}
-        openModal={openModal}
-        handleSettingsClick={handleSettingsClick}
-        isModalOpen={isModalOpen}
-        closeModal={closeModal}
-        handleDeletePost={handleDeletePost}
-      />
-      <Comments
-        comments={comments}
-        newComment={newComment}
-        newReply={newReply}
-        replyCommentId={replyCommentId}
-        editCommentId={editCommentId}
-        editCommentContent={editCommentContent}
-        handleCommentChange={handleCommentChange}
-        handleEditCommentChange={handleEditCommentChange}
-        handleReplyChange={handleReplyChange}
-        handleSubmitComment={handleSubmitComment}
-        handleSubmitReply={handleSubmitReply}
-        handleEditComment={handleEditComment}
-        handleDeleteComment={handleDeleteComment}
-        setReplyCommentId={setReplyCommentId}
-        currentUserId={currentUserId}
-        setEditCommentId={setEditCommentId}
-        setEditCommentContent={setEditCommentContent}
-      />
+      <PostContainer>
+        <PostDetails
+          post={post}
+          currentUserId={currentUserId}
+          showSettingsMenu={showSettingsMenu}
+          settingsMenuRef={settingsMenuRef}
+          openModal={openModal}
+          handleSettingsClick={handleSettingsClick}
+          isModalOpen={isModalOpen}
+          closeModal={closeModal}
+          handleDeletePost={handleDeletePost}
+        />
+      </PostContainer>
+      <CommentsContainer>
+        <Comments
+          comments={comments}
+          newComment={newComment}
+          newReply={newReply}
+          replyCommentId={replyCommentId}
+          editCommentId={editCommentId}
+          editCommentContent={editCommentContent}
+          handleCommentChange={handleCommentChange}
+          handleEditCommentChange={handleEditCommentChange}
+          handleReplyChange={handleReplyChange}
+          handleSubmitComment={handleSubmitComment}
+          handleSubmitReply={handleSubmitReply}
+          handleEditComment={handleEditComment}
+          handleDeleteComment={handleDeleteComment}
+          setReplyCommentId={setReplyCommentId}
+          currentUserId={currentUserId}
+          setEditCommentId={setEditCommentId}
+          setEditCommentContent={setEditCommentContent}
+        />
+      </CommentsContainer>
     </Container>
   );
 };

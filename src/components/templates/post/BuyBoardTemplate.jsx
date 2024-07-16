@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
+import ReactPaginate from "react-paginate";
 import { fetchPosts } from "../../../apis/post";
 import { FaPen } from "react-icons/fa";
 
@@ -105,10 +106,61 @@ const CreatePostButton = styled(Link)`
   }
 `;
 
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  .pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  .pagination li {
+    margin: 0 5px;
+  }
+
+  .pagination li a {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #4aaa87;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .pagination li a:hover {
+    background-color: #f5f5f5;
+    color: #3e8e75;
+  }
+
+  .pagination li.active a {
+    background-color: #4aaa87;
+    color: white;
+    border: none;
+  }
+
+  .pagination li.previous a,
+  .pagination li.next a {
+    color: #888;
+  }
+
+  .pagination li.disabled a {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
 const BuyBoardTemplate = () => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
   const navigate = useNavigate();
+
+  const postsPerPage = 5;
+  const pageCount = Math.ceil(posts.length / postsPerPage);
+  const offset = currentPage * postsPerPage;
 
   useEffect(() => {
     const fetchPostsData = async () => {
@@ -129,6 +181,10 @@ const BuyBoardTemplate = () => {
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
+  };
+
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
   };
 
   const handleBackClick = () => {
@@ -162,7 +218,7 @@ const BuyBoardTemplate = () => {
             </TableRow>
           </TableHeader>
           <tbody>
-            {filteredPosts.map((post) => (
+            {filteredPosts.slice(offset, offset + postsPerPage).map((post) => (
               <TableRow key={post.id}>
                 <TableCell>
                   <StyledLink to={`/post/${post.id}`}>
@@ -177,6 +233,22 @@ const BuyBoardTemplate = () => {
           </tbody>
         </Table>
       </PostList>
+      <PaginationContainer>
+        <ReactPaginate
+          previousLabel={"이전"}
+          nextLabel={"다음"}
+          breakLabel={"..."}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          activeClassName={"active"}
+          previousClassName={"previous"}
+          nextClassName={"next"}
+          disabledClassName={"disabled"}
+        />
+      </PaginationContainer>
     </Container>
   );
 };
