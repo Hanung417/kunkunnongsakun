@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { fetchDetectionSessions, fetchSessionDetails, deleteDetectionSession } from "../../apis/predict";
 import { FaTrash } from 'react-icons/fa';
-import CustomModal from '../atoms/DeleteModal';
+import ConfirmModal from '../atoms/ConfirmModal';
 
 const PageContainer = styled.div`
   display: flex;
@@ -95,7 +95,7 @@ const AddButton = styled.button`
   }
 `;
 
-const ListTemplate = () => {
+const DiagnosisListTemplate = () => {
   const [sessions, setSessions] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sessionIdToDelete, setSessionIdToDelete] = useState(null);
@@ -172,16 +172,22 @@ const ListTemplate = () => {
           ))}
         </SessionList>
       </Content>
-      <CustomModal
+      <ConfirmModal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         title="삭제 확인"
         content="이 항목을 삭제하시겠습니까?"
         onConfirm={handleDeleteSession}
         closeModal={closeModal}
+        confirmText="삭제"
+        cancelText="취소"
+        confirmColor="#e53e3e"
+        confirmHoverColor="#c53030"
+        cancelColor="#4aaa87"
+        cancelHoverColor="#3b8b6d"
       />
     </PageContainer>
   );
 };
 
-export default ListTemplate;
+export default DiagnosisListTemplate;
