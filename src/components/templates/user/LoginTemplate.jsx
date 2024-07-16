@@ -109,6 +109,7 @@ const LoginTemplate = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [modalTitle, setModalTitle] = useState("");
+  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -152,6 +153,7 @@ const LoginTemplate = () => {
           localStorage.setItem("isLoggedIn", "true");
           setModalContent("로그인이 완료되었습니다.");
           setModalTitle("성공");
+          setIsError(false);
           setIsModalOpen(true);
           setTimeout(() => {
             setIsModalOpen(false);
@@ -161,6 +163,7 @@ const LoginTemplate = () => {
           setLoginError(message);
           setModalContent(message);
           setModalTitle("오류");
+          setIsError(true);
           setIsModalOpen(true);
         }
       })
@@ -174,6 +177,7 @@ const LoginTemplate = () => {
           setModalContent("로그인 과정에서 오류가 발생했습니다.");
         }
         setModalTitle("오류");
+        setIsError(true);
         setIsModalOpen(true);
       });
   };
@@ -223,6 +227,8 @@ const LoginTemplate = () => {
         onRequestClose={closeModal}
         title={modalTitle}
         content={modalContent}
+        showConfirmButton={false}
+        isError={isError}
       />
     </Container>
   );
