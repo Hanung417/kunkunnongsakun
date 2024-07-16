@@ -88,6 +88,7 @@ const PageTopBar = () => {
     "/diagnosis": "병해충 진단",
     "/info": "병해충 진단 결과",
     "/croptest": "수익 예측",
+    "/diagnosislist": "병해충 진단 목록",
   };
 
   const pageTitle = pageTitles[location.pathname] || "";

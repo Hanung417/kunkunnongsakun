@@ -124,7 +124,7 @@ const InfoTemplate = () => {
     return <div>No diagnosis result available.</div>;
   }
 
-  const { pest_name, occurrence_environment, symptom_description, prevention_methods, pesticide_name, user_image_url, db_image_url } = diagnosisResult;
+  const { pest_name, occurrence_environment, symptom_description, prevention_methods, pesticide_name, confidence, user_image_url, db_image_url } = diagnosisResult;
 
   return (
     <PageContainer>
@@ -145,6 +145,10 @@ const InfoTemplate = () => {
           </ImageContainer>
         </ImageBox>
         <InfoContainer>
+          <InfoBox>
+            <InfoLabel>모델 학습 결과</InfoLabel>
+            <InfoText>{confidence}</InfoText>
+          </InfoBox>
           <InfoBox>
             <InfoLabel>질병 이름</InfoLabel>
             <InfoText>{pest_name}</InfoText>

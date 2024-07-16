@@ -91,7 +91,7 @@ const AddButton = styled.button`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;  
   &:hover {
-    background-color: #3b8b6d;
+    background-color: #6dc4b0;
   }
 `;
 
@@ -150,10 +150,10 @@ const ListTemplate = () => {
   return (
     <PageContainer>
       <HeaderContainer>
-        <Title>병해충 진단 세션 목록</Title>
+        <Title>병해충 진단 목록</Title>
       </HeaderContainer>
       <Content>
-        <AddButton onClick={handleAddClick}>새로운 진단 시작하기</AddButton>
+        <AddButton onClick={handleAddClick}>새 진단 시작</AddButton>
         <SessionList>
           {sessions.map(session => (
             <SessionItem key={session.session_id} onClick={() => handleSessionClick(session.session_id)}>
