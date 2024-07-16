@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { fetchPostDetail, createComment, createReply, editComment, deleteComment } from "../../../apis/post";
-import { FaArrowLeft } from "react-icons/fa";
+import { fetchPostDetail, createComment, createReply, editComment, deleteComment, deletePost } from "../../../apis/post";
+import { FaArrowLeft, FaEllipsisV, FaEdit, FaTrash, FaCog } from "react-icons/fa";
+import ConfirmModal from "../../atoms/ConfirmModal";
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  background-color: #f9f9f9;
-  height: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
 const TitleBar = styled.div`
@@ -17,6 +19,7 @@ const TitleBar = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  margin-bottom: 24px;
 `;
 
 const BackButton = styled.button`
@@ -40,7 +43,6 @@ const BackButton = styled.button`
 
 const Title = styled.h1`
   font-size: 24px;
-  margin-bottom: 12px;
   color: #444;
   border-bottom: 2px solid #4aaa87;
   padding-bottom: 8px;
@@ -67,12 +69,82 @@ const PostContent = styled.p`
 
 const PostImage = styled.img`
   max-width: 100%;
-  max-height: 400px; // 이미지의 최대 높이 설정
-  width: auto; // 너비는 자동 조정
-  height: auto; // 높이는 자동 조정
+  max-height: 400px;
+  width: auto;
+  height: auto;
   margin-top: 16px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+const SettingsIcon = styled(FaEllipsisV)`
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  font-size: 24px;
+  color: #4aaa87;
+`;
+
+const SettingsMenu = styled.div`
+  position: absolute;
+  top: 40px;
+  right: 0; /* 오른쪽 정렬 */
+  background: #ffffff; /* 배경색 */
+  border: 1px solid #e0e0e0; /* 밝은 테두리 */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  display: ${(props) => (props.show ? "block" : "none")};
+  z-index: 1;
+  animation: fadeIn 0.3s ease; /* 부드러운 등장 애니메이션 */
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+
+const SettingsMenuItem = styled.button`
+  background: none;
+  border: none;
+  padding: 12px 24px;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  color: #333; /* 텍스트 색상 */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 */
+
+  &:hover {
+    background: #f5f5f5; /* 호버 시 배경색 */
+    color: #4aaa87; /* 호버 시 텍스트 색상 */
+  }
+
+  & > svg {
+    margin-right: 8px; /* 아이콘과 텍스트 사이 여백 */
+    font-size: 18px; /* 아이콘 크기 */
+  }
+
+  &:first-child {
+    border-top-left-radius: 8px; /* 첫 항목 좌상단 모서리 둥글게 */
+    border-top-right-radius: 8px; /* 첫 항목 우상단 모서리 둥글게 */
+  }
+
+  &:last-child {
+    border-bottom-left-radius: 8px; /* 마지막 항목 좌하단 모서리 둥글게 */
+    border-bottom-right-radius: 8px; /* 마지막 항목 우하단 모서리 둥글게 */
+  }
+`;
+
+const Divider = styled.div`
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 4px 0;
 `;
 
 const CommentList = styled.ul`
@@ -89,7 +161,7 @@ const CommentItem = styled.li`
   padding: 8px 16px;
   margin-bottom: 12px;
   position: relative;
-  margin-left: ${(props) => (props.isReply ? "40px" : "0")}; // 대댓글 들여쓰기
+  margin-left: ${(props) => (props.isReply ? "40px" : "0")};
 
   &::before {
     content: "${(props) => (props.isReply ? "↳" : "")}";
@@ -180,6 +252,8 @@ const PostDetailTemplate = () => {
   const [newReply, setNewReply] = useState("");
   const [editCommentId, setEditCommentId] = useState(null);
   const [editCommentContent, setEditCommentContent] = useState("");
+  const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 추가
   const currentUserId = localStorage.getItem("userId");
 
   const fetchPost = useCallback(async () => {
@@ -251,6 +325,31 @@ const PostDetailTemplate = () => {
     }
   };
 
+  const handleDeletePost = async () => {
+    try {
+      await deletePost(id);
+      if (post.post_type === "sell") {
+          navigate("/sellboard");
+      }
+      if (post.post_type === "buy") {
+          navigate("/buyboard");
+      }
+      if (post.post_type === "exchange") {
+          navigate("/exchangeboard");
+      }
+    } catch (error) {
+      console.error("Failed to delete post", error);
+    }
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const renderComments = (comments, parentId = null) => {
     return comments
       .filter((comment) => comment.parent_id === parentId)
@@ -315,13 +414,24 @@ const PostDetailTemplate = () => {
   return (
     <Container>
       <TitleBar>
-        <BackButton onClick={() => navigate(-1)}>
-          <FaArrowLeft />
-        </BackButton>
         <Title>{post.title}</Title>
+        {String(currentUserId) === String(post.user_id) && (
+          <>
+            <SettingsIcon onClick={() => setShowSettingsMenu(!showSettingsMenu)} />
+            <SettingsMenu show={showSettingsMenu}>
+              <SettingsMenuItem onClick={() => navigate(`/post/edit/${id}`)}>
+                수정
+              </SettingsMenuItem>
+               <Divider />
+              <SettingsMenuItem onClick={openModal}>
+                삭제
+              </SettingsMenuItem>
+            </SettingsMenu>
+          </>
+        )}
       </TitleBar>
       <PostMeta>
-        <span>작성자: {post.user_id}</span>
+        <span>작성자: {post.username}</span>
         <span>작성일: {new Date(post.creation_date).toLocaleDateString()}</span>
       </PostMeta>
       <PostContent>{post.content}</PostContent>
@@ -337,6 +447,21 @@ const PostDetailTemplate = () => {
         />
         <CommentButton type="submit" disabled={!newComment.trim()}>댓글 작성</CommentButton>
       </CommentForm>
+
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        title="삭제 확인"
+        content="이 게시글을 삭제하시겠습니까?"
+        onConfirm={handleDeletePost}
+        closeModal={closeModal}
+        confirmText="삭제"
+        cancelText="취소"
+        confirmColor="#e53e3e"
+        confirmHoverColor="#c53030"
+        cancelColor="#4aaa87"
+        cancelHoverColor="#3b8b6d"
+      />
     </Container>
   );
 };

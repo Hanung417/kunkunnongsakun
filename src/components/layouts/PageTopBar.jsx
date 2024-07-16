@@ -35,7 +35,7 @@ const LogoImage = styled.img`
 
 const Title = styled.div`
   position: absolute;
-  left: 45%;
+  left: 50%;
   transform: translateX(-50%);
   font-size: 20px;
   font-weight: 800;
@@ -76,6 +76,7 @@ const PageTopBar = () => {
     "/board": "게시판",
     "/buyboard": "구매 게시판",
     "/sellboard": "판매 게시판",
+    "/exchangeboard": "품앗이 게시판",
     "/post/:id": "게시글 상세보기",
     "/post/create": "게시글 작성",
     "/chatlist": "대화 목록",
