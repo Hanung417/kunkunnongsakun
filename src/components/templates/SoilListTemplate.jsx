@@ -1,4 +1,3 @@
-// SoilListTemplate.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -49,6 +48,7 @@ const SessionList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 20px; /* Add some margin to separate from the AddButton */
 `;
 
 const SessionItem = styled.div`
@@ -103,7 +103,7 @@ const AddButton = styled.button`
   cursor: pointer;
   font-size: 1.3em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  margin-bottom: 20px; /* Add some margin to separate from the SessionList */
 
   &:hover {
     background-color: #3b8b6d;
@@ -176,6 +176,7 @@ const SoilListTemplate = () => {
         <Title>토양 데이터 목록</Title>
       </HeaderContainer>
       <Content>
+        <AddButton onClick={handleAddClick}>새 토양 데이터 추가</AddButton>
         <SessionList>
           {Object.keys(groupedData).map(sessionId => (
             <SessionItem key={sessionId} onClick={() => handleSoilDataClick(groupedData[sessionId][0])}>
@@ -198,7 +199,6 @@ const SoilListTemplate = () => {
             </SessionItem>
           ))}
         </SessionList>
-        <AddButton onClick={handleAddClick}>새 토양 데이터 추가</AddButton>
       </Content>
       <CustomModal
         isOpen={isModalOpen}
