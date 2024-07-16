@@ -10,7 +10,7 @@ const Container = styled.div`
   padding: 24px;
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 `;
 
 const Form = styled.form`
@@ -36,7 +36,7 @@ const Input = styled.input`
   border-radius: 8px;
   margin-bottom: 16px;
   transition: border-color 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 
   &:focus {
     outline: none;
@@ -51,7 +51,7 @@ const Textarea = styled.textarea`
   border-radius: 8px;
   margin-bottom: 16px;
   transition: border-color 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 
   &:focus {
     outline: none;
@@ -85,7 +85,7 @@ const Select = styled.select`
   border-radius: 8px;
   margin-bottom: 16px;
   transition: border-color 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 
   &:focus {
     outline: none;
@@ -103,10 +103,10 @@ const FileInputLabel = styled.label`
   padding: 10px 16px;
   font-size: 16px;
   background-color: #ffffff;
-  border: 1px solid #4aaa87;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: border-color 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 
   &:hover {
     background-color: #e6f9f1;
@@ -224,21 +224,21 @@ const WritePostTemplate = () => {
       const response = await createPost(formData);
       console.log("Created post", response.data);
       setCreatedPostId(response.data.id); // 생성된 글 ID 저장
-      setModalTitle("작성 성공");
-      setModalContent("글이 성공적으로 작성되었습니다.");
-      setIsModalOpen(true); // 글 작성 성공 시 모달 열기
+      setModalTitle("알림");
+      setModalContent("글 작성이 완료되었습니다.");
+      setIsModalOpen(true);
     } catch (error) {
       console.error("Failed to create post", error);
       setModalTitle("작성 실패");
       setModalContent("글 작성 중 오류가 발생했습니다. 다시 시도해 주세요.");
-      setIsModalOpen(true); // 글 작성 실패 시 모달 열기
+      setIsModalOpen(true);
     }
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     if (createdPostId) {
-      navigate(`/post/${createdPostId}`); // 모달 닫기 후 글 상세 페이지로 이동
+      navigate(`/post/${createdPostId}`);
     }
   };
 
