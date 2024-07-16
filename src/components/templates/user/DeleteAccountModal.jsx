@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { deleteAccount, getCSRFToken } from "../../../apis/user"; // import from user.js
+import { FaTimes } from "react-icons/fa";
 
 const customStyles = {
   content: {
@@ -21,6 +22,16 @@ const Form = styled.form`
   flex-direction: column;
   width: 80%;
   padding: 24px;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
 `;
 
 const InputGroup = styled.div`
@@ -111,6 +122,7 @@ const DeleteAccountModal = ({ isOpen, onRequestClose }) => {
       style={customStyles}
       contentLabel="Delete Account Modal"
     >
+      <CloseButton onClick={onRequestClose}><FaTimes /></CloseButton>
       <Form onSubmit={handleSubmit}>
         <h2>회원 탈퇴</h2>
         <WarningMessage>
@@ -130,7 +142,7 @@ const DeleteAccountModal = ({ isOpen, onRequestClose }) => {
         </InputGroup>
         {error && <ErrorMessage>{error}</ErrorMessage>}
         {message && <div>{message}</div>}
-        <Button type="submit">계정 삭제</Button>
+        <Button type="submit">탈퇴하기</Button>
       </Form>
     </Modal>
   );

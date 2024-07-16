@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Modal from "react-modal";
 import { changeUsername, getCSRFToken } from "../../../apis/user";
+import { FaTimes } from "react-icons/fa";
+import CustomModal from "../../atoms/CustomModal";
 
 const ModalContainer = styled(Modal)`
   display: flex;
@@ -21,9 +23,19 @@ const ModalContainer = styled(Modal)`
   width: 80%;
 `;
 
+const CloseButton = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+`;
+
 const ModalTitle = styled.h2`
   font-size: 24px;
-  margin-bottom: 16px;
+  margin-bottom: 30px;
   color: #333;
 `;
 
@@ -35,7 +47,7 @@ const ModalContent = styled.div`
 `;
 
 const Input = styled.input`
-  padding: 8px;
+  padding: 12px;
   font-size: 16px;
   margin-bottom: 16px;
   border: 1px solid #ccc;
@@ -59,43 +71,54 @@ const Button = styled.button`
   }
 `;
 
-const ChangeUsernameModal = ({ isOpen, onRequestClose, setUsername, setIsSuccessModalOpen, setSuccessMessage }) => {
+const ChangeUsernameModal = ({ isOpen, onRequestClose, setUsername }) => {
   const [newUsername, setNewUsername] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
-    setIsButtonDisabled(newUsername.trim() === ""); // Disable button if newUsername is empty
+    setIsButtonDisabled(newUsername.trim() === "");
   }, [newUsername]);
 
   const handleUsernameChange = async () => {
     try {
-      const csrfToken = getCSRFToken();
-      await changeUsername(newUsername, {
-        headers: { "X-CSRFToken": csrfToken },
-        withCredentials: true
-      });
+      await changeUsername(newUsername);
       setUsername(newUsername);
       setSuccessMessage("이름이 성공적으로 변경되었습니다.");
       setIsSuccessModalOpen(true);
       onRequestClose();
     } catch (error) {
-      console.error("Failed to change username", error);
+      console.error("이름 변경에 실패했습니다.", error);
     }
   };
 
+  const handleCloseSuccessModal = () => {
+    setIsSuccessModalOpen(false);
+  };
+
   return (
-    <ModalContainer isOpen={isOpen} onRequestClose={onRequestClose}>
-      <ModalTitle>사용자 이름 변경</ModalTitle>
-      <ModalContent>
-        <Input
-          type="text"
-          value={newUsername}
-          onChange={(e) => setNewUsername(e.target.value)}
-          placeholder="새로운 사용자 이름"
-        />
-        <Button onClick={handleUsernameChange} disabled={isButtonDisabled}>변경</Button>
-      </ModalContent>
-    </ModalContainer>
+    <>
+      <ModalContainer isOpen={isOpen} onRequestClose={onRequestClose}>
+        <CloseButton onClick={onRequestClose}><FaTimes /></CloseButton>
+        <ModalTitle>사용자 이름 변경</ModalTitle>
+        <ModalContent>
+          <Input
+            type="text"
+            value={newUsername}
+            onChange={(e) => setNewUsername(e.target.value)}
+            placeholder="변경할 이름을 입력하세요"
+          />
+          <Button onClick={handleUsernameChange} disabled={isButtonDisabled}>변경</Button>
+        </ModalContent>
+      </ModalContainer>
+      <CustomModal
+        isOpen={isSuccessModalOpen}
+        onRequestClose={handleCloseSuccessModal}
+        title="알림"
+        content={successMessage}
+      />
+    </>
   );
 };
 

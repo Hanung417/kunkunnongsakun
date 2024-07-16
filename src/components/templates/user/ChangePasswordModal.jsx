@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { changePassword, getCSRFToken } from "../../../apis/user";
 import CustomModal from "../../atoms/CustomModal"; // Import your custom modal component
+import { FaTimes } from "react-icons/fa";
 
 const customStyles = {
   content: {
@@ -16,6 +17,16 @@ const customStyles = {
     width: "70%",
   },
 };
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+`;
 
 const Form = styled.form`
   display: flex;
@@ -129,6 +140,7 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
       style={customStyles}
       contentLabel="Change Password Modal"
     >
+      <CloseButton onClick={onRequestClose}><FaTimes /></CloseButton>
       <Form onSubmit={handleSubmit}>
         <h2>비밀번호 변경</h2>
         <InputGroup>
@@ -163,7 +175,7 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
             name="new_password2"
             value={formData.new_password2}
             onChange={handleChange}
-            placeholder="새 비밀번호 확인"
+            placeholder="새 비밀번호 확인"ㄴ
             required
           />
         </InputGroup>
