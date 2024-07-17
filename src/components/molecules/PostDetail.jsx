@@ -1,206 +1,178 @@
-// PostDetailTemplate.js
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React from "react";
 import styled from "styled-components";
-import { fetchPostDetail, createComment, createReply, editComment, deleteComment, deletePost } from "../../../apis/post";
-import PostDetails from "../../molecules/PostDetail";
-import Comments from "../../molecules/Comment";
+import { FaEllipsisV } from "react-icons/fa";
+import ConfirmModal from "../atoms/ConfirmModal";
+import { useNavigate } from "react-router-dom";
 
-const Container = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
-  height: 100%;
-  padding: 24px;
-`;
-
-const PostContainer = styled.div`
+const PostMeta = styled.div`
+  font-size: 14px;
+  color: #666;
   margin-bottom: 24px;
-  padding: 16px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
 `;
 
-const CommentsContainer = styled.div`
+const PostContent = styled.div`
+  min-height: 150px; /* Set minimum height */
+  margin-bottom: 12px;
+  color: #333;
+  font-size: 18px;
+  line-height: 1.6;
   padding: 16px;
-  background-color: #f1f1f1;
+  background-color: #fafafa;
   border: 1px solid #ccc;
   border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left; /* Ensure text aligns to the left */
+  word-break: break-word; /* Break long words for better readability */
+  display: flex;
+  align-items: flex-start; /* Align content to the top */
 `;
 
-const PostDetailTemplate = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [post, setPost] = useState(null);
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
-  const [replyCommentId, setReplyCommentId] = useState(null);
-  const [newReply, setNewReply] = useState("");
-  const [editCommentId, setEditCommentId] = useState(null);
-  const [editCommentContent, setEditCommentContent] = useState("");
-  const [showSettingsMenu, setShowSettingsMenu] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const currentUserId = localStorage.getItem("userId");
+const PostImage = styled.img`
+  max-width: 100%;
+  max-height: 400px;
+  width: auto;
+  height: auto;
+  margin-top: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+`;
 
-  const settingsMenuRef = useRef();
+const TitleBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 24px;
+`;
 
-  const fetchPost = useCallback(async () => {
-    try {
-      const response = await fetchPostDetail(id);
-      setPost(response.data);
-      setComments(response.data.comments || []);
-    } catch (error) {
-      console.error("Failed to fetch post", error);
+const Title = styled.h1`
+  font-size: 28px;
+  color: #444;
+  border-bottom: 2px solid #4aaa87;
+  padding-bottom: 8px;
+  text-align: center;
+`;
+
+const SettingsIcon = styled(FaEllipsisV)`
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  font-size: 24px;
+  color: #888;
+`;
+
+const SettingsMenu = styled.div`
+  position: absolute;
+  top: 90%;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  display: ${(props) => (props.show ? "block" : "none")};
+  z-index: 1;
+  animation: fadeIn 0.3s ease;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
     }
-  }, [id]);
-
-  useEffect(() => {
-    fetchPost();
-  }, [fetchPost]);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (settingsMenuRef.current && !settingsMenuRef.current.contains(event.target)) {
-        setShowSettingsMenu(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const handleCommentChange = (event) => {
-    setNewComment(event.target.value);
-  };
-
-  const handleEditCommentChange = (event) => {
-    setEditCommentContent(event.target.value);
-  };
-
-  const handleReplyChange = (event) => {
-    setNewReply(event.target.value);
-  };
-
-  const handleSubmitComment = async (event) => {
-    event.preventDefault();
-    try {
-      await createComment(id, { content: newComment });
-      await fetchPost();
-      setNewComment("");
-    } catch (error) {
-      console.error("Failed to post comment", error);
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-  };
+  }
+`;
 
-  const handleSubmitReply = async (event) => {
-    event.preventDefault();
-    try {
-      await createReply(id, { content: newReply, parent_id: replyCommentId });
-      await fetchPost();
-      setNewReply("");
-      setReplyCommentId(null);
-    } catch (error) {
-      console.error("Failed to post reply", error);
-    }
-  };
+const SettingsMenuItem = styled.button`
+  background: none;
+  border: none;
+  padding: 12px 24px;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 
-  const handleEditComment = async (commentId) => {
-
-    try {
-      await editComment(commentId, { content: editCommentContent });
-      const updatedComments = comments.map((comment) =>
-        comment.id === commentId ? { ...comment, content: editCommentContent } : comment
-      );
-      setComments(updatedComments);
-      setEditCommentId(null);
-      setEditCommentContent("");
-    } catch (error) {
-      console.error("Failed to edit comment", error);
-    }
-  };
-
-  const handleDeleteComment = async (commentId) => {
-    try {
-      await deleteComment(commentId);
-      setComments(comments.filter((comment) => comment.id !== commentId));
-    } catch (error) {
-      console.error("Failed to delete comment", error);
-    }
-  };
-
-  const handleDeletePost = async () => {
-    try {
-      await deletePost(id);
-      if (post.post_type === "sell") {
-          navigate("/sellboard");
-      }
-      if (post.post_type === "buy") {
-          navigate("/buyboard");
-      }
-      if (post.post_type === "exchange") {
-          navigate("/exchangeboard");
-      }
-    } catch (error) {
-      console.error("Failed to delete post", error);
-    }
-  };
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleSettingsClick = () => {
-    setShowSettingsMenu((prev) => !prev);
-  };
-
-  if (!post) {
-    return <Container>게시글을 찾을 수 없습니다.</Container>;
+  &:hover {
+    background: #f5f5f5;
+    color: #4aaa87;
   }
 
+  &:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+`;
+
+const Divider = styled.div`
+  height: 1px;
+  background-color: #ddd;
+  margin: 4px 0;
+`;
+
+const PostDetails = ({
+  post,
+  currentUserId,
+  showSettingsMenu,
+  settingsMenuRef,
+  openModal,
+  handleSettingsClick,
+  isModalOpen,
+  closeModal,
+  handleDeletePost
+}) => {
+  const navigate = useNavigate();
   return (
-    <Container>
-      <PostContainer>
-        <PostDetails
-          post={post}
-          currentUserId={currentUserId}
-          showSettingsMenu={showSettingsMenu}
-          settingsMenuRef={settingsMenuRef}
-          openModal={openModal}
-          handleSettingsClick={handleSettingsClick}
-          isModalOpen={isModalOpen}
-          closeModal={closeModal}
-          handleDeletePost={handleDeletePost}
-        />
-      </PostContainer>
-      <CommentsContainer>
-        <Comments
-          comments={comments}
-          newComment={newComment}
-          newReply={newReply}
-          replyCommentId={replyCommentId}
-          editCommentId={editCommentId}
-          editCommentContent={editCommentContent}
-          handleCommentChange={handleCommentChange}
-          handleEditCommentChange={handleEditCommentChange}
-          handleReplyChange={handleReplyChange}
-          handleSubmitComment={handleSubmitComment}
-          handleSubmitReply={handleSubmitReply}
-          handleEditComment={handleEditComment}
-          handleDeleteComment={handleDeleteComment}
-          setReplyCommentId={setReplyCommentId}
-          currentUserId={currentUserId}
-          setEditCommentId={setEditCommentId}
-          setEditCommentContent={setEditCommentContent}
-        />
-      </CommentsContainer>
-    </Container>
+    <>
+      <TitleBar>
+        <Title>{post.title}</Title>
+        {String(currentUserId) === String(post.user_id) && (
+          <>
+            <SettingsIcon onClick={handleSettingsClick} />
+            <SettingsMenu show={showSettingsMenu} ref={settingsMenuRef}>
+              <SettingsMenuItem onClick={() => navigate(`/post/edit/${post.id}`)}>
+                수정
+              </SettingsMenuItem>
+              <Divider />
+              <SettingsMenuItem onClick={openModal}>
+                삭제
+              </SettingsMenuItem>
+            </SettingsMenu>
+          </>
+        )}
+      </TitleBar>
+      <PostMeta>
+        <span>작성자: {post.username}</span>
+        <span>작성일: {new Date(post.creation_date).toLocaleDateString()}</span>
+      </PostMeta>
+      <PostContent>{post.content}</PostContent>
+      {post.image && <PostImage src={post.image} alt="Post Image" />}
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        title="삭제 확인"
+        content="이 게시글을 삭제하시겠습니까?"
+        onConfirm={handleDeletePost}
+        closeModal={closeModal}
+        confirmText="삭제"
+        cancelText="취소"
+        confirmColor="#e53e3e"
+        confirmHoverColor="#c53030"
+        cancelColor="#4aaa87"
+        cancelHoverColor="#3b8b6d"
+      />
+    </>
   );
 };
 
-export default PostDetailTemplate;
+export default PostDetails;
