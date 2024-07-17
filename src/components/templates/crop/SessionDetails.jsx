@@ -9,13 +9,18 @@ import 'chartjs-adapter-date-fns';
 
 Chart.register(CategoryScale, TimeScale);
 
+const primaryColor = '#4CAF50';
+const secondaryColor = '#45a049';
+const backgroundColor = '#f0f4f8';
+const boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+
 const PageContainer = styled.div`
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  background-color: #f0f4f8;
-  font-size: 1rem;
+  background-color: ${backgroundColor};
   font-family: 'Roboto', sans-serif;
   height: 100vh;
   box-sizing: border-box;
@@ -37,6 +42,7 @@ const BoxContainer = styled.div`
   width: 100%;
   justify-content: space-around;
   margin: 1rem 0;
+  flex-wrap: wrap;
 `;
 
 const Box = styled.div`
@@ -48,23 +54,36 @@ const Box = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: ${boxShadow};
   width: 30%;
-  height: 50px;
-  overflow: auto;
+  height: 70px;
   border: 1px solid #ddd;
+  font-weight: 500;
+  transition: transform 0.3s, box-shadow 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 const BarChartBox = styled.div`
   background-color: #fff;
-  padding: 1rem;
-  margin: 0.5rem 0;
+  padding: 2rem;
+  margin: 1rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: ${boxShadow};
   width: 90%;
   height: 400px;
   overflow: auto;
@@ -72,15 +91,21 @@ const BarChartBox = styled.div`
 `;
 
 const CropButton = styled.button`
-  background-color: #4CAF50;
+  background-color: #4aaa87;
   color: white;
   border: none;
-  padding: 10px 20px;
-  margin: 5px;
+  padding: 12px 24px;
+  margin: 8px;
   border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+
   &:hover {
-    background-color: #45a049;
+    background-color: ${secondaryColor};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 `;
 
@@ -98,6 +123,26 @@ const FixedWideBox = styled(BarChartBox)`
   @media (min-width: 768px) {
     height: 600px;
   }
+`;
+
+const Title = styled.h2`
+  font-size: 2rem;
+  font-weight: 700;
+  color: #4aaa87;
+  margin-bottom: 1rem;
+`;
+
+const Subtitle = styled.h3`
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 1rem;
+`;
+
+const ErrorText = styled.p`
+  font-size: 1rem;
+  font-weight: 300;
+  color: #666;
 `;
 
 const columns = [
@@ -150,7 +195,7 @@ const generateBarChartData = (adjustedData, cropName) => {
   };
 };
 
-const generateLineChartData = (cropChartData, cropName) => {
+const generateLineChartData = (cropChartData, cropName, additionalPrice) => {
   const labels = cropChartData.map(data => new Date(data.tm));
   const data = cropChartData.map(data => data.price);
 
@@ -158,16 +203,22 @@ const generateLineChartData = (cropChartData, cropName) => {
     labels,
     datasets: [
       {
-        label: cropName,
+        label: `${cropName} 가격`,
         data,
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      },
+      {
+        label: `다음날 예측 도매가: ${additionalPrice}원`,
+        data: Array(data.length).fill(additionalPrice),
+        fill: false,
+        borderColor: 'rgb(255, 99, 132)',
         tension: 0.1
       }
     ]
   };
 };
-
 
 const lineChartOptions = {
   responsive: true,
@@ -187,7 +238,7 @@ const lineChartOptions = {
     y: {
       title: {
         display: true,
-        text: 'Price (₩)'
+        text: 'Value (₩)'
       }
     }
   },
@@ -206,6 +257,28 @@ const barChartOptions = {
         autoSkip: false,
         maxRotation: 90,
         minRotation: 45
+      }
+    }
+  },
+  plugins: {
+    tooltip: {
+      callbacks: {
+        label: function(context) {
+          let label = context.dataset.label || '';
+          if (label) {
+            label += ': ';
+          }
+          label += Math.round(context.raw).toLocaleString();
+          return label;
+        }
+      }
+    },
+    datalabels: {
+      display: true,
+      align: 'end',
+      anchor: 'end',
+      formatter: function(value) {
+        return Math.round(value).toLocaleString();
       }
     }
   }
@@ -234,6 +307,7 @@ const SessionDetails = () => {
         const resultData = response.data;
         const adjustedDataList = resultData?.results?.map(result => result.adjusted_data) || [];
         const cropNames = resultData?.results?.map(result => result.crop_name) || [];
+        const additionalPrices = resultData?.results?.map(result => result.price) || [];
 
         if (adjustedDataList.length > 0) {
           const barData = generateBarChartData(adjustedDataList[0], cropNames[0]);
@@ -242,7 +316,7 @@ const SessionDetails = () => {
 
         if (resultData.results && resultData.results.length > 0) {
           const crop_chart_data = resultData.results.flatMap(result => result.crop_chart_data);
-          const lineData = generateLineChartData(crop_chart_data, cropNames[0]);
+          const lineData = generateLineChartData(crop_chart_data, cropNames[0], additionalPrices[selectedCropIndex]);
           setLineChartData(lineData);
         }
 
@@ -256,7 +330,7 @@ const SessionDetails = () => {
     };
 
     fetchSessionDetails();
-  }, [location.state, navigate]);
+  }, [location.state, navigate, selectedCropIndex]);
 
   if (!sessionDetails || !barChartData || !lineChartData) {
     return <div>Loading...</div>;
@@ -267,16 +341,20 @@ const SessionDetails = () => {
 
   return (
     <PageContainer>
+      <Title>세션 세부 정보</Title>
       <SectionContainer>
         <BoxContainer>
           <Box>
-            {cropNames.length > 0 ? cropNames.join(', ') : 'Sample Crop Data'}
+            <Subtitle>선택한 작물</Subtitle>
+            {cropNames.join(', ')}
           </Box>
           <Box>
-            {sessionDetails.land_area ? `Land Area: ${sessionDetails.land_area}` : 'Sample Area Data'}
+            <Subtitle>토지 면적(평)</Subtitle>
+            {sessionDetails.land_area}
           </Box>
           <Box>
-            {sessionDetails.total_income ? `Total Income: ${sessionDetails.total_income}` : 'Sample Wholesale Prediction'}
+            <Subtitle>총 수입(원)</Subtitle>
+            {sessionDetails.total_income}
           </Box>
         </BoxContainer>
         <div>
@@ -287,20 +365,20 @@ const SessionDetails = () => {
           ))}
         </div>
         <FixedLargeBox>
-          {adjustedDataList[selectedCropIndex] && Object.keys(adjustedDataList[selectedCropIndex]).length > 0 ? (
+          {Object.keys(adjustedDataList[selectedCropIndex]).length > 0 ? (
             <Bar data={generateBarChartData(adjustedDataList[selectedCropIndex], cropNames[selectedCropIndex])} options={barChartOptions} />
           ) : (
-            '차트 데이터를 불러오는 과정에서 문제가 생겼습니다.'
+            <ErrorText>차트 데이터를 불러오는 과정에서 문제가 생겼습니다.</ErrorText>
           )}
         </FixedLargeBox>
         <FixedWideBox>
-          {sessionDetails.results && sessionDetails.results[selectedCropIndex].crop_chart_data ? (
+          {sessionDetails.results[selectedCropIndex].crop_chart_data ? (
             <Line
-              data={generateLineChartData(sessionDetails.results[selectedCropIndex].crop_chart_data, cropNames[selectedCropIndex])}
+              data={generateLineChartData(sessionDetails.results[selectedCropIndex].crop_chart_data, cropNames[selectedCropIndex], sessionDetails.results[selectedCropIndex].price)}
               options={lineChartOptions}
             />
           ) : (
-            '라인 데이터를 불러오는 과정에서 문제가 생겼습니다.'
+            <ErrorText>라인 데이터를 불러오는 과정에서 문제가 생겼습니다.</ErrorText>
           )}
         </FixedWideBox>
       </SectionContainer>
