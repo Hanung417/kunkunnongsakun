@@ -140,7 +140,7 @@ const PageTopBar = () => {
         <BackButton onClick={handleBackClick}>
           <FaArrowLeft />
         </BackButton>
-        <LogoContainer>
+        <LogoContainer onClick={() => navigate("/")}>
           <LogoImage src={logoImg} alt="Logo" />
         </LogoContainer>
       </LeftSection>
