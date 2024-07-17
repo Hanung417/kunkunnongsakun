@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { getCropNames, predictCrops } from "../../../apis/crop";
+import { getCropNames, predictCrops, getRegionNames } from "../../../apis/crop";
 
 const PageContainer = styled.div`
   display: flex;
@@ -123,10 +123,10 @@ const CropTest = () => {
   const [crops, setCrops] = useState([{ name: "", ratio: "" }]);
   const [error, setError] = useState(null);
   const [cropNames, setCropNames] = useState([]);
+  const [regions, setRegions] = useState([]);
   const [filteredCropNames, setFilteredCropNames] = useState([]);
   const [showCropList, setShowCropList] = useState([]);
   const [showRegionList, setShowRegionList] = useState(false);
-  const regions = ["서울", "부산", "대구", "광주", "대전"];
   const navigate = useNavigate();
   const inputRefs = useRef([]);
 
@@ -140,6 +140,17 @@ const CropTest = () => {
         setError('작물 이름을 불러오는 중 오류가 발생했습니다.');
       }
     };
+
+    const fetchRegionNames = async () => {
+      try{
+        const response = await getRegionNames();
+        setRegions(response.data.region_names);
+      } catch (err) {
+        console.error('Error fetching region names:', err);
+        setError('지역 이름을 불러오는 중 오류가 발생했습니다.');
+      }
+    };
+    fetchRegionNames();
     fetchCropNames();
   }, []);
 
