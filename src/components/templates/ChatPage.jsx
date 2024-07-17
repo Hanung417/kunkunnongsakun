@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useParams, useLocation } from 'react-router-dom';
 import { fetchChatHistory, sendChatMessage } from '../../apis/chat';
@@ -94,8 +94,10 @@ const InputBox = styled.form`
   border-top: 1px solid #ddd;
   width: 100%;
   box-sizing: border-box;
-  position: sticky;
-  bottom: 0;
+  position: fixed;
+  bottom: 60px; /* Adjust this value to the height of your bottom navigation bar */
+  left: 0;
+  right: 0;
 
   @media (max-width: 768px) {
     padding: 8px;
@@ -137,12 +139,15 @@ const Button = styled.button`
   }
 `;
 
+
 const ChatPage = () => {
   const { sessionid } = useParams();
   const location = useLocation();
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [sessionId, setSessionId] = useState(sessionid);
+
+  const chatBoxRef = useRef(null);
 
   const params = new URLSearchParams(location.search);
   const sessionName = params.get('session_name');
@@ -170,6 +175,12 @@ const ChatPage = () => {
       setMessages([{ isUser: false, text: '안녕하세요 무엇을 도와드릴까요?', timestamp: new Date().toISOString() }]);
     }
   }, [sessionId, sessionName, isLoggedIn]);
+
+  useEffect(() => {
+    if (chatBoxRef.current) {
+      chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -210,7 +221,7 @@ const ChatPage = () => {
   return (
     <Container>
       <Header>{sessionName || '농업 GPT'}</Header>
-      <ChatBox>
+      <ChatBox ref={chatBoxRef}>
         <MessageList>
           {messages.map((msg, index) => (
             <MessageContainer key={index} isUser={msg.isUser}>
@@ -235,6 +246,7 @@ const ChatPage = () => {
         />
         <Button type="submit">전송</Button>
       </InputBox>
+      
     </Container>
   );
 };
