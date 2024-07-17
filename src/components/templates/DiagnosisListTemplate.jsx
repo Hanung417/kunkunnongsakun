@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { fetchDetectionSessions, fetchSessionDetails, deleteDetectionSession } from "../../apis/predict";
 import { FaTrash, FaPlus } from 'react-icons/fa';
 import ConfirmModal from '../atoms/ConfirmModal';
+import { FadeLoader } from 'react-spinners'; // Importing PulseLoader from react-spinners
 
 const PageContainer = styled.div`
   display: flex;
@@ -109,20 +110,30 @@ const EmptyMessage = styled.div`
   margin-top: 50px;
 `;
 
+const LoaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
 const DiagnosisListTemplate = () => {
   const [sessions, setSessions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); // State to track loading status
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sessionIdToDelete, setSessionIdToDelete] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSessions = async () => {
+      setIsLoading(true); // Start loading
       try {
         const response = await fetchDetectionSessions();
         setSessions(response.data);
       } catch (error) {
         console.error('Failed to fetch sessions', error);
       }
+      setIsLoading(false); // End loading
     };
 
     fetchSessions();
@@ -170,7 +181,11 @@ const DiagnosisListTemplate = () => {
         </AddButtonContainer>
       </HeaderContainer>
       <Content>
-        {sessions.length === 0 ? (
+        {isLoading ? (
+          <LoaderContainer>
+            <FadeLoader color="#4aaa87" loading={isLoading} size={15} />
+          </LoaderContainer>
+        ) : sessions.length === 0 ? (
           <EmptyMessage>첫 진단을 시작해보세요!</EmptyMessage>
         ) : (
           <SessionList>
