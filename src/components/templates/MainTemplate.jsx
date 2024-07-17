@@ -8,13 +8,14 @@ const Container = styled.div`
   flex-direction: column;
   gap: 2rem;
   padding: 2rem;
-  background-color: #f9f9f9; 
+  padding-bottom: 4rem;
 `;
 
 const GridContainer = styled.div`
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(2, 1fr); 
+  margin-top: 40px;
 `;
 
 const MenuCard = styled(Link)`

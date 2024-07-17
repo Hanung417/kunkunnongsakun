@@ -246,7 +246,7 @@ const ChatPage = () => {
         />
         <Button type="submit">전송</Button>
       </InputBox>
-      
+
     </Container>
   );
 };
