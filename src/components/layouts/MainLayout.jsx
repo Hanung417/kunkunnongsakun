@@ -19,12 +19,6 @@ const Header = styled.div`
   background-color: white;
 `;
 
-const Content = styled.div`
-  flex: 1;
-  overflow-y: auto;
-  padding-bottom: 80px; /* Adjust this value based on the height of the GNB */
-`;
-
 const Footer = styled.div`
   position: sticky;
   padding-top: 60px;
@@ -39,9 +33,7 @@ export const MainLayout = ({ isLoggedIn, onLogout }) => {
   return (
     <Container>
       <Header>{isMainPage ? <MainTopBar /> : <PageTopBar />}</Header>
-      <Content>
         <Outlet />
-      </Content>
       <Footer>
         <GNB />
       </Footer>

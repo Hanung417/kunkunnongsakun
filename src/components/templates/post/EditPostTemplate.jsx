@@ -95,7 +95,7 @@ const Select = styled.select`
 
 const FileInputWrapper = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin-bottom: 16px;
 `;
 
@@ -103,10 +103,10 @@ const FileInputLabel = styled.label`
   padding: 10px 16px;
   font-size: 16px;
   background-color: #ffffff;
-  border: 1px solid #4aaa87;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: border-color 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 
   &:hover {
     background-color: #e6f9f1;
@@ -118,23 +118,15 @@ const FileInput = styled.input`
 `;
 
 const FileName = styled.span`
-  margin-left: 12px;
+  margin-top: 8px;
   font-size: 14px;
   color: #555;
 `;
 
-const ExistingImage = styled.div`
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-
-  & > img {
-    max-width: 100px;
-    max-height: 100px;
-    margin-right: 12px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+const ImagePreview = styled.img`
+  margin-top: 16px;
+  max-width: 100%;
+  border-radius: 8px;
 `;
 
 const EditPostTemplate = () => {
@@ -144,6 +136,7 @@ const EditPostTemplate = () => {
   const [postType, setPostType] = useState("buy");
   const [image, setImage] = useState(null);
   const [fileName, setFileName] = useState(""); // 파일 이름 상태 추가
+  const [imagePreview, setImagePreview] = useState("");
   const [existingImage, setExistingImage] = useState(null); // 기존 이미지 상태 추가
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 추가
   const [modalTitle, setModalTitle] = useState(""); // 모달 타이틀 상태 추가
@@ -181,6 +174,14 @@ const EditPostTemplate = () => {
     const file = event.target.files[0];
     setImage(file);
     setFileName(file ? file.name : ""); // 파일 이름 상태 업데이트
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -245,18 +246,18 @@ const EditPostTemplate = () => {
           required
         />
         <Label htmlFor="image">이미지</Label>
-        {existingImage && (
-          <ExistingImage>
-            <img src={existingImage} alt="Existing" />
-            {/*<FileName>{existingImage.split("/").pop()}</FileName> {/* 기존 이미지 파일 이름 표시 */}
-          </ExistingImage>
+        {existingImage && !imagePreview && (
+          <ImagePreview src={existingImage} alt="Existing" />
+        )}
+        {imagePreview && (
+          <ImagePreview src={imagePreview} alt="Preview" />
         )}
         <FileInputWrapper>
           <FileInputLabel htmlFor="image">파일 업로드</FileInputLabel>
           <FileInput
             type="file"
             id="image"
-            accept="image/*"
+            accept="image/jpeg, image/png, image/jpg"
             onChange={handleImageChange}
           />
           {fileName && <FileName>{fileName}</FileName>}

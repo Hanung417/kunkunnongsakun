@@ -19,16 +19,10 @@ const colors = {
 };
 
 const PageContainer = styled.div`
-  display: flex;
+ display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  min-height: 100vh;
-  background-color: ${colors.background};
-  font-size: 16px;
-  font-family: 'Arial', sans-serif;
-  color: ${colors.textPrimary};
-  padding: 20px;
+  background-color: darkgray;
 `;
 
 const Title = styled.h1`

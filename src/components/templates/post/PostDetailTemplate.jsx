@@ -2,7 +2,14 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { fetchPostDetail, createComment, createReply, editComment, deleteComment, deletePost } from "../../../apis/post";
+import {
+  fetchPostDetail,
+  createComment,
+  createReply,
+  editComment,
+  deleteComment,
+  deletePost,
+} from "../../../apis/post";
 import PostDetails from "../../molecules/PostDetail";
 import Comments from "../../molecules/Comment";
 
@@ -40,6 +47,7 @@ const PostDetailTemplate = () => {
   const [editCommentContent, setEditCommentContent] = useState("");
   const [showSettingsMenu, setShowSettingsMenu] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCommentId, setSelectedCommentId] = useState(null); // 추가된 상태
   const currentUserId = localStorage.getItem("userId");
 
   const settingsMenuRef = useRef();
@@ -60,7 +68,10 @@ const PostDetailTemplate = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (settingsMenuRef.current && !settingsMenuRef.current.contains(event.target)) {
+      if (
+        settingsMenuRef.current &&
+        !settingsMenuRef.current.contains(event.target)
+      ) {
         setShowSettingsMenu(false);
       }
     };
@@ -107,11 +118,12 @@ const PostDetailTemplate = () => {
   };
 
   const handleEditComment = async (commentId) => {
-
     try {
       await editComment(commentId, { content: editCommentContent });
       const updatedComments = comments.map((comment) =>
-        comment.id === commentId ? { ...comment, content: editCommentContent } : comment
+        comment.id === commentId
+          ? { ...comment, content: editCommentContent }
+          : comment
       );
       setComments(updatedComments);
       setEditCommentId(null);
@@ -134,13 +146,13 @@ const PostDetailTemplate = () => {
     try {
       await deletePost(id);
       if (post.post_type === "sell") {
-          navigate("/sellboard");
+        navigate("/sellboard");
       }
       if (post.post_type === "buy") {
-          navigate("/buyboard");
+        navigate("/buyboard");
       }
       if (post.post_type === "exchange") {
-          navigate("/exchangeboard");
+        navigate("/exchangeboard");
       }
     } catch (error) {
       console.error("Failed to delete post", error);
@@ -197,6 +209,8 @@ const PostDetailTemplate = () => {
           currentUserId={currentUserId}
           setEditCommentId={setEditCommentId}
           setEditCommentContent={setEditCommentContent}
+          setSelectedCommentId={setSelectedCommentId} // 추가된 부분
+          setShowSettingsMenu={setShowSettingsMenu} // 추가된 부분
         />
       </CommentsContainer>
     </Container>
