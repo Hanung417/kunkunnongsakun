@@ -249,6 +249,7 @@ const CropSelectionPage = () => {
                   type="text"
                   value={newSessionName}
                   onChange={(e) => setNewSessionName(e.target.value)}
+                  onClick={(e) => e.stopPropagation()}
                 />
                 <SaveButton onClick={(e) => handleSaveClick(session.session_id, e)}>저장</SaveButton>
               </>
