@@ -17,6 +17,11 @@ export const getCropNames = () => {
   return instance.get("prediction/get_crop_names/");
 };
 
+// 지역 이름 목록 조회
+export const getRegionNames = () => {
+  return instance.get("prediction/get_region_names/");
+};
+
 // 작물 예측 요청
 export const predictCrops = (data) => {
   return instance.post("prediction/predict/", data);
