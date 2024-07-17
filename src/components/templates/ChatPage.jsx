@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useParams, useLocation } from 'react-router-dom';
 import { fetchChatHistory, sendChatMessage } from '../../apis/chat';
+import SyncLoader from 'react-spinners/SyncLoader';
 import userProfileImage from '../../images/user_icon.jpg';
 import botProfileImage from '../../images/big_logo.png';
 
@@ -13,6 +14,7 @@ const Container = styled.div`
   background-color: #ffffff;
   box-sizing: border-box;
   overflow: hidden;
+  padding-bottom: 70px;
 `;
 
 const Header = styled.div`
@@ -20,7 +22,7 @@ const Header = styled.div`
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background-color: #075e54;
+  background-color: #4AAA87;
   color: white;
   font-size: 20px;
   font-weight: bold;
@@ -89,7 +91,7 @@ const ProfileImage = styled.img`
 
 const InputBox = styled.form`
   display: flex;
-  padding: 10px;
+  padding: 20px; /* Increased padding */
   background-color: #f0f0f0;
   border-top: 1px solid #ddd;
   width: 100%;
@@ -100,13 +102,13 @@ const InputBox = styled.form`
   right: 0;
 
   @media (max-width: 768px) {
-    padding: 8px;
+    padding: 16px; /* Increased padding */
   }
 `;
 
 const Input = styled.input`
   flex: 1;
-  padding: 10px;
+  padding: 20px; /* Increased padding */
   border: 1px solid #ddd;
   border-radius: 20px;
   margin-right: 8px;
@@ -116,7 +118,7 @@ const Input = styled.input`
   }
 
   @media (max-width: 768px) {
-    padding: 8px;
+    padding: 16px; /* Increased padding */
     margin-right: 4px;
   }
 `;
@@ -139,12 +141,12 @@ const Button = styled.button`
   }
 `;
 
-
 const ChatPage = () => {
   const { sessionid } = useParams();
   const location = useLocation();
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  const [loading, setLoading] = useState(false);
   const [sessionId, setSessionId] = useState(sessionid);
 
   const chatBoxRef = useRef(null);
@@ -190,6 +192,8 @@ const ChatPage = () => {
       timestamp: new Date().toISOString()
     };
     setMessages([...messages, userMessage]);
+    setInputValue(''); // Clear input field immediately
+    setLoading(true);
 
     const messageData = {
       question: inputValue,
@@ -205,7 +209,7 @@ const ChatPage = () => {
         text: response.data.answer,
         timestamp: response.data.timestamp
       };
-      setMessages([...messages, userMessage, botMessage]);
+      setMessages((prevMessages) => [...prevMessages, botMessage]);
     } catch (error) {
       console.error('Error during chat processing:', error);
       const errorMessage = {
@@ -213,9 +217,10 @@ const ChatPage = () => {
         text: 'An error occurred. Please try again later.',
         timestamp: new Date().toISOString()
       };
-      setMessages([...messages, userMessage, errorMessage]);
+      setMessages((prevMessages) => [...prevMessages, errorMessage]);
+    } finally {
+      setLoading(false);
     }
-    setInputValue('');
   };
 
   return (
@@ -234,6 +239,22 @@ const ChatPage = () => {
               {msg.isUser && <ProfileImage src={userProfileImage} alt="Profile" isUser />}
             </MessageContainer>
           ))}
+          {loading && (
+            <MessageContainer isUser={false}>
+              <ProfileImage src={botProfileImage} alt="Profile" />
+              <Message isUser={false} style={{ display: 'flex', alignItems: 'center' }}>
+                답변을 불러오는 중입니다.
+                <SyncLoader
+                  color="#75e781"
+                  loading={loading}
+                  margin={2}
+                  size={8}
+                  speedMultiplier={0.7}
+                  style={{ marginLeft: '10px' }} // Add some spacing between text and loader
+                />
+              </Message>
+            </MessageContainer>
+          )}
         </MessageList>
       </ChatBox>
       <InputBox onSubmit={handleSubmit}>
@@ -246,7 +267,6 @@ const ChatPage = () => {
         />
         <Button type="submit">전송</Button>
       </InputBox>
-      
     </Container>
   );
 };
