@@ -10,19 +10,14 @@ import json
 import os
 from django.views.decorators.http import require_http_methods
 
-
-
-
-
 from langchain.chains import (
     create_history_aware_retriever,
     create_retrieval_chain,
 )
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_openai import ChatOpenAI
 from langchain_community.vectorstores import Chroma
-from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain.memory import ConversationBufferMemory
 
 logger = logging.getLogger(__name__)
@@ -54,7 +49,7 @@ qa_system_prompt = (
     "당신은 질문에 답변하는 작업을 돕는 어시스턴트입니다. "
     "다음의 검색된 문맥을 사용하여 질문에 답변하세요. "
     "답을 모른다면 모른다고 말하세요. "
-    "세 문장 이상으로 답변을 자세히 구체적으로 유지하세요."
+    "농사에 관련된 질문은 세 문장 이상으로 답변을 구체적으로 유지하세요."
     "\n\n"
     "{context}"
 )
