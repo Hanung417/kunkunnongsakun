@@ -6,53 +6,59 @@ import { getCropNames, predictCrops, getRegionNames } from "../../../apis/crop";
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f8f9fa;
-  font-size: 1rem;
-  font-family: Arial, sans-serif;
-  color: #333;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  font-family: 'Roboto', sans-serif;
   padding: 20px;
-  overflow-y: auto; /* 스크롤 사용 */
+  box-sizing: border-box;
 `;
 
 const Title = styled.h1`
-  margin: 20px 0;
+  margin-bottom: 30px;
   color: #2c3e50;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-weight: bold;
 `;
 
 const InputContainer = styled.div`
-  margin-bottom: 20px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   position: relative;
+  box-sizing: border-box;
 `;
 
 const Input = styled.input`
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
   width: 100%;
-  border: 2px solid #dfe6e9;
-  border-radius: 5px;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
   box-sizing: border-box;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+
+  &:focus {
+    border-color: #4aaa87;
+    outline: none;
+  }
 `;
 
 const Button = styled.button`
-  padding: 10px 20px;
-  margin-top: 10px;
+  padding: 15px 20px;
+  margin-top: 15px;
   background-color: #4aaa87;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: bold;
   transition: background-color 0.3s;
   width: 100%;
 
@@ -62,22 +68,26 @@ const Button = styled.button`
 `;
 
 const CropContainer = styled.div`
-  background-color: #f1f2f6;
+  background-color: #f8f9fa;
   padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  border-radius: 12px;
+  margin-bottom: 20px;
   position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  left: -17px; /* 왼쪽으로 10px 이동 */
 `;
 
 const ErrorMessage = styled.p`
   color: white;
-  background-color: red;
-  padding: 10px;
-  border-radius: 5px;
+  background-color: #e74c3c;
+  padding: 15px;
+  border-radius: 8px;
   margin-top: 20px;
   text-align: center;
   width: 100%;
   max-width: 600px;
+  font-size: 1rem;
 `;
 
 const List = styled.div`
@@ -85,28 +95,29 @@ const List = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-color: #fff;
+  background-color: #ffffff;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: absolute;
   z-index: 1;
   top: 100%;
-  max-height: 200px; /* 고정된 높이 설정 */
-  overflow-y: auto; /* 스크롤 사용 */
-  -ms-overflow-style: none; /* Internet Explorer에서 스크롤바 숨기기 */
-  scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+  max-height: 200px;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
-    display: none; /* Webkit 기반 브라우저에서 스크롤바 숨기기 */
+    display: none;
   }
 `;
 
 const ListItem = styled.div`
-  padding: 8px;
+  padding: 12px;
   width: 100%;
   text-align: center;
   cursor: pointer;
+  transition: background-color 0.3s;
 
   &:hover {
     background-color: #f1f1f1;
@@ -142,7 +153,7 @@ const CropTest = () => {
     };
 
     const fetchRegionNames = async () => {
-      try{
+      try {
         const response = await getRegionNames();
         setRegions(response.data.region_names);
       } catch (err) {
@@ -203,12 +214,12 @@ const CropTest = () => {
     e.preventDefault();
     const inputErrors = validateInput();
     if (inputErrors.length > 0) {
-      setError(inputErrors.join("\n"));  // 모든 에러 메시지를 하나의 문자열로 결합
+      setError(inputErrors.join("\n"));
       return;
     }
 
     try {
-      const session_id = `session_${Date.now()}`;  // 고유한 세션 ID 생성
+      const session_id = `session_${Date.now()}`;
       const response = await predictCrops({
         land_area: landArea,
         crop_names: crops.map(crop => crop.name),

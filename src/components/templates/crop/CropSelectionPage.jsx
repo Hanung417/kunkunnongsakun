@@ -32,6 +32,8 @@ const colors = {
   textSecondary: '#95A5A6',
   buttonBackground: '#1ABC9C',
   buttonHover: '#16A085',
+  deleteButton: '#e53e3e',
+  deleteButtonHover: '#c53030',
   sessionBackground: '#FFFFFF',
   border: '#E0E0E0',
 };
@@ -189,13 +191,13 @@ const SaveButton = styled.button`
 const DeleteButton = styled.button`
   background: none;
   border: none;
-  color: ${colors.primary};
+  color: ${colors.deleteButton};
   cursor: pointer;
   font-size: 18px;
   margin-left: 10px;
 
   &:hover {
-    color: ${colors.buttonHover};
+    color: ${colors.deleteButtonHover};
   }
 
   @media (max-width: 480px) {
@@ -386,7 +388,6 @@ const CropSelectionPage = () => {
     <>
       <GlobalStyle />
       <PageContainer>
-        <Title>나의 작물 조합</Title>
         <Button onClick={() => navigate('/croptest')}>작물 조합 추가</Button>
         {error && <p>{error}</p>}
         <SessionList>

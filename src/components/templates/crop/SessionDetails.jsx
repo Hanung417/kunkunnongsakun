@@ -43,6 +43,11 @@ const BoxContainer = styled.div`
   justify-content: space-around;
   margin: 1rem 0;
   flex-wrap: wrap;
+  gap: 20px;
+
+  @media (min-width: 768px) {
+    gap: 50px;
+  }
 `;
 
 const Box = styled.div`
@@ -72,11 +77,15 @@ const Box = styled.div`
   @media (max-width: 768px) {
     width: 80%;
   }
+
+  @media (min-width: 768px) {
+    width: 20%;
+  }
 `;
 
 const BarChartBox = styled.div`
   background-color: #fff;
-  padding: 2rem;
+  padding: 1rem;
   margin: 1rem 0;
   display: flex;
   flex-direction: column;
@@ -84,7 +93,7 @@ const BarChartBox = styled.div`
   align-items: center;
   border-radius: 10px;
   box-shadow: ${boxShadow};
-  width: 90%;
+  width: 100%;
   height: 400px;
   overflow: auto;
   border: 1px solid #ddd;
@@ -147,8 +156,8 @@ const ErrorText = styled.p`
 
 const columns = [
   "총수입 (원)", "총생산비 (원)", "총경영비", "총중간재비",
-  "농약비", "수도광열비", "소득구비", "보통비료비",
-  "고용노동비", "자가노동비", "부가가치 (원)", "소득 (원)",
+  "농약비", "수도광열비", "고용노동비", "자가노동비",
+  "부가가치 (원)", "소득 (원)",
 ];
 
 const generateBarChartData = (adjustedData, cropName) => {
@@ -168,8 +177,6 @@ const generateBarChartData = (adjustedData, cropName) => {
           'rgba(75, 192, 192, 0.6)',
           'rgba(153, 102, 255, 0.6)',
           'rgba(255, 159, 64, 0.6)',
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
           'rgba(255, 206, 86, 0.6)',
           'rgba(75, 192, 192, 0.6)',
           'rgba(153, 102, 255, 0.6)',
@@ -182,8 +189,6 @@ const generateBarChartData = (adjustedData, cropName) => {
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
           'rgba(255, 159, 64, 1)',
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
@@ -350,11 +355,11 @@ const SessionDetails = () => {
           </Box>
           <Box>
             <Subtitle>토지 면적(평)</Subtitle>
-            {sessionDetails.land_area}
+            {sessionDetails.land_area.toLocaleString()}
           </Box>
           <Box>
             <Subtitle>총 수입(원)</Subtitle>
-            {sessionDetails.total_income}
+            {Math.round(adjustedDataList[selectedCropIndex]["총수입 (원)"]).toLocaleString()}
           </Box>
         </BoxContainer>
         <div>

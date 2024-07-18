@@ -90,7 +90,7 @@ const PageTopBar = () => {
     "/info": "병해충 진단 결과",
     "/croptest": "수익 예측",
     "/diagnosislist": "병해충 진단 목록",
-    "/cropselection": "작물 예측 목록",
+    "/cropselection": "나의 작물 조합",
     "/soillist": "토양 데이터 목록",
     "/soil_details": "토양 데이터 상세",
   };
