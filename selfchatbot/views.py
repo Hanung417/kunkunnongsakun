@@ -9,44 +9,85 @@ import logging
 import json
 import os
 from django.views.decorators.http import require_http_methods
-from langchain.chat_models import ChatOpenAI
-from langchain.chains import ConversationalRetrievalChain
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
+
+from langchain.chains import (
+    create_history_aware_retriever,
+    create_retrieval_chain,
+)
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_community.vectorstores import Chroma
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain.memory import ConversationBufferMemory
 
 logger = logging.getLogger(__name__)
-
+# 설정
 openai_api_key = os.getenv("OPENAI_API_KEY")
 embeddings = OpenAIEmbeddings(model="text-embedding-ada-002")
-database = Chroma(persist_directory="./database", embedding_function=embeddings)
-memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-chat = ChatOpenAI(api_key=openai_api_key, model="gpt-4o-2024-05-13")
-qa_chain = ConversationalRetrievalChain.from_llm(
-    llm=chat,
-    retriever=database.as_retriever(search_kwargs={"k": 3}),
-    memory=memory
+retriever = Chroma(persist_directory="./database", embedding_function=embeddings).as_retriever(search_kwargs={"k": 3})
+llm = ChatOpenAI(api_key=openai_api_key, model="gpt-4o-2024-05-13")
+
+# 독립형 질문 생성
+contextualize_q_system_prompt = (
+    "대화 기록과 최신 사용자 질문을 기반으로, "
+    "대화 기록 없이도 이해할 수 있는 독립형 질문을 작성하세요. "
+    "질문에 답하지 말고, 필요할 때만 질문을 재구성하고 그렇지 않으면 그대로 반환하세요."
+)
+contextualize_q_prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", contextualize_q_system_prompt),
+        MessagesPlaceholder("chat_history"),
+        ("human", "{input}"),
+    ]
+)
+history_aware_retriever = create_history_aware_retriever(
+    llm, retriever, contextualize_q_prompt
 )
 
+# 질문에 답변 생성
+qa_system_prompt = (
+    "당신은 질문에 답변하는 작업을 돕는 어시스턴트입니다. "
+    "다음의 검색된 문맥을 사용하여 질문에 답변하세요. "
+    "답을 모른다면 모른다고 말하세요. "
+    "농사에 관련된 질문은 세 문장 이상으로 답변을 구체적으로 유지하세요."
+    "\n\n"
+    "{context}"
+)
+qa_prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", qa_system_prompt),
+        MessagesPlaceholder("chat_history"),
+        ("human", "{input}"),
+    ]
+)
+question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
+
+# 전체 체인 생성
+rag_chain = create_retrieval_chain(
+    history_aware_retriever, question_answer_chain
+)
+
+# Django 뷰 설정
 @csrf_exempt
 def chatbot(request):
     try:
         data = json.loads(request.body)
         query = data.get('question')
-
+        session_id = data.get('session_id', 'default')
         if not query:
             return JsonResponse({'error': 'Question must be provided.'}, status=400)
 
-        chat_history = load_chat_history(request)  # Updated to pass request
+        chat_history = load_chat_history(request, session_id)
+        formatted_chat_history = [{"role": message['role'], "content": message['content']} for message in chat_history]
 
-        result = qa_chain({"question": query, "chat_history": chat_history})
+        # 체인 호출
+        result = rag_chain.invoke({"input": query, "chat_history": formatted_chat_history})
         answer = result['answer']
         timestamp = timezone.now()
 
+        # DB에 대화 기록 저장
         if request.user.is_authenticated:
-            session_id = data.get('session_id', 'default')
             session_name = data.get('session_name', 'Default Session')
-
             Chatbot.objects.create(
                 user=request.user,
                 session_id=session_id,
@@ -59,7 +100,7 @@ def chatbot(request):
         return JsonResponse({
             'question': query,
             'answer': answer,
-            'timestamp': timestamp.now()
+            'timestamp': timestamp
         })
     except json.JSONDecodeError:
         return JsonResponse({'error': 'Invalid JSON format.'}, status=400)
@@ -67,13 +108,16 @@ def chatbot(request):
         logger.error(f"Unhandled exception in chatbot: {str(e)}")
         return JsonResponse({'error': 'An unexpected error occurred.'}, status=500)
 
-    
-def load_chat_history(request):
+def load_chat_history(request, session_id):
     if not request.user.is_authenticated:
         return []
     try:
-        # This is a placeholder; replace 'retrieve' with the actual method name
-        return memory.retrieve()  # Adjust according to actual API
+        chats = Chatbot.objects.filter(user=request.user, session_id=session_id).order_by('created_at')
+        chat_data = []
+        for chat in chats:
+            chat_data.append({'role': 'user', 'content': chat.question_content})
+            chat_data.append({'role': 'assistant', 'content': chat.answer_content})
+        return chat_data
     except Exception as e:
         logger.error(f"Error loading chat history: {str(e)}")
         return []
