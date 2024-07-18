@@ -8,7 +8,6 @@ const PageContainer = styled.div`
   align-items: center;
   padding: 20px;
   background-color: #f9f9f9;
-  height: 100%;
 `;
 
 const HeaderContainer = styled.div`
