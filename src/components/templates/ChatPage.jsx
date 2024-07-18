@@ -61,7 +61,9 @@ const MessageContainer = styled.li`
 
 const Message = styled.div`
   max-width: 70%;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: ${({ isUser }) => (isUser ? 'flex-end' : 'flex-start')};
   padding: 10px 14px;
   border-radius: 20px;
   background-color: ${({ isUser }) => (isUser ? '#F7FE2E' : 'white')};
@@ -69,20 +71,21 @@ const Message = styled.div`
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   word-break: break-word;
   margin-top: 8px;
-  padding-bottom: 24px; /* 추가된 패딩으로 small 태그와 텍스트가 겹치지 않도록 */
 
   @media (max-width: 768px) {
     padding: 8px 10px;
-    padding-bottom: 24px; /* 추가된 패딩으로 small 태그와 텍스트가 겹치지 않도록 */
   }
+`;
 
-  small {
-    position: absolute;
-    bottom: 4px;
-    ${({ isUser }) => isUser ? css`right: 10px;` : css`left: 10px;`}
-    font-size: 12px;
-    color: #999;
-  }
+const MessageText = styled.div`
+  flex: 1;
+`;
+
+const MessageTime = styled.small`
+  margin-top: 4px;
+  font-size: 0.8em;
+  color: #666;
+  ${({ isUser }) => isUser ? css`align-self: flex-end;` : css`align-self: flex-start;`}
 `;
 
 const ProfileImage = styled.img`
@@ -243,15 +246,17 @@ const ChatPage = () => {
             <MessageContainer key={index} isUser={msg.isUser}>
               {!msg.isUser && <ProfileImage src={botProfileImage} alt="Profile" />}
               <Message isUser={msg.isUser}>
-                {!msg.isUser ? (
-                  <div dangerouslySetInnerHTML={{ __html: msg.text }} />
-                ) : (
-                  <>
-                    {msg.text}
-                    <br/>
-                  </>
-                )}
-                <small isUser={msg.isUser}>{new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</small>
+                <MessageText>
+                  {!msg.isUser ? (
+                    <div dangerouslySetInnerHTML={{ __html: msg.text }} />
+                  ) : (
+                    <>
+                      {msg.text}
+                      <br/>
+                    </>
+                  )}
+                </MessageText>
+                <MessageTime isUser={msg.isUser}>{new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</MessageTime>
               </Message>
               {msg.isUser && <ProfileImage src={userProfileImage} alt="Profile" isUser />}
             </MessageContainer>
@@ -260,15 +265,17 @@ const ChatPage = () => {
             <MessageContainer isUser={false}>
               <ProfileImage src={botProfileImage} alt="Profile" />
               <Message isUser={false} style={{ display: 'flex', alignItems: 'center' }}>
-                답변을 불러오는 중입니다.
-                <SyncLoader
-                  color="#75e781"
-                  loading={loading}
-                  margin={2}
-                  size={8}
-                  speedMultiplier={0.7}
-                  style={{ marginLeft: '10px' }} // Add some spacing between text and loader
-                />
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <span>답변을 불러오는 중입니다.</span>
+                  <SyncLoader
+                    color="#75e781"
+                    loading={loading}
+                    margin={2}
+                    size={8}
+                    speedMultiplier={0.7}
+                    style={{ marginLeft: '10px' }} // Add some spacing between text and loader
+                  />
+                </div>
               </Message>
             </MessageContainer>
           )}
