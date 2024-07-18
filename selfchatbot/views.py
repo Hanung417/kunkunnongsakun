@@ -96,7 +96,7 @@ def chatbot(request):
                 session_id=session_id,
                 session_name=session_name,
                 question_content=query,
-                answer_content=answer,
+                answer_content=formatted_answer,
                 created_at=timezone.now()
             )
 
