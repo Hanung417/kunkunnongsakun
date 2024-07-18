@@ -14,15 +14,6 @@ const PageContainer = styled.div`
 `;
 
 
-const Title = styled.h1`
-  font-size: 1.3rem;
-  margin: 0;
-
-  @media (max-width: 600px) {
-    font-size: 1rem;
-  }
-`;
-
 const Content = styled.div`
   display: flex;
   flex-direction: column;

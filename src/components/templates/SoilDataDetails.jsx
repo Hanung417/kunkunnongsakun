@@ -11,15 +11,6 @@ const PageContainer = styled.div`
 `;
 
 
-const Title = styled.h1`
-  font-size: 1.3rem;
-  margin: 0;
-
-  @media (max-width: 600px) {
-    font-size: 1rem;
-  }
-`;
-
 const RecommendationContainer = styled.div`
   margin-top: 20px;
   width: 100%;
