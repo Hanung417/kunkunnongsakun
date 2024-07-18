@@ -10,8 +10,6 @@ const Container = styled.div`
   align-items: center;
   padding: 24px;
   background-color: #f9f9f9;
-  height: 100%;
-  width: 100%;
   box-sizing: border-box;
 `;
 
@@ -454,7 +452,7 @@ const SoilTemplate = () => {
               </tbody>
             </Table>
           </TableContainer>
-          <RecommendationTitle>비료 추천 데이터</RecommendationTitle>
+          <RecommendationTitle>비료 처방량</RecommendationTitle>
           <TableContainer>
             <Table>
               <thead>

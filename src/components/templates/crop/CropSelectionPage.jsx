@@ -410,7 +410,7 @@ const CropSelectionPage = () => {
                   <SessionDetails>
                     <div>면적: {session.land_area}평</div>
                     <div>지역: {session.region}</div>
-                    <div>총 소득: {session.total_income}원</div>
+                    <div>총 소득: {session.total_income.toLocaleString()}원</div>
                     <div>{session.created_at}</div>
                   </SessionDetails>
                   <ButtonContainer>

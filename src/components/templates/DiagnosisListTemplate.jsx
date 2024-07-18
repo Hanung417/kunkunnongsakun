@@ -12,7 +12,6 @@ const PageContainer = styled.div`
   align-items: center;
   padding: 16px;
   background-color: #f9f9f9;
-  height: 100%;
 `;
 
 const HeaderContainer = styled.div`
@@ -61,12 +60,25 @@ const SessionItem = styled.div`
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
+  flex-wrap: wrap;
 `;
 
 const SessionInfo = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 6px;
   gap: 5px;
+  flex: 1;
+  min-width: 150px;
+`;
+
+const SessionImage = styled.img`
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+  flex-shrink: 0;
 `;
 
 const DeleteButton = styled.button`
@@ -78,6 +90,8 @@ const DeleteButton = styled.button`
   &:hover {
     color: #c53030;
   }
+  align-self: flex-start;
+  margin-left: auto;
 `;
 
 const AddButtonContainer = styled.div`
@@ -191,6 +205,7 @@ const DiagnosisListTemplate = () => {
           <SessionList>
             {sessions.map(session => (
               <SessionItem key={session.session_id} onClick={() => handleSessionClick(session.session_id)}>
+                <SessionImage src={session.user_image_url} alt={session.pest_name} />
                 <SessionInfo>
                   <div>{session.pest_name}</div>
                   <div>{session.detection_date}</div>

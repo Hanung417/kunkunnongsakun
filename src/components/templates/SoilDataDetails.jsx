@@ -8,19 +8,8 @@ const PageContainer = styled.div`
   align-items: center;
   padding: 16px;
   background-color: #f9f9f9;
-  min-height: 100vh;
 `;
 
-const HeaderContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  background-color: #4aaa87;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
 
 const Title = styled.h1`
   font-size: 1.3rem;
@@ -145,9 +134,6 @@ const SoilDataDetails = () => {
 
   return (
     <PageContainer>
-      <HeaderContainer>
-        <Title>토양 데이터 상세</Title>
-      </HeaderContainer>
       {soilData && (
         <RecommendationContainer>
           <CropNameTitle>작물 이름 : {crop}</CropNameTitle>
@@ -196,7 +182,7 @@ const SoilDataDetails = () => {
               </tbody>
             </Table>
           </TableContainer>
-          <RecommendationTitle>비료 추천 데이터</RecommendationTitle>
+          <RecommendationTitle>비료 처방량</RecommendationTitle>
           <TableContainer>
             <Table>
               <thead>

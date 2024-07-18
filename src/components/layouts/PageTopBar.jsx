@@ -91,6 +91,8 @@ const PageTopBar = () => {
     "/croptest": "수익 예측",
     "/diagnosislist": "병해충 진단 목록",
     "/cropselection": "작물 예측 목록",
+    "/soillist": "토양 데이터 목록",
+    "/soil_details": "토양 데이터 상세",
   };
 
   const pageTitle = pageTitles[location.pathname] || "";
