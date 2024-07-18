@@ -8,7 +8,6 @@ const PageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   background-color: #f0f2f5;
   font-family: 'Roboto', sans-serif;
   padding: 20px;
