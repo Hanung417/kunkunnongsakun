@@ -85,6 +85,9 @@ def chatbot(request):
         answer = result['answer']
         timestamp = timezone.now()
 
+        # 응답 포맷팅
+        formatted_answer = format_answer(answer)
+
         # DB에 대화 기록 저장
         if request.user.is_authenticated:
             session_name = data.get('session_name', 'Default Session')
@@ -93,13 +96,13 @@ def chatbot(request):
                 session_id=session_id,
                 session_name=session_name,
                 question_content=query,
-                answer_content=answer,
+                answer_content=formatted_answer,
                 created_at=timezone.now()
             )
 
         return JsonResponse({
             'question': query,
-            'answer': answer,
+            'answer': formatted_answer,
             'timestamp': timestamp
         })
     except json.JSONDecodeError:
@@ -121,6 +124,20 @@ def load_chat_history(request, session_id):
     except Exception as e:
         logger.error(f"Error loading chat history: {str(e)}")
         return []
+
+def format_answer(answer):
+    # 여기서 응답 내용을 포맷팅합니다.
+    formatted_answer = answer.replace('\n', '<br>')
+    
+    # **로 감싸진 부분을 <b></b> 태그로 변경
+    while '**' in formatted_answer:
+        start = formatted_answer.find('**')
+        end = formatted_answer.find('**', start + 2)
+        if end == -1:  # Closing ** not found, break the loop
+            break
+        formatted_answer = formatted_answer[:start] + '<b>' + formatted_answer[start+2:end] + '</b>' + formatted_answer[end+2:]
+
+    return f"{formatted_answer}"
 
 @login_required
 def chat_sessions(request):
