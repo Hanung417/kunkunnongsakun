@@ -220,6 +220,7 @@ const ChatListPage = () => {
   }, [isLoggedIn]);
 
   const startNewChat = () => {
+    setNewSessionName(''); // 추가: 새 대화 시작 시 제목 초기화
     if (!isLoggedIn) {
       const newSessionId = uuidv4();
       localStorage.setItem('sessionId', newSessionId);

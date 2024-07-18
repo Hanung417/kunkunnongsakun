@@ -161,7 +161,7 @@ const ChatPage = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [loading, setLoading] = useState(false);
-  const [sessionId, setSessionId] = useState(sessionid);
+  const [sessionId] = useState(sessionid);
 
   const chatBoxRef = useRef(null);
 

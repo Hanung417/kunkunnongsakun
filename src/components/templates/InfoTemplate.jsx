@@ -10,21 +10,6 @@ const PageContainer = styled.div`
   background-color: #f9f9f9;
 `;
 
-const HeaderContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  background-color: #4aaa87;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
-
-const Title = styled.h1`
-  font-size: 1.3rem;
-  margin: 0;
-`;
 
 const LayoutContainer = styled.div`
   display: grid;
