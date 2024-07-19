@@ -339,7 +339,7 @@ def password_reset(request):
             if user is not None and user.check_password(temporary_password):
                 user.set_password(new_password)
                 user.save()
-                return JsonResponse({'message': '새로운 비밀번호로 변경되었습니다.'})
+                return JsonResponse({'status': 'success', 'message': '새로운 비밀번호로 변경되었습니다.'})
             else:
                 raise ValueError('잘못된 이메일 또는 임시 비밀번호입니다.')
 
