@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -8,6 +8,7 @@ const PageContainer = styled.div`
   align-items: center;
   padding: 20px;
   background-color: #f9f9f9;
+  height: 100%;
 `;
 
 
@@ -60,7 +61,7 @@ const ImageBox = styled.div`
   flex-direction: column;
   margin: 16px;
   align-items: center;
-  border: 2px solid #4aaa87;
+  border: 1px solid #ccc;
   border-radius: 10px;
   padding: 10px;
   background-color: #f9f9f9;
@@ -68,7 +69,7 @@ const ImageBox = styled.div`
 `;
 
 const InfoBox = styled.div`
-  border: 2px solid #4aaa87;
+  border: 1px solid #ccc;
   margin: 4px 16px;
   padding: 14px;
   text-align: left;
@@ -82,7 +83,7 @@ const InfoLabel = styled.p`
 `;
 
 const InfoText = styled.p`
-  line-height: 1.5;
+  line-height: 1.3;
 `;
 
 const BackButton = styled.button`
@@ -105,6 +106,10 @@ const InfoTemplate = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { diagnosisResult } = location.state || {};
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!diagnosisResult) {
     return <div>No diagnosis result available.</div>;
