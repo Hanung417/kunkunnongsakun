@@ -25,6 +25,7 @@ const MenuCard = styled(Link)`
   justify-content: center;
   padding: 1rem 0.5rem;
   text-decoration: none;
+  text-align: center;
   color: #333;
   background-color: white;
   border: 2px solid #e5e7eb;
@@ -92,11 +93,14 @@ const MainTemplate = () => {
       <GridContainer>
         <MenuCard to="/diagnosislist">
           <h2>병해충 진단</h2>
-          <p>작물 이미지로 병해충 진단</p>
+          <p>
+            작물 이미지로<br/>
+            병해충 진단
+          </p>
         </MenuCard>
         <MenuCard to="/cropselection">
           <h2>수익 예측</h2>
-          <p>작물 수익 미리 계산해보기</p>
+          <p>작물 수익<br/>미리 계산해보기</p>
         </MenuCard>
         <MenuCard to="/chatlist">
           <h2>농업 GPT</h2>

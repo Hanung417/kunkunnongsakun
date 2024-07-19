@@ -8,7 +8,6 @@ const PageContainer = styled.div`
   align-items: center;
   padding: 20px;
   background-color: #f9f9f9;
-  height: 100%;
 `;
 
 
@@ -26,7 +25,7 @@ const LayoutContainer = styled.div`
 `;
 
 const ImageTitle = styled.h2`
-  font-size: 18px;
+  font-size: clamp(0.5rem, 3.5vw, 1.8rem);
   color: #333;
   margin-bottom: 16px;
 `;
@@ -127,7 +126,7 @@ const InfoTemplate = () => {
           </ImageContainer>
         </ImageBox>
         <ImageBox>
-          <ImageTitle>사용자 업로드 이미지</ImageTitle>
+          <ImageTitle>사용자 이미지</ImageTitle>
           <ImageContainer>
             {user_image_url ? <Image src={user_image_url} alt="User uploaded Pest" /> : <p>No Image Available</p>}
           </ImageContainer>
