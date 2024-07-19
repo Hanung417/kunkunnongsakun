@@ -141,7 +141,7 @@ def format_answer(answer):
 
 @login_required
 def chat_sessions(request):
-    sessions = Chatbot.objects.filter(user=request.user).values('session_id', 'session_name').distinct()
+    sessions = Chatbot.objects.filter(user=request.user).values('session_id', 'session_name', 'created_at').distinct().order_by('-created_at')
     return JsonResponse(list(sessions), safe=False)
 
 @login_required
