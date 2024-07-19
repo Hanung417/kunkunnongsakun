@@ -72,7 +72,6 @@ const PageTopBar = () => {
   const location = useLocation();
 
   const pageTitles = {
-    "/password_reset": "비밀번호 찾기",
     "/board": "게시판",
     "/buyboard": "구매 게시판",
     "/sellboard": "판매 게시판",
@@ -142,7 +141,7 @@ const PageTopBar = () => {
         <BackButton onClick={handleBackClick}>
           <FaArrowLeft />
         </BackButton>
-        <LogoContainer onClick={() => navigate("/")}>
+        <LogoContainer onClick={() => navigate("/main")}>
           <LogoImage src={logoImg} alt="Logo" />
         </LogoContainer>
       </LeftSection>

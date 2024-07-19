@@ -17,9 +17,9 @@ import CropTest from "./components/templates/crop/CropTest";
 import MyPostTemplate from "./components/templates/post/MyPostTemplate";
 import EditPostTemplate from "./components/templates/post/EditPostTemplate";
 import ExchangeBoardTemplate from "./components/templates/post/ExchangeBoardTemplate";
-import SoilPage from './pages/SoilPage';
-import DiagnosisPage from './pages/DiagnosisPage';
-import InfoPage from './pages/InfoPage';
+import SoilPage from "./pages/SoilPage";
+import DiagnosisPage from "./pages/DiagnosisPage";
+import InfoPage from "./pages/InfoPage";
 import MyCommentedPostsTemplate from "./components/templates/post/MyCommentedPostsTemplate";
 import CropSelectionPage from "./components/templates/crop/CropSelectionPage";
 import DiagnosisListTemplate from "./components/templates/DiagnosisListTemplate";
@@ -27,21 +27,22 @@ import SoilListTemplate from "./components/templates/SoilListTemplate";
 import SoilDataDetails from "./components/templates/SoilDataDetails";
 import NotFoundPage from "./pages/NotFoundPage";
 import SessionDetails from "./components/templates/crop/SessionDetails";
+import StartTemplate from "./components/templates/user/StartTemplate";
+import PolicyAgreement from "./components/molecules/PolicyAgreement";
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<MainLayout/>}>
-
+        <Route path="/" element={<StartTemplate />} />
+        <Route element={<MainLayout />}>
           {/*user*/}
-          <Route path="/signup" element={<SignupTemplate />} />
+          <Route path="/signup" element={<PolicyAgreement />} />
           <Route path="/login" element={<LoginTemplate />} />
           <Route path="/password_reset" element={<PasswordResetTemplate />} />
-          <Route path="/" element={<MainPage />} />
+          <Route path="/main" element={<MainPage />} />
           <Route path="/mypage" element={<MyPageTemplate />} />
-          <Route path="*" element={<NotFoundPage /> } />
+          <Route path="*" element={<NotFoundPage />} />
 
           {/*post*/}
           <Route path="board" element={<BoardPage />} />
@@ -52,7 +53,10 @@ function App() {
           <Route path="post/create" element={<WritePostPage />} />
           <Route path="/my_posts" element={<MyPostTemplate />} />
           <Route path="/post/edit/:id" element={<EditPostTemplate />} />
-          <Route path="/my_commented_posts" element={<MyCommentedPostsTemplate />} />
+          <Route
+            path="/my_commented_posts"
+            element={<MyCommentedPostsTemplate />}
+          />
 
           {/*chat*/}
           <Route path="chatlist" element={<ChatListPage />} />

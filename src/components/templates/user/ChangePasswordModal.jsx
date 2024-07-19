@@ -6,17 +6,29 @@ import { changePassword, getCSRFToken } from "../../../apis/user";
 import CustomModal from "../../atoms/CustomModal"; // Import your custom modal component
 import { FaTimes } from "react-icons/fa";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "70%",
-  },
-};
+const ModalContainer = styled(Modal)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+  padding: 24px;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 400px;
+  width: 80%;
+`;
+
+const ModalTitle = styled.h2`
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: #333;
+`;
 
 const CloseButton = styled.button`
   position: absolute;
@@ -31,8 +43,8 @@ const CloseButton = styled.button`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  width: 80%;
-  padding: 24px;
+
+  padding: 30px 24px;
 `;
 
 const InputGroup = styled.div`
@@ -79,7 +91,7 @@ const Button = styled.button`
 
 const ErrorMessage = styled.div`
   color: red;
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 4px;
 `;
 
@@ -117,7 +129,7 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
       });
 
       if (response.data.status === 'success') {
-        setModalContent("비밀번호가 성공적으로 변경되었습니다. 다시 로그인을 진행해주세요.");
+        setModalContent("비밀번호가 변경되었습니다. 다시 로그인을 진행해주세요.");
         setIsSuccessModalOpen(true);
         setError("");
       } else {
@@ -134,15 +146,11 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onRequestClose}
-      style={customStyles}
-      contentLabel="Change Password Modal"
+    <ModalContainer isOpen={isOpen} onRequestClose={onRequestClose}
     >
       <CloseButton onClick={onRequestClose}><FaTimes /></CloseButton>
       <Form onSubmit={handleSubmit}>
-        <h2>비밀번호 변경</h2>
+        <ModalTitle>비밀번호 변경</ModalTitle>
         <InputGroup>
           <Label htmlFor="old_password">현재 비밀번호</Label>
           <Input
@@ -188,7 +196,7 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
         title="알림"
         content={modalContent}
       />
-    </Modal>
+    </ModalContainer>
   );
 };
 

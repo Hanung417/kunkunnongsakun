@@ -8,7 +8,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px;
+  padding: 18px;
   background-color: #f9f9f9;
   height: 100%;
   width: 100%;
@@ -27,7 +27,7 @@ const Form = styled.form`
   width: 100%;
   max-width: 600px;
   background-color: white;
-  padding: 24px;
+  padding: 18px;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -74,7 +74,7 @@ const EmailInput = styled(Input)`
 
 const Button = styled.button`
   padding: 12px 16px;
-  font-size: 14px;
+  font-size: 14px;g
   height: 44px; 
   color: white;
   background-color: #4aaa87;
@@ -137,9 +137,8 @@ const SignupTemplate = () => {
   };
 
   const validatePassword = (password) => {
-    return password.length >= 6;
-  };
-
+  return /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+};
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -154,7 +153,7 @@ const SignupTemplate = () => {
 
     if (name === "password1") {
       if (!validatePassword(value)) {
-        setPasswordError("비밀번호는 6자 이상이어야 합니다.");
+        setPasswordError("비밀번호는 영소문자, 숫자, 특수문자를 하나 이상 포함하여 8자 이상으로 입력하세요");
       } else {
         setPasswordError("");
       }
