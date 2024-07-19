@@ -36,14 +36,14 @@ const ImageContainer = styled.div`
   align-items: center;
   overflow: hidden;
   width: 100%;
-  height: 300px;
+  height: 100%;
   border-radius: 10px;
   background-color: #fff;
 `;
 
 const Image = styled.img`
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
 `;
 
@@ -81,7 +81,9 @@ const InfoLabel = styled.p`
   margin-bottom: 8px;
 `;
 
-const InfoText = styled.p``;
+const InfoText = styled.p`
+  line-height: 1.5;
+`;
 
 const BackButton = styled.button`
   background-color: #4aaa87;
