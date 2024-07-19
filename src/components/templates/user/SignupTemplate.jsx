@@ -331,6 +331,7 @@ const SignupTemplate = () => {
             required
           />
         </InputGroup>
+        {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
         <InputGroup>
           <Label>비밀번호 확인</Label>
           <Input
@@ -341,7 +342,6 @@ const SignupTemplate = () => {
             placeholder="비밀번호 확인"
             required
           />
-          {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
           {signupError && <ErrorMessage>{signupError}</ErrorMessage>}
         </InputGroup>
         <Button type="submit" disabled={isButtonDisabled}>가입하기</Button>

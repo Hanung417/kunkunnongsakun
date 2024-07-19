@@ -7,13 +7,14 @@ import { FaTimes } from "react-icons/fa";
 
 const customStyles = {
   content: {
-    top: "50%",
+    top: "45%",
     left: "50%",
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     width: "70%",
+    boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1)",
   },
 };
 
