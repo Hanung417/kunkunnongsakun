@@ -187,7 +187,7 @@ const DiagnosisListTemplate = () => {
       <HeaderContainer>
         <AddButtonContainer onClick={handleAddClick}>
           <AddButtonIcon />
-          <AddButtonText>새 진단 시작</AddButtonText>
+          <AddButtonText>새 진단 시작하기</AddButtonText>
         </AddButtonContainer>
       </HeaderContainer>
       <Content>
