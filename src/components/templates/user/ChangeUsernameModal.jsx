@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Modal from "react-modal";
-import { changeUsername, getCSRFToken } from "../../../apis/user";
+import { changeUsername } from "../../../apis/user";
 import { FaTimes } from "react-icons/fa";
 import CustomModal from "../../atoms/CustomModal";
 

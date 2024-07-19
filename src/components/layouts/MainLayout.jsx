@@ -28,7 +28,7 @@ const Footer = styled.div`
 
 export const MainLayout = ({ isLoggedIn, onLogout }) => {
   const location = useLocation();
-  const isMainPage = location.pathname === "/";
+  const isMainPage = location.pathname === "/main";
 
   return (
     <Container>

@@ -106,7 +106,7 @@ const MainTopBar = () => {
   };
 
   const handleLogoClick = () => {
-    navigate("/");
+    navigate("/main");
   };
 
   return (

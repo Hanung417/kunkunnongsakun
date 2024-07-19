@@ -77,8 +77,8 @@ export const GNB = () => {
   return (
     <Nav>
       <Wrapper>
-        <MenuLink to="/" className={currentPage === "/" ? "active" : ""}>
-          <IconWrapper isActive={currentPage === "/"}>
+        <MenuLink to="/main" className={currentPage === "/main" ? "active" : ""}>
+          <IconWrapper isActive={currentPage === "/main"}>
             <FaHome size={24} />
           </IconWrapper>
           <MenuText isActive={currentPage === "/"}>홈</MenuText>
