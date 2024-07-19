@@ -40,13 +40,13 @@ const MenuCard = styled(Link)`
 
   h2 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 4vw, 1.5rem);
     color: #4aaa87;
   }
 
   p {
     margin: 0.5rem 0 0;
-    font-size: 1rem;
+    font-size: clamp(0.8rem, 3vw, 1rem);
     color: #666;
   }
 `;
@@ -75,13 +75,13 @@ const ListItem = styled(Link)`
 
   h2 {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: clamp(0.8rem, 3vw, 1.2rem);
     color: #4aaa87;
   }
 
   p {
     margin: 0.5rem 0 0;
-    font-size: 0.9rem;
+    font-size: clamp(0.5rem, 2.5vw, 0.9rem);
     color: #666;
   }
 `;

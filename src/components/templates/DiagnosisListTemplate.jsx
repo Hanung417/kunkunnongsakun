@@ -5,6 +5,7 @@ import { fetchDetectionSessions, fetchSessionDetails, deleteDetectionSession } f
 import { FaTrash, FaPlus } from 'react-icons/fa';
 import ConfirmModal from '../atoms/ConfirmModal';
 import { FadeLoader } from 'react-spinners'; // Importing PulseLoader from react-spinners
+import ReactPaginate from 'react-paginate';
 
 const PageContainer = styled.div`
   display: flex;
@@ -22,7 +23,6 @@ const HeaderContainer = styled.div`
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
-
 
 const Content = styled.div`
   display: flex;
@@ -57,6 +57,7 @@ const SessionItem = styled.div`
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   flex-wrap: wrap;
+  font-size: clamp(0.5rem, 3vw, 1.2rem); // SessionItem의 크기에 맞게 폰트 크기 조정
 `;
 
 const SessionInfo = styled.div`
@@ -66,6 +67,7 @@ const SessionInfo = styled.div`
   gap: 5px;
   flex: 1;
   min-width: 150px;
+  font-size: 1em;
 `;
 
 const SessionImage = styled.img`
@@ -86,8 +88,7 @@ const DeleteButton = styled.button`
   &:hover {
     color: #c53030;
   }
-  align-self: flex-start;
-  margin-left: auto;
+  align-self: flex-end;
 `;
 
 const AddButtonContainer = styled.div`
@@ -127,12 +128,63 @@ const LoaderContainer = styled.div`
   height: 100%;
 `;
 
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  .pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  .pagination li {
+    margin: 0 5px;
+  }
+
+  .pagination li a {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #4aaa87;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .pagination li a:hover {
+    background-color: #f5f5f5;
+    color: #3e8e75;
+  }
+
+  .pagination li.active a {
+    background-color: #4aaa87;
+    color: white;
+    border: none;
+  }
+
+  .pagination li.previous a,
+  .pagination li.next a {
+    color: #888;
+  }
+
+  .pagination li.disabled a {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
 const DiagnosisListTemplate = () => {
   const [sessions, setSessions] = useState([]);
   const [isLoading, setIsLoading] = useState(false); // State to track loading status
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sessionIdToDelete, setSessionIdToDelete] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
   const navigate = useNavigate();
+
+  const sessionsPerPage = 4;
+  const pageCount = Math.ceil(sessions.length /sessionsPerPage);
+  const offset = currentPage * sessionsPerPage;
 
   useEffect(() => {
     const fetchSessions = async () => {
@@ -182,6 +234,10 @@ const DiagnosisListTemplate = () => {
     setIsModalOpen(false);
   };
 
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
   return (
     <PageContainer>
       <HeaderContainer>
@@ -198,24 +254,42 @@ const DiagnosisListTemplate = () => {
         ) : sessions.length === 0 ? (
           <EmptyMessage>첫 진단을 시작해보세요!</EmptyMessage>
         ) : (
-          <SessionList>
-            {sessions.map(session => (
-              <SessionItem key={session.session_id} onClick={() => handleSessionClick(session.session_id)}>
-                <SessionImage src={session.user_image_url} alt={session.pest_name} />
-                <SessionInfo>
-                  <div>{session.pest_name}</div>
-                  <div>{session.detection_date}</div>
-                  <div>Confidence: {session.confidence}</div>
-                </SessionInfo>
-                <DeleteButton onClick={(e) => {
-                  e.stopPropagation();
-                  openDeleteModal(session.session_id);
-                }}>
-                  <FaTrash />
-                </DeleteButton>
-              </SessionItem>
-            ))}
-          </SessionList>
+          <>
+            <SessionList>
+              {sessions.slice(offset, offset + sessionsPerPage).map(session => (
+                <SessionItem key={session.session_id} onClick={() => handleSessionClick(session.session_id)}>
+                  <SessionImage src={session.user_image_url} alt={session.pest_name} />
+                  <SessionInfo>
+                    <div>{session.pest_name}</div>
+                    <div>{session.detection_date}</div>
+                    <div>Confidence: {session.confidence}</div>
+                  </SessionInfo>
+                  <DeleteButton onClick={(e) => {
+                    e.stopPropagation();
+                    openDeleteModal(session.session_id);
+                  }}>
+                    <FaTrash />
+                  </DeleteButton>
+                </SessionItem>
+              ))}
+            </SessionList>
+            <PaginationContainer>
+              <ReactPaginate
+                previousLabel={"이전"}
+                nextLabel={"다음"}
+                breakLabel={"..."}
+                pageCount={pageCount}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                activeClassName={"active"}
+                previousClassName={"previous"}
+                nextClassName={"next"}
+                disabledClassName={"disabled"}
+              />
+            </PaginationContainer>
+          </>
         )}
       </Content>
       <ConfirmModal
