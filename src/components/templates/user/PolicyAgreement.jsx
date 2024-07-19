@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import styled, { css } from 'styled-components';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import SignupTemplate from "../templates/user/SignupTemplate";
+import SignupTemplate from "./SignupTemplate";
 
 const Container = styled.div`
   display: flex;
@@ -156,6 +157,13 @@ const PolicyAgreement = () => {
     marketingInfoCheck: false,
   });
   const [currentStep, setCurrentStep] = useState(1);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      navigate('/main');
+    }
+  }, [navigate]);
 
   useEffect(() => {
     const { ageCheck, usingListCheck, personalInfoCheck, marketingInfoCheck } = isAgreed;

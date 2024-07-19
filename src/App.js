@@ -28,7 +28,7 @@ import SoilDataDetails from "./components/templates/SoilDataDetails";
 import NotFoundPage from "./pages/NotFoundPage";
 import SessionDetails from "./components/templates/crop/SessionDetails";
 import StartTemplate from "./components/templates/user/StartTemplate";
-import PolicyAgreement from "./components/molecules/PolicyAgreement";
+import PolicyAgreement from "./components/templates/user/PolicyAgreement";
 
 function App() {
   return (

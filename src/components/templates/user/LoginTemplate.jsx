@@ -113,6 +113,12 @@ const LoginTemplate = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      navigate('/main');
+    }
+  }, [navigate]);
+
+  useEffect(() => {
     const { email, password } = formData;
     setIsButtonDisabled(!email || !password || emailError !== "" || passwordError !== "");
   }, [formData, emailError, passwordError]);
