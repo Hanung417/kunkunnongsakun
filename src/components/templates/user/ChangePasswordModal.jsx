@@ -15,13 +15,14 @@ const ModalContainer = styled(Modal)`
   background-color: white;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1);
   position: absolute;
-  top: 40%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 400px;
   width: 80%;
+  outline: none;
 `;
 
 const ModalTitle = styled.h2`
@@ -43,8 +44,7 @@ const CloseButton = styled.button`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-
-  padding: 30px 24px;
+  width: 100%;
 `;
 
 const InputGroup = styled.div`
@@ -93,6 +93,7 @@ const ErrorMessage = styled.div`
   color: red;
   font-size: 14px;
   margin-top: 4px;
+  margin-bottom: 12px;
 `;
 
 const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
@@ -113,9 +114,21 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
     setIsButtonDisabled(!(old_password && new_password1 && new_password2));
   }, [formData]);
 
+  const validatePassword = (password) => {
+    return /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+
+    if (name === "new_password1") {
+      if (!validatePassword(value)) {
+        setError("비밀번호는 영소문자, 숫자, 특수문자를 하나 이상 포함하여 8자 이상으로 입력하세요");
+      } else {
+        setError("");
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -146,57 +159,62 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
   };
 
   return (
-    <ModalContainer isOpen={isOpen} onRequestClose={onRequestClose}
-    >
-      <CloseButton onClick={onRequestClose}><FaTimes /></CloseButton>
-      <Form onSubmit={handleSubmit}>
-        <ModalTitle>비밀번호 변경</ModalTitle>
-        <InputGroup>
-          <Label htmlFor="old_password">현재 비밀번호</Label>
-          <Input
-            type="password"
-            id="old_password"
-            name="old_password"
-            value={formData.old_password}
-            onChange={handleChange}
-            placeholder="현재 비밀번호"
-            required
-          />
-        </InputGroup>
-        <InputGroup>
-          <Label htmlFor="new_password1">새 비밀번호</Label>
-          <Input
-            type="password"
-            id="new_password1"
-            name="new_password1"
-            value={formData.new_password1}
-            onChange={handleChange}
-            placeholder="새 비밀번호"
-            required
-          />
-        </InputGroup>
-        <InputGroup>
-          <Label htmlFor="new_password2">새 비밀번호 확인</Label>
-          <Input
-            type="password"
-            id="new_password2"
-            name="new_password2"
-            value={formData.new_password2}
-            onChange={handleChange}
-            placeholder="새 비밀번호 확인"ㄴ
-            required
-          />
-        </InputGroup>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-        <Button type="submit" disabled={isButtonDisabled}>비밀번호 변경</Button>
-      </Form>
+    <>
+      <ModalContainer
+        isOpen={isOpen}
+        onRequestClose={onRequestClose}
+        ariaHideApp={false}
+      >
+        <CloseButton onClick={onRequestClose}><FaTimes /></CloseButton>
+        <Form onSubmit={handleSubmit}>
+          <ModalTitle>비밀번호 변경</ModalTitle>
+          <InputGroup>
+            <Label htmlFor="old_password">현재 비밀번호</Label>
+            <Input
+              type="password"
+              id="old_password"
+              name="old_password"
+              value={formData.old_password}
+              onChange={handleChange}
+              placeholder="현재 비밀번호"
+              required
+            />
+          </InputGroup>
+          <InputGroup>
+            <Label htmlFor="new_password1">새 비밀번호</Label>
+            <Input
+              type="password"
+              id="new_password1"
+              name="new_password1"
+              value={formData.new_password1}
+              onChange={handleChange}
+              placeholder="새 비밀번호"
+              required
+            />
+          </InputGroup>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
+          <InputGroup>
+            <Label htmlFor="new_password2">새 비밀번호 확인</Label>
+            <Input
+              type="password"
+              id="new_password2"
+              name="new_password2"
+              value={formData.new_password2}
+              onChange={handleChange}
+              placeholder="새 비밀번호 확인"
+              required
+            />
+          </InputGroup>
+          <Button type="submit" disabled={isButtonDisabled}>비밀번호 변경</Button>
+        </Form>
+      </ModalContainer>
       <CustomModal
         isOpen={isSuccessModalOpen}
         onRequestClose={closeModal}
         title="알림"
         content={modalContent}
       />
-    </ModalContainer>
+    </>
   );
 };
 

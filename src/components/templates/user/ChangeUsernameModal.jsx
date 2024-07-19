@@ -49,9 +49,15 @@ const ModalContent = styled.div`
 const Input = styled.input`
   padding: 12px;
   font-size: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 14px;
+  margin-bottom: 16px;
 `;
 
 const Button = styled.button`
@@ -74,8 +80,8 @@ const Button = styled.button`
 const ChangeUsernameModal = ({ isOpen, onRequestClose, setUsername }) => {
   const [newUsername, setNewUsername] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     setIsButtonDisabled(newUsername.trim() === "");
@@ -83,18 +89,22 @@ const ChangeUsernameModal = ({ isOpen, onRequestClose, setUsername }) => {
 
   const handleUsernameChange = async () => {
     try {
-      await changeUsername(newUsername);
-      setUsername(newUsername);
-      setSuccessMessage("이름이 성공적으로 변경되었습니다.");
-      setIsSuccessModalOpen(true);
-      onRequestClose();
+      const response = await changeUsername(newUsername);
+      if (response.data.status === 'success') {
+        setUsername(newUsername);
+        setErrorMessage("");
+        setIsSuccessModalOpen(true);
+        setTimeout(() => {
+          setIsSuccessModalOpen(false);
+          onRequestClose();
+        }, 1000);
+      } else {
+        setErrorMessage(response.data.message);
+      }
     } catch (error) {
       console.error("이름 변경에 실패했습니다.", error);
+      setErrorMessage(error?.response?.data?.message || "이름 변경에 실패했습니다.");
     }
-  };
-
-  const handleCloseSuccessModal = () => {
-    setIsSuccessModalOpen(false);
   };
 
   return (
@@ -109,14 +119,15 @@ const ChangeUsernameModal = ({ isOpen, onRequestClose, setUsername }) => {
             onChange={(e) => setNewUsername(e.target.value)}
             placeholder="변경할 이름을 입력하세요"
           />
+          {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
           <Button onClick={handleUsernameChange} disabled={isButtonDisabled}>변경</Button>
         </ModalContent>
       </ModalContainer>
       <CustomModal
         isOpen={isSuccessModalOpen}
-        onRequestClose={handleCloseSuccessModal}
+        onRequestClose={() => setIsSuccessModalOpen(false)}
         title="알림"
-        content={successMessage}
+        content="이름이 성공적으로 변경되었습니다."
       />
     </>
   );

@@ -128,6 +128,10 @@ const LoginTemplate = () => {
     return emailRegex.test(email);
   };
 
+  const validatePassword = (password) => {
+    return /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -140,10 +144,12 @@ const LoginTemplate = () => {
       }
     }
 
-    if (name === "password" && value.length < 6) {
-      setPasswordError("비밀번호는 6자 이상이어야 합니다.");
-    } else {
-      setPasswordError("");
+    if (name === "password") {
+      if (!validatePassword(value)) {
+        setPasswordError("비밀번호는 영소문자, 숫자, 특수문자를 하나 이상 포함하여 8자 이상으로 입력하세요.");
+      } else {
+        setPasswordError("");
+      }
     }
   };
 
@@ -164,7 +170,7 @@ const LoginTemplate = () => {
           setTimeout(() => {
             setIsModalOpen(false);
             navigate('/');
-          }, 2000);
+          }, 1000);
         } else {
           setLoginError(message);
           setModalContent(message);
