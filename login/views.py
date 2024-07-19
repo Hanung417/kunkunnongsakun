@@ -269,19 +269,22 @@ def change_username(request):
             data = json.loads(request.body)
             new_username = data.get('new_username')
             if not new_username:
-                raise ValidationError("New username is required")
+                return JsonResponse({'status': 'error', 'message': 'New username is required', 'code': 1000, 'status_code': 400}, status=400)
 
             user = request.user
+            if User.objects.filter(username=new_username).exists():
+                return JsonResponse({'status': 'error', 'message': '이미 사용중인 이름입니다.', 'code': 2000, 'status_code': 400}, status=400)
+
             user.username = new_username
             user.save()
             return JsonResponse({'status': 'success', 'message': 'Username changed successfully'})
         except json.JSONDecodeError:
-            raise ValidationError("Invalid JSON format")
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON format', 'code': 1001, 'status_code': 400}, status=400)
         except Exception as e:
             logger.error(f"Error changing username: {str(e)}")
-            raise InternalServerError("Failed to change username")
+            return JsonResponse({'status': 'error', 'message': 'Failed to change username', 'code': 2001, 'status_code': 500}, status=500)
     else:
-        raise InvalidRequestError("POST method only allowed")
+        return JsonResponse({'status': 'error', 'message': 'POST method only allowed', 'code': 1002, 'status_code': 405}, status=405)
 
 # 비밀번호 재설정 API
 @csrf_exempt
