@@ -22,11 +22,10 @@ const Container = styled.div`
 const ChatList = styled.ul`
   list-style: none;
   padding: 0;
-  margin-top: 40px;
+  margin-top: 20px;
   max-height: 400px;
   overflow-y: auto;
   width: 100%;
-  max-width: 600px;
   margin-bottom: 24px;
 `;
 
@@ -87,7 +86,7 @@ const EditButton = styled.button`
 `;
 
 const NewChatButton = styled(Button)`
-  margin-top: 30px;
+  margin-top: 10px;
   padding: 12px 14px;
   font-size: 18px;
   font-weight: 800;
@@ -292,6 +291,7 @@ const ChatListPage = () => {
     <Container>
       {isLoggedIn ? (
         <>
+          <NewChatButton onClick={startNewChat}>새 대화 시작하기</NewChatButton>
           {chatSessions.length === 0 ? (
             <NoChatMessage>대화 내역이 없습니다.</NoChatMessage>
           ) : (
@@ -300,7 +300,7 @@ const ChatListPage = () => {
                 {chatSessions.slice(offset, offset + sessionsPerPage).map((session, index) => (
                   <ChatListItem key={session.session_id} onClick={() => openChat(session.session_id, session.session_name)}>
                     <span>
-                      {offset + index + 1}. {session.session_name || session.session_id}
+                      {session.session_name || session.session_id}
                     </span>
                     <div>
                       <EditButton onClick={(e) => { e.stopPropagation(); editSession(session); }}>
@@ -315,7 +315,23 @@ const ChatListPage = () => {
               </ChatList>
             </>
           )}
-          <NewChatButton onClick={startNewChat}>새 대화 시작하기</NewChatButton>
+          <PaginationContainer>
+            <ReactPaginate
+              previousLabel={"이전"}
+              nextLabel={"다음"}
+              breakLabel={"..."}
+              pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageClick}
+              containerClassName={"pagination"}
+              activeClassName={"active"}
+              previousClassName={"previous"}
+              nextClassName={"next"}
+              disabledClassName={"disabled"}
+              forcePage={currentPage}
+            />
+          </PaginationContainer>
           <ModalContainer
             isOpen={isModalOpen}
             onRequestClose={() => setIsModalOpen(false)}
@@ -347,22 +363,6 @@ const ChatListPage = () => {
       ) : (
         <NewChatButton onClick={startNewChat}>바로 챗봇 이용하기</NewChatButton>
       )}
-       <PaginationContainer>
-                <ReactPaginate
-                  previousLabel={"이전"}
-                  nextLabel={"다음"}
-                  breakLabel={"..."}
-                  pageCount={pageCount}
-                  marginPagesDisplayed={2}
-                  pageRangeDisplayed={5}
-                  onPageChange={handlePageClick}
-                  containerClassName={"pagination"}
-                  activeClassName={"active"}
-                  previousClassName={"previous"}
-                  nextClassName={"next"}
-                  disabledClassName={"disabled"}
-                />
-              </PaginationContainer>
     </Container>
   );
 };
