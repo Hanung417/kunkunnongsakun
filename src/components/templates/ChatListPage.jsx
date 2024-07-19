@@ -287,6 +287,11 @@ const ChatListPage = () => {
     setCurrentPage(selected);
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setEditingSession(null); // 추가: 모달 닫힐 때 editingSession 상태 초기화
+  };
+
   return (
     <Container>
       {isLoggedIn ? (
@@ -334,9 +339,9 @@ const ChatListPage = () => {
           </PaginationContainer>
           <ModalContainer
             isOpen={isModalOpen}
-            onRequestClose={() => setIsModalOpen(false)}
+            onRequestClose={closeModal} // 수정: onRequestClose에 closeModal 핸들러 연결
           >
-            <CloseButton onClick={() => setIsModalOpen(false)}><FaTimes /></CloseButton>
+            <CloseButton onClick={closeModal}><FaTimes /></CloseButton>
             <ModalTitle>{editingSession ? '대화 제목 수정' : '새 대화 생성'}</ModalTitle>
             <ModalContent>
               <Input
