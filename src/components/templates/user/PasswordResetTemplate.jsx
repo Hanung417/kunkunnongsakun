@@ -166,7 +166,9 @@ const PasswordResetTemplate = () => {
     }
     try {
       const resetPasswordResponse = await resetPassword({ email, temporary_password: temporaryPassword, new_password: newPassword });
+      console.log(resetPasswordResponse.data);
       if (resetPasswordResponse.data.status === 'success') {
+
         setMessage("새로운 비밀번호로 변경되었습니다.");
         setIsSuccessModalOpen(true);
         setError("");
