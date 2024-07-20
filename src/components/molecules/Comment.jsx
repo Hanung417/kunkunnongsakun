@@ -240,12 +240,28 @@ const Comment = ({
 
   const handleDeleteClick = (commentId) => {
     setSelectedCommentId(commentId);
+    setShowSettingsMenu((prev) => ({
+      ...prev,
+      [commentId]: false,
+    }));
     setIsDeleteModalOpen(true);
   };
 
   const closeModal = () => {
     setIsDeleteModalOpen(false);
     setSelectedCommentId(null);
+  };
+
+  const handleKeyDown = (event, handler) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      handler(event);
+    }
+  };
+
+  const handleConfirmDelete = () => {
+    handleDeleteComment(selectedCommentId);
+    closeModal();
   };
 
   const renderComments = (comments, parentId = null) => {
@@ -261,10 +277,15 @@ const Comment = ({
               <CommentForm
                 onSubmit={(e) => {
                   e.preventDefault();
-                  handleEditComment(comment.id);
+                  handleEditComment(e, comment.id);
                 }}
               >
-                <CommentTextarea rows="2" value={editCommentContent} onChange={handleEditCommentChange} />
+                <CommentTextarea
+                  rows="2"
+                  value={editCommentContent}
+                  onChange={handleEditCommentChange}
+                  onKeyDown={(e) => handleKeyDown(e, (ev) => handleEditComment(ev, comment.id))}
+                />
                 <EditCommentButton type="submit" disabled={!editCommentContent.trim()}>
                   확인
                 </EditCommentButton>
@@ -311,6 +332,7 @@ const Comment = ({
                   placeholder="댓글을 작성하세요"
                   value={newReply}
                   onChange={handleReplyChange}
+                  onKeyDown={(e) => handleKeyDown(e, handleSubmitReply)}
                 />
                 <CommentButton type="submit" disabled={!newReply.trim()}><FaPaperPlane /></CommentButton>
               </CommentForm>
@@ -322,7 +344,6 @@ const Comment = ({
 
   return (
     <>
-      <label>댓글</label>
       <CommentList>{renderComments(comments)}</CommentList>
       <CommentForm onSubmit={handleSubmitComment}>
         <CommentTextarea
@@ -330,6 +351,7 @@ const Comment = ({
           placeholder="댓글을 작성하세요"
           value={newComment}
           onChange={handleCommentChange}
+          onKeyDown={(e) => handleKeyDown(e, handleSubmitComment)}
         />
         <CommentButton type="submit" disabled={!newComment.trim()}>
           <FaPaperPlane />
@@ -340,10 +362,7 @@ const Comment = ({
         onRequestClose={closeModal}
         title="삭제 확인"
         content="이 댓글을 삭제하시겠습니까?"
-        onConfirm={() => {
-          handleDeleteComment(selectedCommentId);
-          closeModal();
-        }}
+        onConfirm={handleConfirmDelete}
         closeModal={closeModal}
         confirmText="삭제"
         cancelText="취소"

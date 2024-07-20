@@ -82,6 +82,7 @@ const PageTopBar = () => {
     "/mypage": "마이페이지",
     "/post/edit/:id": "게시글 수정",
     "/my_commented_posts": "내가 댓글 단 글",
+    "/my_posts": "내가 작성한 글",
     "/expectedreturn": "수익 예측",
     "/soil": "토양 분석",
     "/diagnosis": "병해충 진단",
