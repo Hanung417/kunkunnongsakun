@@ -4,20 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import { getCropList, deleteCrop, updateSessionName } from '../../../apis/crop';
 import ConfirmModal from '../../atoms/ConfirmModal';
+import ReactPaginate from 'react-paginate';
 
 const colors = {
-  background: '#ECF0F1',
-  primary: '#1ABC9C',
-  secondary: '#FF9800',
-  accent: '#3498DB',
-  textPrimary: '#2C3E50',
-  textSecondary: '#95A5A6',
-  buttonBackground: '#1ABC9C',
-  buttonHover: '#16A085',
+  background: '#F9FAFB',
+  primary: '#4aaa87',
+  textPrimary: '#333',
+  textSecondary: '#666',
+  border: '#E0E0E0',
+  buttonBackground: '#4aaa87',
+  buttonHover: '#3e8e75',
   deleteButton: '#e53e3e',
   deleteButtonHover: '#c53030',
   sessionBackground: '#FFFFFF',
-  border: '#E0E0E0',
 };
 
 const PageContainer = styled.div`
@@ -31,8 +30,9 @@ const PageContainer = styled.div`
 
 const Button = styled.button`
   padding: 10px 20px;
-  margin-top: 10px;
-  background-color: ${colors.primary};
+  margin-top: 40px;
+  font-weight: bold;
+  background-color: ${colors.buttonBackground};
   color: white;
   border: none;
   border-radius: 5px;
@@ -67,8 +67,8 @@ const SessionList = styled.div`
 
 const SessionItem = styled.div`
   background-color: ${colors.sessionBackground};
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -144,7 +144,7 @@ const ButtonContainer = styled.div`
 `;
 
 const SaveButton = styled.button`
-  background-color: ${colors.primary};
+  background-color: ${colors.buttonBackground};
   color: white;
   border: none;
   border-radius: 5px;
@@ -183,7 +183,7 @@ const DeleteButton = styled.button`
 const EditButton = styled.button`
   background: none;
   border: none;
-  color: ${colors.primary};
+  color: ${colors.buttonBackground};
   cursor: pointer;
   font-size: 18px;
   margin-right: 10px;
@@ -194,17 +194,6 @@ const EditButton = styled.button`
 
   @media (max-width: 480px) {
     font-size: 16px;
-  }
-`;
-
-const PaginationContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-
-  @media (max-width: 480px) {
-    flex-wrap: wrap;
-    gap: 5px;
   }
 `;
 
@@ -234,6 +223,52 @@ const PaginationButton = styled.button`
   }
 `;
 
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  .pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  .pagination li {
+    margin: 0 5px;
+  }
+
+  .pagination li a {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    color: ${colors.primary};
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .pagination li a:hover {
+    background-color: #f5f5f5;
+    color: ${colors.buttonHover};
+  }
+
+  .pagination li.active a {
+    background-color: ${colors.primary};
+    color: white;
+    border: none;
+  }
+
+  .pagination li.previous a,
+  .pagination li.next a {
+    color: #888;
+  }
+
+  .pagination li.disabled a {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
 const CropSelectionPage = () => {
   const [sessions, setSessions] = useState([]);
   const [error, setError] = useState(null);
@@ -241,26 +276,13 @@ const CropSelectionPage = () => {
   const [newSessionName, setNewSessionName] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sessionIdToDelete, setSessionIdToDelete] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageRange, setPageRange] = useState([1, 5]);
+  const [currentPage, setCurrentPage] = useState(0);  // 페이지는 0부터 시작
   const sessionsPerPage = 4;
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchSessions();
   }, []);
-
-  useEffect(() => {
-    const totalPages = Math.ceil(sessions.length / sessionsPerPage);
-
-    if (currentPage > 3 && currentPage < totalPages - 2) {
-      setPageRange([currentPage - 2, currentPage + 2]);
-    } else if (currentPage <= 3) {
-      setPageRange([1, 5]);
-    } else if (currentPage >= totalPages - 2) {
-      setPageRange([totalPages - 4, totalPages]);
-    }
-  }, [currentPage, sessions.length]);
 
   const fetchSessions = async () => {
     try {
@@ -332,32 +354,14 @@ const CropSelectionPage = () => {
     setIsModalOpen(false);
   };
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
   };
 
-  const indexOfLastSession = currentPage * sessionsPerPage;
+  const indexOfLastSession = (currentPage + 1) * sessionsPerPage;
   const indexOfFirstSession = indexOfLastSession - sessionsPerPage;
   const currentSessions = sessions.slice(indexOfFirstSession, indexOfLastSession);
-  const totalPages = Math.ceil(sessions.length / sessionsPerPage);
-
-  const renderPaginationButtons = () => {
-    const buttons = [];
-
-    for (let i = Math.max(1, pageRange[0]); i <= Math.min(totalPages, pageRange[1]); i++) {
-      buttons.push(
-        <PaginationButton
-          key={i}
-          onClick={() => handlePageChange(i)}
-          disabled={currentPage === i}
-        >
-          {i}
-        </PaginationButton>
-      );
-    }
-
-    return buttons;
-  };
+  const pageCount = Math.ceil(sessions.length / sessionsPerPage);
 
   return (
     <>
@@ -402,19 +406,20 @@ const CropSelectionPage = () => {
           ))}
         </SessionList>
         <PaginationContainer>
-          <PaginationButton onClick={() => handlePageChange(1)} disabled={currentPage === 1}>
-            &laquo;
-          </PaginationButton>
-          <PaginationButton onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-            &lsaquo;
-          </PaginationButton>
-          {renderPaginationButtons()}
-          <PaginationButton onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
-            &rsaquo;
-          </PaginationButton>
-          <PaginationButton onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages}>
-            &raquo;
-          </PaginationButton>
+          <ReactPaginate
+            previousLabel={"이전"}
+            nextLabel={"다음"}
+            breakLabel={"..."}
+            pageCount={pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={handlePageChange}
+            containerClassName={"pagination"}
+            activeClassName={"active"}
+            previousClassName={"previous"}
+            nextClassName={"next"}
+            disabledClassName={"disabled"}
+          />
         </PaginationContainer>
         <ConfirmModal
           isOpen={isModalOpen}
