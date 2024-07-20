@@ -128,20 +128,6 @@ const EditCommentButton = styled.button`
   }
 `;
 
-const ReplyButton = styled.button`
-  background: none;
-  border: none;
-  color: #4aaa87;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  padding: 4px 8px;
-  &:hover {
-    background-color: #f0f0f0;
-    border-radius: 4px;
-  }
-`;
-
 const SettingsIcon = styled(FaEllipsisV)`
   cursor: pointer;
   font-size: 20px;

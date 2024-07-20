@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { getCropNames, predictCrops, getRegionNames } from "../../../apis/crop";
@@ -139,6 +139,7 @@ const CropTest = () => {
   const [showRegionList, setShowRegionList] = useState(false);
   const navigate = useNavigate();
   const inputRefs = useRef([]);
+  const regionRef = useRef(null);
 
   useEffect(() => {
     const fetchCropNames = async () => {
@@ -243,21 +244,6 @@ const CropTest = () => {
     }
   };
 
-  const getCSRFToken = () => {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, 10) === 'csrftoken=') {
-          cookieValue = decodeURIComponent(cookie.substring(10));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  };
-
   const handleCropSelect = (index, crop) => {
     const values = [...crops];
     values[index].name = crop;
@@ -272,7 +258,7 @@ const CropTest = () => {
     setShowRegionList(false);
   };
 
-  const handleClickOutside = (event) => {
+  const handleClickOutside = useCallback((event) => {
     inputRefs.current.forEach((ref, index) => {
       if (ref && !ref.contains(event.target)) {
         const newShowCropList = [...showCropList];
@@ -284,16 +270,14 @@ const CropTest = () => {
     if (regionRef.current && !regionRef.current.contains(event.target)) {
       setShowRegionList(false);
     }
-  };
-
-  const regionRef = useRef(null);
+  }, [showCropList]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [showCropList, showRegionList]);
+  }, [handleClickOutside]);
 
   return (
     <PageContainer>
