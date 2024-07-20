@@ -141,8 +141,19 @@ def format_answer(answer):
 
 @login_required
 def chat_sessions(request):
-    sessions = Chatbot.objects.filter(user=request.user).values('session_id', 'session_name', 'created_at').distinct().order_by('-created_at')
-    return JsonResponse(list(sessions), safe=False)
+    sessions = Chatbot.objects.filter(user=request.user).order_by('created_at').values('session_id', 'session_name', 'created_at')
+    unique_sessions = []
+    seen_session_ids = set()
+
+    for session in sessions:
+        if session['session_id'] not in seen_session_ids:
+            seen_session_ids.add(session['session_id'])
+            unique_sessions.append(session)
+
+    # unique_sessions를 created_at 기준으로 내림차순 정렬
+    unique_sessions.sort(key=lambda x: x['created_at'], reverse=True)
+
+    return JsonResponse(unique_sessions, safe=False)
 
 @login_required
 def chat_history(request, session_id):
@@ -154,7 +165,7 @@ def chat_history(request, session_id):
         {
             'question': chat.question_content,
             'answer': chat.answer_content,
-            'timestamp': chat.created_at.now(),
+            'timestamp': chat.created_at,
             'session_name': chat.session_name
         } for chat in chats
     ]
