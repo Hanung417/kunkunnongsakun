@@ -6,6 +6,8 @@ import ChangePasswordModal from "./ChangePasswordModal";
 import ChangeUsernameModal from "./ChangeUsernameModal";
 import DeleteAccountModal from "./DeleteAccountModal";
 import { FaUserEdit, FaKey, FaTrashAlt, FaPen, FaCommentDots } from "react-icons/fa";
+import GlobalLoader from "../../../GlobalLoader";
+import { useLoading } from "../../../LoadingContext"; // useLoading import 추가
 
 const Container = styled.div`
   display: flex;
@@ -94,6 +96,7 @@ const ActionText = styled.div`
 `;
 
 const MyPageTemplate = () => {
+  const { setIsLoading, isLoading } = useLoading(); // Access loading context
   const [username, setUsername] = useState("");
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(false);
@@ -102,16 +105,18 @@ const MyPageTemplate = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
+      setIsLoading(true);
       try {
         const response = await checkAuthStatus();
         setUsername(response.data.username);
       } catch (error) {
         console.error("Failed to fetch user data", error);
       }
+      setIsLoading(false);
     };
 
     fetchUserData();
-  }, []);
+  }, [setIsLoading]);
 
   const handlePasswordChange = () => {
     setIsPasswordModalOpen(true);
@@ -135,6 +140,7 @@ const MyPageTemplate = () => {
 
   return (
     <Container>
+      <GlobalLoader /> {/* GlobalLoader 추가 */}
       <UserProfile>
         <UserImage src={`${process.env.PUBLIC_URL}/user_icon.jpg`} alt="User Icon" />
         <UserInfo>

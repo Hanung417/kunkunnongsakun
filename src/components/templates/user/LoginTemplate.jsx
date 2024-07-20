@@ -3,6 +3,8 @@ import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { loginUser } from "../../../apis/user";
 import CustomModal from "../../atoms/CustomModal";
+import GlobalLoader from '../../../GlobalLoader';
+import { useLoading } from '../../../LoadingContext';
 
 const Container = styled.div`
   display: flex;
@@ -97,6 +99,7 @@ const StyledLink = styled(RouterLink)`
 `;
 
 const LoginTemplate = () => {
+  const { setIsLoading, isLoading } = useLoading();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -157,6 +160,7 @@ const LoginTemplate = () => {
     e.preventDefault();
     const { email, password } = formData;
 
+    setIsLoading(true);
     loginUser(email, password)
       .then((response) => {
         const { status, message, user_id } = response.data;
@@ -191,6 +195,9 @@ const LoginTemplate = () => {
         setModalTitle("오류");
         setIsError(true);
         setIsModalOpen(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -200,6 +207,7 @@ const LoginTemplate = () => {
 
   return (
     <Container>
+      <GlobalLoader isLoading={isLoading} />
       <Title>로그인</Title>
       <Form onSubmit={handleSubmit}>
         <InputGroup>

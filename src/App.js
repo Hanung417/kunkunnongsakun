@@ -37,9 +37,9 @@ function App() {
       <BrowserRouter>
         <GlobalLoader />
         <Routes>
-          <Route path="/" element={<StartTemplate />} />
           <Route element={<MainLayout />}>
             {/* user */}
+            <Route path="/" element={<StartTemplate />} />
             <Route path="/signup" element={<PolicyAgreement />} />
             <Route path="/login" element={<LoginTemplate />} />
             <Route path="/password_reset" element={<PasswordResetTemplate />} />

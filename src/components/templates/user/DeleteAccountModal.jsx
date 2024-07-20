@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { deleteAccount, getCSRFToken } from "../../../apis/user"; // import from user.js
 import { FaTimes } from "react-icons/fa";
+import GlobalLoader from '../../../GlobalLoader';
+import { useLoading } from '../../../LoadingContext';
 
 const customStyles = {
   content: {
@@ -86,6 +88,7 @@ const WarningMessage = styled.div`
 `;
 
 const DeleteAccountModal = ({ isOpen, onRequestClose }) => {
+  const { setIsLoading, isLoading } = useLoading();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
@@ -99,6 +102,7 @@ const DeleteAccountModal = ({ isOpen, onRequestClose }) => {
     e.preventDefault();
     const csrfToken = getCSRFToken();
 
+    setIsLoading(true);
     try {
       await deleteAccount(password, {
         headers: { "X-CSRFToken": csrfToken },
@@ -109,10 +113,12 @@ const DeleteAccountModal = ({ isOpen, onRequestClose }) => {
       setTimeout(() => {
         navigate('/');
         window.location.reload();
-      }, 2000);
+      }, 1000);
     } catch (error) {
       setError(error.response?.data?.message || "계정 삭제 중 오류가 발생했습니다.");
       setMessage("");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -123,6 +129,7 @@ const DeleteAccountModal = ({ isOpen, onRequestClose }) => {
       style={customStyles}
       contentLabel="Delete Account Modal"
     >
+      <GlobalLoader isLoading={isLoading} />
       <CloseButton onClick={onRequestClose}><FaTimes /></CloseButton>
       <Form onSubmit={handleSubmit}>
         <h2>회원 탈퇴</h2>

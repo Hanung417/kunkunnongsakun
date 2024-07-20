@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { checkAuthStatus, logoutUser } from "../../apis/user";
 import CustomModal from "../atoms/CustomModal";
+import GlobalLoader from "../../GlobalLoader"; // GlobalLoader import 추가
+import { useLoading } from "../../LoadingContext"; // useLoading import 추가
 
 const TopBars = styled.nav`
   display: flex;
@@ -19,7 +21,7 @@ const TopBars = styled.nav`
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  cursor: pointer;
+  cursor: ${({ disableClick }) => (disableClick ? "default" : "pointer")};
 `;
 
 const LogoImage = styled.img`
@@ -58,14 +60,18 @@ const UsernameText = styled.span`
 `;
 
 const MainTopBar = () => {
+  const { setIsLoading } = useLoading();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const isStartPage = location.pathname === "/";
 
   useEffect(() => {
     const checkAuth = async () => {
+      setIsLoading(true);
       try {
         const response = await checkAuthStatus();
         if (response.data.is_authenticated) {
@@ -81,12 +87,14 @@ const MainTopBar = () => {
         setIsLoggedIn(false);
         localStorage.setItem('isLoggedIn', 'false');
       }
+      setIsLoading(false);
     };
 
     checkAuth();
-  }, []);
+  }, [setIsLoading]);
 
   const handleLogout = async () => {
+    setIsLoading(true);
     try {
       await logoutUser();
       setIsLoggedIn(false);
@@ -97,6 +105,7 @@ const MainTopBar = () => {
     } catch (error) {
       console.error("Failed to logout:", error);
     }
+    setIsLoading(false);
   };
 
   const closeModal = () => {
@@ -105,12 +114,15 @@ const MainTopBar = () => {
   };
 
   const handleLogoClick = () => {
-    navigate("/main");
+    if (!isStartPage) {
+      navigate("/main");
+    }
   };
 
   return (
     <TopBars>
-      <LogoContainer onClick={handleLogoClick}>
+      <GlobalLoader /> {/* Global Loader 추가 */}
+      <LogoContainer onClick={handleLogoClick} disableClick={isStartPage}>
         <LogoImage src={`${process.env.PUBLIC_URL}/android-chrome-192x192.png`} alt="Logo" />
         <LogoText>꾼꾼농사꾼</LogoText>
       </LogoContainer>

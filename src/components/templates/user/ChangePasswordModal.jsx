@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { changePassword, getCSRFToken } from "../../../apis/user";
+import { changePassword } from "../../../apis/user";
 import CustomModal from "../../atoms/CustomModal"; // Import your custom modal component
 import { FaTimes } from "react-icons/fa";
+import GlobalLoader from "../../../GlobalLoader";
+import { useLoading } from "../../../LoadingContext"; // Import the useLoading hook
 
 const ModalContainer = styled(Modal)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   padding: 24px;
   background-color: white;
   border: 1px solid #e5e7eb;
@@ -97,6 +99,7 @@ const ErrorMessage = styled.div`
 `;
 
 const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
+  const { setIsLoading, isLoading } = useLoading(); // Access loading context
   const [formData, setFormData] = useState({
     old_password: "",
     new_password1: "",
@@ -133,13 +136,9 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const csrfToken = getCSRFToken();
-
+    setIsLoading(true);
     try {
-      const response = await changePassword(formData, {
-        headers: { "X-CSRFToken": csrfToken },
-        withCredentials: true
-      });
+      const response = await changePassword(formData);
 
       if (response.data.status === 'success') {
         setModalContent("비밀번호가 변경되었습니다. 다시 로그인을 진행해주세요.");
@@ -151,6 +150,7 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
     } catch (error) {
       setError(error.response?.data?.message || "비밀번호 변경 중 오류가 발생했습니다.");
     }
+    setIsLoading(false);
   };
 
   const closeModal = () => {
@@ -160,6 +160,7 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
 
   return (
     <>
+      <GlobalLoader isLoading={isLoading} />
       <ModalContainer
         isOpen={isOpen}
         onRequestClose={onRequestClose}
