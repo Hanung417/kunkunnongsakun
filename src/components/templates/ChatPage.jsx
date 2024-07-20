@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom'; // useNavigate 임포트
 import { fetchChatHistory, sendChatMessage } from '../../apis/chat';
 import SyncLoader from 'react-spinners/SyncLoader';
 
@@ -18,16 +18,42 @@ const Container = styled.div`
 const Header = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; /* 중앙 정렬 */
   padding: 16px;
   background-color: #4AAA87;
   color: white;
   font-size: 20px;
   font-weight: bold;
+  position: relative;
 
   @media (max-width: 768px) {
     font-size: 18px;
     padding: 12px;
+  }
+`;
+
+const Title = styled.div`
+  flex: 1; /* flex를 사용하여 중앙에 배치 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+`;
+
+const ChatListButton = styled.button`
+  position: absolute; /* 절대 위치 */
+  right: 16px; /* 오른쪽에 배치 */
+  padding: 10px 16px;
+  font-size: 14px;
+  color: white;
+  background-color: #4aaa87;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: #6dc4b0;
+  }
+
+  @media (max-width: 768px) {
+    padding: 8px 12px;
+    font-size: 12px;
   }
 `;
 
@@ -124,6 +150,7 @@ const Input = styled.input`
   border: 1px solid #ddd;
   border-radius: 20px;
   margin-right: 8px;
+  font-size: 16px;
   &:focus {
     outline: none;
     border-color: #4aaa87;
@@ -156,6 +183,7 @@ const Button = styled.button`
 const ChatPage = () => {
   const { sessionid } = useParams();
   const location = useLocation();
+  const navigate = useNavigate(); // useNavigate 훅 사용
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [loading, setLoading] = useState(false);
@@ -237,7 +265,10 @@ const ChatPage = () => {
 
   return (
     <Container>
-      <Header>{sessionName || '농업 GPT'}</Header>
+      <Header>
+        <Title>{sessionName || '농업 GPT'}</Title>
+        <ChatListButton onClick={() => navigate('/chatlist')}>채팅 목록</ChatListButton> {/* 채팅 목록 버튼 */}
+      </Header>
       <ChatBox ref={chatBoxRef}>
         <MessageList>
           {messages.map((msg, index) => (

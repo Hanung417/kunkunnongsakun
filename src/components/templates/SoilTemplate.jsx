@@ -45,6 +45,7 @@ const Input = styled.input`
   border-radius: 4px;
   width: 100%;
   box-sizing: border-box;
+  font-size: 16px;
 `;
 
 const Button = styled.button`
@@ -79,6 +80,7 @@ const Select = styled.select`
   width: 100%;
   max-width: 400px;
   box-sizing: border-box;
+  font-size: 16px;
 `;
 
 const CropList = styled.div`
