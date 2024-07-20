@@ -66,12 +66,6 @@ const PostTitle = styled.span`
   text-overflow: ellipsis;
 `;
 
-const CommentCount = styled.span`
-  font-size: 14px;
-  color: gray;
-  margin-left: 8px;
-`;
-
 const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -185,7 +179,6 @@ const MyPostTemplate = () => {
                 <TableCell>
                   <StyledLink to={`/post/${post.id}`}>
                     <PostTitle>{post.title}</PostTitle>
-                    <CommentCount>({post.comment_count})</CommentCount>
                   </StyledLink>
                 </TableCell>
                 <TableCell>{post.user__username}</TableCell>
