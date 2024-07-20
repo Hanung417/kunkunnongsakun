@@ -36,13 +36,15 @@ const SessionList = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
 `;
 
 const SessionItem = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  max-width: 75%;
+  align-items: left;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -56,18 +58,9 @@ const SessionItem = styled.div`
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   flex-wrap: wrap;
-  font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* 텍스트 크기 반응형으로 조정 */
+  font-size: clamp(0.5rem, 2vw, 1.2rem); /* 텍스트 크기 반응형으로 조정 */
 `;
 
-const SessionInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 6px;
-  gap: 5px;
-  flex: 1;
-  min-width: 150px;
-  font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* 텍스트 크기 반응형으로 조정 */
-`;
 
 const SessionImage = styled.img`
   width: 80px;
@@ -78,14 +71,24 @@ const SessionImage = styled.img`
   flex-shrink: 0;
 
   @media (max-width: 768px) {
-    margin-bottom: 10px;
-    margin-right: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
   }
 
   @media (max-width: 480px) {
-    margin-bottom: 10px;
-    margin-right: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
   }
+`;
+
+const SessionInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  gap: 5px;
+  flex: 1;
+  min-width: 150px;
+  font-size: 1rem; /* 텍스트 크기 반응형으로 조정 */
 `;
 
 const DeleteButton = styled.button`
@@ -305,7 +308,7 @@ const DiagnosisListTemplate = () => {
                 <SessionItem key={session.session_id} onClick={() => handleSessionClick(session.session_id)} tabIndex="0" aria-label={`${session.pest_name} 진단 결과 보기`}>
                   <SessionImage src={session.user_image_url} alt={session.pest_name} />
                   <SessionInfo>
-                    <div><strong>해충 이름:</strong> {session.pest_name}</div>
+                    <div><strong>질병 이름:</strong> {session.pest_name}</div>
                     <div><strong>진단 날짜:</strong> {session.detection_date}</div>
                     <div><strong>정확도:</strong> {session.confidence}</div>
                   </SessionInfo>
