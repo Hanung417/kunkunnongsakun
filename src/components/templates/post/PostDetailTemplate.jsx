@@ -1,4 +1,3 @@
-// PostDetailTemplate.js
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -14,24 +13,7 @@ import PostDetails from "../../molecules/PostDetail";
 import Comments from "../../molecules/Comment";
 
 const Container = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 24px;
-`;
-
-const PostContainer = styled.div`
-  margin-bottom: 24px;
-  padding: 16px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-`;
-
-const CommentsContainer = styled.div`
-  padding: 16px;
-  background-color: #f1f1f1;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  margin: 12px;
 `;
 
 const PostDetailTemplate = () => {
@@ -44,12 +26,11 @@ const PostDetailTemplate = () => {
   const [newReply, setNewReply] = useState("");
   const [editCommentId, setEditCommentId] = useState(null);
   const [editCommentContent, setEditCommentContent] = useState("");
-  const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+  const [showSettingsMenu, setShowSettingsMenu] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCommentId, setSelectedCommentId] = useState(null); // 추가된 상태
   const currentUserId = localStorage.getItem("userId");
 
-  const settingsMenuRef = useRef();
+  const settingsMenuRefs = useRef([]);
 
   const fetchPost = useCallback(async () => {
     try {
@@ -67,12 +48,14 @@ const PostDetailTemplate = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        settingsMenuRef.current &&
-        !settingsMenuRef.current.contains(event.target)
-      ) {
-        setShowSettingsMenu(false);
-      }
+      settingsMenuRefs.current.forEach((ref, index) => {
+        if (ref && !ref.contains(event.target)) {
+          setShowSettingsMenu((prev) => ({
+            ...prev,
+            [index]: false,
+          }));
+        }
+      });
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -166,30 +149,30 @@ const PostDetailTemplate = () => {
     setIsModalOpen(false);
   };
 
-  const handleSettingsClick = () => {
-    setShowSettingsMenu((prev) => !prev);
+  const handleSettingsClick = (index) => {
+    setShowSettingsMenu((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
   };
 
   if (!post) {
-    return <Container>게시글을 찾을 수 없습니다.</Container>;
+    return <Container>게시글을 불러오는 중입니다...</Container>;
   }
 
   return (
     <Container>
-      <PostContainer>
         <PostDetails
           post={post}
           currentUserId={currentUserId}
           showSettingsMenu={showSettingsMenu}
-          settingsMenuRef={settingsMenuRef}
+          settingsMenuRefs={settingsMenuRefs}
           openModal={openModal}
           handleSettingsClick={handleSettingsClick}
           isModalOpen={isModalOpen}
           closeModal={closeModal}
           handleDeletePost={handleDeletePost}
         />
-      </PostContainer>
-      <CommentsContainer>
         <Comments
           comments={comments}
           newComment={newComment}
@@ -208,10 +191,8 @@ const PostDetailTemplate = () => {
           currentUserId={currentUserId}
           setEditCommentId={setEditCommentId}
           setEditCommentContent={setEditCommentContent}
-          setSelectedCommentId={setSelectedCommentId} // 추가된 부분
           setShowSettingsMenu={setShowSettingsMenu} // 추가된 부분
         />
-      </CommentsContainer>
     </Container>
   );
 };

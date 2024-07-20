@@ -120,11 +120,11 @@ const Divider = styled.div`
   margin: 4px 0;
 `;
 
-const PostDetails = ({
+const PostDetail = ({
   post,
   currentUserId,
   showSettingsMenu,
-  settingsMenuRef,
+  settingsMenuRefs,
   openModal,
   handleSettingsClick,
   isModalOpen,
@@ -138,8 +138,8 @@ const PostDetails = ({
         <Title>{post.title}</Title>
         {String(currentUserId) === String(post.user_id) && (
           <>
-            <SettingsIcon onClick={handleSettingsClick} />
-            <SettingsMenu show={showSettingsMenu} ref={settingsMenuRef}>
+            <SettingsIcon onClick={() => handleSettingsClick(0)} />
+            <SettingsMenu show={showSettingsMenu[0]} ref={(el) => (settingsMenuRefs.current[0] = el)}>
               <SettingsMenuItem onClick={() => navigate(`/post/edit/${post.id}`)}>
                 수정
               </SettingsMenuItem>
@@ -175,4 +175,4 @@ const PostDetails = ({
   );
 };
 
-export default PostDetails;
+export default PostDetail;

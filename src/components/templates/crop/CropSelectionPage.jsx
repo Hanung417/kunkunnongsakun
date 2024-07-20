@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import { getCropList, deleteCrop, updateSessionName } from '../../../apis/crop';
@@ -27,13 +27,6 @@ const PageContainer = styled.div`
   background-color: ${colors.background};
   min-height: 100vh;
   padding-bottom: 20px;
-`;
-
-const Title = styled.h1`
-  margin: 20px 0;
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: ${colors.textPrimary};
 `;
 
 const Button = styled.button`

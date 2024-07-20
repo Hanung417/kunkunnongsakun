@@ -67,6 +67,7 @@ const CommentForm = styled.form`
   align-items: center;
   position: relative;
   margin-top: 12px;
+  margin-left: ${(props) => (props.isReply ? "40px" : "0")};
 `;
 
 const CommentTextarea = styled.textarea`
@@ -220,17 +221,21 @@ const Comment = ({
   setEditCommentId,
   setEditCommentContent
 }) => {
-  const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+  const [showSettingsMenu, setShowSettingsMenu] = useState({});
   const [selectedCommentId, setSelectedCommentId] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const settingsMenuRef = useRef();
+  const settingsMenuRefs = useRef({});
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (settingsMenuRef.current && !settingsMenuRef.current.contains(event.target)) {
-        setShowSettingsMenu(false);
-        setSelectedCommentId(null);
-      }
+      Object.values(settingsMenuRefs.current).forEach((ref) => {
+        if (ref && !ref.contains(event.target)) {
+          setShowSettingsMenu((prev) => ({
+            ...prev,
+            [ref.dataset.commentId]: false,
+          }));
+        }
+      });
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -240,7 +245,10 @@ const Comment = ({
   }, []);
 
   const handleSettingsClick = (commentId) => {
-    setShowSettingsMenu((prev) => !prev);
+    setShowSettingsMenu((prev) => ({
+      ...prev,
+      [commentId]: !prev[commentId],
+    }));
     setSelectedCommentId(commentId);
   };
 
@@ -281,16 +289,23 @@ const Comment = ({
             {String(currentUserId) === String(comment.user_id) && (
               <>
                 <SettingsIcon onClick={() => handleSettingsClick(comment.id)} />
-                <SettingsMenu show={showSettingsMenu && selectedCommentId === comment.id} ref={settingsMenuRef}>
-                    <SettingsMenuItem
-                      onClick={() => {
-                        setEditCommentId(comment.id);
-                        setEditCommentContent(comment.content);
-                        setShowSettingsMenu(false);
-                      }}
-                    >
-                      수정
-                    </SettingsMenuItem>
+                <SettingsMenu
+                  show={showSettingsMenu[comment.id]}
+                  ref={(el) => (settingsMenuRefs.current[comment.id] = el)}
+                  data-comment-id={comment.id}
+                >
+                  <SettingsMenuItem
+                    onClick={() => {
+                      setEditCommentId(comment.id);
+                      setEditCommentContent(comment.content);
+                      setShowSettingsMenu((prev) => ({
+                        ...prev,
+                        [comment.id]: false,
+                      }));
+                    }}
+                  >
+                    수정
+                  </SettingsMenuItem>
                   <SettingsMenuItem onClick={() => handleDeleteClick(comment.id)}>삭제</SettingsMenuItem>
                 </SettingsMenu>
               </>
@@ -302,10 +317,9 @@ const Comment = ({
                 </button>
               </CommentActions>
             )}
-          </CommentItem>
-          {replyCommentId === comment.id && (
-            <CommentItem isReply>
-              <CommentForm onSubmit={handleSubmitReply}>
+            {renderComments(comments, comment.id)}
+            {replyCommentId === comment.id && (
+              <CommentForm isReply onSubmit={handleSubmitReply}>
                 <CommentTextarea
                   rows="2"
                   placeholder="댓글을 작성하세요"
@@ -314,9 +328,8 @@ const Comment = ({
                 />
                 <CommentButton type="submit" disabled={!newReply.trim()}><FaPaperPlane /></CommentButton>
               </CommentForm>
-            </CommentItem>
-          )}
-          {renderComments(comments, comment.id)}
+            )}
+          </CommentItem>
         </React.Fragment>
       ));
   };
