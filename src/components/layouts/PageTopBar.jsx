@@ -93,7 +93,18 @@ const PageTopBar = () => {
     "/soil_details": "토양 데이터 상세",
   };
 
+  // 뒤로가기 버튼 표시할 페이지 (추가하기)
+  const backButtonPages = [
+    "/post/:id",
+    "/post/create",
+    "/chat/:sessionid",
+    "/post/edit/:id",
+    "/info",
+    "/soil_details",
+  ];
+
   const pageTitle = pageTitles[location.pathname] || "";
+  const showBackButton = backButtonPages.some(page => new RegExp(page).test(location.pathname));
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -137,9 +148,11 @@ const PageTopBar = () => {
   return (
     <TopBars>
       <LeftSection>
-        <BackButton onClick={handleBackClick}>
-          <FaArrowLeft />
-        </BackButton>
+        {showBackButton && (
+          <BackButton onClick={handleBackClick}>
+            <FaArrowLeft />
+          </BackButton>
+        )}
         <LogoContainer onClick={() => navigate("/main")}>
           <LogoImage src={`${process.env.PUBLIC_URL}/android-chrome-192x192.png`} alt="Logo" />
         </LogoContainer>
