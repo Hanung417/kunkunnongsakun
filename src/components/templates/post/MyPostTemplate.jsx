@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+// MyPostTemplate.js
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { fetchMyPosts, deletePost } from "../../../apis/post";
-import { FaEllipsisV } from "react-icons/fa";
 import ConfirmModal from "../../atoms/ConfirmModal";
 
 const Container = styled.div`
@@ -14,15 +14,11 @@ const Container = styled.div`
   background-color: #f9f9f9;
 `;
 
-const Title = styled.h1`
-  font-size: 24px;
-  margin-bottom: 32px;
-  color: #333;
-`;
-
 const PostList = styled.div`
+  display: grid;
+  gap: 1rem;
+  margin-top: 32px;
   width: 100%;
-  max-width: 1200px;
 `;
 
 const Table = styled.table`
@@ -49,9 +45,8 @@ const TableCell = styled.td`
   padding: 12px;
   border-bottom: 1px solid #ccc;
   font-size: 14px;
-  color: ${(props) => (props.header ? "aliceblue" : "black")};
+  color: ${(props) => (props.$header ? "aliceblue" : "black")};
   text-align: left;
-  width: ${(props) => props.width || "auto"};
 `;
 
 const StyledLink = styled(Link)`
@@ -70,59 +65,10 @@ const PostTitle = styled.span`
   text-overflow: ellipsis;
 `;
 
-const SettingsIcon = styled(FaEllipsisV)`
-  cursor: pointer;
-  font-size: 20px;
-  color: #888;
-`;
-
-const SettingsMenu = styled.div`
-  position: absolute;
-  background: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  display: ${(props) => (props.show ? "block" : "none")};
-  z-index: 1;
-  animation: fadeIn 0.3s ease;
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-`;
-
-const SettingsMenuItem = styled.button`
-  background: none;
-  border: none;
-  padding: 12px 24px;
-  width: 100%;
-  text-align: left;
+const CommentCount = styled.span`
   font-size: 14px;
-  color: #333;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-
-  &:hover {
-    background: #f5f5f5;
-    color: #4aaa87;
-  }
-
-  &:first-child {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
-
-  &:last-child {
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
+  color: gray;
+  margin-left: 8px;
 `;
 
 const PaginationContainer = styled.div`
@@ -173,12 +119,9 @@ const PaginationContainer = styled.div`
 
 const MyPostTemplate = () => {
   const [posts, setPosts] = useState([]);
-  const [showSettingsMenu, setShowSettingsMenu] = useState(false);
-  const [selectedPostId, setSelectedPostId] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
+  const [selectedPostId, setSelectedPostId] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
-  const settingsMenuRef = useRef();
   const navigate = useNavigate();
 
   const postsPerPage = 5;
@@ -198,25 +141,15 @@ const MyPostTemplate = () => {
     fetchPosts();
   }, []);
 
-  const handleEdit = (postId) => {
-    navigate(`/post/edit/${postId}`);
-  };
-
   const handleDelete = async () => {
     try {
       await deletePost(selectedPostId);
       setPosts(posts.filter((post) => post.id !== selectedPostId));
       setIsDeleteModalOpen(false);
+      setSelectedPostId(null);
     } catch (error) {
       console.error("Failed to delete post", error);
     }
-  };
-
-  const handleSettingsClick = (event, postId) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    setMenuPosition({ top: rect.top + window.scrollY + 20, left: rect.left + window.scrollX });
-    setShowSettingsMenu((prev) => !prev);
-    setSelectedPostId(postId);
   };
 
   const closeModal = () => {
@@ -228,31 +161,15 @@ const MyPostTemplate = () => {
     setCurrentPage(selected);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (settingsMenuRef.current && !settingsMenuRef.current.contains(event.target)) {
-        setShowSettingsMenu(false);
-        setSelectedPostId(null);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   return (
     <Container>
-      <Title>내가 작성한 글</Title>
       <PostList>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableCell header width="40%">제목</TableCell>
-              <TableCell header width="20%">작성자</TableCell>
-              <TableCell header width="20%">작성일</TableCell>
-              <TableCell header width="10%">설정</TableCell>
+              <TableCell $header>제목</TableCell>
+              <TableCell $header>작성자</TableCell>
+              <TableCell $header>작성일</TableCell>
             </TableRow>
           </TableHeader>
           <tbody>
@@ -261,21 +178,11 @@ const MyPostTemplate = () => {
                 <TableCell>
                   <StyledLink to={`/post/${post.id}`}>
                     <PostTitle>{post.title}</PostTitle>
+                    <CommentCount>({post.comment_count})</CommentCount>
                   </StyledLink>
                 </TableCell>
                 <TableCell>{post.user__username}</TableCell>
                 <TableCell>{new Date(post.creation_date).toLocaleDateString()}</TableCell>
-                <TableCell>
-                  <SettingsIcon onClick={(event) => handleSettingsClick(event, post.id)} />
-                  <SettingsMenu
-                    show={showSettingsMenu && selectedPostId === post.id}
-                    ref={settingsMenuRef}
-                    style={{ top: `${menuPosition.top}px`, left: `${menuPosition.left}px` }}
-                  >
-                    <SettingsMenuItem onClick={() => handleEdit(post.id)}>수정</SettingsMenuItem>
-                    <SettingsMenuItem onClick={() => setIsDeleteModalOpen(true)}>삭제</SettingsMenuItem>
-                  </SettingsMenu>
-                </TableCell>
               </TableRow>
             ))}
           </tbody>

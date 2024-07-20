@@ -12,15 +12,10 @@ const Container = styled.div`
   background-color: #f9f9f9;
 `;
 
-const Title = styled.h1`
-  font-size: 24px;
-  margin-bottom: 32px;
-  color: #333;
-`;
-
 const PostList = styled.div`
   display: grid;
   gap: 1rem;
+  margin-top: 32px;
 `;
 
 const Table = styled.table`
@@ -139,7 +134,6 @@ const MyCommentedPostsTemplate = () => {
 
   return (
     <Container>
-      <Title>내가 댓글을 단 글</Title>
       <PostList>
         <Table>
           <TableHeader>
