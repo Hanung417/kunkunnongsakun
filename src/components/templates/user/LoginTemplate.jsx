@@ -107,7 +107,7 @@ const LoginTemplate = () => {
 
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [loginError, setLoginError] = useState("");
+  const [setLoginError] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");

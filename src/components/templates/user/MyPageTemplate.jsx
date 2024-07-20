@@ -96,7 +96,7 @@ const ActionText = styled.div`
 `;
 
 const MyPageTemplate = () => {
-  const { setIsLoading, isLoading } = useLoading(); // Access loading context
+  const { setIsLoading } = useLoading(); // Access loading context
   const [username, setUsername] = useState("");
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(false);

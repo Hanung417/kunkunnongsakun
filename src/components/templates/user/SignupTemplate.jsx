@@ -117,7 +117,7 @@ const SignupTemplate = () => {
   const [usernameError, setUsernameError] = useState("");
   const [usernameAvailable, setUsernameAvailable] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [verificationCodeSent, setVerificationCodeSent] = useState(false);
+  const [setVerificationCodeSent] = useState(false);
   const [verificationCodeError, setVerificationCodeError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [signupError, setSignupError] = useState("");

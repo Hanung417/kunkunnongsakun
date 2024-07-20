@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { fetchPosts } from "../../../apis/post";
 import { FaPen } from "react-icons/fa";
@@ -156,7 +156,6 @@ const BuyBoardTemplate = () => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
-  const navigate = useNavigate();
 
   const postsPerPage = 5;
   const pageCount = Math.ceil(posts.length / postsPerPage);
@@ -185,14 +184,6 @@ const BuyBoardTemplate = () => {
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
-  };
-
-  const handleBackClick = () => {
-    navigate(-1);
-  };
-
-  const handleHomeClick = () => {
-    navigate('/');
   };
 
   return (

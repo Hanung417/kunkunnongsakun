@@ -23,9 +23,12 @@ const Footer = styled.div`
   padding-top: 60px;
   z-index: 1000;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-export const MainLayout = ({ isLoggedIn, onLogout }) => {
+export const MainLayout = () => {
   const location = useLocation();
   const isMainPage = location.pathname === "/main" || location.pathname === "/";
   const isStartPage = location.pathname === "/";

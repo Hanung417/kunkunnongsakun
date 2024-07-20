@@ -121,7 +121,7 @@ const MainTopBar = () => {
 
   return (
     <TopBars>
-      <GlobalLoader /> {/* Global Loader 추가 */}
+      <GlobalLoader />
       <LogoContainer onClick={handleLogoClick} disableClick={isStartPage}>
         <LogoImage src={`${process.env.PUBLIC_URL}/android-chrome-192x192.png`} alt="Logo" />
         <LogoText>꾼꾼농사꾼</LogoText>

@@ -102,10 +102,6 @@ const StartTemplate = () => {
     navigate('/login');
   };
 
-  const handleMain = () => {
-    navigate('/main');
-  }
-
   const closeModal = () => {
     setIsModalOpen(false);
     if (!isError) {
