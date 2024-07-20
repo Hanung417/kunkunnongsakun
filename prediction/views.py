@@ -178,6 +178,8 @@ def convert_values(data):
     else:
         return data
 
+from django.db import transaction
+
 @login_required
 @require_POST
 def predict_income(request):
@@ -215,66 +217,74 @@ def predict_income(request):
         
         total_predicted_value = 0
         crop_results = []
-        
-        with transaction.atomic():
-            prediction_session = PredictionSession.objects.create(
-                user=request.user,
-                session_id=session_id,
-                session_name=session_name,
-                crop_names=', '.join(crop_names),
-                land_area=land_area,
-                region=region,
-                total_income=0
-            )
-            
-            start_date = df_2['tm'].iloc[0].strftime('%Y%m%d')
-            end_date = df_2['tm'].iloc[-1].strftime('%Y%m%d')
-        
-            for crop_name, crop_ratio in zip(crop_names, crop_ratios):
-                adjusted_income, adjusted_data, latest_year = fetch_crop_data(crop_name, df, land_area, crop_ratio)
-                logger.debug(f"Fetched crop data for {crop_name}: {adjusted_income}, {latest_year}")
-                
-                if adjusted_income is None:
-                    logger.error(f"No data found for {crop_name}")
-                    return JsonResponse({'error': f"{crop_name}에 대한 데이터는 존재하지 않습니다."}, status=404)
-                
-                total_predicted_value += int(adjusted_income)
-                
-                df_1 = fetch_market_prices(crop_name, region, start_date, end_date)
-                if df_1.empty or df_1.isna().all().all():
-                    logger.error(f"No market data found for {crop_name}")
-                    return JsonResponse({'error': f"{crop_name}에 대한 도매 데이터를 불러오는 과정에서 오류가 발생했습니다."}, status=404)
-                
-                logger.debug(f"Market data for {crop_name}: {df_1.head()}")
-                
-                merged_df = pd.merge(df_2, df_1, on='tm', how='left')
-                merged_df.drop('itemname', axis=1, inplace=True)
-                
-                # Ensure the predicted value is converted to native Python int type for JSON serialization
-                pred_value = int(predict_prices(merged_df, df_2))
-                logger.debug(f"Predicted prices for {crop_name}: {pred_value}")
 
-                PredictionResult.objects.create(
-                    session=prediction_session,
-                    crop_name=crop_name,
-                    predicted_income=int(adjusted_income),  # Conversion to native Python int
-                    adjusted_data=convert_values(adjusted_data),
-                    price=int(pred_value),
-                    latest_year=latest_year
+        try:
+            with transaction.atomic():
+                prediction_session = PredictionSession.objects.create(
+                    user=request.user,
+                    session_id=session_id,
+                    session_name=session_name,
+                    crop_names=', '.join(crop_names),
+                    land_area=land_area,
+                    region=region,
+                    total_income=0
                 )
                 
-                df_1_json = df_1.to_json(orient='records', date_format='iso')
-                crop_results.append({
-                'crop_name': crop_name,
-                'latest_year': int(latest_year),
-                'adjusted_data': convert_values(adjusted_data),
-                'price': int(pred_value),
-                'crop_chart_data': json.loads(df_1_json)
-                })
+                start_date = df_2['tm'].iloc[0].strftime('%Y%m%d')
+                end_date = df_2['tm'].iloc[-1].strftime('%Y%m%d')
             
-            prediction_session.total_income = int(total_predicted_value)
-            prediction_session.save()
+                for crop_name, crop_ratio in zip(crop_names, crop_ratios):
+                    adjusted_income, adjusted_data, latest_year = fetch_crop_data(crop_name, df, land_area, crop_ratio)
+                    logger.debug(f"Fetched crop data for {crop_name}: {adjusted_income}, {latest_year}")
+                    
+                    if adjusted_income is None:
+                        logger.error(f"No data found for {crop_name}")
+                        raise ValueError(f"{crop_name}에 대한 데이터는 존재하지 않습니다.")
+                    
+                    total_predicted_value += int(adjusted_income)
+                    
+                    df_1 = fetch_market_prices(crop_name, region, start_date, end_date)
+                    if df_1 is None or df_1.empty:
+                        logger.error(f"No market data found for {crop_name}")
+                        raise ValueError(f"{crop_name}에 대한 도매 데이터를 불러오는 과정에서 오류가 발생했습니다.")
+                    
+                    logger.debug(f"Market data for {crop_name}: {df_1.head()}")
+                    
+                    merged_df = pd.merge(df_2, df_1, on='tm', how='left')
+                    merged_df.drop('itemname', axis=1, inplace=True)
+                    
+                    # Ensure the predicted value is converted to native Python int type for JSON serialization
+                    pred_value = int(predict_prices(merged_df, df_2))
+                    logger.debug(f"Predicted prices for {crop_name}: {pred_value}")
 
+                    PredictionResult.objects.create(
+                        session=prediction_session,
+                        crop_name=crop_name,
+                        predicted_income=int(adjusted_income),  # Conversion to native Python int
+                        adjusted_data=convert_values(adjusted_data),
+                        price=int(pred_value),
+                        latest_year=latest_year
+                    )
+                    
+                    df_1_json = df_1.to_json(orient='records', date_format='iso')
+                    crop_results.append({
+                        'crop_name': crop_name,
+                        'latest_year': int(latest_year),
+                        'adjusted_data': convert_values(adjusted_data),
+                        'price': int(pred_value),
+                        'crop_chart_data': json.loads(df_1_json)
+                    })
+                
+                prediction_session.total_income = int(total_predicted_value)
+                prediction_session.save()
+            
+        except ValueError as ve:
+            logger.error(f"ValueError: {ve}")
+            return JsonResponse({'error': str(ve)}, status=400)
+        except Exception as e:
+            logger.error(f"Unexpected error: {repr(e)}, Type: {type(e)}, Args: {e.args}")
+            return JsonResponse({'error': 'An unexpected error occurred'}, status=500)
+        
         return JsonResponse({
             'total_income': int(total_predicted_value),
             'results': crop_results
@@ -285,9 +295,7 @@ def predict_income(request):
         return JsonResponse({'error': 'Invalid JSON format'}, status=400)
     except Exception as e:
         logger.error(f"Unexpected error: {repr(e)}, Type: {type(e)}, Args: {e.args}")
-        return JsonResponse({'error': f"An unexpected error occurred: {str(e)}"}, status=500)
-
-
+        return JsonResponse({'error': 'An unexpected error occurred'}, status=500)
     
     
 @login_required
