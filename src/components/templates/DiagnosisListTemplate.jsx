@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { fetchDetectionSessions, fetchSessionDetails, deleteDetectionSession } from "../../apis/predict";
 import { FaTrash, FaPlus } from 'react-icons/fa';
 import ConfirmModal from '../atoms/ConfirmModal';
-import { FadeLoader } from 'react-spinners';
 import ReactPaginate from 'react-paginate';
+import {useLoading} from "../../LoadingContext";
 
 const PageContainer = styled.div`
   display: flex;
@@ -153,13 +153,6 @@ const EmptyMessage = styled.div`
   margin-top: 50px;
 `;
 
-const LoaderContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-`;
-
 const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -226,8 +219,8 @@ const PaginationContainer = styled.div`
 `;
 
 const DiagnosisListTemplate = () => {
+  const { setIsLoading } = useLoading();
   const [sessions, setSessions] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sessionIdToDelete, setSessionIdToDelete] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
@@ -250,25 +243,31 @@ const DiagnosisListTemplate = () => {
     };
 
     fetchSessions();
-  }, []);
+  }, [setIsLoading]);
 
   const handleSessionClick = async (sessionId) => {
     try {
+      setIsLoading(true);
       const response = await fetchSessionDetails(sessionId);
       navigate('/info', { state: { diagnosisResult: response.data } });
     } catch (error) {
       console.error('Failed to fetch session details', error);
       alert('Failed to load the details for this session.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleDeleteSession = async () => {
     try {
+      setIsLoading(true);
       await deleteDetectionSession(sessionIdToDelete);
       setSessions(sessions.filter(session => session.session_id !== sessionIdToDelete));
       setIsModalOpen(false);
     } catch (error) {
       console.error('Failed to delete session', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -297,11 +296,7 @@ const DiagnosisListTemplate = () => {
         </AddButtonContainer>
 
       <Content>
-        {isLoading ? (
-          <LoaderContainer>
-            <FadeLoader color="#4aaa87" loading={isLoading} size={15} />
-          </LoaderContainer>
-        ) : sessions.length === 0 ? (
+        {sessions.length === 0 ? (
           <EmptyMessage>첫 진단을 시작해보세요!</EmptyMessage>
         ) : (
           <>

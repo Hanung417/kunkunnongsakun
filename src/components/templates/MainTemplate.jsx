@@ -22,7 +22,7 @@ const MenuCard = styled(Link)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem 1rem; /* 패딩을 조금 더 늘림 */
+  padding: 1rem 0.5rem;
   text-decoration: none;
   text-align: center;
   color: #333;
@@ -31,7 +31,7 @@ const MenuCard = styled(Link)`
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
-  height: 140px; /* 높이를 조금 더 늘림 */
+  height: 120px; 
 
   &:hover {
     transform: translateY(-5px);
@@ -40,13 +40,13 @@ const MenuCard = styled(Link)`
 
   h2 {
     margin: 0;
-    font-size: clamp(1.5rem, 4vw, 2rem); /* 글씨 크기를 키움 */
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
     color: #4aaa87;
   }
 
   p {
     margin: 0.5rem 0 0;
-    font-size: clamp(1rem, 3vw, 1.3rem); /* 글씨 크기를 키움 */
+    font-size: clamp(0.8rem, 3vw, 1rem);
     color: #666;
   }
 `;
@@ -59,7 +59,7 @@ const ListContainer = styled.div`
 
 const ListItem = styled(Link)`
   display: block;
-  padding: 1.5rem; /* 패딩을 조금 더 늘림 */
+  padding: 1rem;
   text-decoration: none;
   color: #333;
   background-color: white;
@@ -75,13 +75,13 @@ const ListItem = styled(Link)`
 
   h2 {
     margin: 0;
-    font-size: clamp(1.2rem, 3vw, 1.5rem); /* 글씨 크기를 키움 */
+    font-size: clamp(1rem, 3vw, 1.2rem);
     color: #4aaa87;
   }
 
   p {
     margin: 0.5rem 0 0;
-    font-size: clamp(1rem, 2.5vw, 1.2rem); /* 글씨 크기를 키움 */
+    font-size: clamp(0.5rem, 2.5vw, 0.9rem);
     color: #666;
   }
 `;

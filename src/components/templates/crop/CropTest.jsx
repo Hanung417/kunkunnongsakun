@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { getCropNames, predictCrops, getRegionNames } from "../../../apis/crop";
+import { useLoading } from "../../../LoadingContext";
 
 const PageContainer = styled.div`
   display: flex;
@@ -128,6 +129,7 @@ const ListItem = styled.div`
 `;
 
 const CropTest = () => {
+  const { setIsLoading } = useLoading();
   const [landArea, setLandArea] = useState("");
   const [region, setRegion] = useState("");
   const [crops, setCrops] = useState([{ name: "", ratio: "" }]);
@@ -219,6 +221,7 @@ const CropTest = () => {
     }
 
     try {
+      setIsLoading(true); // 로딩 시작
       const session_id = `session_${Date.now()}`;
       const response = await predictCrops({
         land_area: landArea,
@@ -241,6 +244,8 @@ const CropTest = () => {
       setError(error.response && error.response.data && error.response.data.error
         ? error.response.data.error
         : 'Error fetching prediction');
+    } finally {
+      setIsLoading(false); // 로딩 끝
     }
   };
 

@@ -6,6 +6,7 @@ import { getSessionDetails } from '../../../apis/crop'; // axios 호출을 분�
 import Chart from 'chart.js/auto';
 import { CategoryScale, TimeScale } from 'chart.js';
 import 'chartjs-adapter-date-fns';
+import { useLoading } from "../../../LoadingContext";
 
 Chart.register(CategoryScale, TimeScale);
 
@@ -296,6 +297,7 @@ const SessionDetails = () => {
   const [sessionDetails, setSessionDetails] = useState(null);
   const [barChartData, setBarChartData] = useState(null);
   const [lineChartData, setLineChartData] = useState(null);
+  const { setIsLoading } = useLoading();
 
   useEffect(() => {
     const fetchSessionDetails = async () => {
@@ -306,6 +308,7 @@ const SessionDetails = () => {
         return;
       }
       try {
+        setIsLoading(true); // 로딩 시작
         const response = await getSessionDetails(session_id);
         setSessionDetails(response.data);
 
@@ -331,14 +334,16 @@ const SessionDetails = () => {
           alert('사용자 인증이 필요합니다. 로그인 페이지로 이동합니다.');
           navigate('/login');
         }
+      } finally {
+        setIsLoading(false); // 로딩 끝
       }
     };
 
     fetchSessionDetails();
-  }, [location.state, navigate, selectedCropIndex]);
+  }, [location.state, navigate, selectedCropIndex, setIsLoading]);
 
   if (!sessionDetails || !barChartData || !lineChartData) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   const cropNames = sessionDetails.results.map(result => result.crop_name);

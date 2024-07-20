@@ -7,7 +7,6 @@ import BuyBoardPage from "./pages/BuyBoardPage";
 import SellBoardPage from "./pages/SellBoardPage";
 import PostDetailPage from "./pages/PostDetailPage";
 import WritePostPage from "./pages/WritePostPage";
-import SignupTemplate from "./components/templates/user/SignupTemplate";
 import LoginTemplate from "./components/templates/user/LoginTemplate";
 import ChatPage from "./components/templates/ChatPage";
 import ChatListPage from "./components/templates/ChatListPage";
@@ -29,52 +28,54 @@ import NotFoundPage from "./pages/NotFoundPage";
 import SessionDetails from "./components/templates/crop/SessionDetails";
 import StartTemplate from "./components/templates/user/StartTemplate";
 import PolicyAgreement from "./components/templates/user/PolicyAgreement";
+import { LoadingProvider } from "./LoadingContext";
+import GlobalLoader from "./GlobalLoader";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<StartTemplate />} />
-        <Route element={<MainLayout />}>
-          {/*user*/}
-          <Route path="/signup" element={<PolicyAgreement />} />
-          <Route path="/login" element={<LoginTemplate />} />
-          <Route path="/password_reset" element={<PasswordResetTemplate />} />
-          <Route path="/main" element={<MainPage />} />
-          <Route path="/mypage" element={<MyPageTemplate />} />
-          <Route path="*" element={<NotFoundPage />} />
+    <LoadingProvider>
+      <BrowserRouter>
+        <GlobalLoader />
+        <Routes>
+          <Route path="/" element={<StartTemplate />} />
+          <Route element={<MainLayout />}>
+            {/* user */}
+            <Route path="/signup" element={<PolicyAgreement />} />
+            <Route path="/login" element={<LoginTemplate />} />
+            <Route path="/password_reset" element={<PasswordResetTemplate />} />
+            <Route path="/main" element={<MainPage />} />
+            <Route path="/mypage" element={<MyPageTemplate />} />
+            <Route path="*" element={<NotFoundPage />} />
 
-          {/*post*/}
-          <Route path="board" element={<BoardPage />} />
-          <Route path="buyboard" element={<BuyBoardPage />} />
-          <Route path="sellboard" element={<SellBoardPage />} />
-          <Route path="exchangeboard" element={<ExchangeBoardTemplate />} />
-          <Route path="post/:id" element={<PostDetailPage />} />
-          <Route path="post/create" element={<WritePostPage />} />
-          <Route path="/my_posts" element={<MyPostTemplate />} />
-          <Route path="/post/edit/:id" element={<EditPostTemplate />} />
-          <Route
-            path="/my_commented_posts"
-            element={<MyCommentedPostsTemplate />}
-          />
+            {/* post */}
+            <Route path="board" element={<BoardPage />} />
+            <Route path="buyboard" element={<BuyBoardPage />} />
+            <Route path="sellboard" element={<SellBoardPage />} />
+            <Route path="exchangeboard" element={<ExchangeBoardTemplate />} />
+            <Route path="post/:id" element={<PostDetailPage />} />
+            <Route path="post/create" element={<WritePostPage />} />
+            <Route path="/my_posts" element={<MyPostTemplate />} />
+            <Route path="/post/edit/:id" element={<EditPostTemplate />} />
+            <Route path="/my_commented_posts" element={<MyCommentedPostsTemplate />} />
 
-          {/*chat*/}
-          <Route path="chatlist" element={<ChatListPage />} />
-          <Route path="chat/:sessionid" element={<ChatPage />} />
+            {/* chat */}
+            <Route path="chatlist" element={<ChatListPage />} />
+            <Route path="chat/:sessionid" element={<ChatPage />} />
 
-          {/*ai*/}
-          <Route path="/croptest" element={<CropTest />} />
-          <Route path="/soil" element={<SoilPage />} />
-          <Route path="/soillist" element={<SoilListTemplate />} />
-          <Route path="/soil_details" element={<SoilDataDetails />} />
-          <Route path="/diagnosis" element={<DiagnosisPage />} />
-          <Route path="/info" element={<InfoPage />} />
-          <Route path="/diagnosislist" element={<DiagnosisListTemplate />} />
-          <Route path="/cropselection" element={<CropSelectionPage />} />
-          <Route path="/sessiondetails" element={<SessionDetails />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+            {/* ai */}
+            <Route path="/croptest" element={<CropTest />} />
+            <Route path="/soil" element={<SoilPage />} />
+            <Route path="/soillist" element={<SoilListTemplate />} />
+            <Route path="/soil_details" element={<SoilDataDetails />} />
+            <Route path="/diagnosis" element={<DiagnosisPage />} />
+            <Route path="/info" element={<InfoPage />} />
+            <Route path="/diagnosislist" element={<DiagnosisListTemplate />} />
+            <Route path="/cropselection" element={<CropSelectionPage />} />
+            <Route path="/sessiondetails" element={<SessionDetails />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </LoadingProvider>
   );
 }
 
