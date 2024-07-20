@@ -6,33 +6,20 @@ import { getCropList, deleteCrop, updateSessionName } from '../../../apis/crop';
 import ConfirmModal from '../../atoms/ConfirmModal';
 import ReactPaginate from 'react-paginate';
 
-const colors = {
-  background: '#F9FAFB',
-  primary: '#4aaa87',
-  textPrimary: '#333',
-  textSecondary: '#666',
-  border: '#E0E0E0',
-  buttonBackground: '#4aaa87',
-  buttonHover: '#3e8e75',
-  deleteButton: '#e53e3e',
-  deleteButtonHover: '#c53030',
-  sessionBackground: '#FFFFFF',
-};
-
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${colors.background};
-  min-height: 100vh;
-  padding-bottom: 20px;
+  background-color: #F9FAFB;
+  padding-bottom: 100px; /* Ensure space for pagination */
+  position: relative;
 `;
 
 const Button = styled.button`
   padding: 10px 20px;
   margin-top: 40px;
   font-weight: bold;
-  background-color: ${colors.buttonBackground};
+  background-color: #4aaa87;
   color: white;
   border: none;
   border-radius: 5px;
@@ -42,7 +29,7 @@ const Button = styled.button`
   width: 150px;
 
   &:hover {
-    background-color: ${colors.buttonHover};
+    background-color: #3e8e75;
   }
 `;
 
@@ -53,7 +40,8 @@ const SessionList = styled.div`
   max-width: 1200px;
   margin-top: 20px;
   padding: 0 20px;
-  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -66,7 +54,7 @@ const SessionList = styled.div`
 `;
 
 const SessionItem = styled.div`
-  background-color: ${colors.sessionBackground};
+  background-color: #FFFFFF;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -95,7 +83,7 @@ const SessionItem = styled.div`
 
 const SessionName = styled.span`
   font-size: 1.5rem;
-  color: ${colors.textPrimary};
+  color: #333;
   margin-bottom: 10px;
   word-break: break-word;
   text-align: center;
@@ -111,7 +99,7 @@ const EditInput = styled.input`
   padding: 10px;
   margin-bottom: 10px;
   width: 80%;
-  border: 2px solid ${colors.border};
+  border: 2px solid #E0E0E0;
   border-radius: 10px;
 
   @media (max-width: 480px) {
@@ -125,7 +113,7 @@ const SessionDetails = styled.div`
   font-size: 1rem;
   margin-bottom: 10px;
   text-align: center;
-  color: ${colors.textSecondary};
+  color: #666;
 
   @media (max-width: 480px) {
     font-size: 0.9rem;
@@ -144,7 +132,7 @@ const ButtonContainer = styled.div`
 `;
 
 const SaveButton = styled.button`
-  background-color: ${colors.buttonBackground};
+  background-color: #4aaa87;
   color: white;
   border: none;
   border-radius: 5px;
@@ -154,7 +142,7 @@ const SaveButton = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: ${colors.buttonHover};
+    background-color: #3e8e75;
   }
 
   @media (max-width: 480px) {
@@ -166,13 +154,13 @@ const SaveButton = styled.button`
 const DeleteButton = styled.button`
   background: none;
   border: none;
-  color: ${colors.deleteButton};
+  color: #e53e3e;
   cursor: pointer;
   font-size: 18px;
   margin-left: 10px;
 
   &:hover {
-    color: ${colors.deleteButtonHover};
+    color: #c53030;
   }
 
   @media (max-width: 480px) {
@@ -183,13 +171,13 @@ const DeleteButton = styled.button`
 const EditButton = styled.button`
   background: none;
   border: none;
-  color: ${colors.buttonBackground};
+  color: #4aaa87;
   cursor: pointer;
   font-size: 18px;
   margin-right: 10px;
 
   &:hover {
-    color: ${colors.buttonHover};
+    color: #3e8e75;
   }
 
   @media (max-width: 480px) {
@@ -197,44 +185,33 @@ const EditButton = styled.button`
   }
 `;
 
-const PaginationButton = styled.button`
-  padding: 10px 15px;
-  margin: 0 5px;
-  background-color: ${colors.buttonBackground};
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: ${colors.buttonHover};
-  }
-
-  &:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-
-  @media (max-width: 480px) {
-    padding: 8px 12px;
-    font-size: 0.9rem;
-  }
-`;
-
 const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  position: absolute;
+  bottom: 20px; /* Fix to bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
   .pagination {
     display: flex;
     list-style: none;
     padding: 0;
+    margin: 0;
+
+    @media (max-width: 480px) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   }
 
   .pagination li {
     margin: 0 5px;
+
+    @media (max-width: 480px) {
+      margin: 5px;
+    }
   }
 
   .pagination li a {
@@ -242,18 +219,23 @@ const PaginationContainer = styled.div`
     border: 1px solid #ddd;
     border-radius: 4px;
     cursor: pointer;
-    color: ${colors.primary};
+    color: #4aaa87;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
+
+    @media (max-width: 480px) {
+      padding: 6px 10px;
+      font-size: 0.9rem;
+    }
   }
 
   .pagination li a:hover {
     background-color: #f5f5f5;
-    color: ${colors.buttonHover};
+    color: #3e8e75;
   }
 
   .pagination li.active a {
-    background-color: ${colors.primary};
+    background-color: #4aaa87;
     color: white;
     border: none;
   }
@@ -276,7 +258,7 @@ const CropSelectionPage = () => {
   const [newSessionName, setNewSessionName] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sessionIdToDelete, setSessionIdToDelete] = useState(null);
-  const [currentPage, setCurrentPage] = useState(0);  // 페이지는 0부터 시작
+  const [currentPage, setCurrentPage] = useState(0); // 페이지는 0부터 시작
   const sessionsPerPage = 4;
   const navigate = useNavigate();
 
