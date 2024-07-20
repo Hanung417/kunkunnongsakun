@@ -9,7 +9,6 @@ const Container = styled.div`
   align-items: center;
   padding: 16px;
   background-color: #f9f9f9;
-  height: 100%;
 `;
 
 const BoardLink = styled(Link)`

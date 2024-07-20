@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -25,7 +25,7 @@ const LayoutContainer = styled.div`
 `;
 
 const ImageTitle = styled.h2`
-  font-size: 18px;
+  font-size: clamp(0.5rem, 3.5vw, 1.8rem);
   color: #333;
   margin-bottom: 16px;
 `;
@@ -60,7 +60,7 @@ const ImageBox = styled.div`
   flex-direction: column;
   margin: 16px;
   align-items: center;
-  border: 2px solid #4aaa87;
+  border: 1px solid #ccc;
   border-radius: 10px;
   padding: 10px;
   background-color: #f9f9f9;
@@ -68,7 +68,7 @@ const ImageBox = styled.div`
 `;
 
 const InfoBox = styled.div`
-  border: 2px solid #4aaa87;
+  border: 1px solid #ccc;
   margin: 4px 16px;
   padding: 14px;
   text-align: left;
@@ -82,7 +82,7 @@ const InfoLabel = styled.p`
 `;
 
 const InfoText = styled.p`
-  line-height: 1.5;
+  line-height: 1.3;
 `;
 
 const BackButton = styled.button`
@@ -106,6 +106,10 @@ const InfoTemplate = () => {
   const navigate = useNavigate();
   const { diagnosisResult } = location.state || {};
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (!diagnosisResult) {
     return <div>No diagnosis result available.</div>;
   }
@@ -122,7 +126,7 @@ const InfoTemplate = () => {
           </ImageContainer>
         </ImageBox>
         <ImageBox>
-          <ImageTitle>사용자 업로드 이미지</ImageTitle>
+          <ImageTitle>사용자 이미지</ImageTitle>
           <ImageContainer>
             {user_image_url ? <Image src={user_image_url} alt="User uploaded Pest" /> : <p>No Image Available</p>}
           </ImageContainer>

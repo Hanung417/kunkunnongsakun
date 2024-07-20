@@ -133,12 +133,27 @@ const ModalContent = styled.div`
   align-items: center;
 `;
 
+const InputContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px; /* Added margin for spacing between input and button */
+`;
+
 const Input = styled.input`
   padding: 12px;
   font-size: 16px;
-  margin-bottom: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  width: 100%; /* Ensure the input takes up the full width of the container */
+`;
+
+const ErrorMessage = styled.div`
+  color: red;
+  margin-top: 8px;
+  font-size: 14px;
+  text-align: center; /* Center align the text */
 `;
 
 const PaginationContainer = styled.div`
@@ -195,6 +210,7 @@ const ChatListPage = () => {
   const [editingSession, setEditingSession] = useState(null);
   const [sessionToDelete, setSessionToDelete] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -220,6 +236,7 @@ const ChatListPage = () => {
 
   const startNewChat = () => {
     setNewSessionName(''); // 추가: 새 대화 시작 시 제목 초기화
+    setError('');
     if (!isLoggedIn) {
       const newSessionId = uuidv4();
       localStorage.setItem('sessionId', newSessionId);
@@ -231,6 +248,11 @@ const ChatListPage = () => {
   };
 
   const handleNewChatSubmit = async () => {
+    if (!newSessionName) {
+      setError('제목을 입력해주세요');
+      return;
+    }
+    setError('');
     if (editingSession) {
       try {
         await updateSessionName(editingSession.session_id, newSessionName);
@@ -281,6 +303,7 @@ const ChatListPage = () => {
     setNewSessionName(session.session_name);
     setEditingSession(session);
     setIsModalOpen(true);
+    setError('');
   };
 
   const handlePageClick = ({ selected }) => {
@@ -290,6 +313,7 @@ const ChatListPage = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setEditingSession(null); // 추가: 모달 닫힐 때 editingSession 상태 초기화
+    setError('');
   };
 
   return (
@@ -344,13 +368,16 @@ const ChatListPage = () => {
             <CloseButton onClick={closeModal}><FaTimes /></CloseButton>
             <ModalTitle>{editingSession ? '대화 제목 수정' : '새 대화 생성'}</ModalTitle>
             <ModalContent>
-              <Input
-                type="text"
-                value={newSessionName}
-                onChange={(e) => setNewSessionName(e.target.value)}
-                placeholder="대화 제목 입력"
-                required
-              />
+              <InputContainer>
+                <Input
+                  type="text"
+                  value={newSessionName}
+                  onChange={(e) => setNewSessionName(e.target.value)}
+                  placeholder="대화 제목 입력"
+                  required
+                />
+                {error && <ErrorMessage>{error}</ErrorMessage>}
+              </InputContainer>
               <Button onClick={handleNewChatSubmit}>{editingSession ? '수정' : '생성'}</Button>
             </ModalContent>
           </ModalContainer>
