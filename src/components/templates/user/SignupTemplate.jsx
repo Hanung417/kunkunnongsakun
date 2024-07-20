@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { checkUsername, sendVerificationEmail, signupUser } from "../../../apis/user";
 import { useNavigate } from "react-router-dom";
 import CustomModal from "../../atoms/CustomModal";
+import GlobalLoader from "../../../GlobalLoader";
+import { useLoading } from "../../../LoadingContext";
 
 const Container = styled.div`
   display: flex;
@@ -103,6 +105,7 @@ const SuccessMessage = styled.div`
 `;
 
 const SignupTemplate = () => {
+  const { setIsLoading, isLoading } = useLoading();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -114,7 +117,7 @@ const SignupTemplate = () => {
   const [usernameError, setUsernameError] = useState("");
   const [usernameAvailable, setUsernameAvailable] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [verificationCodeSent, setVerificationCodeSent] = useState(false);
+  const [setVerificationCodeSent] = useState(false);
   const [verificationCodeError, setVerificationCodeError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [signupError, setSignupError] = useState("");
@@ -122,7 +125,6 @@ const SignupTemplate = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [modalTitle, setModalTitle] = useState("오류"); // 모달 타이틀 상태 추가
-
   const [isSignupSuccess, setIsSignupSuccess] = useState(false); // 회원가입 성공 상태 추가
 
   useEffect(() => {
@@ -137,8 +139,9 @@ const SignupTemplate = () => {
   };
 
   const validatePassword = (password) => {
-  return /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
-};
+    return /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -167,6 +170,7 @@ const SignupTemplate = () => {
       setUsernameAvailable("");
       return;
     }
+    setIsLoading(true);
     checkUsername(username)
       .then((response) => {
         if (response.data.is_taken) {
@@ -180,6 +184,9 @@ const SignupTemplate = () => {
       .catch(() => {
         setUsernameError("이름 중복체크에서 오류가 발생했습니다.");
         setUsernameAvailable("");
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -193,6 +200,7 @@ const SignupTemplate = () => {
       setEmailError("올바른 이메일 형식을 입력하세요.");
       return;
     }
+    setIsLoading(true);
     sendVerificationEmail(email)
       .then(() => {
         setVerificationCodeSent(true);
@@ -206,6 +214,9 @@ const SignupTemplate = () => {
         setModalTitle("오류"); // 오류 시 모달 타이틀 설정
         setModalContent(message);
         setIsModalOpen(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -223,6 +234,7 @@ const SignupTemplate = () => {
       return;
     }
 
+    setIsLoading(true);
     signupUser({ username, email, verification_code, password1, password2 })
       .then(() => {
         setIsSignupSuccess(true); // 회원가입 성공 상태 설정
@@ -263,6 +275,9 @@ const SignupTemplate = () => {
           setModalContent("An error occurred during signup.");
           setIsModalOpen(true);
         }
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -275,6 +290,7 @@ const SignupTemplate = () => {
 
   return (
     <Container>
+      <GlobalLoader isLoading={isLoading} />
       <Title>회원가입</Title>
       <Form onSubmit={handleSubmit}>
         <InputGroup>

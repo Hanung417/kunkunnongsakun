@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { sendTemporaryPassword, resetPassword } from '../../../apis/user';
 import CustomModal from "../../atoms/CustomModal";
+import GlobalLoader from '../../../GlobalLoader';
+import { useLoading } from '../../../LoadingContext';
 
 const Container = styled.div`
   display: flex;
@@ -101,6 +103,7 @@ const validatePassword = (password) => {
 
 
 const PasswordResetTemplate = () => {
+  const { setIsLoading, isLoading } = useLoading();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [temporaryPassword, setTemporaryPassword] = useState("");
@@ -145,6 +148,7 @@ const PasswordResetTemplate = () => {
   };
 
   const handleSendTempPassword = async () => {
+    setIsLoading(true);
     try {
       await sendTemporaryPassword(email);
       setMessage("임시 비밀번호가 이메일로 전송되었습니다.");
@@ -154,6 +158,8 @@ const PasswordResetTemplate = () => {
       setError(error.response?.data?.message || "임시 비밀번호 전송 중 오류가 발생했습니다.");
       setMessage("");
       setIsErrorModalOpen(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -164,11 +170,11 @@ const PasswordResetTemplate = () => {
       setIsErrorModalOpen(true);
       return;
     }
+    setIsLoading(true);
     try {
       const resetPasswordResponse = await resetPassword({ email, temporary_password: temporaryPassword, new_password: newPassword });
       console.log(resetPasswordResponse.data);
       if (resetPasswordResponse.data.status === 'success') {
-
         setMessage("새로운 비밀번호로 변경되었습니다.");
         setIsSuccessModalOpen(true);
         setError("");
@@ -181,6 +187,8 @@ const PasswordResetTemplate = () => {
       setError(error.response.data.error);
       setMessage("");
       setIsErrorModalOpen(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -198,6 +206,7 @@ const PasswordResetTemplate = () => {
 
   return (
     <Container>
+      <GlobalLoader isLoading={isLoading} />
       <Title>비밀번호 찾기</Title>
       <Form onSubmit={handleSubmit}>
         <InputGroup>

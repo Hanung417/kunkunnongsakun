@@ -1,10 +1,9 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { GNB } from "./GNB";
 import MainTopBar from "./MainTopBar";
 import PageTopBar from "./PageTopBar";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -24,19 +23,25 @@ const Footer = styled.div`
   padding-top: 60px;
   z-index: 1000;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-export const MainLayout = ({ isLoggedIn, onLogout }) => {
+export const MainLayout = () => {
   const location = useLocation();
-  const isMainPage = location.pathname === "/main";
+  const isMainPage = location.pathname === "/main" || location.pathname === "/";
+  const isStartPage = location.pathname === "/";
 
   return (
     <Container>
       <Header>{isMainPage ? <MainTopBar /> : <PageTopBar />}</Header>
-        <Outlet />
-      <Footer>
-        <GNB />
-      </Footer>
+      <Outlet />
+      {!isStartPage && (
+        <Footer>
+          <GNB />
+        </Footer>
+      )}
     </Container>
   );
 };

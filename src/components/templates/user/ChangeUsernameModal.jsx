@@ -4,6 +4,8 @@ import Modal from "react-modal";
 import { changeUsername } from "../../../apis/user";
 import { FaTimes } from "react-icons/fa";
 import CustomModal from "../../atoms/CustomModal";
+import GlobalLoader from '../../../GlobalLoader';
+import { useLoading } from '../../../LoadingContext';
 
 const ModalContainer = styled(Modal)`
   display: flex;
@@ -78,6 +80,7 @@ const Button = styled.button`
 `;
 
 const ChangeUsernameModal = ({ isOpen, onRequestClose, setUsername }) => {
+  const { setIsLoading, isLoading } = useLoading();
   const [newUsername, setNewUsername] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
@@ -88,6 +91,7 @@ const ChangeUsernameModal = ({ isOpen, onRequestClose, setUsername }) => {
   }, [newUsername]);
 
   const handleUsernameChange = async () => {
+    setIsLoading(true);
     try {
       const response = await changeUsername(newUsername);
       if (response.data.status === 'success') {
@@ -104,12 +108,15 @@ const ChangeUsernameModal = ({ isOpen, onRequestClose, setUsername }) => {
     } catch (error) {
       console.error("이름 변경에 실패했습니다.", error);
       setErrorMessage(error?.response?.data?.message || "이름 변경에 실패했습니다.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <>
       <ModalContainer isOpen={isOpen} onRequestClose={onRequestClose}>
+        <GlobalLoader isLoading={isLoading} />
         <CloseButton onClick={onRequestClose}><FaTimes /></CloseButton>
         <ModalTitle>사용자 이름 변경</ModalTitle>
         <ModalContent>
