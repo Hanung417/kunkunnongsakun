@@ -256,7 +256,7 @@ const ChatPage = () => {
                 </MessageText>
                 <MessageTime isUser={msg.isUser}>{new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</MessageTime>
               </Message>
-              {msg.isUser && <ProfileImage src={`${process.env.PUBLIC_URL}/user.jpg`} alt="Profile" isUser />}
+              {msg.isUser && <ProfileImage src={`${process.env.PUBLIC_URL}/user_icon.jpg`} alt="Profile" isUser />}
             </MessageContainer>
           ))}
           {loading && (
