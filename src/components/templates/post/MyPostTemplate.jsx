@@ -1,10 +1,11 @@
-// MyPostTemplate.js
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { fetchMyPosts, deletePost } from "../../../apis/post";
 import ConfirmModal from "../../atoms/ConfirmModal";
+import { useLoading } from "../../../LoadingContext";
+import GlobalLoader from "../../../GlobalLoader"; // GlobalLoader import 추가
 
 const Container = styled.div`
   display: flex;
@@ -65,12 +66,6 @@ const PostTitle = styled.span`
   text-overflow: ellipsis;
 `;
 
-const CommentCount = styled.span`
-  font-size: 14px;
-  color: gray;
-  margin-left: 8px;
-`;
-
 const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -118,6 +113,7 @@ const PaginationContainer = styled.div`
 `;
 
 const MyPostTemplate = () => {
+  const { setIsLoading, isLoading } = useLoading(); // useLoading을 사용하여 로딩 상태 관리
   const [posts, setPosts] = useState([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
@@ -130,6 +126,7 @@ const MyPostTemplate = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
+      setIsLoading(true);
       try {
         const response = await fetchMyPosts();
         const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
@@ -137,11 +134,13 @@ const MyPostTemplate = () => {
       } catch (error) {
         console.error("Failed to fetch posts", error);
       }
+      setIsLoading(false);
     };
     fetchPosts();
-  }, []);
+  }, [setIsLoading]);
 
   const handleDelete = async () => {
+    setIsLoading(true);
     try {
       await deletePost(selectedPostId);
       setPosts(posts.filter((post) => post.id !== selectedPostId));
@@ -150,6 +149,7 @@ const MyPostTemplate = () => {
     } catch (error) {
       console.error("Failed to delete post", error);
     }
+    setIsLoading(false);
   };
 
   const closeModal = () => {
@@ -163,6 +163,7 @@ const MyPostTemplate = () => {
 
   return (
     <Container>
+      <GlobalLoader isLoading={isLoading} />
       <PostList>
         <Table>
           <TableHeader>
@@ -178,7 +179,6 @@ const MyPostTemplate = () => {
                 <TableCell>
                   <StyledLink to={`/post/${post.id}`}>
                     <PostTitle>{post.title}</PostTitle>
-                    <CommentCount>({post.comment_count})</CommentCount>
                   </StyledLink>
                 </TableCell>
                 <TableCell>{post.user__username}</TableCell>

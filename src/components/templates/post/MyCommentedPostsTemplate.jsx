@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { fetchMyCommentedPosts } from "../../../apis/post";
+import { useLoading } from "../../../LoadingContext";
+import GlobalLoader from "../../../GlobalLoader"; // GlobalLoader import 추가
 
 const Container = styled.div`
   display: flex;
@@ -109,6 +111,7 @@ const PaginationContainer = styled.div`
 `;
 
 const MyCommentedPostsTemplate = () => {
+  const { setIsLoading, isLoading } = useLoading(); // useLoading을 사용하여 로딩 상태 관리
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const postsPerPage = 5;
@@ -117,6 +120,7 @@ const MyCommentedPostsTemplate = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
+      setIsLoading(true);
       try {
         const response = await fetchMyCommentedPosts();
         const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
@@ -124,9 +128,10 @@ const MyCommentedPostsTemplate = () => {
       } catch (error) {
         console.error("Failed to fetch posts", error);
       }
+      setIsLoading(false);
     };
     fetchPosts();
-  }, []);
+  }, [setIsLoading]);
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
@@ -134,6 +139,7 @@ const MyCommentedPostsTemplate = () => {
 
   return (
     <Container>
+      <GlobalLoader isLoading={isLoading} />
       <PostList>
         <Table>
           <TableHeader>
