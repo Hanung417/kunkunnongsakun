@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { checkAuthStatus, logoutUser } from "../../apis/user";
-import logoImg from "../../images/logo.png";
 import { FaArrowLeft, FaUser, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import CustomModal from "../atoms/CustomModal";
 
@@ -142,7 +141,7 @@ const PageTopBar = () => {
           <FaArrowLeft />
         </BackButton>
         <LogoContainer onClick={() => navigate("/main")}>
-          <LogoImage src={logoImg} alt="Logo" />
+          <LogoImage src={`${process.env.PUBLIC_URL}/android-chrome-192x192.png`} alt="Logo" />
         </LogoContainer>
       </LeftSection>
       <Title>{pageTitle}</Title>

@@ -16,7 +16,6 @@ import Comments from "../../molecules/Comment";
 const Container = styled.div`
   max-width: 600px;
   margin: 0 auto;
-  height: 100%;
   padding: 24px;
 `;
 

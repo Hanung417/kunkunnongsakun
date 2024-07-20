@@ -6,7 +6,6 @@ import ChangePasswordModal from "./ChangePasswordModal";
 import ChangeUsernameModal from "./ChangeUsernameModal";
 import DeleteAccountModal from "./DeleteAccountModal";
 import { FaUserEdit, FaKey, FaTrashAlt, FaPen, FaCommentDots } from "react-icons/fa";
-import userIcon from "../../../images/user_icon.jpg"; // Adjust the path as needed
 
 const Container = styled.div`
   display: flex;
@@ -137,7 +136,7 @@ const MyPageTemplate = () => {
   return (
     <Container>
       <UserProfile>
-        <UserImage src={userIcon} alt="User Icon" />
+        <UserImage src={`${process.env.PUBLIC_URL}/user_icon.jpg`} alt="User Icon" />
         <UserInfo>
           <UserName>
             {username}

@@ -3,8 +3,6 @@ import styled, { css } from 'styled-components';
 import { useParams, useLocation } from 'react-router-dom';
 import { fetchChatHistory, sendChatMessage } from '../../apis/chat';
 import SyncLoader from 'react-spinners/SyncLoader';
-import userProfileImage from '../../images/user_icon.jpg';
-import botProfileImage from '../../images/big_logo.png';
 
 const Container = styled.div`
   display: flex;
@@ -244,7 +242,7 @@ const ChatPage = () => {
         <MessageList>
           {messages.map((msg, index) => (
             <MessageContainer key={index} isUser={msg.isUser}>
-              {!msg.isUser && <ProfileImage src={botProfileImage} alt="Profile" />}
+              {!msg.isUser && <ProfileImage src={`${process.env.PUBLIC_URL}/android-chrome-192x192.png`} alt="Profile" />}
               <Message isUser={msg.isUser}>
                 <MessageText>
                   {!msg.isUser ? (
@@ -258,12 +256,12 @@ const ChatPage = () => {
                 </MessageText>
                 <MessageTime isUser={msg.isUser}>{new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</MessageTime>
               </Message>
-              {msg.isUser && <ProfileImage src={userProfileImage} alt="Profile" isUser />}
+              {msg.isUser && <ProfileImage src={`${process.env.PUBLIC_URL}/user.jpg`} alt="Profile" isUser />}
             </MessageContainer>
           ))}
           {loading && (
             <MessageContainer isUser={false}>
-              <ProfileImage src={botProfileImage} alt="Profile" />
+              <ProfileImage src={`${process.env.PUBLIC_URL}/android-chrome-192x192.png`} alt="Profile" />
               <Message isUser={false} style={{ display: 'flex', alignItems: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <span>답변을 불러오는 중입니다.</span>

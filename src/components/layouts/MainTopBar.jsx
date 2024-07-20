@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { checkAuthStatus, logoutUser } from "../../apis/user";
-import logoImg from "../../images/logo.png";
 import CustomModal from "../atoms/CustomModal";
 
 const TopBars = styled.nav`
@@ -92,7 +91,7 @@ const MainTopBar = () => {
       await logoutUser();
       setIsLoggedIn(false);
       setUsername("");
-      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('isLoggedIn', 'false');
       setModalContent("로그아웃이 완료되었습니다.");
       setIsModalOpen(true);
     } catch (error) {
@@ -112,7 +111,7 @@ const MainTopBar = () => {
   return (
     <TopBars>
       <LogoContainer onClick={handleLogoClick}>
-        <LogoImage src={logoImg} alt="Logo" />
+        <LogoImage src={`${process.env.PUBLIC_URL}/android-chrome-192x192.png`} alt="Logo" />
         <LogoText>꾼꾼농사꾼</LogoText>
       </LogoContainer>
       <RightSection>
