@@ -59,7 +59,7 @@ const IconButton = styled.button`
   font-size: 20px;
   color: #4aaa87;
   cursor: pointer;
-  margin-left: 16px;
+  margin-left: 4px;
 `;
 
 const PageTopBar = () => {
