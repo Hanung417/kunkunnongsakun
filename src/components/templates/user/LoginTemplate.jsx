@@ -174,7 +174,7 @@ const LoginTemplate = () => {
           setTimeout(() => {
             setIsModalOpen(false);
             navigate('/');
-          }, 1000);
+          }, 2000);
         } else {
           setLoginError(message);
           setModalContent(message);

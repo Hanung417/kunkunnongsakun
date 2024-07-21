@@ -135,7 +135,7 @@ const MainTopBar = () => {
           <>
             <UsernameText>{username}님</UsernameText>
             <TopBarButton onClick={handleLogout}>
-              {isLoading ? <TopBarLoader /> : '로그아웃'}
+              {isLoading ? <TopBarLoader color="white"/> : '로그아웃'}
             </TopBarButton>
           </>
         ) : (

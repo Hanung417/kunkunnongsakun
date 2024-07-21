@@ -8,6 +8,7 @@ import { FaUserEdit, FaKey, FaTrashAlt, FaPen, FaCommentDots } from "react-icons
 import { checkAuthStatus } from "../../../apis/user";
 import { useLoading } from "../../../LoadingContext";
 import CustomModal from "../../atoms/CustomModal";
+import TopBarLoader from "../../../TopBarLoader"; // TopBarLoader import
 
 const Container = styled.div`
   display: flex;
@@ -59,7 +60,7 @@ const Section = styled.div`
   background-color: #fff;
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
   padding: 1.25rem;
 `;
 
@@ -73,7 +74,7 @@ const ActionList = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.25rem;
 `;
 
 const ActionItem = styled.div`
@@ -81,24 +82,25 @@ const ActionItem = styled.div`
   flex-direction: column;
   align-items: center;
   flex: 1;
-  min-width: 6.25rem;
-  margin: 0.75rem 0;
+  min-width: 5rem;
+  margin: 0.5rem 0;
 `;
 
 const ActionIcon = styled.div`
-  font-size: 1.5rem; /* 아이콘 크기 줄이기 */
+  font-size: 1.5rem; 
   color: #4aaa87;
-  margin-bottom: 0.5rem; /* 간격 줄이기 */
+  margin-bottom: 0.5rem; 
 `;
 
 const ActionText = styled.div`
-  font-size: 0.875rem; /* 텍스트 크기 줄이기 */
+  font-size: 0.875rem; 
   color: #333;
 `;
 
 const MyPageTemplate = () => {
   const { setIsLoading } = useLoading();
   const [username, setUsername] = useState("");
+  const [isUsernameLoading, setIsUsernameLoading] = useState(true); // username 로딩 상태
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(false);
@@ -121,6 +123,7 @@ const MyPageTemplate = () => {
       } catch (error) {
         console.error("Failed to fetch user data", error);
       }
+      setIsUsernameLoading(false); // username 로딩 완료
       setIsLoading(false);
     };
 
@@ -159,7 +162,11 @@ const MyPageTemplate = () => {
           <UserProfile>
             <UserImage src={`${process.env.PUBLIC_URL}/user_icon.jpg`} alt="User Icon" />
             <UserInfo>
-              <UserName>{username}</UserName>
+              {isUsernameLoading ? (
+                <TopBarLoader color="#4aaa87" /> // 로딩 중일 때 로더 표시
+              ) : (
+                <UserName>{username}</UserName>
+              )}
             </UserInfo>
           </UserProfile>
 
@@ -180,7 +187,6 @@ const MyPageTemplate = () => {
               </ActionItem>
             </ActionList>
           </Section>
-
           <Section>
             <SectionTitle>활동</SectionTitle>
             <ActionList>
