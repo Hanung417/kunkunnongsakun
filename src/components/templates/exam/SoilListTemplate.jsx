@@ -119,7 +119,7 @@ const SoilListTemplate = () => {
   }, [setIsLoading]);
 
   const handleSoilDataClick = (data) => {
-    navigate('/soil_details', { state: { soilData: data.soil_data, fertilizerData: data.fertilizer_data, crop: data.crop_name } });
+    navigate('/soil_details', { state: { soilData: data.soil_data, fertilizerData: data.fertilizer_data, crop: data.crop_name, crop_add:data.detailed_address } });
   };
 
   const handleDeleteSoilData = async () => {
