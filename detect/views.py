@@ -54,7 +54,8 @@ def upload_image_for_detection(request):
             'pesticide_name': pest_info.pesticide_name,
             'confidence': confidence,
             'user_image_url': detection.image.url, # 사용자가 넣은 이미지
-            'db_image_url': detection.pest.image_url # 디비에 있는 이미지
+            'db_image_url': detection.pest.image_url, # 디비에 있는 이미지
+            'detection_date': detection.detection_date.strftime('%Y-%m-%d %H:%M')
         }
         return JsonResponse(data, status=200)
 
