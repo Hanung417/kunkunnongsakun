@@ -303,6 +303,15 @@ const SessionDetails = () => {
   const { setIsLoading } = useLoading();
   const [isChartLoading, setIsChartLoading] = useState(false);
 
+  const updateCharts = (details, index) => {
+    const cropNames = details.results.map(result => result.crop_name);
+    const additionalPrices = details.results.map(result => result.price);
+    const barData = generateBarChartData(details.results[index].adjusted_data, cropNames[index]);
+    setBarChartData(barData);
+    const lineData = generateLineChartData(details.results[index].crop_chart_data, cropNames[index], additionalPrices[index]);
+    setLineChartData(lineData);
+  };
+
   useEffect(() => {
     const fetchSessionDetails = async () => {
       const session_id = location.state?.session_id;
@@ -316,22 +325,7 @@ const SessionDetails = () => {
         const response = await getSessionDetails(session_id);
         setSessionDetails(response.data);
 
-        const resultData = response.data;
-        const adjustedDataList = resultData?.results?.map(result => result.adjusted_data) || [];
-        const cropNames = resultData?.results?.map(result => result.crop_name) || [];
-        const additionalPrices = resultData?.results?.map(result => result.price) || [];
-
-        if (adjustedDataList.length > 0) {
-          const barData = generateBarChartData(adjustedDataList[0], cropNames[0]);
-          setBarChartData(barData);
-        }
-
-        if (resultData.results && resultData.results.length > 0) {
-          const crop_chart_data = resultData.results.flatMap(result => result.crop_chart_data);
-          const lineData = generateLineChartData(crop_chart_data, cropNames[0], additionalPrices[selectedCropIndex]);
-          setLineChartData(lineData);
-        }
-
+        updateCharts(response.data, 0);
       } catch (error) {
         console.error('Error fetching session details:', error);
         if (error.response && error.response.status === 401) {
@@ -344,28 +338,18 @@ const SessionDetails = () => {
     };
 
     fetchSessionDetails();
-  }, [location.state, navigate, selectedCropIndex, setIsLoading]);
+  }, [location.state, navigate, setIsLoading]);
 
-  const handleTabClick = async (index) => {
+  const handleTabClick = (index) => {
     setSelectedCropIndex(index);
     setIsChartLoading(true);
-    try {
-      const resultData = sessionDetails;
-      const cropNames = resultData?.results?.map(result => result.crop_name) || [];
-      const additionalPrices = resultData?.results?.map(result => result.price) || [];
-
-      if (resultData.results && resultData.results.length > 0) {
-        const crop_chart_data = resultData.results.flatMap(result => result.crop_chart_data);
-        const barData = generateBarChartData(resultData.results[index].adjusted_data, cropNames[index]);
-        setBarChartData(barData);
-        const lineData = generateLineChartData(resultData.results[index].crop_chart_data, cropNames[index], additionalPrices[index]);
-        setLineChartData(lineData);
+    
+    setTimeout(() => {
+      if (sessionDetails) {
+        updateCharts(sessionDetails, index);
       }
-    } catch (error) {
-      console.error('Error fetching chart data:', error);
-    } finally {
       setIsChartLoading(false);
-    }
+    }, 500); // 임의의 지연 시간 추가 (로딩 애니메이션이 보이도록)
   };
 
   if (!sessionDetails || !barChartData || !lineChartData) {
