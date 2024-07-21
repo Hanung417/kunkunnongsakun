@@ -29,6 +29,7 @@ const BoxContainer = styled.div`
   margin-bottom: 24px;
   width: 100%;
   max-width: 600px;
+  z-index: 1; /* BoxContainer의 z-index 설정 */
   @media (max-width: 768px) {
     padding: 12px;
   }
@@ -49,6 +50,7 @@ const InputContainer = styled.div`
   width: 100%;
   max-width: 400px;
   margin-bottom: 16px;
+  z-index: 1; /* InputContainer의 z-index 설정 */
 `;
 
 const Input = styled.input`
@@ -112,7 +114,7 @@ const CropList = styled.div`
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   position: absolute;
-  z-index: 1;
+  z-index: 2; /* CropList의 z-index 설정 */
   top: 40px;
   max-height: 200px;
   overflow-y: auto;
@@ -228,6 +230,9 @@ const ModalContent = styled.div`
 `;
 
 const customStyles = {
+  overlay: {
+    zIndex: 1000, // 모달 오버레이의 z-index 설정
+  },
   content: {
     top: '50%',
     left: '50%',
@@ -238,6 +243,7 @@ const customStyles = {
     width: '80%',
     maxWidth: '600px',
     padding: '20px',
+    zIndex: 1001, // 모달의 z-index 설정
   },
 };
 
@@ -504,7 +510,6 @@ const SoilTemplate = () => {
       />
       {selectedSoilSample && fertilizerData && (
         <RecommendationContainer>
-          <RecommendationTitle>상세주소 : {selectedSoilSample.PNU_Nm}</RecommendationTitle>
           <RecommendationTitle>토양 분석 데이터</RecommendationTitle>
           <TableContainer>
             <Table>
