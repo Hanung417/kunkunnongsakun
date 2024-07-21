@@ -11,52 +11,75 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  background-color: #f9f9f9;
-  height: 100vh;
+  padding: 1rem 0.5rem;
+  height: 100%;
   box-sizing: border-box;
   position: relative;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 28px;
-  margin-bottom: 32px;
+  font-size: 2rem;
+  margin-bottom: 2rem;
   color: #333;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const Button = styled.button`
-  padding: 12px 16px;
-  font-size: 16px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
   font-weight: bold;
-  height: 44px; 
-  width: 250px;
+  height: 2.75rem;
+  width: 15.625rem;
   color: white;
   background-color: ${({ disabled }) => (disabled ? '#9e9e9e' : '#4aaa87')};
   border: none;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   &:hover {
     background-color: ${({ disabled }) => (disabled ? '#9e9e9e' : '#6dc4b0')};
   }
   &:not(:last-child) {
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0.75rem 0;
   }
 `;
 
 const Logo = styled.img`
-  width: 100px;
-  height: 100px;
-  margin-bottom: 24px;
+  width: 10rem;
+  height: 10rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    width: 8rem;
+    height: 8rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const Footer = styled.footer`
   position: absolute;
-  bottom: 16px;
+  bottom: 1rem;
   width: 100%;
   text-align: center;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #666;
+
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+  }
 `;
 
 const StartTemplate = () => {

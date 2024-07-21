@@ -82,7 +82,7 @@ const ErrorMessage = styled.div`
 const LinksContainer = styled.div`
   margin-top: 16px;
   display: flex;
-  justify-content: left;
+  justify-content: flex-start; /* 변경 */
   width: 100%;
   max-width: 600px;
 `;

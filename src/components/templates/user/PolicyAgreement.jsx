@@ -13,6 +13,10 @@ const Container = styled.div`
   height: 100vh;
   box-sizing: border-box;
   overflow: auto;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
 `;
 
 const AgreementSection = styled.section`
@@ -24,6 +28,10 @@ const AgreementSection = styled.section`
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
 `;
 
 const CheckboxGroup = styled.div`
@@ -40,9 +48,10 @@ const CheckboxWrapper = styled.div`
 
 const CustomCheckbox = styled.label`
   position: relative;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
+  margin-right: 10px;  /* 간격 추가 */
   input[type="checkbox"] {
     opacity: 0;
     width: 0;
@@ -52,8 +61,8 @@ const CustomCheckbox = styled.label`
     position: absolute;
     top: 0;
     left: 0;
-    height: 18px;
-    width: 18px;
+    height: 20px;
+    width: 20px;
     background-color: #eee;
     border: 1px solid #ddd;
     border-radius: 3px;
@@ -83,7 +92,7 @@ const CustomCheckbox = styled.label`
 `;
 
 const Label = styled.label`
-  font-size: 14px;
+  font-size: 16px;  /* 텍스트 크기 키우기 */
   color: #333;
   cursor: pointer;
   flex: 1;
@@ -92,6 +101,7 @@ const Label = styled.label`
 
 const ToggleIcon = styled.div`
   cursor: pointer;
+  margin-left: 10px;  /* 간격 추가 */
 `;
 
 const Button = styled.button`
@@ -109,6 +119,12 @@ const Button = styled.button`
     background-color: #9e9e9e;
     cursor: not-allowed;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 14px;
+  }
 `;
 
 const ToggleContent = styled.div`
@@ -125,21 +141,45 @@ const ToggleContent = styled.div`
 const StepperContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-bottom: 20px;
 `;
 
 const Step = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 8px;
+  text-align: center;
+`;
+
+const StepCircle = styled.div`
   width: 24px;
   height: 24px;
   border-radius: 50%;
   background-color: ${props => (props.active ? '#4aaa87' : '#e0e0e0')};
-  margin: 0 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
   color: white;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+`;
+
+const StepLabel = styled.div`
+  margin-top: 4px;
+  font-size: 14px;
+  color: ${props => (props.active ? '#4aaa87' : '#6b7280')};
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 const PolicyAgreement = () => {
@@ -199,8 +239,14 @@ const PolicyAgreement = () => {
   return (
     <Container>
       <StepperContainer>
-        <Step active={currentStep === 1}>1</Step>
-        <Step active={currentStep === 2}>2</Step>
+        <Step>
+          <StepCircle active={currentStep === 1}>1</StepCircle>
+          <StepLabel active={currentStep === 1}>약관 동의</StepLabel>
+        </Step>
+        <Step>
+          <StepCircle active={currentStep === 2}>2</StepCircle>
+          <StepLabel active={currentStep === 2}>회원 정보 입력</StepLabel>
+        </Step>
       </StepperContainer>
       {currentStep === 1 && (
         <AgreementSection expanded={Object.values(showDetails).some(value => value)}>
@@ -251,11 +297,7 @@ const PolicyAgreement = () => {
           <Button disabled={!isAgreed.allChecked} onClick={handleSubmit}>회원가입 진행하기</Button>
         </AgreementSection>
       )}
-      {currentStep === 2 && (
-        <AgreementSection>
-          <SignupTemplate />
-        </AgreementSection>
-      )}
+      {currentStep === 2 && <SignupTemplate />}
     </Container>
   );
 };

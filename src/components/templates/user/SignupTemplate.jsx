@@ -1,111 +1,10 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { checkUsername, sendVerificationEmail, signupUser } from "../../../apis/user";
 import { useNavigate } from "react-router-dom";
 import CustomModal from "../../atoms/CustomModal";
-import GlobalLoader from "../../../GlobalLoader";
-import { useLoading } from "../../../LoadingContext";
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 18px;
-  background-color: #f9f9f9;
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-`;
-
-const Title = styled.h1`
-  font-size: 24px;
-  margin-bottom: 18px;
-  color: #333;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 600px;
-  background-color: white;
-  padding: 18px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-`;
-
-const InputGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-`;
-
-const Label = styled.label`
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 8px;
-`;
-
-const Input = styled.input`
-  font-size: 14px;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  &:focus {
-    outline: none;
-    border-color: #2faa9a;
-  }
-`;
-
-const EmailGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 24px;
-`;
-
-const EmailInputWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const EmailInput = styled(Input)`
-  flex: 1;
-  margin-right: 8px;
-`;
-
-const Button = styled.button`
-  padding: 12px 16px;
-  font-size: 14px;g
-  height: 44px; 
-  color: white;
-  background-color: #4aaa87;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  &:hover {
-    background-color: #6dc4b0;
-  }
-  &:disabled {
-    background-color: #9e9e9e;
-    cursor: not-allowed;
-  }
-`;
-
-const ErrorMessage = styled.div`
-  color: red;
-  font-size: 12px;
-  margin-top: 4px;
-`;
-
-const SuccessMessage = styled.div`
-  color: green;
-  font-size: 12px;
-  margin-top: 4px;
-`;
+import { Container, Title, Form, InputGroup, Label, Input, Button, ErrorMessage, SuccessMessage } from "../../styles/Form";
 
 const SignupTemplate = () => {
-  const { setIsLoading, isLoading } = useLoading();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -118,6 +17,7 @@ const SignupTemplate = () => {
   const [usernameAvailable, setUsernameAvailable] = useState("");
   const [emailError, setEmailError] = useState("");
   const [verificationCodeSent, setVerificationCodeSent] = useState(false);
+  const [verificationCodeSuccess, setVerificationCodeSuccess] = useState(""); // 성공 메시지 상태 추가
   const [verificationCodeError, setVerificationCodeError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [signupError, setSignupError] = useState("");
@@ -126,6 +26,7 @@ const SignupTemplate = () => {
   const [modalContent, setModalContent] = useState("");
   const [modalTitle, setModalTitle] = useState("오류"); // 모달 타이틀 상태 추가
   const [isSignupSuccess, setIsSignupSuccess] = useState(false); // 회원가입 성공 상태 추가
+  const [isSendingCode, setIsSendingCode] = useState(false); // 인증번호 발송 중 상태 추가
 
   useEffect(() => {
     const { username, email, verification_code, password1, password2 } = formData;
@@ -166,27 +67,23 @@ const SignupTemplate = () => {
   const handleUsernameCheck = () => {
     const username = formData.username;
     if (username.trim() === "") {
-      setUsernameError("이름을 입력해주세요");
+      setUsernameError("닉네임을 입력해주세요");
       setUsernameAvailable("");
       return;
     }
-    setIsLoading(true);
     checkUsername(username)
       .then((response) => {
         if (response.data.is_taken) {
-          setUsernameError("이미 사용중인 이름입니다.");
+          setUsernameError("이미 사용중인 닉네임입니다.");
           setUsernameAvailable("");
         } else {
           setUsernameError("");
-          setUsernameAvailable("사용 가능한 이름입니다.");
+          setUsernameAvailable("사용 가능한 닉네임입니다.");
         }
       })
       .catch(() => {
-        setUsernameError("이름 중복체크에서 오류가 발생했습니다.");
+        setUsernameError("닉네임 중복체크에서 오류가 발생했습니다.");
         setUsernameAvailable("");
-      })
-      .finally(() => {
-        setIsLoading(false);
       });
   };
 
@@ -200,11 +97,11 @@ const SignupTemplate = () => {
       setEmailError("올바른 이메일 형식을 입력하세요.");
       return;
     }
-    setIsLoading(true);
+    setIsSendingCode(true); // 인증번호 발송 중 상태 설정
     sendVerificationEmail(email)
       .then(() => {
         setVerificationCodeSent(true);
-        setVerificationCodeError("이메일로 인증번호가 발송되었습니다. 메일함을 확인해주세요");
+        setVerificationCodeSuccess("이메일로 인증번호가 발송되었습니다. 메일함을 확인해주세요");
       })
       .catch((error) => {
         const message = error.response && error.response.data && error.response.data.message
@@ -216,7 +113,7 @@ const SignupTemplate = () => {
         setIsModalOpen(true);
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsSendingCode(false); // 인증번호 발송 중 상태 해제
       });
   };
 
@@ -234,7 +131,6 @@ const SignupTemplate = () => {
       return;
     }
 
-    setIsLoading(true);
     signupUser({ username, email, verification_code, password1, password2 })
       .then(() => {
         setIsSignupSuccess(true); // 회원가입 성공 상태 설정
@@ -275,42 +171,36 @@ const SignupTemplate = () => {
           setModalContent("An error occurred during signup.");
           setIsModalOpen(true);
         }
-      })
-      .finally(() => {
-        setIsLoading(false);
       });
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     if (isSignupSuccess) {
-      navigate("/login"); // 회원가입 성공 시 로그인 페이지로 이동
+      navigate("/login");
     }
   };
 
   return (
     <Container>
-      <GlobalLoader isLoading={isLoading} />
-      <Title>회원가입</Title>
       <Form onSubmit={handleSubmit}>
         <InputGroup>
-          <Label>이름</Label>
+          <Label>닉네임</Label>
           <Input
             type="text"
             name="username"
             value={formData.username}
             onChange={handleChange}
             onBlur={handleUsernameCheck}
-            placeholder="이름"
+            placeholder="닉네임"
             required
           />
           {usernameError && <ErrorMessage>{usernameError}</ErrorMessage>}
           {usernameAvailable && <SuccessMessage>{usernameAvailable}</SuccessMessage>}
         </InputGroup>
-        <EmailGroup>
+        <InputGroup>
           <Label>이메일</Label>
-          <EmailInputWrapper>
-            <EmailInput
+            <Input
               type="email"
               name="email"
               value={formData.email}
@@ -318,13 +208,13 @@ const SignupTemplate = () => {
               placeholder="이메일"
               required
             />
-            <Button type="button" onClick={handleSendVerificationCode} disabled={!validateEmail(formData.email)}>
-              인증번호
-            </Button>
-          </EmailInputWrapper>
           {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
           {verificationCodeError && <ErrorMessage>{verificationCodeError}</ErrorMessage>}
-        </EmailGroup>
+          {verificationCodeSent && !verificationCodeError && <SuccessMessage>{verificationCodeSuccess}</SuccessMessage>}
+            <Button type="button" onClick={handleSendVerificationCode} disabled={!validateEmail(formData.email) || isSendingCode}>
+              {isSendingCode ? "인증번호 발송 중..." : "인증번호 전송"}
+            </Button>
+        </InputGroup>
         <InputGroup>
           <Label>인증번호</Label>
           <Input
