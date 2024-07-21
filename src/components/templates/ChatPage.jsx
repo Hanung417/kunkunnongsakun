@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { useParams, useLocation, useNavigate } from 'react-router-dom'; // useNavigate 임포트
 import { fetchChatHistory, sendChatMessage } from '../../apis/chat';
 import SyncLoader from 'react-spinners/SyncLoader';
+import { IoMenu } from "react-icons/io5";
 
 const Container = styled.div`
   display: flex;
@@ -39,22 +40,16 @@ const Title = styled.div`
 
 const ChatListButton = styled.button`
   position: absolute; /* 절대 위치 */
-  right: 16px; /* 오른쪽에 배치 */
-  padding: 10px 16px;
-  font-size: 14px;
+  left: 5px; /* 오른쪽에 배치 */
+  padding: 10px 12px;
+  flex: 1;
+  font-weight: 600;
   color: white;
-  background-color: #4aaa87;
+  background-color: #4AAA87;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  &:hover {
-    background-color: #6dc4b0;
-  }
 
-  @media (max-width: 768px) {
-    padding: 8px 12px;
-    font-size: 12px;
-  }
 `;
 
 const ChatBox = styled.div`
@@ -267,7 +262,7 @@ const ChatPage = () => {
     <Container>
       <Header>
         <Title>{sessionName || '농업 GPT'}</Title>
-        <ChatListButton onClick={() => navigate('/chatlist')}>채팅 목록</ChatListButton> {/* 채팅 목록 버튼 */}
+        <ChatListButton onClick={() => navigate('/chatlist')}><IoMenu />  목록 보기</ChatListButton> 
       </Header>
       <ChatBox ref={chatBoxRef}>
         <MessageList>
