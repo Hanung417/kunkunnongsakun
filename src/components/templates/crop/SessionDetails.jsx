@@ -104,13 +104,14 @@ const TabButton = styled.button`
   border-bottom: ${props => (props.active ? '2px solid #4aaa87' : 'none')};
   padding: 12px 24px;
   margin: 0 8px;
+  border-radius: 5px 5px 0 0;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
 
   &:hover {
-    background-color: #45a049;
+    background-color: #4aaa87;
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -414,16 +415,18 @@ const SessionDetails = () => {
             </TabButton>
           ))}
         </Tabs>
-        <ChartContainer>
-          {isChartLoading ? (
-            <Loader />
-          ) : (
-            <>
+        {isChartLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <ChartContainer>
               {Object.keys(adjustedDataList[selectedCropIndex]).length > 0 ? (
                 <Bar data={barChartData} options={barChartOptions} />
               ) : (
                 <ErrorText>차트 데이터를 불러오는 과정에서 문제가 생겼습니다.</ErrorText>
               )}
+            </ChartContainer>
+            <ChartContainer>
               {sessionDetails.results[selectedCropIndex].crop_chart_data ? (
                 <Line
                   data={lineChartData}
@@ -432,9 +435,9 @@ const SessionDetails = () => {
               ) : (
                 <ErrorText>라인 데이터를 불러오는 과정에서 문제가 생겼습니다.</ErrorText>
               )}
-            </>
-          )}
-        </ChartContainer>
+            </ChartContainer>
+          </>
+        )}
       </SectionContainer>
     </PageContainer>
   );
