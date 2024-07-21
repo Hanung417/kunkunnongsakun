@@ -3,8 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { checkAuthStatus, logoutUser } from "../../apis/user";
 import CustomModal from "../atoms/CustomModal";
-import GlobalLoader from "../../GlobalLoader"; // GlobalLoader import 추가
-import { useLoading } from "../../LoadingContext"; // useLoading import 추가
+import TopBarLoader from "../../TopBarLoader";
+import { useLoading } from "../../LoadingContext";
 
 const TopBars = styled.nav`
   display: flex;
@@ -39,9 +39,14 @@ const LogoText = styled.div`
 const RightSection = styled.div`
   display: flex;
   align-items: center;
+  position: relative; /* 추가 */
 `;
 
 const TopBarButton = styled.button`
+  position: relative; /* 추가 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 8px 20px;
   background-color: #4aaa87;
   color: #ffffff;
@@ -60,7 +65,7 @@ const UsernameText = styled.span`
 `;
 
 const MainTopBar = () => {
-  const { setIsLoading } = useLoading();
+  const { setIsLoading, isLoading } = useLoading();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -121,7 +126,6 @@ const MainTopBar = () => {
 
   return (
     <TopBars>
-      <GlobalLoader />
       <LogoContainer onClick={handleLogoClick} disableClick={isStartPage}>
         <LogoImage src={`${process.env.PUBLIC_URL}/android-chrome-192x192.png`} alt="Logo" />
         <LogoText>꾼꾼농사꾼</LogoText>
@@ -130,10 +134,14 @@ const MainTopBar = () => {
         {isLoggedIn ? (
           <>
             <UsernameText>{username}님</UsernameText>
-            <TopBarButton onClick={handleLogout}>로그아웃</TopBarButton>
+            <TopBarButton onClick={handleLogout}>
+              {isLoading ? <TopBarLoader /> : '로그아웃'}
+            </TopBarButton>
           </>
         ) : (
-          <TopBarButton onClick={() => navigate("/login")}>로그인</TopBarButton>
+          <TopBarButton onClick={() => navigate("/login")}>
+            {isLoading ? <TopBarLoader color="white"/> : '로그인'}
+          </TopBarButton>
         )}
       </RightSection>
       <CustomModal isOpen={isModalOpen} onRequestClose={closeModal} title="알림" content={modalContent} />

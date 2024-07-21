@@ -207,7 +207,6 @@ const LoginTemplate = () => {
 
   return (
     <Container>
-      <GlobalLoader isLoading={isLoading} />
       <Title>로그인</Title>
       <Form onSubmit={handleSubmit}>
         <InputGroup>
