@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Bar, Line } from 'react-chartjs-2';
-import { getSessionDetails } from '../../../apis/crop'; // axios 호출을 분리한 파일에서 가져옴
+import { getSessionDetails } from '../../../apis/crop';
 import Chart from 'chart.js/auto';
 import { CategoryScale, TimeScale } from 'chart.js';
 import 'chartjs-adapter-date-fns';
@@ -10,18 +10,12 @@ import { useLoading } from "../../../LoadingContext";
 
 Chart.register(CategoryScale, TimeScale);
 
-const secondaryColor = '#45a049';
-const backgroundColor = '#f0f4f8';
-const boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
-
 const PageContainer = styled.div`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  background-color: ${backgroundColor};
-  font-family: 'Roboto', sans-serif;
+  background-color: #f0f4f8;
   height: 100vh;
   box-sizing: border-box;
   overflow: auto;
@@ -37,53 +31,46 @@ const SectionContainer = styled.div`
   flex: 1;
 `;
 
-const BoxContainer = styled.div`
-  display: flex;
+const InfoTable = styled.table`
   width: 100%;
-  justify-content: space-around;
-  margin: 1rem 0;
-  flex-wrap: wrap;
-  gap: 20px;
+  max-width: 800px;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 
-  @media (min-width: 768px) {
-    gap: 50px;
+  th, td {
+    padding: 16px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 1.2rem;
   }
-`;
 
-const Box = styled.div`
-  background-color: #fff;
-  padding: 1rem;
-  margin: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  box-shadow: ${boxShadow};
-  width: 30%;
-  height: 70px;
-  border: 1px solid #ddd;
-  font-weight: 500;
-  transition: transform 0.3s, box-shadow 0.3s;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  th {
+    background-color: #4aaa87;
+    color: white;
+    font-weight: bold;
+  }
 
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  td {
+    background-color: #fff;
+    color: #333;
   }
 
   @media (max-width: 768px) {
-    width: 80%;
-  }
-
-  @media (min-width: 768px) {
-    width: 20%;
+    th, td {
+      font-size: 0.9rem;
+      padding: 12px;
+    }
   }
 `;
 
-const BarChartBox = styled.div`
+const SmallText = styled.p`
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: -10px;
+  margin-bottom: 20px;
+`;
+
+const ChartContainer = styled.div`
   background-color: #fff;
   padding: 1rem;
   margin: 1rem 0;
@@ -92,66 +79,68 @@ const BarChartBox = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  box-shadow: ${boxShadow};
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
+  max-width: 800px;
   height: 400px;
   overflow: auto;
   border: 1px solid #ddd;
+
+  @media (min-width: 768px) {
+    height: 600px;
+  }
 `;
 
-const CropButton = styled.button`
-  background-color: #4aaa87;
-  color: white;
+const Tabs = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+`;
+
+const TabButton = styled.button`
+  background-color: ${props => (props.active ? '#4aaa87' : 'transparent')};
+  color: ${props => (props.active ? 'white' : '#4aaa87')};
   border: none;
+  border-bottom: ${props => (props.active ? '2px solid #4aaa87' : 'none')};
   padding: 12px 24px;
-  margin: 8px;
-  border-radius: 5px;
+  margin: 0 8px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
 
   &:hover {
-    background-color: ${secondaryColor};
+    background-color: #45a049;
+    color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-`;
-
-const FixedLargeBox = styled(BarChartBox)`
-  height: 400px;
-  @media (min-width: 768px) {
-    width: 100%;
-    height: 600px;
-  }
-`;
-
-const FixedWideBox = styled(BarChartBox)`
-  width: 100%;
-  height: 400px;
-  @media (min-width: 768px) {
-    height: 600px;
-  }
-`;
-
-const Title = styled.h2`
-  font-size: 2rem;
-  font-weight: 700;
-  color: #4aaa87;
-  margin-bottom: 1rem;
-`;
-
-const Subtitle = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: #333;
-  margin-bottom: 1rem;
 `;
 
 const ErrorText = styled.p`
   font-size: 1rem;
   font-weight: 300;
   color: #666;
+`;
+
+const Loader = styled.div`
+  border: 4px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 `;
 
 const columns = [
@@ -289,6 +278,20 @@ const barChartOptions = {
   }
 };
 
+const formatNumber = (num) => {
+  if (num >= 1000000000000) {
+    return (num / 1000000000000).toFixed(1) + '조원';
+  } else if (num >= 100000000) {
+    return (num / 100000000).toFixed(1) + '억원';
+  } else if (num >= 10000) {
+    return (num / 10000).toFixed(1) + '만원';
+  } else if (num >= 1000) {
+    return (num / 1000).toFixed(1) + '천원';
+  } else {
+    return num.toLocaleString() + '원';
+  }
+};
+
 const SessionDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -297,6 +300,7 @@ const SessionDetails = () => {
   const [barChartData, setBarChartData] = useState(null);
   const [lineChartData, setLineChartData] = useState(null);
   const { setIsLoading } = useLoading();
+  const [isChartLoading, setIsChartLoading] = useState(false);
 
   useEffect(() => {
     const fetchSessionDetails = async () => {
@@ -307,7 +311,7 @@ const SessionDetails = () => {
         return;
       }
       try {
-        setIsLoading(true); // 로딩 시작
+        setIsLoading(true);
         const response = await getSessionDetails(session_id);
         setSessionDetails(response.data);
 
@@ -334,12 +338,34 @@ const SessionDetails = () => {
           navigate('/login');
         }
       } finally {
-        setIsLoading(false); // 로딩 끝
+        setIsLoading(false);
       }
     };
 
     fetchSessionDetails();
   }, [location.state, navigate, selectedCropIndex, setIsLoading]);
+
+  const handleTabClick = async (index) => {
+    setSelectedCropIndex(index);
+    setIsChartLoading(true);
+    try {
+      const resultData = sessionDetails;
+      const cropNames = resultData?.results?.map(result => result.crop_name) || [];
+      const additionalPrices = resultData?.results?.map(result => result.price) || [];
+
+      if (resultData.results && resultData.results.length > 0) {
+        const crop_chart_data = resultData.results.flatMap(result => result.crop_chart_data);
+        const barData = generateBarChartData(resultData.results[index].adjusted_data, cropNames[index]);
+        setBarChartData(barData);
+        const lineData = generateLineChartData(resultData.results[index].crop_chart_data, cropNames[index], additionalPrices[index]);
+        setLineChartData(lineData);
+      }
+    } catch (error) {
+      console.error('Error fetching chart data:', error);
+    } finally {
+      setIsChartLoading(false);
+    }
+  };
 
   if (!sessionDetails || !barChartData || !lineChartData) {
     return <div></div>;
@@ -350,46 +376,65 @@ const SessionDetails = () => {
 
   return (
     <PageContainer>
-      <Title>세션 세부 정보</Title>
       <SectionContainer>
-        <BoxContainer>
-          <Box>
-            <Subtitle>선택한 작물</Subtitle>
-            {cropNames.join(', ')}
-          </Box>
-          <Box>
-            <Subtitle>토지 면적(평)</Subtitle>
-            {sessionDetails.land_area.toLocaleString()}
-          </Box>
-          <Box>
-            <Subtitle>총 수입(원)</Subtitle>
-            {Math.round(adjustedDataList[selectedCropIndex]["총수입 (원)"]).toLocaleString()}
-          </Box>
-        </BoxContainer>
-        <div>
+        <InfoTable>
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>값</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>지역</td>
+              <td>{sessionDetails.region}</td>
+            </tr>
+            <tr>
+              <td>선택한 작물</td>
+              <td>{cropNames.join(', ')}</td>
+            </tr>
+            <tr>
+              <td>토지 면적</td>
+              <td>{sessionDetails.land_area.toLocaleString()} 평</td>
+            </tr>
+            <tr>
+              <td>총 수입</td>
+              <td>{formatNumber(Math.round(adjustedDataList[selectedCropIndex]["총수입 (원)"]))}</td>
+            </tr>
+          </tbody>
+        </InfoTable>
+        <Tabs>
           {cropNames.map((cropName, index) => (
-            <CropButton key={index} onClick={() => setSelectedCropIndex(index)}>
+            <TabButton
+              key={index}
+              active={index === selectedCropIndex}
+              onClick={() => handleTabClick(index)}
+            >
               {cropName}
-            </CropButton>
+            </TabButton>
           ))}
-        </div>
-        <FixedLargeBox>
-          {Object.keys(adjustedDataList[selectedCropIndex]).length > 0 ? (
-            <Bar data={generateBarChartData(adjustedDataList[selectedCropIndex], cropNames[selectedCropIndex])} options={barChartOptions} />
+        </Tabs>
+        <ChartContainer>
+          {isChartLoading ? (
+            <Loader />
           ) : (
-            <ErrorText>차트 데이터를 불러오는 과정에서 문제가 생겼습니다.</ErrorText>
+            <>
+              {Object.keys(adjustedDataList[selectedCropIndex]).length > 0 ? (
+                <Bar data={barChartData} options={barChartOptions} />
+              ) : (
+                <ErrorText>차트 데이터를 불러오는 과정에서 문제가 생겼습니다.</ErrorText>
+              )}
+              {sessionDetails.results[selectedCropIndex].crop_chart_data ? (
+                <Line
+                  data={lineChartData}
+                  options={lineChartOptions}
+                />
+              ) : (
+                <ErrorText>라인 데이터를 불러오는 과정에서 문제가 생겼습니다.</ErrorText>
+              )}
+            </>
           )}
-        </FixedLargeBox>
-        <FixedWideBox>
-          {sessionDetails.results[selectedCropIndex].crop_chart_data ? (
-            <Line
-              data={generateLineChartData(sessionDetails.results[selectedCropIndex].crop_chart_data, cropNames[selectedCropIndex], sessionDetails.results[selectedCropIndex].price)}
-              options={lineChartOptions}
-            />
-          ) : (
-            <ErrorText>라인 데이터를 불러오는 과정에서 문제가 생겼습니다.</ErrorText>
-          )}
-        </FixedWideBox>
+        </ChartContainer>
       </SectionContainer>
     </PageContainer>
   );
