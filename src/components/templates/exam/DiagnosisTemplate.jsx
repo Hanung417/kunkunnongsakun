@@ -11,9 +11,7 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px;
-  background-color: #f9f9f9;
-  min-height: 100vh;
+  padding: 1.5rem;
 `;
 
 const Content = styled.div`
@@ -21,8 +19,64 @@ const Content = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 600px;
-  margin-top: 30px;
+  max-width: 37.5rem;
+  margin-top: 1rem;
+  position: relative;
+`;
+
+const UploadText = styled.p`
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 4rem;
+`;
+
+const ButtonWrapper = styled.div`
+  position: absolute;
+  top: 3.5rem; 
+  right: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const UploadButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const CameraButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const UploadButton = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #4aaa87;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+`;
+
+const CameraButton = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #4aaa87;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
 `;
 
 const UploadContainer = styled.div`
@@ -30,14 +84,15 @@ const UploadContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px dashed #4aaa87;
-  width: 80%;
-  max-width: 500px;
-  height: 300px;
+  border: 1px solid #4aaa87;
+  width: 15rem;
+  max-width: 31.25rem;
+  height: 15rem;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
+  margin-top: 1.25rem;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   overflow: hidden;
   cursor: pointer;
 `;
@@ -46,7 +101,7 @@ const ImagePreview = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 0.625rem;
 `;
 
 const PlaceholderIcon = styled.div`
@@ -60,49 +115,42 @@ const PlaceholderText = styled.p`
 `;
 
 const ResultContainer = styled.div`
-  margin-top: 20px;
+  margin-top: 1.25rem;
   font-size: 1rem;
   color: #333;
   text-align: center;
   background-color: #fff;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.625rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 600px;
-  margin-top: 20px;
+  gap: 1.5rem;
+  max-width: 31.25rem;
+  margin-top: 1.25rem;
 `;
 
 const DiagnoseButton = styled.button`
   background-color: #4aaa87;
   color: white;
-  padding: 12px 24px;
+  padding: 0.75rem 2.5rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.3rem;
   cursor: pointer;
-  font-size: 1.2em;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  font-weight: 600;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
 
   &:hover {
     background-color: #3b8b6d;
-  }
-`;
-
-const CameraIcon = styled(FaCamera)`
-  color: #4aaa87;
-  font-size: 2rem;
-  cursor: pointer;
-  &:hover {
-    color: #3b8b6d;
   }
 `;
 
@@ -115,6 +163,7 @@ const DiagnosisTemplate = () => {
   const [modalContent, setModalContent] = useState("");
   const navigate = useNavigate();
   const cameraInputRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -122,7 +171,10 @@ const DiagnosisTemplate = () => {
     setSelectedFile(file);
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    noClick: true,
+  });
 
   const handleDiagnose = async () => {
     if (!selectedFile) {
@@ -151,7 +203,21 @@ const DiagnosisTemplate = () => {
     }
   };
 
+  const openFileDialog = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
   const handleCameraInputChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setImage(URL.createObjectURL(file));
+      setSelectedFile(file);
+    }
+  };
+
+  const handleFileInputChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       setImage(URL.createObjectURL(file));
@@ -162,8 +228,23 @@ const DiagnosisTemplate = () => {
   return (
     <PageContainer>
       <Content>
+        <UploadText>병해충 진단을 위한 사진을 업로드해주세요</UploadText>
+        <ButtonWrapper>
+          <UploadButtonWrapper>
+            <UploadButton onClick={openFileDialog}>
+              <FaFile />
+              파일 업로드
+            </UploadButton>
+          </UploadButtonWrapper>
+          <CameraButtonWrapper>
+            <CameraButton onClick={openCamera}>
+              <FaCamera />
+              촬영
+            </CameraButton>
+          </CameraButtonWrapper>
+        </ButtonWrapper>
         <UploadContainer {...getRootProps()}>
-          <input {...getInputProps()} />
+          <input {...getInputProps()} ref={fileInputRef} onChange={handleFileInputChange} />
           {image ? (
             <ImagePreview src={image} alt="Uploaded" />
           ) : (
@@ -171,16 +252,15 @@ const DiagnosisTemplate = () => {
               <PlaceholderIcon>
                 <FaFile />
               </PlaceholderIcon>
-              <PlaceholderText>사진 업로드</PlaceholderText>
+              <PlaceholderText>업로드한 사진이 여기에 표시됩니다</PlaceholderText>
             </>
           )}
         </UploadContainer>
         <ButtonContainer>
           <DiagnoseButton onClick={handleDiagnose}>
             <FaFile />
-            진단
+            진단하기
           </DiagnoseButton>
-          <CameraIcon onClick={openCamera} />
         </ButtonContainer>
         {result && <ResultContainer>{result}</ResultContainer>}
         <input

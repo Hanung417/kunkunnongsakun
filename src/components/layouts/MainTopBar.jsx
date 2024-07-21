@@ -62,6 +62,13 @@ const TopBarButton = styled.button`
 const UsernameText = styled.span`
   font-size: 16px;
   margin-right: 10px;
+  display: flex;
+  align-items: center;
+`;
+
+const GrayText = styled.span`
+  margin-left: 1px;
+  color: dimgray;
 `;
 
 const MainTopBar = () => {
@@ -133,7 +140,10 @@ const MainTopBar = () => {
       <RightSection>
         {isLoggedIn ? (
           <>
-            <UsernameText>{username}님</UsernameText>
+            <UsernameText>
+              {username}
+              <GrayText>님</GrayText>
+            </UsernameText>
             <TopBarButton onClick={handleLogout}>
               {isLoading ? <TopBarLoader color="white"/> : '로그아웃'}
             </TopBarButton>

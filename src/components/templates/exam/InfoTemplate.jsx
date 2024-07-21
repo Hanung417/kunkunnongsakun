@@ -6,20 +6,20 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 24px;
   background-color: #f9f9f9;
 `;
 
 const LayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
   width: 100%;
   max-width: 900px;
   margin-top: 20px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
 `;
 
@@ -34,7 +34,8 @@ const ImageContainer = styled.div`
   align-items: center;
   width: 100%;
   max-width: 180px; /* 최대 너비 설정 */
-  height: 200px; /* 이미지 크기 고정 */
+  height: 150px; /* 이미지 크기 고정 */
+  border-radius: 4px;
   overflow: hidden;
   margin-bottom: 20px;
 `;
@@ -55,7 +56,6 @@ const Image = styled.img`
 const InfoContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -81,6 +81,7 @@ const InfoBox = styled.div`
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   flex: 1;
+  border: 1px solid #ddd; /* 테두리 추가 */
 `;
 
 const InfoLabel = styled.p`
@@ -161,20 +162,6 @@ const InfoTemplate = () => {
     <PageContainer>
       <LayoutContainer>
         <SingleRowContainer>
-          <InfoBox>
-            <InfoLabel>진단 날짜</InfoLabel>
-            <InfoText>{detection_date}</InfoText>
-          </InfoBox>
-          <InfoBox>
-            <InfoLabel>모델 학습 결과</InfoLabel>
-            <InfoText>{confidence.toFixed(2)}</InfoText>
-          </InfoBox>
-        </SingleRowContainer>
-        <InfoBox>
-          <InfoLabel>질병 이름</InfoLabel>
-          <InfoText>{pest_name}</InfoText>
-        </InfoBox>
-        <SingleRowContainer>
           <div>
             <ImageLabel>사용자 이미지</ImageLabel>
             <ImageContainer>
@@ -188,6 +175,20 @@ const InfoTemplate = () => {
             </ImageContainer>
           </div>
         </SingleRowContainer>
+        <SingleRowContainer>
+          <InfoBox>
+            <InfoLabel>진단 날짜</InfoLabel>
+            <InfoText>{detection_date}</InfoText>
+          </InfoBox>
+          <InfoBox>
+            <InfoLabel>모델 학습 결과</InfoLabel>
+            <InfoText>{confidence.toFixed(2)}</InfoText>
+          </InfoBox>
+        </SingleRowContainer>
+        <InfoBox>
+          <InfoLabel>질병 이름</InfoLabel>
+          <InfoText>{pest_name}</InfoText>
+        </InfoBox>
         <Divider />
         <SectionTitle>상세 정보</SectionTitle>
         <InfoContainer>

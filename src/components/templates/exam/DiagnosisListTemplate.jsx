@@ -5,13 +5,14 @@ import { fetchDetectionSessions, fetchSessionDetails, deleteDetectionSession } f
 import { FaTrash, FaPlus } from 'react-icons/fa';
 import ConfirmModal from '../../atoms/ConfirmModal';
 import ReactPaginate from 'react-paginate';
-import {useLoading} from "../../../LoadingContext";
+import { useLoading } from "../../../LoadingContext";
+import GlobalLoader from "../../../GlobalLoader";
 
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px;
+  padding: 1.5rem;
   background-color: #f9f9f9;
 `;
 
@@ -20,14 +21,14 @@ const Content = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
-  margin-top: 30px;
+  max-width: 75rem; /* 1200px */
+  margin-top: 1.875rem;
 
-  @media (max-width: 768px) {
-    max-width: 600px;
+  @media (max-width: 48rem) { /* 768px */
+    max-width: 37.5rem; /* 600px */
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 30rem) { /* 480px */
     max-width: 100%;
   }
 `;
@@ -36,80 +37,71 @@ const SessionList = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  gap: 0.625rem; /* 10px */
 `;
 
 const SessionItem = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 75%;
-  align-items: left;
-  padding: 10px;
+  align-items: center;
+  padding: 0.625rem; /* 10px */
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 0.625rem; /* 10px */
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   &:hover {
     background-color: #f0f0f0;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-0.125rem); /* -2px */
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
   }
   flex-wrap: wrap;
-  font-size: clamp(0.5rem, 2vw, 1.2rem); /* 텍스트 크기 반응형으로 조정 */
-`;
-
-
-const SessionImage = styled.img`
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-right: 10px;
-  flex-shrink: 0;
-
-  @media (max-width: 768px) {
-    margin-bottom: 0;
-    margin-right: 10px;
-  }
-
-  @media (max-width: 480px) {
-    margin-bottom: 0;
-    margin-right: 10px;
-  }
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* 텍스트 크기 반응형으로 조정 */
+  position: relative;
 `;
 
 const SessionInfo = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 6px;
-  gap: 5px;
+  padding: 0.375rem; /* 6px */
+  gap: 0.3125rem; /* 5px */
   flex: 1;
-  min-width: 150px;
-  font-size: 1rem; /* 텍스트 크기 반응형으로 조정 */
+  min-width: 9.375rem; /* 150px */
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* 텍스트 크기 반응형으로 조정 */
+`;
+
+const SessionImage = styled.img`
+  width: 5rem; /* 80px */
+  height: 5rem; /* 80px */
+  object-fit: cover;
+  border-radius: 0.3125rem; /* 5px */
+  margin-right: 0.625rem; /* 10px */
+  flex-shrink: 0;
+
+  @media (max-width: 48rem) { /* 768px */
+    margin-bottom: 0.625rem; /* 10px */
+    margin-right: 0;
+  }
+
+  @media (max-width: 30rem) { /* 480px */
+    margin-bottom: 0.625rem; /* 10px */
+    margin-right: 0;
+  }
 `;
 
 const DeleteButton = styled.button`
+  position: absolute;
+  top: 2px; 
+  right: 0.5rem; 
   background: none;
   border: none;
   color: #e53e3e;
   cursor: pointer;
-  font-size: 1.2rem; /* 텍스트 크기 조정 */
+  font-size: 1.2rem; 
 
   &:hover {
     color: #c53030;
-  }
-
-  @media (max-width: 768px) {
-    align-self: flex-end;
-    margin-top: 10px;
-  }
-
-  @media (max-width: 480px) {
-    align-self: flex-end;
-    margin-top: 10px;
   }
 `;
 
@@ -117,14 +109,15 @@ const AddButtonContainer = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 8px 16px;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
   background-color: #4aaa87;
   color: white;
   border: none;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.3rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s;
-  font-size: clamp(1rem, 2.5vw, 1.2rem); /* 텍스트 크기 반응형으로 조정 */
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
 
   &:hover {
     background-color: #6dc4b0;
@@ -132,7 +125,7 @@ const AddButtonContainer = styled.button`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(58, 151, 212, 0.5);
+    box-shadow: 0 0 0 0.1875rem rgba(58, 151, 212, 0.5); /* 3px */
   }
 
   &:active {
@@ -141,7 +134,7 @@ const AddButtonContainer = styled.button`
 `;
 
 const AddButtonIcon = styled(FaPlus)`
-  margin-right: 8px;
+  margin-right: 0.5rem; /* 8px */
 `;
 
 const AddButtonText = styled.span`
@@ -152,49 +145,49 @@ const AddButtonText = styled.span`
 const EmptyMessage = styled.div`
   text-align: center;
   color: #888;
-  font-size: 1.5rem; /* 텍스트 크기 증가 */
-  margin-top: 50px;
+  font-size: 1.2rem; 
+  margin-top: 2rem; 
 `;
 
 const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 24px;
+  margin-top: 1.5rem; /* 24px */
   .pagination {
     display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
 
-    @media (max-width: 768px) {
+    @media (max-width: 48rem) { /* 768px */
       flex-wrap: wrap;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 30rem) { /* 480px */
       flex-wrap: wrap;
       justify-content: center;
     }
   }
 
   .pagination li {
-    margin: 0 5px;
+    margin: 0 0.3125rem; /* 5px */
 
-    @media (max-width: 480px) {
-      margin: 5px;
+    @media (max-width: 30rem) { /* 480px */
+      margin: 0.3125rem; /* 5px */
     }
   }
 
   .pagination li a {
-    padding: 8px 12px;
+    padding: 0.5rem 0.75rem; /* 8px 12px */
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 0.25rem; /* 4px */
     cursor: pointer;
     color: #4aaa87;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
 
-    @media (max-width: 480px) {
-      padding: 6px 10px;
+    @media (max-width: 30rem) { /* 480px */
+      padding: 0.375rem 0.625rem; /* 6px 10px */
       font-size: 0.9rem;
     }
   }
@@ -217,7 +210,7 @@ const PaginationContainer = styled.div`
 
   .pagination li.disabled a {
     color: #ccc;
-    cursor: not-allowed;
+    cursor: not-allowed.
   }
 `;
 
@@ -227,6 +220,7 @@ const DiagnosisListTemplate = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sessionIdToDelete, setSessionIdToDelete] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
+  const [loading, setLoading] = useState(true); // 로딩 상태 추가
   const navigate = useNavigate();
 
   const sessionsPerPage = 4;
@@ -243,6 +237,7 @@ const DiagnosisListTemplate = () => {
         console.error('Failed to fetch sessions', error);
       }
       setIsLoading(false);
+      setLoading(false); // 로딩 상태 업데이트
     };
 
     fetchSessions();
@@ -251,6 +246,7 @@ const DiagnosisListTemplate = () => {
   const handleSessionClick = async (sessionId) => {
     try {
       setIsLoading(true);
+      setLoading(true); // 로딩 상태 업데이트
       const response = await fetchSessionDetails(sessionId);
       navigate('/info', { state: { diagnosisResult: response.data } });
     } catch (error) {
@@ -258,12 +254,14 @@ const DiagnosisListTemplate = () => {
       alert('Failed to load the details for this session.');
     } finally {
       setIsLoading(false);
+      setLoading(false); // 로딩 상태 업데이트
     }
   };
 
   const handleDeleteSession = async () => {
     try {
       setIsLoading(true);
+      setLoading(true); // 로딩 상태 업데이트
       await deleteDetectionSession(sessionIdToDelete);
       setSessions(sessions.filter(session => session.session_id !== sessionIdToDelete));
       setIsModalOpen(false);
@@ -271,6 +269,7 @@ const DiagnosisListTemplate = () => {
       console.error('Failed to delete session', error);
     } finally {
       setIsLoading(false);
+      setLoading(false); // 로딩 상태 업데이트
     }
   };
 
@@ -293,10 +292,11 @@ const DiagnosisListTemplate = () => {
 
   return (
     <PageContainer>
-        <AddButtonContainer onClick={handleAddClick} aria-label="새 진단 시작하기">
-          <AddButtonIcon />
-          <AddButtonText>새 진단 시작하기</AddButtonText>
-        </AddButtonContainer>
+      {loading && <GlobalLoader />} {/* 로딩 상태일 때 로더 표시 */}
+      <AddButtonContainer onClick={handleAddClick} aria-label="새 진단 시작하기">
+        <AddButtonIcon />
+        <AddButtonText>새 진단 시작하기</AddButtonText>
+      </AddButtonContainer>
 
       <Content>
         {sessions.length === 0 ? (
@@ -308,7 +308,7 @@ const DiagnosisListTemplate = () => {
                 <SessionItem key={session.session_id} onClick={() => handleSessionClick(session.session_id)} tabIndex="0" aria-label={`${session.pest_name} 진단 결과 보기`}>
                   <SessionImage src={session.user_image_url} alt={session.pest_name} />
                   <SessionInfo>
-                    <div><strong>질병 이름:</strong> {session.pest_name}</div>
+                    <div><strong>질병명:</strong> {session.pest_name}</div>
                     <div><strong>진단 날짜:</strong> {session.detection_date}</div>
                     <div><strong>정확도:</strong> {session.confidence}</div>
                   </SessionInfo>
