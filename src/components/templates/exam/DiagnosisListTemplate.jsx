@@ -145,8 +145,8 @@ const AddButtonText = styled.span`
 const EmptyMessage = styled.div`
   text-align: center;
   color: #888;
-  font-size: 1.2rem; 
-  margin-top: 2rem; 
+  font-size: 1rem; 
+  margin: 2rem 0;
 `;
 
 const PaginationContainer = styled.div`
@@ -300,7 +300,7 @@ const DiagnosisListTemplate = () => {
 
       <Content>
         {sessions.length === 0 ? (
-          <EmptyMessage>첫 진단을 시작해보세요!</EmptyMessage>
+          <EmptyMessage>진단 목록이 존재하지 않습니다. 첫 진단을 시작해보세요!</EmptyMessage>
         ) : (
           <>
             <SessionList>

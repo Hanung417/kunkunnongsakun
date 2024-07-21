@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { checkAuthStatus, logoutUser } from "../../apis/user";
 import { FaArrowLeft, FaUser, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import CustomModal from "../atoms/CustomModal";
-import { useLoading } from "../../LoadingContext"; // useLoading 훅 가져오기
-import GlobalLoader from "../../GlobalLoader"; // GlobalLoader 컴포넌트 가져오기
+import TopBarLoader from "../../TopBarLoader"; // TopBarLoader import
+import { useLoading } from "../../LoadingContext"; // useLoading import
 
 const TopBars = styled.nav`
   display: flex;
@@ -53,9 +53,14 @@ const BackButton = styled.button`
 const RightSection = styled.div`
   display: flex;
   align-items: center;
+  position: relative; /* 추가 */
 `;
 
 const IconButton = styled.button`
+  position: relative; /* 추가 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   font-size: 20px;
@@ -65,7 +70,7 @@ const IconButton = styled.button`
 `;
 
 const PageTopBar = () => {
-  const { setIsLoading } = useLoading(); // Access loading context
+  const { setIsLoading, isLoading } = useLoading(); // Access loading context
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -86,29 +91,27 @@ const PageTopBar = () => {
     "/post/edit/:id": "게시글 수정",
     "/my_commented_posts": "내가 댓글 단 글",
     "/my_posts": "내가 작성한 글",
+    "/expectedreturn": "수익 예측",
     "/soil": "토양 분석",
     "/diagnosis": "병해충 진단",
     "/info": "병해충 진단 결과",
-    "/croptest": "수익 예측",
-    "/sessiondetails": "수익 예측 결과",
-    "/cropselection": "나의 작물 조합 목록",
+    "/croptest": "작물조합 등록",
     "/diagnosislist": "병해충 진단 목록",
+    "/cropselection": "작물 조합 목록",
     "/soillist": "토양 데이터 목록",
     "/soil_details": "토양 데이터 상세",
+    "/sessiondetails": "수익 예측 결과",
+    "/signup": "회원가입",
+    "/password_reset": "비밀번호 찾기",
   };
 
-  // 뒤로가기 버튼 표시할 페이지 (추가하기)
-  const backButtonPages = [
-    "/post/:id",
-    "/post/create",
-    "/chat/:sessionid",
-    "/post/edit/:id",
-    "/info",
-    "/soil_details",
+  // 뒤로가기 버튼 표시 안할 페이지 (추가하기)
+  const noBackButtonPages = [
+
   ];
 
   const pageTitle = pageTitles[location.pathname] || "";
-  const showBackButton = backButtonPages.some(page => new RegExp(page).test(location.pathname));
+  const showBackButton = !noBackButtonPages.includes(location.pathname);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -157,7 +160,6 @@ const PageTopBar = () => {
 
   return (
     <>
-      <GlobalLoader /> {/* Global Loader */}
       <TopBars>
         <LeftSection>
           {showBackButton && (
@@ -172,18 +174,26 @@ const PageTopBar = () => {
         <Title>{pageTitle}</Title>
         <RightSection>
           {isLoggedIn ? (
-            <>
-              <IconButton onClick={() => navigate("/mypage")}>
-                <FaUser title={`${username}님`} />
-              </IconButton>
-              <IconButton onClick={handleLogout}>
-                <FaSignOutAlt title="로그아웃" />
-              </IconButton>
-            </>
+            isLoading ? (
+              <TopBarLoader color="#4aaa87" />
+            ) : (
+              <>
+                <IconButton onClick={() => navigate("/mypage")}>
+                  <FaUser title={`${username}님`} />
+                </IconButton>
+                <IconButton onClick={handleLogout}>
+                  <FaSignOutAlt title="로그아웃" />
+                </IconButton>
+              </>
+            )
           ) : (
-            <IconButton onClick={() => navigate("/login")}>
-              <FaSignInAlt title="로그인" />
-            </IconButton>
+            isLoading ? (
+              <TopBarLoader color="#4aaa87" />
+            ) : (
+              <IconButton onClick={() => navigate("/login")}>
+                <FaSignInAlt title="로그인" />
+              </IconButton>
+            )
           )}
         </RightSection>
         <CustomModal isOpen={isModalOpen} onRequestClose={closeModal} title="알림" content={modalContent} />
