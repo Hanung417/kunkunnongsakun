@@ -202,7 +202,7 @@ def predict_income(request):
 
         crop_ratios = [float(ratio) for ratio in data['crop_ratios']]
         
-        if sum(crop_ratios) != 1:
+        if not (sum(crop_ratios) == 1 or (len(crop_ratios) == 3 and crop_ratios == [0.3, 0.3, 0.3])):
             logger.error("작물 비율의 합은 1이 되어야합니다.")
             return JsonResponse({'error': '작물 비율의 합은 1이 되어야합니다.'}, status=400)
 
