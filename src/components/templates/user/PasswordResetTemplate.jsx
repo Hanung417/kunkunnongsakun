@@ -11,10 +11,9 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 24px;
-  background-color: #f9f9f9;
+  margin-top: 20px;
   height: 100%;
   width: 100%;
-  box-sizing: border-box;
 `;
 
 const Title = styled.h1`
@@ -207,7 +206,6 @@ const PasswordResetTemplate = () => {
   return (
     <Container>
       <GlobalLoader isLoading={isLoading} />
-      <Title>비밀번호 찾기</Title>
       <Form onSubmit={handleSubmit}>
         <InputGroup>
           <Label htmlFor="email">이메일</Label>

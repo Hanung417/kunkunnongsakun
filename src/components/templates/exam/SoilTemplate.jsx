@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Modal from 'react-modal';
 import { getCropNames, getSoilExamData, getSoilFertilizerInfo } from "../../../apis/predict";
 import { useLoading } from "../../../LoadingContext"; // 로딩 훅 임포트
+import CustomModal from '../../atoms/CustomModal'; // CustomModal 컴포넌트 임포트
 
 const Container = styled.div`
   display: flex;
@@ -12,6 +13,10 @@ const Container = styled.div`
   padding: 24px;
   background-color: #f9f9f9;
   box-sizing: border-box;
+  min-height: 50vh;
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
 `;
 
 const BoxContainer = styled.div`
@@ -25,12 +30,19 @@ const BoxContainer = styled.div`
   margin-bottom: 24px;
   width: 100%;
   max-width: 600px;
+  @media (max-width: 768px) {
+    padding: 12px;
+  }
 `;
 
 const Title = styled.h1`
   font-size: 24px;
   margin-bottom: 32px;
   color: #333;
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
 `;
 
 const InputContainer = styled.div`
@@ -47,6 +59,10 @@ const Input = styled.input`
   width: 100%;
   box-sizing: border-box;
   font-size: 16px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 6px;
+  }
 `;
 
 const Button = styled.button`
@@ -65,12 +81,10 @@ const Button = styled.button`
     cursor: not-allowed;
   }
   margin-bottom: 16px;
-`;
-
-const ErrorMessage = styled.p`
-  color: red;
-  margin-bottom: 16px;
-  margin-top: -16px; /* Add negative margin to pull the error message closer to the input */
+  @media (max-width: 768px) {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
 `;
 
 const Select = styled.select`
@@ -82,6 +96,10 @@ const Select = styled.select`
   max-width: 400px;
   box-sizing: border-box;
   font-size: 16px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 6px;
+  }
 `;
 
 const CropList = styled.div`
@@ -125,17 +143,29 @@ const RecommendationContainer = styled.div`
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  @media (max-width: 768px) {
+    padding: 12px;
+    margin-top: 16px;
+  }
 `;
 
 const RecommendationTitle = styled.h2`
   font-size: 20px;
   margin-bottom: 16px;
   color: #333;
+  @media (max-width: 768px) {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
 `;
 
 const TableContainer = styled.div`
   width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* iOS 스크롤 부드럽게 */
+  @media (max-width: 768px) {
+    overflow-x: hidden;
+  }
 `;
 
 const Table = styled.table`
@@ -143,6 +173,9 @@ const Table = styled.table`
   table-layout: fixed;
   border-collapse: collapse;
   margin-bottom: 16px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const TableHeader = styled.th`
@@ -150,6 +183,10 @@ const TableHeader = styled.th`
   padding: 8px;
   background-color: #f1f1f1;
   width: 150px;
+  @media (max-width: 768px) {
+    padding: 6px;
+    font-size: 14px;
+  }
 `;
 
 const TableData = styled.td`
@@ -157,6 +194,10 @@ const TableData = styled.td`
   padding: 8px;
   text-align: center;
   width: 150px;
+  @media (max-width: 768px) {
+    padding: 6px;
+    font-size: 14px;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -164,6 +205,9 @@ const ButtonContainer = styled.div`
   justify-content: center; /* 가운데 정렬 */
   width: 100%;
   margin-top: 16px;
+  @media (max-width: 768px) {
+    margin-top: 12px;
+  }
 `;
 
 const ExternalButtonContainer = styled.div`
@@ -172,6 +216,9 @@ const ExternalButtonContainer = styled.div`
   width: 100%;
   max-width: 400px;
   margin-top: 16px;
+  @media (max-width: 768px) {
+    margin-top: 12px;
+  }
 `;
 
 const ModalContent = styled.div`
@@ -192,7 +239,11 @@ const customStyles = {
     width: '80%',
     maxWidth: '600px',
     padding: '20px',
+    zIndex: 1102, // Ensure modal is above other elements
   },
+  overlay: {
+    zIndex: 1101, // Ensure overlay is above other elements
+  }
 };
 
 Modal.setAppElement('#root');
@@ -212,6 +263,7 @@ const SoilTemplate = () => {
   const [selectedSoilSample, setSelectedSoilSample] = useState(null);
   const [isFetching, setIsFetching] = useState(false); // 상태 추가
   const [analysisDone, setAnalysisDone] = useState(false); // 분석 완료 상태 추가
+  const [errorModalIsOpen, setErrorModalIsOpen] = useState(false); // 에러 모달 상태 추가
   const navigate = useNavigate(); // 네비게이트 추가
 
   const inputRef = useRef(null);
@@ -245,10 +297,17 @@ const SoilTemplate = () => {
 
   const fetchSoilExamData = async () => {
     try {
+      if (!cropNames.includes(cropName)) {
+        setError('작물이름과 주소를 정확히 입력해 주세요.');
+        setErrorModalIsOpen(true); // 에러 모달 오픈
+        return;
+      }
+
       setIsLoading(true); // 로딩 시작
       const response = await getSoilExamData(cropName, address);
       if (response.data.soil_data.length === 0) {
         setError('현재 주소에 해당하는 데이터가 없습니다.');
+        setErrorModalIsOpen(true); // 에러 모달 오픈
         setSoilData([]);
         setSelectedSample(null);
         setFertilizerData(null);
@@ -264,6 +323,7 @@ const SoilTemplate = () => {
       setModalIsOpen(true);
     } catch (err) {
       setError('작물이름과 주소를 정확히 입력해 주세요.');
+      setErrorModalIsOpen(true); // 에러 모달 오픈
       setSoilData([]);
     } finally {
       setIsLoading(false); // 로딩 끝
@@ -273,6 +333,7 @@ const SoilTemplate = () => {
   const fetchFertilizerData = async () => {
     if (!selectedSample) {
       setError('먼저 토양 샘플을 선택하세요.');
+      setErrorModalIsOpen(true); // 에러 모달 오픈
       return;
     }
 
@@ -317,6 +378,7 @@ const SoilTemplate = () => {
       setAnalysisDone(true); // 분석 완료 상태 설정
     } catch (err) {
       setError(err.response.data.error);
+      setErrorModalIsOpen(true); // 에러 모달 오픈
       setFertilizerData(null);
     } finally {
       setIsLoading(false); // 로딩 끝
@@ -350,6 +412,10 @@ const SoilTemplate = () => {
     setModalIsOpen(false);
   };
 
+  const closeErrorModal = () => {
+    setErrorModalIsOpen(false);
+  };
+
   const formatValue = (value) => {
     const num = Number(value);
     return num < 1 ? `${num}` : num.toString();
@@ -357,6 +423,18 @@ const SoilTemplate = () => {
 
   const handleBackToList = () => {
     navigate('/soillist');
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      fetchSoilExamData();
+    }
+  };
+
+  const handleModalKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      fetchFertilizerData();
+    }
   };
 
   return (
@@ -369,6 +447,7 @@ const SoilTemplate = () => {
             value={cropName}
             onChange={handleCropNameChange}
             onClick={handleCropNameClick}
+            onKeyDown={handleKeyDown}
             placeholder="작물 이름"
           />
           {showCropList && filteredCropNames.length > 0 && (
@@ -382,9 +461,14 @@ const SoilTemplate = () => {
           )}
         </InputContainer>
         <InputContainer>
-          <Input type="text" value={address} onChange={handleAddressChange} placeholder="예) 광주광역시 수완동" />
+          <Input
+            type="text"
+            value={address}
+            onChange={handleAddressChange}
+            onKeyDown={handleKeyDown}
+            placeholder="예) 광주광역시 수완동"
+          />
         </InputContainer>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
         <Button onClick={fetchSoilExamData}>주소 검색</Button>
       </BoxContainer>
       {!analysisDone && (
@@ -400,7 +484,7 @@ const SoilTemplate = () => {
       >
         <ModalContent>
           <h2>상세 주소</h2>
-          <Select onChange={handleSampleChange}>
+          <Select onChange={handleSampleChange} onKeyDown={handleModalKeyDown}>
             <option value="">선택</option>
             {soilData.map(sample => (
               <option key={sample.No} value={sample.No}>
@@ -414,8 +498,20 @@ const SoilTemplate = () => {
           </ButtonContainer>
         </ModalContent>
       </Modal>
+      <CustomModal
+        isOpen={errorModalIsOpen}
+        onRequestClose={closeErrorModal}
+        title="오류"
+        content={error}
+        onConfirm={closeErrorModal}
+        showConfirmButton={false}
+        isError={true}
+        overlayStyles={{ zIndex: 1103 }} // Ensure overlay is above other elements
+        contentStyles={{ zIndex: 1104 }} // Ensure modal content is above other elements
+      />
       {selectedSoilSample && fertilizerData && (
         <RecommendationContainer>
+          <RecommendationTitle>상세주소 : {selectedSoilSample.PNU_Nm}</RecommendationTitle>
           <RecommendationTitle>토양 분석 데이터</RecommendationTitle>
           <TableContainer>
             <Table>

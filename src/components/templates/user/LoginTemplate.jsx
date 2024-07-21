@@ -82,7 +82,7 @@ const ErrorMessage = styled.div`
 const LinksContainer = styled.div`
   margin-top: 16px;
   display: flex;
-  justify-content: left;
+  justify-content: flex-start; /* 변경 */
   width: 100%;
   max-width: 600px;
 `;
@@ -174,7 +174,7 @@ const LoginTemplate = () => {
           setTimeout(() => {
             setIsModalOpen(false);
             navigate('/');
-          }, 1000);
+          }, 2000);
         } else {
           setLoginError(message);
           setModalContent(message);
@@ -207,7 +207,6 @@ const LoginTemplate = () => {
 
   return (
     <Container>
-      <GlobalLoader isLoading={isLoading} />
       <Title>로그인</Title>
       <Form onSubmit={handleSubmit}>
         <InputGroup>

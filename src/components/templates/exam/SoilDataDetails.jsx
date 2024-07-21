@@ -116,7 +116,7 @@ const formatValue = (value) => {
 
 const SoilDataDetails = () => {
   const { state } = useLocation();
-  const { soilData, fertilizerData, crop } = state || {};
+  const { soilData, fertilizerData, crop, crop_add } = state || {};
   const navigate = useNavigate();
 
   const handleBackToList = () => {
@@ -128,6 +128,7 @@ const SoilDataDetails = () => {
       {soilData && (
         <RecommendationContainer>
           <CropNameTitle>작물 이름 : {crop}</CropNameTitle>
+          <CropNameTitle>상세 주소 : {crop_add}</CropNameTitle>
           <RecommendationTitle>토양 분석 데이터</RecommendationTitle>
           <TableContainer>
             <Table>

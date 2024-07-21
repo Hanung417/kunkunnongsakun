@@ -35,7 +35,6 @@ function App() {
   return (
     <LoadingProvider>
       <BrowserRouter>
-        <GlobalLoader />
         <Routes>
           <Route element={<MainLayout />}>
             {/* user */}
