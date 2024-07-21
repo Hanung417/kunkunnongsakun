@@ -5,6 +5,8 @@ import { FaTrash, FaEdit } from 'react-icons/fa';
 import { getCropList, deleteCrop, updateSessionName } from '../../../apis/crop';
 import ConfirmModal from '../../atoms/ConfirmModal';
 import ReactPaginate from 'react-paginate';
+import { useLoading } from '../../../LoadingContext';
+import GlobalLoader from "../../../GlobalLoader"; // GlobalLoader 컴포넌트 가져오기
 
 const PageContainer = styled.div`
   display: flex;
@@ -266,6 +268,7 @@ const PaginationContainer = styled.div`
 `;
 
 const CropSelectionPage = () => {
+  const { setIsLoading } = useLoading(); // Access loading context
   const [sessions, setSessions] = useState([]);
   const [error, setError] = useState(null);
   const [editingSession, setEditingSession] = useState(null);
@@ -281,6 +284,7 @@ const CropSelectionPage = () => {
   }, []);
 
   const fetchSessions = async () => {
+    setIsLoading(true); // 로딩 시작
     try {
       const response = await getCropList();
       const updatedSessions = response.data.map(session => ({
@@ -293,9 +297,11 @@ const CropSelectionPage = () => {
       console.error('Error fetching sessions:', err);
       setError('세션 정보를 불러오는 중 오류가 발생했습니다.');
     }
+    setIsLoading(false); // 로딩 끝
   };
 
   const handleDelete = async () => {
+    setIsLoading(true); // 로딩 시작
     try {
       await deleteCrop(sessionIdToDelete);
       const updatedSessions = sessions.filter(session => session.session_id !== sessionIdToDelete);
@@ -306,6 +312,7 @@ const CropSelectionPage = () => {
       console.error('Error deleting session:', err);
       setError('세션 삭제 중 오류가 발생했습니다.');
     }
+    setIsLoading(false); // 로딩 끝
   };
 
   const handleSessionClick = (session) => {
@@ -320,6 +327,7 @@ const CropSelectionPage = () => {
 
   const handleSaveClick = async (sessionId, e) => {
     e.stopPropagation();
+    setIsLoading(true); // 로딩 시작
     try {
       await updateSessionName(sessionId, newSessionName);
       const updatedSessions = sessions.map(session => {
@@ -338,6 +346,7 @@ const CropSelectionPage = () => {
       console.error('Error updating session name:', error);
       setError('세션 이름 업데이트 중 오류가 발생했습니다.');
     }
+    setIsLoading(false); // 로딩 끝
   };
 
   const openDeleteModal = (sessionId, e) => {
@@ -361,6 +370,7 @@ const CropSelectionPage = () => {
 
   return (
     <>
+      <GlobalLoader /> {/* Global Loader */}
       <PageContainer>
         <Button onClick={() => navigate('/croptest')}>작물 조합 추가</Button>
         {error && <p>{error}</p>}

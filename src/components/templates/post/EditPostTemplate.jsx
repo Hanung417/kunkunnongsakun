@@ -1,8 +1,11 @@
+// EditPostTemplate.js
+
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchPost, editPost } from "../../../apis/post";
-import CustomModal from "../../atoms/CustomModal"; // CustomModal 컴포넌트 추가
+import CustomModal from "../../atoms/CustomModal";
 import styled from "styled-components";
+import { useLoading } from "../../../LoadingContext";
 
 const Container = styled.div`
   max-width: 600px;
@@ -131,32 +134,36 @@ const ImagePreview = styled.img`
 
 const EditPostTemplate = () => {
   const { id } = useParams();
+  const { setIsLoading } = useLoading();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [postType, setPostType] = useState("buy");
   const [image, setImage] = useState(null);
-  const [fileName, setFileName] = useState(""); // 파일 이름 상태 추가
+  const [fileName, setFileName] = useState("");
   const [imagePreview, setImagePreview] = useState("");
-  const [existingImage, setExistingImage] = useState(null); // 기존 이미지 상태 추가
-  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 추가
-  const [modalTitle, setModalTitle] = useState(""); // 모달 타이틀 상태 추가
-  const [modalContent, setModalContent] = useState(""); // 모달 내용 상태 추가
+  const [existingImage, setExistingImage] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalContent, setModalContent] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
         const response = await fetchPost(id);
         setTitle(response.data.title);
         setContent(response.data.content);
         setPostType(response.data.post_type);
-        setExistingImage(response.data.image); // 기존 이미지 설정
+        setExistingImage(response.data.image);
       } catch (error) {
         console.error("Failed to fetch post", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchData();
-  }, [id]);
+  }, [id, setIsLoading]);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -173,7 +180,7 @@ const EditPostTemplate = () => {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setImage(file);
-    setFileName(file ? file.name : ""); // 파일 이름 상태 업데이트
+    setFileName(file ? file.name : "");
 
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -195,15 +202,18 @@ const EditPostTemplate = () => {
     }
 
     try {
+      setIsLoading(true);
       await editPost(id, formData);
       setModalTitle("수정 성공");
       setModalContent("글이 성공적으로 수정되었습니다.");
-      setIsModalOpen(true); // 글 수정 성공 시 모달 열기
+      setIsModalOpen(true);
     } catch (error) {
       console.error("Failed to edit post", error);
       setModalTitle("수정 실패");
       setModalContent("글 수정 중 오류가 발생했습니다. 다시 시도해 주세요.");
-      setIsModalOpen(true); // 글 수정 실패 시 모달 열기
+      setIsModalOpen(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 

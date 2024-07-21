@@ -1,9 +1,12 @@
+// BuyBoardTemplate.js
+
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { fetchPosts } from "../../../apis/post";
 import { FaPen } from "react-icons/fa";
+import { useLoading } from "../../../LoadingContext";
 
 const Container = styled.div`
   display: flex;
@@ -153,6 +156,7 @@ const PaginationContainer = styled.div`
 `;
 
 const BuyBoardTemplate = () => {
+  const { setIsLoading } = useLoading();
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
@@ -164,15 +168,18 @@ const BuyBoardTemplate = () => {
   useEffect(() => {
     const fetchPostsData = async () => {
       try {
+        setIsLoading(true);
         const response = await fetchPosts("buy");
         const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
         setPosts(sortedPosts);
       } catch (error) {
         console.error("Failed to fetch posts", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchPostsData();
-  }, []);
+  }, [setIsLoading]);
 
   const filteredPosts = posts.filter((post) =>
     post.title.toLowerCase().includes(searchTerm.toLowerCase())

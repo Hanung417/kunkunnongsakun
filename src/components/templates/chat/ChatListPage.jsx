@@ -3,10 +3,12 @@ import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
-import { fetchChatSessions, deleteChatSession, updateSessionName } from '../../apis/chat';
+import { fetchChatSessions, deleteChatSession, updateSessionName } from '../../../apis/chat';
 import { FaTrash, FaEdit, FaTimes } from 'react-icons/fa';
-import ConfirmModal from '../atoms/ConfirmModal';
+import ConfirmModal from '../../atoms/ConfirmModal';
 import Modal from 'react-modal';
+import { useLoading } from '../../../LoadingContext'; // useLoading 훅 가져오기
+import GlobalLoader from "../../../GlobalLoader"; // GlobalLoader 컴포넌트 가져오기
 
 const Container = styled.div`
   display: flex;
@@ -203,6 +205,7 @@ const PaginationContainer = styled.div`
 `;
 
 const ChatListPage = () => {
+  const { setIsLoading } = useLoading(); // Access loading context
   const [chatSessions, setChatSessions] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
@@ -221,18 +224,21 @@ const ChatListPage = () => {
   useEffect(() => {
     if (isLoggedIn) {
       const fetchSessions = async () => {
+        setIsLoading(true); // 로딩 시작
         try {
           const response = await fetchChatSessions();
           const filteredSessions = response.data.filter(session => session.session_id !== null);
           setChatSessions(filteredSessions);
         } catch (error) {
           console.error('Error fetching chat sessions:', error);
+        } finally {
+          setIsLoading(false); // 로딩 끝
         }
       };
 
       fetchSessions();
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, setIsLoading]);
 
   const startNewChat = () => {
     setNewSessionName(''); // 추가: 새 대화 시작 시 제목 초기화
@@ -254,6 +260,7 @@ const ChatListPage = () => {
     }
     setError('');
     if (editingSession) {
+      setIsLoading(true); // 로딩 시작
       try {
         await updateSessionName(editingSession.session_id, newSessionName);
         setChatSessions(chatSessions.map(session => (
@@ -263,6 +270,8 @@ const ChatListPage = () => {
         )));
       } catch (error) {
         console.error('Error updating session name:', error);
+      } finally {
+        setIsLoading(false); // 로딩 끝
       }
       setEditingSession(null);
     } else {
@@ -288,11 +297,14 @@ const ChatListPage = () => {
 
   const deleteSession = async () => {
     if (sessionToDelete) {
+      setIsLoading(true); // 로딩 시작
       try {
         await deleteChatSession(sessionToDelete);
         setChatSessions(chatSessions.filter(session => session.session_id !== sessionToDelete));
       } catch (error) {
         console.error('Error deleting chat session:', error);
+      } finally {
+        setIsLoading(false); // 로딩 끝
       }
       setIsConfirmModalOpen(false);
       setSessionToDelete(null);
@@ -318,6 +330,7 @@ const ChatListPage = () => {
 
   return (
     <Container>
+      <GlobalLoader /> {/* Global Loader */}
       {isLoggedIn ? (
         <>
           <NewChatButton onClick={startNewChat}>새 대화 시작하기</NewChatButton>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { useParams, useLocation, useNavigate } from 'react-router-dom'; // useNavigate 임포트
-import { fetchChatHistory, sendChatMessage } from '../../apis/chat';
+import { fetchChatHistory, sendChatMessage } from '../../../apis/chat';
 import SyncLoader from 'react-spinners/SyncLoader';
 import { IoMenu } from "react-icons/io5";
 

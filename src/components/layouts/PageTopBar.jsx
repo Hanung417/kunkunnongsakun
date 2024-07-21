@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { checkAuthStatus, logoutUser } from "../../apis/user";
 import { FaArrowLeft, FaUser, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import CustomModal from "../atoms/CustomModal";
+import { useLoading } from "../../LoadingContext"; // useLoading 훅 가져오기
+import GlobalLoader from "../../GlobalLoader"; // GlobalLoader 컴포넌트 가져오기
 
 const TopBars = styled.nav`
   display: flex;
@@ -63,6 +65,7 @@ const IconButton = styled.button`
 `;
 
 const PageTopBar = () => {
+  const { setIsLoading } = useLoading(); // Access loading context
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -109,6 +112,7 @@ const PageTopBar = () => {
 
   useEffect(() => {
     const checkAuth = async () => {
+      setIsLoading(true); // 로딩 시작
       try {
         const response = await checkAuthStatus();
         if (response.data.is_authenticated) {
@@ -119,13 +123,16 @@ const PageTopBar = () => {
         }
       } catch (error) {
         console.error("Failed to check auth status:", error);
+      } finally {
+        setIsLoading(false); // 로딩 끝
       }
     };
 
     checkAuth();
-  }, []);
+  }, [setIsLoading]);
 
   const handleLogout = async () => {
+    setIsLoading(true); // 로딩 시작
     try {
       await logoutUser();
       setIsLoggedIn(false);
@@ -134,6 +141,8 @@ const PageTopBar = () => {
       setIsModalOpen(true);
     } catch (error) {
       console.error("Failed to logout:", error);
+    } finally {
+      setIsLoading(false); // 로딩 끝
     }
   };
 
@@ -147,36 +156,39 @@ const PageTopBar = () => {
   };
 
   return (
-    <TopBars>
-      <LeftSection>
-        {showBackButton && (
-          <BackButton onClick={handleBackClick}>
-            <FaArrowLeft />
-          </BackButton>
-        )}
-        <LogoContainer onClick={() => navigate("/main")}>
-          <LogoImage src={`${process.env.PUBLIC_URL}/android-chrome-192x192.png`} alt="Logo" />
-        </LogoContainer>
-      </LeftSection>
-      <Title>{pageTitle}</Title>
-      <RightSection>
-        {isLoggedIn ? (
-          <>
-            <IconButton onClick={() => navigate("/mypage")}>
-              <FaUser title={`${username}님`} />
+    <>
+      <GlobalLoader /> {/* Global Loader */}
+      <TopBars>
+        <LeftSection>
+          {showBackButton && (
+            <BackButton onClick={handleBackClick}>
+              <FaArrowLeft />
+            </BackButton>
+          )}
+          <LogoContainer onClick={() => navigate("/main")}>
+            <LogoImage src={`${process.env.PUBLIC_URL}/android-chrome-192x192.png`} alt="Logo" />
+          </LogoContainer>
+        </LeftSection>
+        <Title>{pageTitle}</Title>
+        <RightSection>
+          {isLoggedIn ? (
+            <>
+              <IconButton onClick={() => navigate("/mypage")}>
+                <FaUser title={`${username}님`} />
+              </IconButton>
+              <IconButton onClick={handleLogout}>
+                <FaSignOutAlt title="로그아웃" />
+              </IconButton>
+            </>
+          ) : (
+            <IconButton onClick={() => navigate("/login")}>
+              <FaSignInAlt title="로그인" />
             </IconButton>
-            <IconButton onClick={handleLogout}>
-              <FaSignOutAlt title="로그아웃" />
-            </IconButton>
-          </>
-        ) : (
-          <IconButton onClick={() => navigate("/login")}>
-            <FaSignInAlt title="로그인" />
-          </IconButton>
-        )}
-      </RightSection>
-      <CustomModal isOpen={isModalOpen} onRequestClose={closeModal} title="알림" content={modalContent} />
-    </TopBars>
+          )}
+        </RightSection>
+        <CustomModal isOpen={isModalOpen} onRequestClose={closeModal} title="알림" content={modalContent} />
+      </TopBars>
+    </>
   );
 };
 

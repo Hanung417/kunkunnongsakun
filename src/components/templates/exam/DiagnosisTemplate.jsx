@@ -2,9 +2,10 @@ import React, { useCallback, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
-import { uploadImage } from "../../apis/predict";
+import { uploadImage } from "../../../apis/predict";
 import { FaCamera, FaFile } from "react-icons/fa";
-import CustomModal from '../atoms/CustomModal';
+import CustomModal from '../../atoms/CustomModal';
+import { useLoading } from "../../../LoadingContext";
 
 const PageContainer = styled.div`
   display: flex;
@@ -106,6 +107,7 @@ const CameraIcon = styled(FaCamera)`
 `;
 
 const DiagnosisTemplate = () => {
+  const { setIsLoading } = useLoading();
   const [image, setImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [result, setResult] = useState("");
@@ -130,6 +132,7 @@ const DiagnosisTemplate = () => {
     }
 
     try {
+      setIsLoading(true);
       const response = await uploadImage(selectedFile);
       setResult(response.data.result);
       navigate('/info', { state: { diagnosisResult: response.data } });
@@ -137,6 +140,8 @@ const DiagnosisTemplate = () => {
       console.error('Failed to upload image', error);
       setModalContent('Error in diagnosing the image.');
       setIsModalOpen(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 

@@ -1,4 +1,4 @@
-import SoilTemplate from "../components/templates/SoilTemplate";
+import SoilTemplate from "../components/templates/exam/SoilTemplate";
 
 const SoilPage = () => {
   return <SoilTemplate />;

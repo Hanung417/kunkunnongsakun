@@ -11,6 +11,7 @@ import {
 } from "../../../apis/post";
 import PostDetails from "../../molecules/PostDetail";
 import Comments from "../../molecules/Comment";
+import { useLoading } from "../../../LoadingContext";
 
 const Container = styled.div`
   margin: 12px;
@@ -18,6 +19,7 @@ const Container = styled.div`
 
 const PostDetailTemplate = () => {
   const { id } = useParams();
+  const { setIsLoading } = useLoading();
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
@@ -34,13 +36,16 @@ const PostDetailTemplate = () => {
 
   const fetchPost = useCallback(async () => {
     try {
+      setIsLoading(true);
       const response = await fetchPostDetail(id);
       setPost(response.data);
       setComments(response.data.comments || []);
     } catch (error) {
       console.error("Failed to fetch post", error);
+    } finally {
+      setIsLoading(false);
     }
-  }, [id]);
+  }, [id, setIsLoading]);
 
   useEffect(() => {
     fetchPost();
@@ -191,7 +196,7 @@ const PostDetailTemplate = () => {
           currentUserId={currentUserId}
           setEditCommentId={setEditCommentId}
           setEditCommentContent={setEditCommentContent}
-          setShowSettingsMenu={setShowSettingsMenu} // 추가된 부분
+          setShowSettingsMenu={setShowSettingsMenu}
         />
     </Container>
   );

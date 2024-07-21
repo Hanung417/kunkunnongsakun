@@ -10,7 +10,6 @@ import { useLoading } from "../../../LoadingContext";
 
 Chart.register(CategoryScale, TimeScale);
 
-const primaryColor = '#4CAF50';
 const secondaryColor = '#45a049';
 const backgroundColor = '#f0f4f8';
 const boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';

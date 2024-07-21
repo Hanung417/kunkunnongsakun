@@ -1,4 +1,4 @@
-import InfoTemplate from "../components/templates/InfoTemplate";
+import InfoTemplate from "../components/templates/exam/InfoTemplate";
 
 const InfoPage = () => {
   return <InfoTemplate />;

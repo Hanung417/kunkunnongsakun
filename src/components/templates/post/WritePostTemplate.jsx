@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
 import { createPost } from "../../../apis/post";
-import CustomModal from "../../atoms/CustomModal"; // CustomModal 컴포넌트 추가
+import CustomModal from "../../atoms/CustomModal";
+import { useLoading } from "../../../LoadingContext";
 
 const Container = styled.div`
   max-width: 600px;
@@ -134,6 +135,7 @@ const ErrorMessage = styled.span`
 `;
 
 const WritePostTemplate = () => {
+  const { setIsLoading } = useLoading();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -218,6 +220,7 @@ const WritePostTemplate = () => {
     }
 
     try {
+      setIsLoading(true);
       const response = await createPost(formData);
       console.log("Created post", response.data);
       setCreatedPostId(response.data.id); // 생성된 글 ID 저장
@@ -229,6 +232,8 @@ const WritePostTemplate = () => {
       setModalTitle("작성 실패");
       setModalContent("글 작성 중 오류가 발생했습니다. 다시 시도해 주세요.");
       setIsModalOpen(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 

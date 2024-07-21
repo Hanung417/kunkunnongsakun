@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { fetchMyPosts, deletePost } from "../../../apis/post";
 import ConfirmModal from "../../atoms/ConfirmModal";
@@ -118,7 +118,6 @@ const MyPostTemplate = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
-  const navigate = useNavigate();
 
   const postsPerPage = 5;
   const pageCount = Math.ceil(posts.length / postsPerPage);

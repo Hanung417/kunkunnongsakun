@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Modal from 'react-modal';
-import { getCropNames, getSoilExamData, getSoilFertilizerInfo } from "../../apis/predict";
+import { getCropNames, getSoilExamData, getSoilFertilizerInfo } from "../../../apis/predict";
+import { useLoading } from "../../../LoadingContext"; // 로딩 훅 임포트
 
 const Container = styled.div`
   display: flex;
@@ -197,6 +198,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const SoilTemplate = () => {
+  const { setIsLoading } = useLoading(); // 로딩 훅 사용
   const [cropName, setCropName] = useState('');
   const [address, setAddress] = useState('');
   const [soilData, setSoilData] = useState([]);
@@ -243,6 +245,7 @@ const SoilTemplate = () => {
 
   const fetchSoilExamData = async () => {
     try {
+      setIsLoading(true); // 로딩 시작
       const response = await getSoilExamData(cropName, address);
       if (response.data.soil_data.length === 0) {
         setError('현재 주소에 해당하는 데이터가 없습니다.');
@@ -262,6 +265,8 @@ const SoilTemplate = () => {
     } catch (err) {
       setError('작물이름과 주소를 정확히 입력해 주세요.');
       setSoilData([]);
+    } finally {
+      setIsLoading(false); // 로딩 끝
     }
   };
 
@@ -291,6 +296,7 @@ const SoilTemplate = () => {
     };
 
     try {
+      setIsLoading(true); // 로딩 시작
       const response = await getSoilFertilizerInfo({
         crop_code: cropName,
         address: address,
@@ -313,6 +319,7 @@ const SoilTemplate = () => {
       setError(err.response.data.error);
       setFertilizerData(null);
     } finally {
+      setIsLoading(false); // 로딩 끝
       setIsFetching(false); // 비활성화 종료
     }
   };

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FaTrash } from 'react-icons/fa';
-import ConfirmModal from "../atoms/ConfirmModal";
-import { getSoilCropData, deleteSoilData } from "../../apis/predict";
+import ConfirmModal from "../../atoms/ConfirmModal";
+import { getSoilCropData, deleteSoilData } from "../../../apis/predict";
+import { useLoading } from "../../../LoadingContext"; // 로딩 훅 임포트
 
 const PageContainer = styled.div`
   display: flex;
@@ -12,7 +13,6 @@ const PageContainer = styled.div`
   padding: 40px;
   background-color: #f9f9f9;
 `;
-
 
 const Content = styled.div`
   display: flex;
@@ -96,6 +96,7 @@ const AddButton = styled.button`
 `;
 
 const SoilListTemplate = () => {
+  const { setIsLoading } = useLoading(); // 로딩 훅 사용
   const [soilData, setSoilData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState(null);
@@ -104,15 +105,18 @@ const SoilListTemplate = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true); // 로딩 시작
         const response = await getSoilCropData();
         setSoilData(response.data);
       } catch (error) {
         console.error('Failed to fetch soil data', error);
+      } finally {
+        setIsLoading(false); // 로딩 끝
       }
     };
 
     fetchData();
-  }, []);
+  }, [setIsLoading]);
 
   const handleSoilDataClick = (data) => {
     navigate('/soil_details', { state: { soilData: data.soil_data, fertilizerData: data.fertilizer_data, crop: data.crop_name } });
@@ -120,11 +124,14 @@ const SoilListTemplate = () => {
 
   const handleDeleteSoilData = async () => {
     try {
+      setIsLoading(true); // 로딩 시작
       await deleteSoilData(selectedSessionId);
       setSoilData(soilData.filter(soil => soil.session_id !== selectedSessionId));
       closeModal();
     } catch (error) {
       console.error('Failed to delete soil data', error);
+    } finally {
+      setIsLoading(false); // 로딩 끝
     }
   };
 

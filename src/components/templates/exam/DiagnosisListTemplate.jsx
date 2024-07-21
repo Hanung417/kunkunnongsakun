@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { fetchDetectionSessions, fetchSessionDetails, deleteDetectionSession } from "../../apis/predict";
+import { fetchDetectionSessions, fetchSessionDetails, deleteDetectionSession } from "../../../apis/predict";
 import { FaTrash, FaPlus } from 'react-icons/fa';
-import ConfirmModal from '../atoms/ConfirmModal';
+import ConfirmModal from '../../atoms/ConfirmModal';
 import ReactPaginate from 'react-paginate';
-import {useLoading} from "../../LoadingContext";
+import {useLoading} from "../../../LoadingContext";
 
 const PageContainer = styled.div`
   display: flex;
