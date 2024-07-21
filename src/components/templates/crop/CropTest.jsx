@@ -171,16 +171,37 @@ const CropTest = () => {
     const values = [...crops];
     values[index][event.target.name] = event.target.value;
     setCrops(values);
+
     if (event.target.name === 'name') {
-      setFilteredCropNames(cropNames.filter(crop => crop.toLowerCase().includes(event.target.value.toLowerCase())));
+      const selectedCrops = values.map(crop => crop.name).filter(name => name);
+      setFilteredCropNames(cropNames.filter(crop => crop.toLowerCase().includes(event.target.value.toLowerCase()) && !selectedCrops.includes(crop)));
+
       const newShowCropList = [...showCropList];
       newShowCropList[index] = true;
       setShowCropList(newShowCropList);
     }
   };
 
+  const handleCropSelect = (index, crop) => {
+    const values = [...crops];
+    values[index].name = crop;
+    setCrops(values);
+
+    const selectedCrops = values.map(crop => crop.name).filter(name => name);
+    setFilteredCropNames(cropNames.filter(crop => !selectedCrops.includes(crop)));
+
+    const newShowCropList = [...showCropList];
+    newShowCropList[index] = false;
+    setShowCropList(newShowCropList);
+  };
+
   const addCrop = () => {
-    setCrops([...crops, { name: "", ratio: "" }]);
+    const newCrops = [...crops, { name: "", ratio: "" }];
+    setCrops(newCrops);
+
+    const selectedCrops = newCrops.map(crop => crop.name).filter(name => name);
+    setFilteredCropNames(cropNames.filter(crop => !selectedCrops.includes(crop)));
+
     setShowCropList([...showCropList, false]);
   };
 
@@ -188,6 +209,10 @@ const CropTest = () => {
     const values = [...crops];
     values.splice(index, 1);
     setCrops(values);
+
+    const selectedCrops = values.map(crop => crop.name).filter(name => name);
+    setFilteredCropNames(cropNames.filter(crop => !selectedCrops.includes(crop)));
+
     const newShowCropList = [...showCropList];
     newShowCropList.splice(index, 1);
     setShowCropList(newShowCropList);
@@ -247,15 +272,6 @@ const CropTest = () => {
     } finally {
       setIsLoading(false); // 로딩 끝
     }
-  };
-
-  const handleCropSelect = (index, crop) => {
-    const values = [...crops];
-    values[index].name = crop;
-    setCrops(values);
-    const newShowCropList = [...showCropList];
-    newShowCropList[index] = false;
-    setShowCropList(newShowCropList);
   };
 
   const handleRegionSelect = (region) => {
