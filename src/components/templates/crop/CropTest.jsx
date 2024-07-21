@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { getCropNames, predictCrops, getRegionNames } from "../../../apis/crop";
 import { useLoading } from "../../../LoadingContext";
+import CustomModal from "../../atoms/CustomModal";
 
 const PageContainer = styled.div`
   display: flex;
@@ -33,6 +34,14 @@ const InputContainer = styled.div`
   box-sizing: border-box;
 `;
 
+  const InputRow = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+`;
+
+
 const Input = styled.input`
   padding: 15px;
   margin-bottom: 20px;
@@ -47,6 +56,10 @@ const Input = styled.input`
     border-color: #4aaa87;
     outline: none;
   }
+`;
+
+const SmallInput = styled(Input)`
+  width: calc(50% - 5px); /* 각 입력 박스의 크기를 줄입니다 */
 `;
 
 const Button = styled.button`
@@ -75,19 +88,7 @@ const CropContainer = styled.div`
   position: relative;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   width: 100%;
-  left: -17px; /* 왼쪽으로 10px 이동 */
-`;
-
-const ErrorMessage = styled.p`
-  color: white;
-  background-color: #e74c3c;
-  padding: 15px;
-  border-radius: 8px;
-  margin-top: 20px;
-  text-align: center;
-  width: 100%;
-  max-width: 600px;
-  font-size: 1rem;
+  margin-left: -15px; /* 왼쪽으로 10px 이동 */
 `;
 
 const List = styled.div`
@@ -128,6 +129,77 @@ const ListItem = styled.div`
   }
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const SummaryContainer = styled.div`
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+`;
+
+const SummaryTitle = styled.h2`
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-weight: bold;
+`;
+
+const SummaryItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+`;
+
+const ItemText = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const CropName = styled.p`
+  font-size: 1rem;
+  color: #2c3e50;
+  margin: 0;
+`;
+
+const CropRatio = styled.p`
+  font-size: 0.875rem;
+  color: #7f8c8d;
+  margin: 0;
+`;
+
+const RemoveButton = styled.button`
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 15px;
+  transition: background-color 0.3s;
+  white-space: nowrap; /* 텍스트를 가로로 출력되도록 합니다 */
+
+  &:hover {
+    background-color: #c0392b;
+  }
+`;
+
 const CropTest = () => {
   const { setIsLoading } = useLoading();
   const [landArea, setLandArea] = useState("");
@@ -139,6 +211,10 @@ const CropTest = () => {
   const [filteredCropNames, setFilteredCropNames] = useState([]);
   const [showCropList, setShowCropList] = useState([]);
   const [showRegionList, setShowRegionList] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const [modalTitle, setModalTitle] = useState("");
+  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
   const inputRefs = useRef([]);
   const regionRef = useRef(null);
@@ -150,7 +226,10 @@ const CropTest = () => {
         setCropNames(response.data.crop_names);
         setFilteredCropNames(response.data.crop_names);
       } catch (err) {
-        setError('작물 이름을 불러오는 중 오류가 발생했습니다.');
+        setModalContent('작물 이름을 불러오는 중 오류가 발생했습니다.');
+        setModalTitle('오류');
+        setIsError(true);
+        setIsModalOpen(true);
       }
     };
 
@@ -160,7 +239,10 @@ const CropTest = () => {
         setRegions(response.data.region_names);
       } catch (err) {
         console.error('Error fetching region names:', err);
-        setError('지역 이름을 불러오는 중 오류가 발생했습니다.');
+        setModalContent('지역 이름을 불러오는 중 오류가 발생했습니다.');
+        setModalTitle('오류');
+        setIsError(true);
+        setIsModalOpen(true);
       }
     };
     fetchRegionNames();
@@ -241,7 +323,10 @@ const CropTest = () => {
     e.preventDefault();
     const inputErrors = validateInput();
     if (inputErrors.length > 0) {
-      setError(inputErrors.join("\n"));
+      setModalContent(inputErrors.join("\n"));
+      setModalTitle('오류');
+      setIsError(true);
+      setIsModalOpen(true);
       return;
     }
 
@@ -260,15 +345,21 @@ const CropTest = () => {
         const errorMessage = String(response.data.error) === "0"
           ? '해당지역의 도매시장에서 판매하지 않는 작물입니다'
           : response.data.error;
-        setError(errorMessage);
+          setModalContent(errorMessage);
+          setModalTitle('오류');
+          setIsError(true);
+          setIsModalOpen(true);
       } else {
-        navigate('/SessionDetails', { state: { landArea, cropNames: crops.map(crop => crop.name), result: response.data, session_id } });
+        navigate('/sessiondetails', { state: { landArea, cropNames: crops.map(crop => crop.name), result: response.data, session_id } });
       }
     } catch (error) {
       console.error('Error fetching prediction', error);
-      setError(error.response && error.response.data && error.response.data.error
+      setModalContent(error.response && error.response.data && error.response.data.error
         ? error.response.data.error
         : 'Error fetching prediction');
+      setModalTitle('오류');
+      setIsError(true);
+      setIsModalOpen(true);
     } finally {
       setIsLoading(false); // 로딩 끝
     }
@@ -300,9 +391,12 @@ const CropTest = () => {
     };
   }, [handleClickOutside]);
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <PageContainer>
-      <Title>작물 정보 선택</Title>
       <InputContainer>
         <Input
           type="text"
@@ -331,7 +425,8 @@ const CropTest = () => {
         {crops.map((crop, index) => (
           <CropContainer key={index} ref={(el) => (inputRefs.current[index] = el)}>
             <div style={{ position: 'relative' }}>
-              <Input
+              <InputRow>
+                <SmallInput
                 type="text"
                 name="name"
                 placeholder="작물 검색"
@@ -343,8 +438,17 @@ const CropTest = () => {
                   setShowCropList(newShowCropList);
                 }}
               />
-              {showCropList[index] && filteredCropNames.length > 0 && (
-                <List>
+              <SmallInput
+                type="text"
+                placeholder="작물별 비율"
+                name="ratio"
+                value={crop.ratio}
+                onChange={(event) => handleInputChange(index, event)}
+              />
+              <Button onClick={() => removeCrop(index)}>삭제</Button>
+            </InputRow>
+            {showCropList[index] && filteredCropNames.length > 0 && (
+              <List>
                   {filteredCropNames.map((cropName, idx) => (
                     <ListItem key={idx} onClick={() => handleCropSelect(index, cropName)}>
                       {cropName}
@@ -353,20 +457,31 @@ const CropTest = () => {
                 </List>
               )}
             </div>
-            <Input
-              type="text"
-              placeholder="작물별 비율"
-              name="ratio"
-              value={crop.ratio}
-              onChange={(event) => handleInputChange(index, event)}
-            />
-            <Button onClick={() => removeCrop(index)}>작물 삭제</Button>
           </CropContainer>
         ))}
         <Button onClick={addCrop}>작물 추가</Button>
         <Button onClick={handleSubmit}>제출</Button>
       </InputContainer>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+      <CustomModal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        title={modalTitle}
+        content={modalContent}
+        showConfirmButton={false}
+        isError={isError}
+      />
+      <SummaryContainer>
+        <SummaryTitle>작물 정보 요약</SummaryTitle>
+        {crops.map((crop, index) => (
+          <SummaryItem key={index}>
+            <ItemText>
+              <CropName>작물: {crop.name}</CropName>
+              <CropRatio>비율: {crop.ratio}</CropRatio>
+            </ItemText>
+            <RemoveButton onClick={() => removeCrop(index)}>삭제</RemoveButton>
+          </SummaryItem>
+        ))}
+      </SummaryContainer>
     </PageContainer>
   );
 };
