@@ -149,6 +149,10 @@ def fetch_weather_data(region):
         return None
 
 def predict_prices(merged_df, df_2):
+    if 'price' not in merged_df:
+        logger.error("Merged DataFrame does not contain 'price' column")
+        raise KeyError("Merged DataFrame does not contain 'price' column")
+    
     merged_df['price'] = merged_df['price'].ffill().shift(-1)
     merged_df.dropna(subset=['price'], inplace=True)
     merged_df['year'] = merged_df['tm'].dt.year
@@ -164,6 +168,7 @@ def predict_prices(merged_df, df_2):
     merged_df['price_ma_7'] = merged_df['price'].rolling(window=7).mean()
     merged_df['price_ma_30'] = merged_df['price'].rolling(window=30).mean()
     merged_df['temp_diff'] = merged_df['maxTa'] - merged_df['minTa']
+    merged_df.fillna(0, inplace=True)
     X = merged_df.drop(['price', 'tm'], axis=1)
     y = merged_df['price']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
@@ -172,20 +177,7 @@ def predict_prices(merged_df, df_2):
     y_pred = model.predict(X_test)
     r2 = r2_score(y_test, y_pred)
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
-    target = df_2.iloc[[-1]].copy()
-    target['year'] = target['tm'].dt.year
-    target['month'] = target['tm'].dt.month
-    target['day'] = target['tm'].dt.day
-    target['month_sin'] = np.sin(2 * np.pi * target['month'] / 12)
-    target['month_cos'] = np.cos(2 * np.pi * target['month'] / 12)
-    target['day_sin'] = np.sin(2 * np.pi * target['day'] / 31)
-    target['day_cos'] = np.cos(2 * np.pi * target['day'] / 31)
-    for lag in range(1, 8):
-        target[f'price_lag_{lag}'] = target['price'].shift(lag)
-    target['price_ma_7'] = target['price'].rolling(window=7).mean()
-    target['price_ma_30'] = target['price'].rolling(window=30).mean()
-    target['temp_diff'] = target['maxTa'] - target['minTa']
-    target.drop('tm', axis=1, inplace=True)
+    target = X.iloc[[-1]]
     pred_value = int(model.predict(target))
     return pred_value, r2, rmse
 
@@ -275,7 +267,11 @@ def predict_income(request):
                     logger.debug(f"Market data for {crop_name}: {df_1.head()}")
                     
                     merged_df = pd.merge(df_2, df_1, on='tm', how='left')
+                    logger.debug(f"Merged dataframe: {merged_df.head()}")
+                    if 'price' not in merged_df:
+                        logger.error(f"Missing 'price' in merged DataFrame for {crop_name}" )
                     merged_df.drop('itemname', axis=1, inplace=True)
+                    
                     
                     # Ensure the predicted value is converted to native Python int type for JSON serialization
                     pred_value, r2, rmse = predict_prices(merged_df, df_2)
@@ -286,10 +282,9 @@ def predict_income(request):
                         crop_name=crop_name,
                         predicted_income=int(adjusted_income),  # Conversion to native Python int
                         adjusted_data=convert_values(adjusted_data),
-                        price=int(pred_value),
+                        price=pred_value,
                         latest_year=latest_year,
                         r2_score=r2,
-                        pred_value=pred_value,
                         rmse=rmse
                     )
                     
@@ -298,7 +293,7 @@ def predict_income(request):
                         'crop_name': crop_name,
                         'latest_year': int(latest_year),
                         'adjusted_data': convert_values(adjusted_data),
-                        'price': int(pred_value),
+                        'price': pred_value,
                         'r2_score': r2,
                         'rmse': rmse,
                         'crop_chart_data': json.loads(df_1_json)
