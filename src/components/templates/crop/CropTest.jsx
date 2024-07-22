@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getCropNames, predictCrops, getRegionNames } from "../../../apis/crop";
 import { useLoading } from "../../../LoadingContext";
 import CustomModal from "../../atoms/CustomModal";
+import { FaPlus, FaTrash } from 'react-icons/fa';
 
 const PageContainer = styled.div`
   display: flex;
@@ -11,9 +12,7 @@ const PageContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #f0f2f5;
-  font-family: 'Roboto', sans-serif;
   padding: 20px;
-  box-sizing: border-box;
 `;
 
 const Title = styled.h1`
@@ -32,25 +31,32 @@ const InputContainer = styled.div`
   max-width: 600px;
   position: relative;
   box-sizing: border-box;
+  margin-bottom: 20px;
 `;
 
-  const InputRow = styled.div`
+const Label = styled.label`
+  font-size: 1rem;
+  color: #2c3e50;
+  margin-bottom: 5px;
+  display: block;
+`;
+
+const InputRow = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin-bottom: 20px;
   width: 100%;
 `;
 
-
 const Input = styled.input`
   padding: 15px;
-  margin-bottom: 20px;
   width: 100%;
   border: 1px solid #dfe6e9;
   border-radius: 8px;
   box-sizing: border-box;
   font-size: 1rem;
   transition: border-color 0.3s;
+  margin-bottom: 20px;
 
   &:focus {
     border-color: #4aaa87;
@@ -60,6 +66,25 @@ const Input = styled.input`
 
 const SmallInput = styled(Input)`
   width: calc(50% - 5px); /* 각 입력 박스의 크기를 줄입니다 */
+`;
+
+const AddButton = styled.button`
+  padding: 15px;
+  background-color: #4aaa87;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #6dc4b0;
+  }
 `;
 
 const Button = styled.button`
@@ -88,7 +113,6 @@ const CropContainer = styled.div`
   position: relative;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   width: 100%;
-  margin-left: -15px; /* 왼쪽으로 10px 이동 */
 `;
 
 const List = styled.div`
@@ -131,7 +155,7 @@ const ListItem = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 `;
 
@@ -204,20 +228,20 @@ const CropTest = () => {
   const { setIsLoading } = useLoading();
   const [landArea, setLandArea] = useState("");
   const [region, setRegion] = useState("");
-  const [crops, setCrops] = useState([{ name: "", ratio: "" }]);
-  const [error, setError] = useState(null);
+  const [currentCrop, setCurrentCrop] = useState({ name: "", ratio: "" });
+  const [crops, setCrops] = useState([]);
   const [cropNames, setCropNames] = useState([]);
   const [regions, setRegions] = useState([]);
   const [filteredCropNames, setFilteredCropNames] = useState([]);
-  const [showCropList, setShowCropList] = useState([]);
+  const [showCropList, setShowCropList] = useState(false);
   const [showRegionList, setShowRegionList] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [modalTitle, setModalTitle] = useState("");
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
-  const inputRefs = useRef([]);
   const regionRef = useRef(null);
+  const cropNameRef = useRef(null);
 
   useEffect(() => {
     const fetchCropNames = async () => {
@@ -249,55 +273,31 @@ const CropTest = () => {
     fetchCropNames();
   }, []);
 
-  const handleInputChange = (index, event) => {
-    const values = [...crops];
-    values[index][event.target.name] = event.target.value;
-    setCrops(values);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setCurrentCrop({ ...currentCrop, [name]: value });
 
-    if (event.target.name === 'name') {
-      const selectedCrops = values.map(crop => crop.name).filter(name => name);
-      setFilteredCropNames(cropNames.filter(crop => crop.toLowerCase().includes(event.target.value.toLowerCase()) && !selectedCrops.includes(crop)));
-
-      const newShowCropList = [...showCropList];
-      newShowCropList[index] = true;
-      setShowCropList(newShowCropList);
+    if (name === 'name') {
+      setFilteredCropNames(cropNames.filter(crop => crop.toLowerCase().includes(value.toLowerCase())));
+      setShowCropList(true);
     }
   };
 
-  const handleCropSelect = (index, crop) => {
-    const values = [...crops];
-    values[index].name = crop;
-    setCrops(values);
-
-    const selectedCrops = values.map(crop => crop.name).filter(name => name);
-    setFilteredCropNames(cropNames.filter(crop => !selectedCrops.includes(crop)));
-
-    const newShowCropList = [...showCropList];
-    newShowCropList[index] = false;
-    setShowCropList(newShowCropList);
+  const handleCropSelect = (crop) => {
+    setCurrentCrop({ ...currentCrop, name: crop });
+    setShowCropList(false);
   };
 
   const addCrop = () => {
-    const newCrops = [...crops, { name: "", ratio: "" }];
-    setCrops(newCrops);
-
-    const selectedCrops = newCrops.map(crop => crop.name).filter(name => name);
-    setFilteredCropNames(cropNames.filter(crop => !selectedCrops.includes(crop)));
-
-    setShowCropList([...showCropList, false]);
+    if (currentCrop.name && currentCrop.ratio) {
+      setCrops([...crops, currentCrop]);
+      setCurrentCrop({ name: "", ratio: "" });
+    }
   };
 
   const removeCrop = (index) => {
-    const values = [...crops];
-    values.splice(index, 1);
-    setCrops(values);
-
-    const selectedCrops = values.map(crop => crop.name).filter(name => name);
-    setFilteredCropNames(cropNames.filter(crop => !selectedCrops.includes(crop)));
-
-    const newShowCropList = [...showCropList];
-    newShowCropList.splice(index, 1);
-    setShowCropList(newShowCropList);
+    const newCrops = crops.filter((_, i) => i !== index);
+    setCrops(newCrops);
   };
 
   const validateInput = () => {
@@ -308,14 +308,9 @@ const CropTest = () => {
     if (!region || region.trim() === "") {
       newErrors.push("지역을 입력해주세요. ");
     }
-    crops.forEach((crop, index) => {
-      if (!crop.name || crop.name.trim() === "") {
-        newErrors.push(`${index + 1}번째 작물명을 입력해주세요.`);
-      }
-      if (!crop.ratio || crop.ratio.trim() === "" || isNaN(crop.ratio)) {
-        newErrors.push(`${index + 1}번째 작물의 비율을 입력해주세요.`);
-      }
-    });
+    if (crops.length === 0) {
+      newErrors.push("작물을 하나 이상 추가해주세요.");
+    }
     return newErrors;
   };
 
@@ -371,18 +366,13 @@ const CropTest = () => {
   };
 
   const handleClickOutside = useCallback((event) => {
-    inputRefs.current.forEach((ref, index) => {
-      if (ref && !ref.contains(event.target)) {
-        const newShowCropList = [...showCropList];
-        newShowCropList[index] = false;
-        setShowCropList(newShowCropList);
-      }
-    });
-
     if (regionRef.current && !regionRef.current.contains(event.target)) {
       setShowRegionList(false);
     }
-  }, [showCropList]);
+    if (cropNameRef.current && !cropNameRef.current.contains(event.target)) {
+      setShowCropList(false);
+    }
+  }, []);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -398,12 +388,14 @@ const CropTest = () => {
   return (
     <PageContainer>
       <InputContainer>
+        <Label>재배 면적 (평)</Label>
         <Input
           type="text"
           placeholder="재배 면적 (평)"
           value={landArea}
           onChange={(e) => setLandArea(e.target.value)}
         />
+        <Label>지역 선택</Label>
         <div style={{ position: 'relative' }} ref={regionRef}>
           <Input
             type="text"
@@ -422,46 +414,63 @@ const CropTest = () => {
             </List>
           )}
         </div>
-        {crops.map((crop, index) => (
-          <CropContainer key={index} ref={(el) => (inputRefs.current[index] = el)}>
-            <div style={{ position: 'relative' }}>
-              <InputRow>
-                <SmallInput
-                type="text"
-                name="name"
-                placeholder="작물 검색"
-                value={crop.name}
-                onChange={(event) => handleInputChange(index, event)}
-                onClick={() => {
-                  const newShowCropList = [...showCropList];
-                  newShowCropList[index] = true;
-                  setShowCropList(newShowCropList);
-                }}
-              />
-              <SmallInput
-                type="text"
-                placeholder="작물별 비율"
-                name="ratio"
-                value={crop.ratio}
-                onChange={(event) => handleInputChange(index, event)}
-              />
-              <Button onClick={() => removeCrop(index)}>삭제</Button>
-            </InputRow>
-            {showCropList[index] && filteredCropNames.length > 0 && (
-              <List>
-                  {filteredCropNames.map((cropName, idx) => (
-                    <ListItem key={idx} onClick={() => handleCropSelect(index, cropName)}>
-                      {cropName}
-                    </ListItem>
-                  ))}
-                </List>
-              )}
-            </div>
-          </CropContainer>
-        ))}
-        <Button onClick={addCrop}>작물 추가</Button>
-        <Button onClick={handleSubmit}>제출</Button>
+        <Label>작물</Label>
+        <CropContainer ref={cropNameRef}>
+          <InputRow>
+            <SmallInput
+              type="text"
+              name="name"
+              placeholder="작물 검색"
+              value={currentCrop.name}
+              onChange={handleInputChange}
+              onClick={() => setShowCropList(true)}
+            />
+          </InputRow>
+          <Label>작물별 비율</Label>
+          <InputRow>
+            <SmallInput
+              type="text"
+              name="ratio"
+              placeholder="작물별 비율"
+              value={currentCrop.ratio}
+              onChange={handleInputChange}
+            />
+            <AddButton onClick={addCrop}><FaPlus /></AddButton>
+          </InputRow>
+          {showCropList && filteredCropNames.length > 0 && (
+            <List>
+              {filteredCropNames.map((cropName, idx) => (
+                <ListItem key={idx} onClick={() => handleCropSelect(cropName)}>
+                  {cropName}
+                </ListItem>
+              ))}
+            </List>
+          )}
+        </CropContainer>
       </InputContainer>
+      <SummaryContainer>
+        <SummaryTitle>선택한 정보</SummaryTitle>
+        <SummaryItem>
+          <ItemText>
+            <CropName>재배 면적: {landArea} 평</CropName>
+          </ItemText>
+        </SummaryItem>
+        <SummaryItem>
+          <ItemText>
+            <CropName>지역: {region}</CropName>
+          </ItemText>
+        </SummaryItem>
+        {crops.map((crop, index) => (
+          <SummaryItem key={index}>
+            <ItemText>
+              <CropName>작물: {crop.name}</CropName>
+              <CropRatio>비율: {crop.ratio}</CropRatio>
+            </ItemText>
+            <RemoveButton onClick={() => removeCrop(index)}><FaTrash /></RemoveButton>
+          </SummaryItem>
+        ))}
+        <Button onClick={handleSubmit}>제출</Button>
+      </SummaryContainer>
       <CustomModal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
@@ -470,18 +479,6 @@ const CropTest = () => {
         showConfirmButton={false}
         isError={isError}
       />
-      <SummaryContainer>
-        <SummaryTitle>작물 정보 요약</SummaryTitle>
-        {crops.map((crop, index) => (
-          <SummaryItem key={index}>
-            <ItemText>
-              <CropName>작물: {crop.name}</CropName>
-              <CropRatio>비율: {crop.ratio}</CropRatio>
-            </ItemText>
-            <RemoveButton onClick={() => removeCrop(index)}>삭제</RemoveButton>
-          </SummaryItem>
-        ))}
-      </SummaryContainer>
     </PageContainer>
   );
 };

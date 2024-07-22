@@ -267,6 +267,13 @@ const PaginationContainer = styled.div`
   }
 `;
 
+const EmptyMessage = styled.div`
+  text-align: center;
+  color: #888;
+  font-size: 1rem; 
+  margin: 2rem 0;
+`;
+
 const CropSelectionPage = () => {
   const { setIsLoading } = useLoading(); // Access loading context
   const [sessions, setSessions] = useState([]);
@@ -376,59 +383,65 @@ const CropSelectionPage = () => {
         {error && <p>{error}</p>}
         <ContentContainer>
           <SessionListContainer>
-            <SessionList>
-              {currentSessions.map(session => (
-                <SessionItem key={session.session_id} onClick={() => handleSessionClick(session)}>
-                  {editingSession?.session_id === session.session_id ? (
-                    <>
-                      <EditInput
-                        type="text"
-                        value={newSessionName}
-                        onChange={(e) => setNewSessionName(e.target.value)}
-                        onClick={(e) => e.stopPropagation()}
-                      />
-                      <SaveButton onClick={(e) => handleSaveClick(session.session_id, e)}>저장</SaveButton>
-                    </>
-                  ) : (
-                    <>
-                      <SessionName>
-                        {session.session_name}
-                      </SessionName>
-                      <SessionDetails>
-                        <div>면적: {session.land_area}평</div>
-                        <div>지역: {session.region}</div>
-                        <div>총 소득: {session.total_income.toLocaleString()}원</div>
-                        <div>{session.created_at}</div>
-                      </SessionDetails>
-                      <ButtonContainer>
-                        <EditButton onClick={(e) => handleEditClick(session, e)}>
-                          <FaEdit />
-                        </EditButton>
-                        <DeleteButton onClick={(e) => openDeleteModal(session.session_id, e)}>
-                          <FaTrash />
-                        </DeleteButton>
-                      </ButtonContainer>
-                    </>
-                  )}
-                </SessionItem>
-              ))}
-            </SessionList>
-            <PaginationContainer>
-              <ReactPaginate
-                previousLabel={"이전"}
-                nextLabel={"다음"}
-                breakLabel={"..."}
-                pageCount={pageCount}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={handlePageChange}
-                containerClassName={"pagination"}
-                activeClassName={"active"}
-                previousClassName={"previous"}
-                nextClassName={"next"}
-                disabledClassName={"disabled"}
-              />
-            </PaginationContainer>
+            {sessions.length === 0 ? (
+              <EmptyMessage>등록한 작물 조합이 존재하지 않습니다. 작물 조합을 추가해보세요.</EmptyMessage>
+            ) : (
+              <>
+                <SessionList>
+                  {currentSessions.map(session => (
+                    <SessionItem key={session.session_id} onClick={() => handleSessionClick(session)}>
+                      {editingSession?.session_id === session.session_id ? (
+                        <>
+                          <EditInput
+                            type="text"
+                            value={newSessionName}
+                            onChange={(e) => setNewSessionName(e.target.value)}
+                            onClick={(e) => e.stopPropagation()}
+                          />
+                          <SaveButton onClick={(e) => handleSaveClick(session.session_id, e)}>저장</SaveButton>
+                        </>
+                      ) : (
+                        <>
+                          <SessionName>
+                            {session.session_name}
+                          </SessionName>
+                          <SessionDetails>
+                            <div>면적: {session.land_area}평</div>
+                            <div>지역: {session.region}</div>
+                            <div>총 소득: {session.total_income.toLocaleString()}원</div>
+                            <div>{session.created_at}</div>
+                          </SessionDetails>
+                          <ButtonContainer>
+                            <EditButton onClick={(e) => handleEditClick(session, e)}>
+                              <FaEdit />
+                            </EditButton>
+                            <DeleteButton onClick={(e) => openDeleteModal(session.session_id, e)}>
+                              <FaTrash />
+                            </DeleteButton>
+                          </ButtonContainer>
+                        </>
+                      )}
+                    </SessionItem>
+                  ))}
+                </SessionList>
+                <PaginationContainer>
+                  <ReactPaginate
+                    previousLabel={"이전"}
+                    nextLabel={"다음"}
+                    breakLabel={"..."}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={handlePageChange}
+                    containerClassName={"pagination"}
+                    activeClassName={"active"}
+                    previousClassName={"previous"}
+                    nextClassName={"next"}
+                    disabledClassName={"disabled"}
+                  />
+                </PaginationContainer>
+              </>
+            )}
           </SessionListContainer>
         </ContentContainer>
         <ConfirmModal
