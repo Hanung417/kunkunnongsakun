@@ -12,6 +12,7 @@ class PredictionSession(models.Model):
     total_income = models.FloatField(default=0.0)  # Assume no income as default
     created_at = models.DateTimeField(auto_now_add=True)
 
+
     def __str__(self):
         return f'{self.session_name} ({self.created_at}) - {self.user.username}'
 
@@ -22,6 +23,8 @@ class PredictionResult(models.Model):
     adjusted_data = models.JSONField(default=dict)  # Use the new JSONField from Django
     price = models.FloatField(default=0.0)  # Default price as zero if no other logical default
     latest_year = models.IntegerField(default=timezone.now().year)  # Default to the current year
+    r2_score = models.FloatField(default=0.0)  # R² 점수 필드 추가
+    rmse = models.FloatField(default=0.0)
 
     def __str__(self):
         return f'{self.crop_name} - {self.session.session_name}'

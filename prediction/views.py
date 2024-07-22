@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNet
+from sklearn.metrics import r2_score, mean_squared_error
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from aivle_big.decorators import login_required
@@ -153,18 +154,40 @@ def predict_prices(merged_df, df_2):
     merged_df['year'] = merged_df['tm'].dt.year
     merged_df['month'] = merged_df['tm'].dt.month
     merged_df['day'] = merged_df['tm'].dt.day
+    # 추가적인 특성 엔지니어링
+    merged_df['month_sin'] = np.sin(2 * np.pi * merged_df['month'] / 12)
+    merged_df['month_cos'] = np.cos(2 * np.pi * merged_df['month'] / 12)
+    merged_df['day_sin'] = np.sin(2 * np.pi * merged_df['day'] / 31)
+    merged_df['day_cos'] = np.cos(2 * np.pi * merged_df['day'] / 31)
+    for lag in range(1, 8):
+        merged_df[f'price_lag_{lag}'] = merged_df['price'].shift(lag)
+    merged_df['price_ma_7'] = merged_df['price'].rolling(window=7).mean()
+    merged_df['price_ma_30'] = merged_df['price'].rolling(window=30).mean()
+    merged_df['temp_diff'] = merged_df['maxTa'] - merged_df['minTa']
     X = merged_df.drop(['price', 'tm'], axis=1)
     y = merged_df['price']
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1, shuffle=False)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
     model = ElasticNet(alpha=0.1, l1_ratio=0.5, max_iter=10000)
     model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    r2 = r2_score(y_test, y_pred)
+    rmse = np.sqrt(mean_squared_error(y_test, y_pred))
     target = df_2.iloc[[-1]].copy()
     target['year'] = target['tm'].dt.year
     target['month'] = target['tm'].dt.month
     target['day'] = target['tm'].dt.day
+    target['month_sin'] = np.sin(2 * np.pi * target['month'] / 12)
+    target['month_cos'] = np.cos(2 * np.pi * target['month'] / 12)
+    target['day_sin'] = np.sin(2 * np.pi * target['day'] / 31)
+    target['day_cos'] = np.cos(2 * np.pi * target['day'] / 31)
+    for lag in range(1, 8):
+        target[f'price_lag_{lag}'] = target['price'].shift(lag)
+    target['price_ma_7'] = target['price'].rolling(window=7).mean()
+    target['price_ma_30'] = target['price'].rolling(window=30).mean()
+    target['temp_diff'] = target['maxTa'] - target['minTa']
     target.drop('tm', axis=1, inplace=True)
     pred_value = int(model.predict(target))
-    return pred_value
+    return pred_value, r2, rmse
 
 def convert_values(data):
     if isinstance(data, dict):
@@ -217,6 +240,7 @@ def predict_income(request):
         
         total_predicted_value = 0
         crop_results = []
+        r2_scores = []
 
         try:
             with transaction.atomic():
@@ -254,7 +278,7 @@ def predict_income(request):
                     merged_df.drop('itemname', axis=1, inplace=True)
                     
                     # Ensure the predicted value is converted to native Python int type for JSON serialization
-                    pred_value = int(predict_prices(merged_df, df_2))
+                    pred_value, r2, rmse = predict_prices(merged_df, df_2)
                     logger.debug(f"Predicted prices for {crop_name}: {pred_value}")
 
                     PredictionResult.objects.create(
@@ -263,7 +287,10 @@ def predict_income(request):
                         predicted_income=int(adjusted_income),  # Conversion to native Python int
                         adjusted_data=convert_values(adjusted_data),
                         price=int(pred_value),
-                        latest_year=latest_year
+                        latest_year=latest_year,
+                        r2_score=r2,
+                        pred_value=pred_value,
+                        rmse=rmse
                     )
                     
                     df_1_json = df_1.to_json(orient='records', date_format='iso')
@@ -272,6 +299,8 @@ def predict_income(request):
                         'latest_year': int(latest_year),
                         'adjusted_data': convert_values(adjusted_data),
                         'price': int(pred_value),
+                        'r2_score': r2,
+                        'rmse': rmse,
                         'crop_chart_data': json.loads(df_1_json)
                     })
                 
@@ -287,7 +316,8 @@ def predict_income(request):
         
         return JsonResponse({
             'total_income': int(total_predicted_value),
-            'results': crop_results
+            'results': crop_results,
+            'r2_scores': r2_scores
         }, status=200)
 
     except json.JSONDecodeError:
@@ -300,17 +330,39 @@ def predict_income(request):
     
 @login_required
 def list_prediction_sessions(request):
-    sessions = PredictionSession.objects.filter(user=request.user).order_by('-created_at')
-    session_list = [{
-        'session_id': session.session_id,
-        'session_name': session.session_name,
-        'crop_names' : session.crop_names,
-        'land_area': session.land_area,
-        'region': session.region,
-        'total_income': session.total_income,
-        'created_at': timezone.localtime(session.created_at).strftime('%Y-%m-%d %H:%M')
-    } for session in sessions]
-    return JsonResponse(session_list, safe=False)
+    try:
+        sessions = PredictionSession.objects.filter(user=request.user).order_by('-created_at')
+        session_list = []
+
+        for session in sessions:
+            results = session.results.all()
+            session_details = {
+                'session_id': session.session_id,
+                'session_name': session.session_name,
+                'crop_names': session.crop_names,
+                'land_area': session.land_area,
+                'region': session.region,
+                'total_income': session.total_income,
+                'created_at': timezone.localtime(session.created_at).strftime('%Y-%m-%d %H:%M'),
+                'results': []
+            }
+            for result in results:
+                session_details['results'].append({
+                    'crop_name': result.crop_name,
+                    'predicted_income': result.predicted_income,
+                    'r2_score': result.r2_score,
+                    'price': result.price,
+                    'rmse': result.rmse
+                })
+            session_list.append(session_details)
+
+        return JsonResponse(session_list, safe=False)
+
+    except Exception as e:
+        logger.error(f"Unexpected error in list_prediction_sessions: {repr(e)}, Type: {type(e)}, Args: {e.args}")
+        return JsonResponse({'error': 'An unexpected error occurred'}, status=500)
+
+
 
 @login_required
 def prediction_session_details(request, session_id):
@@ -336,6 +388,8 @@ def prediction_session_details(request, session_id):
                 'adjusted_data': result.adjusted_data,
                 'price': result.price,
                 'latest_year': result.latest_year,
+                'r2_score': result.r2_score,
+                'rmse': result.rmse,
                 'crop_chart_data': crop_chart_data_parsed
             })
 
