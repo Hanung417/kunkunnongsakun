@@ -7,52 +7,52 @@ export const PageContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #f0f2f5;
-  padding: 1.25rem; /* 20px */
+  padding: 1rem; /* 16px */
 `;
 
 export const Title = styled.h1`
-  margin-bottom: 1.875rem; /* 30px */
+  margin-bottom: 1.5rem; /* 24px */
   color: #2c3e50;
-  font-size: 2rem;
+  font-size: 1.75rem; /* 28px */
   font-weight: bold;
 `;
 
 export const InputContainer = styled.div`
   background-color: #ffffff;
-  padding: 1.875rem; /* 30px */
+  padding: 1.5rem; /* 24px */
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 37.5rem; /* 600px */
+  max-width: 35rem; /* 560px */
   position: relative;
   box-sizing: border-box;
-  margin-bottom: 1.25rem; /* 20px */
+  margin-bottom: 1rem; /* 16px */
 `;
 
 export const Label = styled.label`
-  font-size: 1rem;
+  font-size: 0.875rem; /* 14px */
   color: #2c3e50;
-  margin-bottom: 0.3125rem; /* 5px */
+  margin-bottom: 0.25rem; /* 4px */
   display: block;
 `;
 
 export const InputRow = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.25rem; /* 20px */
+  margin-bottom: 1rem; /* 16px */
   width: 100%;
   position: relative;
 `;
 
 export const Input = styled.input`
-  padding: 0.6rem 0.9rem; /* 15px */
+  padding: 0.5rem 0.75rem; /* 8px 12px */
   width: 100%;
   border: 1px solid #b0b8c1; /* 진한 테두리 색상 */
   border-radius: 8px;
   box-sizing: border-box;
-  font-size: 1rem;
+  font-size: 0.875rem; /* 14px */
   transition: border-color 0.3s;
-  margin-bottom: 1.25rem; /* 20px */
+  margin-bottom: 1rem; /* 16px */
 
   &:focus {
     border-color: #4aaa87;
@@ -62,19 +62,19 @@ export const Input = styled.input`
 
 export const SmallInput = styled(Input)`
   width: 50%;
-  padding-right: 2.5rem;
+  padding-right: 1.5rem;
 `;
 
 export const AddButton = styled.button`
-  padding: 0.65rem 1.4rem; /* 15px */
+  padding: 0.5rem 1rem; /* 8px 16px */
   background-color: ${props => (props.disabled ? '#b2babb' : '#4aaa87')};
   color: white;
   border: none;
   border-radius: 8px;
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
-  margin-left: 1.2rem;
-  margin-bottom: 1.25rem;
-  font-size: 1rem;
+  margin-left: 0.75rem; /* 12px */
+  margin-bottom: 1rem; /* 16px */
+  font-size: 0.875rem; /* 14px */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,14 +86,14 @@ export const AddButton = styled.button`
 `;
 
 export const Button = styled.button`
-  padding: 0.9375rem 1.25rem; /* 15px 20px */
-  margin-top: 0.9375rem; /* 15px */
+  padding: 0.75rem 1rem; /* 12px 16px */
+  margin-top: 0.75rem; /* 12px */
   background-color: #4aaa87;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.875rem; /* 14px */
   font-weight: bold;
   transition: background-color 0.3s;
   width: 100%;
@@ -105,33 +105,33 @@ export const Button = styled.button`
 
 export const CropContainer = styled.div`
   background-color: #ffffff;
-  padding: 1.875rem; /* 30px */
+  padding: 1.5rem; /* 24px */
   border-radius: 12px;
-  margin-bottom: 1.25rem; /* 20px */
+  margin-bottom: 1rem; /* 16px */
   position: relative;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 37.5rem; /* 600px */
+  max-width: 35rem; /* 560px */
   box-sizing: border-box;
 `;
 
 export const SummaryContainer = styled.div`
   background-color: #ffffff;
-  padding: 1.25rem; /* 20px */
+  padding: 1rem; /* 16px */
   border-radius: 12px;
-  margin-top: 0.8rem; /* 30px */
+  margin-top: 0.75rem; /* 12px */
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 37.5rem; /* 600px */
+  max-width: 35rem; /* 560px */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
 `;
 
 export const SummaryTitle = styled.h2`
-  font-size: 1.5rem;
+  font-size: 1.25rem; /* 20px */
   color: #2c3e50;
-  margin-bottom: 1.25rem; /* 20px */
+  margin-bottom: 1rem; /* 16px */
   font-weight: bold;
 `;
 
@@ -140,10 +140,10 @@ export const SummaryItem = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #f8f9fa;
-  padding: 0.9375rem; /* 15px */
+  padding: 0.75rem; /* 12px */
   border-radius: 12px;
-  margin-bottom: 0.625rem; /* 10px */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0.5rem; /* 8px */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 `;
 
 export const ItemText = styled.div`
@@ -152,13 +152,13 @@ export const ItemText = styled.div`
 `;
 
 export const CropName = styled.p`
-  font-size: 1rem;
+  font-size: 0.875rem; /* 14px */
   color: #2c3e50;
   margin: 0;
 `;
 
 export const CropRatio = styled.p`
-  font-size: 0.875rem;
+  font-size: 0.75rem; /* 12px */
   color: #7f8c8d;
   margin: 0;
 `;
@@ -169,9 +169,9 @@ export const RemoveButton = styled.button`
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.875rem; /* 14px */
   font-weight: bold;
-  padding: 0.625rem 0.9375rem; /* 10px 15px */
+  padding: 0.5rem 0.75rem; /* 8px 12px */
   transition: background-color 0.3s;
   white-space: nowrap;
 
@@ -182,8 +182,8 @@ export const RemoveButton = styled.button`
 
 export const ErrorMessage = styled.p`
   color: #e74c3c;
-  font-size: 0.875rem;
-  margin-top: 0.625rem; /* 10px */
+  font-size: 0.75rem; /* 12px */
+  margin-top: 0.5rem; /* 8px */
 `;
 
 export const List = styled.div`
@@ -221,5 +221,30 @@ export const ListItem = styled.div`
 
   &:not(:last-child) {
     border-bottom: 1px solid #ccc;
+  }
+`;
+
+export const StepTitle = styled.h2`
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem; /* 20px */
+  color: #2c3e50;
+  margin-bottom: 1.5rem; /* 24px */
+  font-weight: bold;
+
+  &::before {
+    content: '${props => props.step}';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #4aaa87;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 1rem;
+    font-weight: bold;
   }
 `;

@@ -261,8 +261,8 @@ const CropTest = () => {
         </div>
         {addError && <ErrorMessage>{addError}</ErrorMessage>}
       </InputContainer>
+      <SummaryTitle>선택 정보</SummaryTitle>
       <SummaryContainer>
-        <SummaryTitle>선택한 정보</SummaryTitle>
         <SummaryItem>
           <ItemText>
             <CropName>재배 면적: {landArea} 평</CropName>
