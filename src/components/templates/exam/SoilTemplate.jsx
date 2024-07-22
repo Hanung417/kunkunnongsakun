@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Modal from 'react-modal';
+import { IoClose, IoSearch } from 'react-icons/io5'; // Close icon and Search icon import
 import { getCropNames, getSoilExamData, getSoilFertilizerInfo } from "../../../apis/predict";
 import { useLoading } from "../../../LoadingContext"; // 로딩 훅 임포트
 import CustomModal from '../../atoms/CustomModal'; // CustomModal 컴포넌트 임포트
 import SoilResults from "./SoilResults";
-import { IoClose } from 'react-icons/io5'; // Close icon import
 
 const Container = styled.div`
   display: flex;
@@ -45,11 +45,56 @@ const Title = styled.h1`
   }
 `;
 
-const InputContainer = styled.div`
-  position: relative;
+const InputLabel = styled.label`
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #333;
+  align-self: flex-start;
+`;
+
+const AddressContainer = styled.div`
+  display: flex;
+  align-items: center;
   width: 100%;
-  max-width: 400px;
-  margin-bottom: 16px;
+  height: 36px;
+`;
+
+const AddressInput = styled(Input)`
+  flex: 1;
+  height: 40px; // 높이 통일
+  @media (max-width: 768px) {
+    height: 36px; // 모바일에서 높이 통일
+  }
+`;
+
+const SearchButton = styled.button`
+  background-color: #4aaa87;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+  height: 36px; // 높이 통일
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #3b8b6d;
+  }
+
+  @media (max-width: 768px) {
+    height: 36px; // 모바일에서 높이 통일
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  svg {
+    margin-left: 8px;
+    font-size: 20px;
+  }
 `;
 
 const Input = styled.input`
@@ -57,33 +102,36 @@ const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 100%;
+  height: 40px; // 높이 통일
   box-sizing: border-box;
   font-size: 16px;
+
   @media (max-width: 768px) {
+    height: 36px; // 모바일에서 높이 통일
     font-size: 14px;
     padding: 6px;
   }
 `;
 
-const Button = styled.button`
-  background-color: #4aaa87;
-  color: white;
-  padding: 1.5rem 2.5rem;
-  border: none;
-  border-radius: 5px;
+const InputContainer = styled.div`
+  position: relative;
+  width: 100%;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+
+  &:last-child {
+    width: calc(100% - 110px); // Adjust to match the combined width of the AddressInput and SearchButton
+  }
+`;
+
+
+
+
+const SearchIcon = styled(IoSearch)`
+  font-size: 20px;
+  color: whitesmoke;
   cursor: pointer;
-  font-size: 1.2rem;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-  margin-top: 1rem;
-
-  &:hover {
-    background-color: #3b8b6d;
-  }
-
-  @media (max-width: 600px) {
-    padding: 0.8rem 1.8rem;
-    font-size: 1rem;
-  }
 `;
 
 const Select = styled.select`
@@ -189,6 +237,27 @@ const customStyles = {
     zIndex: 1101, // Ensure overlay is above other elements
   }
 };
+
+const Button = styled.button`
+  background-color: #4aaa87;
+  color: white;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+
+  &:hover {
+    background-color: #3b8b6d;
+  }
+
+  @media (max-width: 600px) {
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+  }
+`;
 
 Modal.setAppElement('#root');
 
@@ -381,6 +450,7 @@ const SoilTemplate = () => {
       <BoxContainer>
         <Title>토양 분석</Title>
         <InputContainer ref={inputRef}>
+          <InputLabel>작물 이름</InputLabel>
           <Input
             type="text"
             value={cropName}
@@ -400,15 +470,18 @@ const SoilTemplate = () => {
           )}
         </InputContainer>
         <InputContainer>
-          <Input
-            type="text"
-            value={address}
-            onChange={handleAddressChange}
-            onKeyDown={handleKeyDown}
-            placeholder="예) 광주광역시 수완동"
-          />
+          <InputLabel>주소</InputLabel>
+          <AddressContainer>
+            <AddressInput
+              type="text"
+              value={address}
+              onChange={handleAddressChange}
+              onKeyDown={handleKeyDown}
+              placeholder="예) 광주광역시 수완동"
+            />
+            <SearchButton onClick={fetchSoilExamData}>주소 검색 <SearchIcon /></SearchButton>
+          </AddressContainer>
         </InputContainer>
-        <Button onClick={fetchSoilExamData}>주소 검색</Button>
       </BoxContainer>
       <Divider />
       {!analysisDone && (
