@@ -128,3 +128,8 @@ button, input, select, textarea {
 * {
   transition: all 0.2s ease-in-out;
 }
+
+input {
+  autocomplete: off;
+}
+

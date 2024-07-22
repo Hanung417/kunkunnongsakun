@@ -1,231 +1,37 @@
+// CropTest.jsx
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import styled from 'styled-components';
+import Select from 'react-select';
 import { useNavigate } from 'react-router-dom';
 import { getCropNames, predictCrops, getRegionNames } from "../../../apis/crop";
 import { useLoading } from "../../../LoadingContext";
 import CustomModal from "../../atoms/CustomModal";
+import GlobalLoader from "../../../GlobalLoader";
 import { FaPlus, FaTrash } from 'react-icons/fa';
-
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0f2f5;
-  padding: 20px;
-`;
-
-const Title = styled.h1`
-  margin-bottom: 30px;
-  color: #2c3e50;
-  font-size: 2rem;
-  font-weight: bold;
-`;
-
-const InputContainer = styled.div`
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px;
-  position: relative;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-`;
-
-const Label = styled.label`
-  font-size: 1rem;
-  color: #2c3e50;
-  margin-bottom: 5px;
-  display: block;
-`;
-
-const InputRow = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-  width: 100%;
-`;
-
-const Input = styled.input`
-  padding: 15px;
-  width: 100%;
-  border: 1px solid #dfe6e9;
-  border-radius: 8px;
-  box-sizing: border-box;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-  margin-bottom: 20px;
-
-  &:focus {
-    border-color: #4aaa87;
-    outline: none;
-  }
-`;
-
-const SmallInput = styled(Input)`
-  width: calc(50% - 5px); /* 각 입력 박스의 크기를 줄입니다 */
-`;
-
-const AddButton = styled.button`
-  padding: 15px;
-  background-color: #4aaa87;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  margin-left: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #6dc4b0;
-  }
-`;
-
-const Button = styled.button`
-  padding: 15px 20px;
-  margin-top: 15px;
-  background-color: #4aaa87;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  width: 100%;
-
-  &:hover {
-    background-color: #6dc4b0;
-  }
-`;
-
-const CropContainer = styled.div`
-  background-color: #f8f9fa;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  position: relative;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  width: 100%;
-`;
-
-const List = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  position: absolute;
-  z-index: 1;
-  top: 100%;
-  max-height: 200px;
-  overflow-y: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const ListItem = styled.div`
-  padding: 12px;
-  width: 100%;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #f1f1f1;
-  }
-
-  &:not(:last-child) {
-    border-bottom: 1px solid #ccc;
-  }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`;
-
-const SummaryContainer = styled.div`
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  margin-top: 30px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-`;
-
-const SummaryTitle = styled.h2`
-  font-size: 1.5rem;
-  color: #2c3e50;
-  margin-bottom: 20px;
-  font-weight: bold;
-`;
-
-const SummaryItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f8f9fa;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-`;
-
-const ItemText = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const CropName = styled.p`
-  font-size: 1rem;
-  color: #2c3e50;
-  margin: 0;
-`;
-
-const CropRatio = styled.p`
-  font-size: 0.875rem;
-  color: #7f8c8d;
-  margin: 0;
-`;
-
-const RemoveButton = styled.button`
-  background-color: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 10px 15px;
-  transition: background-color 0.3s;
-  white-space: nowrap; /* 텍스트를 가로로 출력되도록 합니다 */
-
-  &:hover {
-    background-color: #c0392b;
-  }
-`;
+import {
+  PageContainer,
+  Title,
+  InputContainer,
+  Label,
+  InputRow,
+  Input,
+  SmallInput,
+  AddButton,
+  Button,
+  CropContainer,
+  SummaryContainer,
+  SummaryTitle,
+  SummaryItem,
+  ItemText,
+  List,
+  ListItem,
+  CropName,
+  CropRatio,
+  RemoveButton,
+  ErrorMessage,
+} from '../../styles/CropTest';
 
 const CropTest = () => {
-  const { setIsLoading } = useLoading();
+  const { setIsLoading, isLoading } = useLoading();
   const [landArea, setLandArea] = useState("");
   const [region, setRegion] = useState("");
   const [currentCrop, setCurrentCrop] = useState({ name: "", ratio: "" });
@@ -239,6 +45,7 @@ const CropTest = () => {
   const [modalContent, setModalContent] = useState("");
   const [modalTitle, setModalTitle] = useState("");
   const [isError, setIsError] = useState(false);
+  const [addError, setAddError] = useState("");
   const navigate = useNavigate();
   const regionRef = useRef(null);
   const cropNameRef = useRef(null);
@@ -248,7 +55,7 @@ const CropTest = () => {
       try {
         const response = await getCropNames();
         setCropNames(response.data.crop_names);
-        setFilteredCropNames(response.data.crop_names);
+        setFilteredCropNames(response.data.crop_names.map(name => ({ value: name, label: name })));
       } catch (err) {
         setModalContent('작물 이름을 불러오는 중 오류가 발생했습니다.');
         setModalTitle('오류');
@@ -273,25 +80,22 @@ const CropTest = () => {
     fetchCropNames();
   }, []);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setCurrentCrop({ ...currentCrop, [name]: value });
-
-    if (name === 'name') {
-      setFilteredCropNames(cropNames.filter(crop => crop.toLowerCase().includes(value.toLowerCase())));
-      setShowCropList(true);
-    }
+  const handleInputChange = (selectedOption) => {
+    setCurrentCrop({ ...currentCrop, name: selectedOption ? selectedOption.value : "" });
   };
 
-  const handleCropSelect = (crop) => {
-    setCurrentCrop({ ...currentCrop, name: crop });
+  const handleCropSelect = (selectedOption) => {
+    setCurrentCrop({ ...currentCrop, name: selectedOption.value });
     setShowCropList(false);
   };
 
   const addCrop = () => {
-    if (currentCrop.name && currentCrop.ratio) {
+    if (landArea && region && currentCrop.name && currentCrop.ratio) {
       setCrops([...crops, currentCrop]);
       setCurrentCrop({ name: "", ratio: "" });
+      setAddError("");
+    } else {
+      setAddError("재배 면적, 지역, 작물 및 비율을 모두 입력해주세요.");
     }
   };
 
@@ -326,7 +130,7 @@ const CropTest = () => {
     }
 
     try {
-      setIsLoading(true); // 로딩 시작
+      setIsLoading(true);
       const session_id = `session_${Date.now()}`;
       const response = await predictCrops({
         land_area: landArea,
@@ -340,10 +144,10 @@ const CropTest = () => {
         const errorMessage = String(response.data.error) === "0"
           ? '해당지역의 도매시장에서 판매하지 않는 작물입니다'
           : response.data.error;
-          setModalContent(errorMessage);
-          setModalTitle('오류');
-          setIsError(true);
-          setIsModalOpen(true);
+        setModalContent(errorMessage);
+        setModalTitle('오류');
+        setIsError(true);
+        setIsModalOpen(true);
       } else {
         navigate('/sessiondetails', { state: { landArea, cropNames: crops.map(crop => crop.name), result: response.data, session_id } });
       }
@@ -356,7 +160,7 @@ const CropTest = () => {
       setIsError(true);
       setIsModalOpen(true);
     } finally {
-      setIsLoading(false); // 로딩 끝
+      setIsLoading(false);
     }
   };
 
@@ -387,6 +191,7 @@ const CropTest = () => {
 
   return (
     <PageContainer>
+      {isLoading && <GlobalLoader />}
       <InputContainer>
         <Label>재배 면적 (평)</Label>
         <Input
@@ -394,6 +199,7 @@ const CropTest = () => {
           placeholder="재배 면적 (평)"
           value={landArea}
           onChange={(e) => setLandArea(e.target.value)}
+          autoComplete="off"
         />
         <Label>지역 선택</Label>
         <div style={{ position: 'relative' }} ref={regionRef}>
@@ -403,6 +209,7 @@ const CropTest = () => {
             value={region}
             onClick={() => setShowRegionList(!showRegionList)}
             readOnly
+            autoComplete="off"
           />
           {showRegionList && (
             <List>
@@ -414,42 +221,48 @@ const CropTest = () => {
             </List>
           )}
         </div>
-        <Label>작물</Label>
-        <CropContainer ref={cropNameRef}>
-          <InputRow>
-            <SmallInput
-              type="text"
-              name="name"
-              placeholder="작물 검색"
-              value={currentCrop.name}
-              onChange={handleInputChange}
-              onClick={() => setShowCropList(true)}
-            />
-          </InputRow>
-          <Label>작물별 비율</Label>
-          <InputRow>
-            <SmallInput
-              type="text"
-              name="ratio"
-              placeholder="작물별 비율"
-              value={currentCrop.ratio}
-              onChange={handleInputChange}
-            />
-            <AddButton onClick={addCrop}><FaPlus /></AddButton>
-          </InputRow>
-          {showCropList && filteredCropNames.length > 0 && (
-            <List>
-              {filteredCropNames.map((cropName, idx) => (
-                <ListItem key={idx} onClick={() => handleCropSelect(cropName)}>
-                  {cropName}
-                </ListItem>
-              ))}
-            </List>
-          )}
-        </CropContainer>
+        <Label>작물 이름</Label>
+        <Select
+          options={filteredCropNames}
+          onChange={handleInputChange}
+          onInputChange={() => setShowCropList(true)}
+          value={filteredCropNames.find(option => option.value === currentCrop.name)}
+          placeholder="작물 검색"
+          styles={{
+            container: base => ({
+              ...base,
+              marginBottom: '20px',
+            }),
+            control: base => ({
+              ...base,
+              border: '1px solid #b0b8c1',
+              borderRadius: '8px',
+              borderColor: '#dfe6e9',
+              '&:hover': {
+                borderColor: '#4aaa87'
+              },
+              boxShadow: 'none'
+            }),
+          }}
+        />
+        <Label>작물별 비율</Label>
+        <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+          <SmallInput
+            type="text"
+            name="ratio"
+            placeholder="작물별 비율"
+            value={currentCrop.ratio}
+            onChange={(e) => setCurrentCrop({ ...currentCrop, ratio: e.target.value })}
+            autoComplete="off"
+          />
+          <AddButton onClick={addCrop} disabled={!landArea || !region || !currentCrop.name || !currentCrop.ratio}>
+            <FaPlus style={{ marginRight: '5px' }} /> 추가하기
+          </AddButton>
+        </div>
+        {addError && <ErrorMessage>{addError}</ErrorMessage>}
       </InputContainer>
+      <SummaryTitle>선택 정보</SummaryTitle>
       <SummaryContainer>
-        <SummaryTitle>선택한 정보</SummaryTitle>
         <SummaryItem>
           <ItemText>
             <CropName>재배 면적: {landArea} 평</CropName>
@@ -469,7 +282,7 @@ const CropTest = () => {
             <RemoveButton onClick={() => removeCrop(index)}><FaTrash /></RemoveButton>
           </SummaryItem>
         ))}
-        <Button onClick={handleSubmit}>제출</Button>
+        <Button onClick={handleSubmit}>예측 결과 보러가기</Button>
       </SummaryContainer>
       <CustomModal
         isOpen={isModalOpen}
