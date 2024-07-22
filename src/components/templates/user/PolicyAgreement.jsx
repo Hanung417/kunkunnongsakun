@@ -208,7 +208,7 @@ const PolicyAgreement = () => {
   useEffect(() => {
     const { ageCheck, usingListCheck, personalInfoCheck, marketingInfoCheck } = isAgreed;
     const allChecked = ageCheck && usingListCheck && personalInfoCheck && marketingInfoCheck;
-    setIsAgreed(prev => ({ ...prev, allChecked }));
+    setIsAgreed(prev => ({ ...prev, allChecked: allChecked }));
   }, [isAgreed.ageCheck, isAgreed.usingListCheck, isAgreed.personalInfoCheck, isAgreed.marketingInfoCheck]);
 
   const handleCheckboxChange = (e) => {
@@ -230,7 +230,7 @@ const PolicyAgreement = () => {
   };
 
   const handleSubmit = () => {
-    if (isAgreed.allChecked) {
+    if (isAgreed.ageCheck && isAgreed.usingListCheck) {
       setCurrentStep(2);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -267,9 +267,9 @@ const PolicyAgreement = () => {
             </CheckboxWrapper>
             {[
               { key: 'ageCheck', label: '서비스 이용약관(필수)', content: '여기에 서비스 이용약관 세부 내용을 입력합니다.' },
-              { key: 'usingListCheck', label: '개인정보 수집 및 이용동의(필수)', content: '여기에 개인정보 수집 및 이용동의 세부 내용을 입력합니다.' },
-              { key: 'personalInfoCheck', label: '수집한 개인정보의 제3자 제공동의(필수)', content: '여기에 수집한 개인정보의 제3자 제공동의 세부 내용을 입력합니다.' },
-              { key: 'marketingInfoCheck', label: '개인정보처리 위탁에 관한 동의(필수)', content: '여기에 개인정보처리 위탁에 관한 동의 세부 내용을 입력합니다.' }
+              { key: 'usingListCheck', label: '개인정보 수집 및 이용동의(필수)', content: '○ 개인정보 수집·이용목적 : 본인확인 및 본인 인증, 서비스 제공, 서비스 품질 개선 및 신규 서비스 개발을 위한 통계관리\n\n○ 개인정보 수집항목. 필수항목 : 성명, 이메일, 비밀번호\n\n○ 개인정보의 보유 및 이용기간 : 회원탈퇴 시 까지\n\n○ 동의거부 권리 및 동의거부에 따른 불이익 : 귀하는 개인정보 제공 및 동의를 거부할 권리가 있으며, 위 항목 동의 거부 시 꾼꾼농사꾼에서 제공하는 서비스 이용이 제한될 수 있습니다.'},
+              { key: 'personalInfoCheck', label: '수집한 개인정보의 제3자 제공동의(선택)', content: '여기에 수집한 개인정보의 제3자 제공동의 세부 내용을 입력합니다.' },
+              { key: 'marketingInfoCheck', label: '개인정보처리 위탁에 관한 동의(선택)', content: '여기에 개인정보처리 위탁에 관한 동의 세부 내용을 입력합니다.' }
             ].map(({ key, label, content }, idx) => (
               <div key={idx}>
                 <CheckboxWrapper>
@@ -294,7 +294,7 @@ const PolicyAgreement = () => {
               </div>
             ))}
           </CheckboxGroup>
-          <Button disabled={!isAgreed.allChecked} onClick={handleSubmit}>회원가입 진행하기</Button>
+          <Button disabled={!(isAgreed.ageCheck && isAgreed.usingListCheck)} onClick={handleSubmit}>회원가입 진행하기</Button>
         </AgreementSection>
       )}
       {currentStep === 2 && <SignupTemplate />}
