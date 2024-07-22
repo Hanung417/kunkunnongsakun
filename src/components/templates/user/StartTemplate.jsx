@@ -82,6 +82,17 @@ const Footer = styled.footer`
   }
 `;
 
+const PrivacyPolicyLink = styled.a`
+  color: #4aaa87;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 0.5rem;
+
+  &:hover {
+    color: #6dc4b0;
+  }
+`;
+
 const StartTemplate = () => {
   const { setIsLoading, isLoading } = useLoading();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -132,6 +143,10 @@ const StartTemplate = () => {
     }
   };
 
+  const handlePrivacyPolicyClick = () => {
+    navigate('/privacy-policy');
+  };
+
   return (
     <Container>
       <GlobalLoader isLoading={isLoading} />
@@ -147,7 +162,10 @@ const StartTemplate = () => {
         showConfirmButton={false}
         isError={isError}
       />
-      <Footer>© 2024 꾼꾼농사꾼. All rights reserved.</Footer>
+      <Footer>
+        © 2024 꾼꾼농사꾼. All rights reserved.
+        <PrivacyPolicyLink onClick={handlePrivacyPolicyClick}>개인정보 처리방침</PrivacyPolicyLink>
+      </Footer>
     </Container>
   );
 };

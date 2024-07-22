@@ -28,6 +28,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import SessionDetails from "./components/templates/crop/SessionDetails";
 import StartTemplate from "./components/templates/user/StartTemplate";
 import PolicyAgreement from "./components/templates/user/PolicyAgreement";
+import PrivacyPolicyPage from "./components/templates/user/PrivacyPolicyPage";
 import { LoadingProvider } from "./LoadingContext";
 import GlobalLoader from "./GlobalLoader";
 
@@ -71,6 +72,7 @@ function App() {
             <Route path="/diagnosislist" element={<DiagnosisListTemplate />} />
             <Route path="/cropselection" element={<CropSelectionPage />} />
             <Route path="/sessiondetails" element={<SessionDetails />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
