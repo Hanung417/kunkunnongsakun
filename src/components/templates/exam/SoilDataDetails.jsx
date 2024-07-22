@@ -6,51 +6,58 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px;
+  padding: 1.5rem 1rem;
   background-color: #f9f9f9;
 `;
 
-
 const RecommendationContainer = styled.div`
-  margin-top: 20px;
   width: 100%;
-  max-width: 600px;
-
-  @media (max-width: 600px) {
-    width: 100%;
-  }
+  max-width: 800px;
+  background-color: #fff;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 2rem;
 `;
 
-const RecommendationTitle = styled.h2`
+const CropInfoContainer = styled.div`
+  margin-bottom: 1.5rem;
+  text-align: left;
+`;
+
+const CropInfo = styled.div`
   font-size: 1.2rem;
-  margin-bottom: 10px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 
   @media (max-width: 600px) {
     font-size: 1rem;
-    margin-bottom: 5px;
+    margin-bottom: 0.25rem;
   }
 `;
 
-const CropNameTitle = styled.h2`
+const CropInfoText = styled.span`
+  color: darkslategray;
+  margin-left: 0.5rem;
+`;
+
+const SectionTitle = styled.h3`
   font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: black;
-  text-align: center;
+  margin-bottom: 1rem;
+  color: #4aaa87;
 
   @media (max-width: 600px) {
     font-size: 1.2rem;
-    margin-bottom: 10px;
+    margin-bottom: 0.75rem;
   }
 `;
 
 const TableContainer = styled.div`
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: flex-start;
+  margin-bottom: 1.5rem;
   width: 100%;
+  overflow-x: auto;
 
   @media (max-width: 600px) {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -60,23 +67,27 @@ const Table = styled.table`
 `;
 
 const TableHeader = styled.th`
-  border: 1px solid #ccc;
-  padding: 8px;
-  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  background-color: #4aaa87;
+  color: #fff;
+  text-align: left;
+  font-weight: normal;
 
   @media (max-width: 600px) {
-    padding: 4px;
-    font-size: 0.8rem;
+    padding: 0.5rem;
+    font-size: 0.875rem;
   }
 `;
 
 const TableData = styled.td`
-  border: 1px solid #ccc;
-  padding: 8px;
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
 
   @media (max-width: 600px) {
-    padding: 4px;
-    font-size: 0.8rem;
+    padding: 0.5rem;
+    font-size: 0.875rem;
   }
 `;
 
@@ -89,21 +100,21 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   background-color: #4aaa87;
   color: white;
-  padding: 12px 24px;
+  padding: 1.5rem 2.5rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1em;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  font-size: 1.2rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
 
   &:hover {
     background-color: #3b8b6d;
   }
 
   @media (max-width: 600px) {
-    padding: 8px 16px;
-    font-size: 0.8em;
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
   }
 `;
 
@@ -127,9 +138,11 @@ const SoilDataDetails = () => {
     <PageContainer>
       {soilData && (
         <RecommendationContainer>
-          <CropNameTitle>작물 이름 : {crop}</CropNameTitle>
-          <CropNameTitle>상세 주소 : {crop_add}</CropNameTitle>
-          <RecommendationTitle>토양 분석 데이터</RecommendationTitle>
+          <CropInfoContainer>
+            <CropInfo>작물: <CropInfoText>{crop}</CropInfoText></CropInfo>
+            <CropInfo>상세 주소: <CropInfoText>{crop_add}</CropInfoText></CropInfo>
+          </CropInfoContainer>
+          <SectionTitle>토양 분석 데이터</SectionTitle>
           <TableContainer>
             <Table>
               <thead>
@@ -140,41 +153,41 @@ const SoilDataDetails = () => {
               </thead>
               <tbody>
                 <tr>
-                  <TableData>산도(ACID)</TableData>
+                  <TableData>산도 (ACID)</TableData>
                   <TableData>{formatValue(soilData.acid)} (pH)</TableData>
                 </tr>
                 <tr>
-                  <TableData>유기물(OM)</TableData>
+                  <TableData>유기물 (OM)</TableData>
                   <TableData>{formatValue(soilData.om)} (g/kg)</TableData>
                 </tr>
                 <tr>
-                  <TableData>인산(VLDPHA)</TableData>
+                  <TableData>인산 (VLDPHA)</TableData>
                   <TableData>{formatValue(soilData.vldpha)} (mg/kg)</TableData>
                 </tr>
                 <tr>
-                  <TableData>칼륨(K)</TableData>
+                  <TableData>칼륨 (K)</TableData>
                   <TableData>{formatValue(soilData.posifert_K)} (cmol+/kg)</TableData>
                 </tr>
                 <tr>
-                  <TableData>칼슘(Ca)</TableData>
+                  <TableData>칼슘 (Ca)</TableData>
                   <TableData>{formatValue(soilData.posifert_Ca)} (cmol+/kg)</TableData>
                 </tr>
                 <tr>
-                  <TableData>마그네슘(Mg)</TableData>
+                  <TableData>마그네슘 (Mg)</TableData>
                   <TableData>{formatValue(soilData.posifert_Mg)} (cmol+/kg)</TableData>
                 </tr>
                 <tr>
-                  <TableData>규산(VLDSIA)</TableData>
+                  <TableData>규산 (VLDSIA)</TableData>
                   <TableData>{formatValue(soilData.vldsia)} (mg/kg)</TableData>
                 </tr>
                 <tr>
-                  <TableData>전기전도도(SELC)</TableData>
+                  <TableData>전기전도도 (SELC)</TableData>
                   <TableData>{formatValue(soilData.selc)} (dS/m)</TableData>
                 </tr>
               </tbody>
             </Table>
           </TableContainer>
-          <RecommendationTitle>비료 처방량</RecommendationTitle>
+          <SectionTitle>비료 처방량</SectionTitle>
           <TableContainer>
             <Table>
               <thead>
@@ -228,7 +241,7 @@ const SoilDataDetails = () => {
             </Table>
           </TableContainer>
           <ButtonContainer>
-            <Button onClick={handleBackToList}>목록보기</Button>
+            <Button onClick={handleBackToList}>목록으로 돌아가기</Button>
           </ButtonContainer>
         </RecommendationContainer>
       )}

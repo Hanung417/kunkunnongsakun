@@ -4,45 +4,39 @@ import styled from "styled-components";
 import { FaTrash } from 'react-icons/fa';
 import ConfirmModal from "../../atoms/ConfirmModal";
 import { getSoilCropData, deleteSoilData } from "../../../apis/predict";
-import { useLoading } from "../../../LoadingContext"; // 로딩 훅 임포트
+import { useLoading } from "../../../LoadingContext";
+import ReactPaginate from "react-paginate";
 
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px;
+  padding: 1.5rem 0.8rem;
   background-color: #f9f9f9;
-`;
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-  margin-top: 30px;
 `;
 
 const SessionList = styled.div`
   width: 100%;
+  padding: 1rem 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 20px; /* Add some margin to separate from the AddButton */
+  gap: 0.625rem;
 `;
 
 const SessionItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 0.625rem;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  position: relative;
+  margin: 0 0.5rem;
 
-  @media (max-width: 600px) {
+  @media (max-width: 37.5rem) {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -51,11 +45,16 @@ const SessionItem = styled.div`
 const SessionInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 0.3125rem;
 
-  @media (max-width: 600px) {
-    gap: 2px;
+  @media (max-width: 37.5rem) {
+    gap: 0.125rem;
   }
+`;
+
+const SessionDate = styled.div`
+  font-size: 0.875rem;
+  color: #888;
 `;
 
 const DeleteButton = styled.button`
@@ -63,55 +62,113 @@ const DeleteButton = styled.button`
   border: none;
   color: #e53e3e;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1.125rem;
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
 
   &:hover {
     color: #c53030;
-  }
-
-  @media (max-width: 600px) {
-    align-self: flex-end;
   }
 `;
 
 const AddButton = styled.button`
   background-color: #4aaa87;
   color: white;
-  padding: 12px 24px;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.3125rem;
   cursor: pointer;
-  font-size: 1.3em;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px; /* Add some margin to separate from the SessionList */
+  font-size: 1.3rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  margin-top: 0.2rem;
 
   &:hover {
     background-color: #3b8b6d;
   }
 
-  @media (max-width: 600px) {
-    padding: 8px 16px;
-    font-size: 1em;
+  @media (max-width: 37.5rem) {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
   }
 `;
 
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+
+  .pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  .pagination li {
+    margin: 0 0.3125rem;
+  }
+
+  .pagination li a {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    color: #4aaa87;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .pagination li a:hover {
+    background-color: #f5f5f5;
+    color: #3e8e75;
+  }
+
+  .pagination li.active a {
+    background-color: #4aaa87;
+    color: white;
+    border: none;
+  }
+
+  .pagination li.previous a,
+  .pagination li.next a {
+    color: #888;
+  }
+
+  .pagination li.disabled a {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
+const formatDateTime = (dateString) => {
+  const options = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit'
+  };
+  return new Date(dateString).toLocaleDateString('ko-KR', options);
+};
+
 const SoilListTemplate = () => {
-  const { setIsLoading } = useLoading(); // 로딩 훅 사용
+  const { setIsLoading } = useLoading();
   const [soilData, setSoilData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
   const navigate = useNavigate();
+  const sessionsPerPage = 4;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setIsLoading(true); // 로딩 시작
+        setIsLoading(true);
         const response = await getSoilCropData();
         setSoilData(response.data);
       } catch (error) {
         console.error('Failed to fetch soil data', error);
       } finally {
-        setIsLoading(false); // 로딩 끝
+        setIsLoading(false);
       }
     };
 
@@ -119,19 +176,19 @@ const SoilListTemplate = () => {
   }, [setIsLoading]);
 
   const handleSoilDataClick = (data) => {
-    navigate('/soil_details', { state: { soilData: data.soil_data, fertilizerData: data.fertilizer_data, crop: data.crop_name, crop_add:data.detailed_address } });
+    navigate('/soil_details', { state: { soilData: data.soil_data, fertilizerData: data.fertilizer_data, crop: data.crop_name, crop_add: data.detailed_address } });
   };
 
   const handleDeleteSoilData = async () => {
     try {
-      setIsLoading(true); // 로딩 시작
+      setIsLoading(true);
       await deleteSoilData(selectedSessionId);
       setSoilData(soilData.filter(soil => soil.session_id !== selectedSessionId));
       closeModal();
     } catch (error) {
       console.error('Failed to delete soil data', error);
     } finally {
-      setIsLoading(false); // 로딩 끝
+      setIsLoading(false);
     }
   };
 
@@ -146,44 +203,68 @@ const SoilListTemplate = () => {
   };
 
   const handleAddClick = () => {
-    navigate('/soil'); // '/soil' 경로로 이동
+    navigate('/soil');
   };
 
-  const groupedData = soilData.reduce((acc, item) => {
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const indexOfLastSession = (currentPage + 1) * sessionsPerPage;
+  const indexOfFirstSession = indexOfLastSession - sessionsPerPage;
+  const currentSessions = Object.keys(soilData.reduce((acc, item) => {
     if (!acc[item.session_id]) {
       acc[item.session_id] = [];
     }
     acc[item.session_id].push(item);
     return acc;
-  }, {});
+  }, {})).slice(indexOfFirstSession, indexOfLastSession);
+
+  const pageCount = Math.ceil(Object.keys(soilData.reduce((acc, item) => {
+    if (!acc[item.session_id]) {
+      acc[item.session_id] = [];
+    }
+    acc[item.session_id].push(item);
+    return acc;
+  }, {})).length / sessionsPerPage);
 
   return (
     <PageContainer>
-      <Content>
-        <AddButton onClick={handleAddClick}>새 토양 데이터 추가</AddButton>
-        <SessionList>
-          {Object.keys(groupedData).map(sessionId => (
-            <SessionItem key={sessionId} onClick={() => handleSoilDataClick(groupedData[sessionId][0])}>
-              <SessionInfo>
-                {groupedData[sessionId].map(soil => (
-                  <div key={soil.id}>
-                    <div>작물 이름 : {soil.crop_name}</div>
-                    <div>주소 : {soil.address}</div>
-                    <div>상세 주소 : {soil.detailed_address}</div>
-                    <div>시간 : {soil.created_at}</div>
-                  </div>
-                ))}
-              </SessionInfo>
-              <DeleteButton onClick={(e) => {
-                e.stopPropagation();
-                openModal(sessionId);
-              }}>
-                <FaTrash />
-              </DeleteButton>
-            </SessionItem>
-          ))}
-        </SessionList>
-      </Content>
+      <AddButton onClick={handleAddClick}>새 토양 데이터 추가</AddButton>
+      <SessionList>
+        {currentSessions.map(sessionId => (
+          <SessionItem key={sessionId} onClick={() => handleSoilDataClick(soilData.find(soil => soil.session_id === sessionId))}>
+            <SessionInfo>
+              <SessionDate>{formatDateTime(soilData.find(soil => soil.session_id === sessionId).created_at)}</SessionDate>
+              <div><strong>작물:</strong> {soilData.find(soil => soil.session_id === sessionId).crop_name}</div>
+              <div><strong>주소:</strong> {soilData.find(soil => soil.session_id === sessionId).address}</div>
+              <div><strong>상세 주소:</strong> {soilData.find(soil => soil.session_id === sessionId).detailed_address}</div>
+            </SessionInfo>
+            <DeleteButton onClick={(e) => {
+              e.stopPropagation();
+              openModal(sessionId);
+            }}>
+              <FaTrash />
+            </DeleteButton>
+          </SessionItem>
+        ))}
+      </SessionList>
+      <PaginationContainer>
+        <ReactPaginate
+          previousLabel={"이전"}
+          nextLabel={"다음"}
+          breakLabel={"..."}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageChange}
+          containerClassName={"pagination"}
+          activeClassName={"active"}
+          previousClassName={"previous"}
+          nextClassName={"next"}
+          disabledClassName={"disabled"}
+        />
+      </PaginationContainer>
       <ConfirmModal
         isOpen={isModalOpen}
         onRequestClose={closeModal}

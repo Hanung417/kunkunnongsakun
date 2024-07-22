@@ -5,6 +5,8 @@ import Modal from 'react-modal';
 import { getCropNames, getSoilExamData, getSoilFertilizerInfo } from "../../../apis/predict";
 import { useLoading } from "../../../LoadingContext"; // 로딩 훅 임포트
 import CustomModal from '../../atoms/CustomModal'; // CustomModal 컴포넌트 임포트
+import SoilResults from "./SoilResults";
+import { IoClose } from 'react-icons/io5'; // Close icon import
 
 const Container = styled.div`
   display: flex;
@@ -12,8 +14,6 @@ const Container = styled.div`
   align-items: center;
   padding: 24px;
   background-color: #f9f9f9;
-  box-sizing: border-box;
-  min-height: 50vh;
   @media (max-width: 768px) {
     padding: 16px;
   }
@@ -66,24 +66,23 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  padding: 12px 16px;
-  font-size: 14px;
-  color: white;
   background-color: #4aaa87;
+  color: white;
+  padding: 1.5rem 2.5rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 1.2rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+
   &:hover {
-    background-color: #6dc4b0;
+    background-color: #3b8b6d;
   }
-  &:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  margin-bottom: 16px;
-  @media (max-width: 768px) {
-    padding: 10px 14px;
-    font-size: 12px;
+
+  @media (max-width: 600px) {
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
   }
 `;
 
@@ -132,77 +131,10 @@ const CropItem = styled.div`
   }
 `;
 
-const RecommendationContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-  margin-top: 24px;
-  background-color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  @media (max-width: 768px) {
-    padding: 12px;
-    margin-top: 16px;
-  }
-`;
-
-const RecommendationTitle = styled.h2`
-  font-size: 20px;
-  margin-bottom: 16px;
-  color: #333;
-  @media (max-width: 768px) {
-    font-size: 18px;
-    margin-bottom: 12px;
-  }
-`;
-
-const TableContainer = styled.div`
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch; /* iOS 스크롤 부드럽게 */
-  @media (max-width: 768px) {
-    overflow-x: hidden;
-  }
-`;
-
-const Table = styled.table`
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
-  margin-bottom: 16px;
-  @media (max-width: 768px) {
-    font-size: 14px;
-  }
-`;
-
-const TableHeader = styled.th`
-  border: 1px solid #ccc;
-  padding: 8px;
-  background-color: #f1f1f1;
-  width: 150px;
-  @media (max-width: 768px) {
-    padding: 6px;
-    font-size: 14px;
-  }
-`;
-
-const TableData = styled.td`
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: center;
-  width: 150px;
-  @media (max-width: 768px) {
-    padding: 6px;
-    font-size: 14px;
-  }
-`;
-
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: center; /* 가운데 정렬 */
+  justify-content: center;
+  gap: 12px;
   width: 100%;
   margin-top: 16px;
   @media (max-width: 768px) {
@@ -226,6 +158,18 @@ const ModalContent = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+`;
+
+const ModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const Divider = styled.hr`
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ccc;
 `;
 
 const customStyles = {
@@ -416,11 +360,6 @@ const SoilTemplate = () => {
     setErrorModalIsOpen(false);
   };
 
-  const formatValue = (value) => {
-    const num = Number(value);
-    return num < 1 ? `${num}` : num.toString();
-  };
-
   const handleBackToList = () => {
     navigate('/soillist');
   };
@@ -471,9 +410,10 @@ const SoilTemplate = () => {
         </InputContainer>
         <Button onClick={fetchSoilExamData}>주소 검색</Button>
       </BoxContainer>
+      <Divider />
       {!analysisDone && (
         <ExternalButtonContainer>
-          <Button onClick={handleBackToList}>목록보기</Button>
+          <Button onClick={handleBackToList}>목록으로 돌아가기</Button>
         </ExternalButtonContainer>
       )}
       <Modal
@@ -482,8 +422,11 @@ const SoilTemplate = () => {
         style={customStyles}
         contentLabel="Soil Samples Modal"
       >
-        <ModalContent>
+        <ModalHeader>
           <h2>상세 주소</h2>
+          <IoClose size={24} onClick={closeModal} style={{ cursor: 'pointer' }} />
+        </ModalHeader>
+        <ModalContent>
           <Select onChange={handleSampleChange} onKeyDown={handleModalKeyDown}>
             <option value="">선택</option>
             {soilData.map(sample => (
@@ -492,10 +435,7 @@ const SoilTemplate = () => {
               </option>
             ))}
           </Select>
-          <ButtonContainer>
-            <Button onClick={fetchFertilizerData} disabled={isFetching || !selectedSample}>분석하기</Button>
-            <Button onClick={closeModal}>닫기</Button>
-          </ButtonContainer>
+          <Button onClick={fetchFertilizerData} disabled={isFetching || !selectedSample}>분석하기</Button>
         </ModalContent>
       </Modal>
       <CustomModal
@@ -510,130 +450,12 @@ const SoilTemplate = () => {
         contentStyles={{ zIndex: 1104 }} // Ensure modal content is above other elements
       />
       {selectedSoilSample && fertilizerData && (
-        <RecommendationContainer>
-          <RecommendationTitle>상세주소 : {selectedSoilSample.PNU_Nm}</RecommendationTitle>
-          <RecommendationTitle>토양 분석 데이터</RecommendationTitle>
-          <TableContainer>
-            <Table>
-              <thead>
-                <tr>
-                  <TableHeader>항목</TableHeader>
-                  <TableHeader>값</TableHeader>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <TableData>산도(ACID)</TableData>
-                  <TableData>{formatValue(selectedSoilSample.ACID)} (pH)</TableData>
-                </tr>
-                <tr>
-                  <TableData>유기물(OM)</TableData>
-                  <TableData>{formatValue(selectedSoilSample.OM)} (g/kg)</TableData>
-                </tr>
-                <tr>
-                  <TableData>인산(VLDPHA)</TableData>
-                  <TableData>{formatValue(selectedSoilSample.VLDPHA)} (mg/kg)</TableData>
-                </tr>
-                <tr>
-                  <TableData>칼륨(K)</TableData>
-                  <TableData>{formatValue(selectedSoilSample.POSIFERT_K)} (cmol+/kg)</TableData>
-                </tr>
-                <tr>
-                  <TableData>칼슘(Ca)</TableData>
-                  <TableData>{formatValue(selectedSoilSample.POSIFERT_CA)} (cmol+/kg)</TableData>
-                </tr>
-                <tr>
-                  <TableData>마그네슘(Mg)</TableData>
-                  <TableData>{formatValue(selectedSoilSample.POSIFERT_MG)} (cmol+/kg)</TableData>
-                </tr>
-                <tr>
-                  <TableData>규산(VLDSIA)</TableData>
-                  <TableData>{formatValue(selectedSoilSample.VLDSIA)} (mg/kg)</TableData>
-                </tr>
-                <tr>
-                  <TableData>전기전도도(SELC)</TableData>
-                  <TableData>{formatValue(selectedSoilSample.SELC)} (dS/m)</TableData>
-                </tr>
-              </tbody>
-            </Table>
-          </TableContainer>
-          <RecommendationTitle>비료 처방량</RecommendationTitle>
-          <TableContainer>
-            <Table>
-              <thead>
-                <tr>
-                  <TableHeader>항목</TableHeader>
-                  <TableHeader>값</TableHeader>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <TableData>밑거름_질소 처방량</TableData>
-                  {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.pre_Fert_N} (kg/10a)</TableData>
-                  ))}
-                </tr>
-                <tr>
-                  <TableData>밑거름_인산 처방량</TableData>
-                  {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.pre_Fert_P} (kg/10a)</TableData>
-                  ))}
-                </tr>
-                <tr>
-                  <TableData>밑거름_칼리 처방량</TableData>
-                  {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.pre_Fert_K} (kg/10a)</TableData>
-                  ))}
-                </tr>
-                <tr>
-                  <TableData>웃거름_질소 처방량</TableData>
-                  {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.post_Fert_N} (kg/10a)</TableData>
-                  ))}
-                </tr>
-                <tr>
-                  <TableData>웃거름_인산 처방량</TableData>
-                  {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.post_Fert_P} (kg/10a)</TableData>
-                  ))}
-                </tr>
-                <tr>
-                  <TableData>웃거름_칼리 처방량</TableData>
-                  {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.post_Fert_K} (kg/10a)</TableData>
-                  ))}
-                </tr>
-                <tr>
-                  <TableData>우분퇴비 처방량</TableData>
-                  {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.pre_Compost_Cattl} (kg/10a)</TableData>
-                  ))}
-                </tr>
-                <tr>
-                  <TableData>돈분퇴비 처방량</TableData>
-                  {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.pre_Compost_Pig} (kg/10a)</TableData>
-                  ))}
-                </tr>
-                <tr>
-                  <TableData>계분퇴비 처방량</TableData>
-                  {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.pre_Compost_Chick} (kg/10a)</TableData>
-                  ))}
-                </tr>
-                <tr>
-                  <TableData>혼합퇴비 처방량</TableData>
-                  {fertilizerData.map((item, index) => (
-                    <TableData key={index}>{item.pre_Compost_Mix}(kg/10a)</TableData>
-                  ))}
-                </tr>
-              </tbody>
-            </Table>
-          </TableContainer>
-          <ButtonContainer>
-            <Button onClick={handleBackToList}>목록보기</Button>
-          </ButtonContainer>
-        </RecommendationContainer>
+        <SoilResults
+          cropName={cropName} // 작물 이름 전달
+          selectedSoilSample={selectedSoilSample}
+          fertilizerData={fertilizerData}
+          handleBackToList={handleBackToList}
+        />
       )}
     </Container>
   );

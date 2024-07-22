@@ -7,6 +7,7 @@ import Chart from 'chart.js/auto';
 import { CategoryScale, TimeScale } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 import { useLoading } from "../../../LoadingContext";
+import GlobalLoader from "../../../GlobalLoader";
 
 Chart.register(CategoryScale, TimeScale);
 
@@ -31,43 +32,45 @@ const SectionContainer = styled.div`
   flex: 1;
 `;
 
-const InfoTable = styled.table`
+const InfoTableContainer = styled.div`
   width: 100%;
   max-width: 800px;
-  border-collapse: collapse;
   margin-bottom: 20px;
+`;
+
+const InfoTableTitle = styled.h3`
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+`;
+
+const InfoTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
 
   th, td {
-    padding: 16px;
+    padding: 12px;
     border: 1px solid #ddd;
     text-align: left;
-    font-size: 1.2rem;
+    font-size: 1.2rem; /* 폰트 크기 증가 */
   }
 
-  th {
-    background-color: #4aaa87;
-    color: white;
+  td:first-child {
+    width: 40%;
     font-weight: bold;
+    background-color: #f9f9f9;
   }
 
-  td {
-    background-color: #fff;
-    color: #333;
+  td:last-child {
+    width: 60%;
   }
 
   @media (max-width: 768px) {
     th, td {
-      font-size: 0.9rem;
-      padding: 12px;
+      font-size: 1rem; 
+      padding: 10px;
     }
   }
-`;
-
-const SmallText = styled.p`
-  font-size: 0.8rem;
-  color: #666;
-  margin-top: -10px;
-  margin-bottom: 20px;
 `;
 
 const ChartContainer = styled.div`
@@ -284,10 +287,10 @@ const formatNumber = (num) => {
     return (num / 1000000000000).toFixed(1) + '조원';
   } else if (num >= 100000000) {
     return (num / 100000000).toFixed(1) + '억원';
-  } else if (num >= 10000) {
-    return (num / 10000).toFixed(1) + '만원';
-  } else if (num >= 1000) {
-    return (num / 1000).toFixed(1) + '천원';
+  } else if (num >= 10000000) {
+    return (num / 10000000).toFixed(1) + '천만원';
+  } else if (num >= 1000000) {
+    return (num / 1000000).toFixed(1) + '백만원';
   } else {
     return num.toLocaleString() + '원';
   }
@@ -300,7 +303,7 @@ const SessionDetails = () => {
   const [sessionDetails, setSessionDetails] = useState(null);
   const [barChartData, setBarChartData] = useState(null);
   const [lineChartData, setLineChartData] = useState(null);
-  const { setIsLoading } = useLoading();
+  const { setIsLoading, isLoading } = useLoading();
   const [isChartLoading, setIsChartLoading] = useState(false);
 
   const updateCharts = (details, index) => {
@@ -343,14 +346,14 @@ const SessionDetails = () => {
   const handleTabClick = (index) => {
     setSelectedCropIndex(index);
     setIsChartLoading(true);
-    
-    setTimeout(() => {
-      if (sessionDetails) {
-        updateCharts(sessionDetails, index);
-      }
-      setIsChartLoading(false);
-    }, 500); // 임의의 지연 시간 추가 (로딩 애니메이션이 보이도록)
+
+    if (sessionDetails) {
+      updateCharts(sessionDetails, index);
+    }
+
+    setIsChartLoading(false);
   };
+
 
   if (!sessionDetails || !barChartData || !lineChartData) {
     return <div></div>;
@@ -361,33 +364,30 @@ const SessionDetails = () => {
 
   return (
     <PageContainer>
+      {isLoading && <GlobalLoader />} {/* GlobalLoader를 로딩 중일 때만 표시 */}
       <SectionContainer>
-        <InfoTable>
-          <thead>
-            <tr>
-              <th>항목</th>
-              <th>값</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>지역</td>
-              <td>{sessionDetails.region}</td>
-            </tr>
-            <tr>
-              <td>선택한 작물</td>
-              <td>{cropNames.join(', ')}</td>
-            </tr>
-            <tr>
-              <td>토지 면적</td>
-              <td>{sessionDetails.land_area.toLocaleString()} 평</td>
-            </tr>
-            <tr>
-              <td>총 수입</td>
-              <td>{formatNumber(Math.round(adjustedDataList[selectedCropIndex]["총수입 (원)"]))}</td>
-            </tr>
-          </tbody>
-        </InfoTable>
+        <InfoTableContainer>
+          <InfoTable>
+            <tbody>
+              <tr>
+                <td>지역</td>
+                <td>{sessionDetails.region}</td>
+              </tr>
+              <tr>
+                <td>선택한 작물</td>
+                <td>{cropNames.join(', ')}</td>
+              </tr>
+              <tr>
+                <td>토지 면적</td>
+                <td>{sessionDetails.land_area.toLocaleString()} 평</td>
+              </tr>
+              <tr>
+                <td>총 수입</td>
+                <td>{formatNumber(Math.round(adjustedDataList[selectedCropIndex]["총수입 (원)"]))}</td>
+              </tr>
+            </tbody>
+          </InfoTable>
+        </InfoTableContainer>
         <Tabs>
           {cropNames.map((cropName, index) => (
             <TabButton

@@ -1,4 +1,3 @@
-// CropTest.jsx
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Select from 'react-select';
 import { useNavigate } from 'react-router-dom';
@@ -28,6 +27,8 @@ import {
   CropRatio,
   RemoveButton,
   ErrorMessage,
+  StepTitle,
+  RemoveIcon,
 } from '../../styles/CropTest';
 
 const CropTest = () => {
@@ -46,23 +47,26 @@ const CropTest = () => {
   const [modalTitle, setModalTitle] = useState("");
   const [isError, setIsError] = useState(false);
   const [addError, setAddError] = useState("");
+  const [selectKey, setSelectKey] = useState(0); // 추가된 key state
   const navigate = useNavigate();
   const regionRef = useRef(null);
   const cropNameRef = useRef(null);
 
+  const fetchCropNames = async () => {
+    try {
+      const response = await getCropNames();
+      setCropNames(response.data.crop_names);
+      setFilteredCropNames(response.data.crop_names.map(name => ({ value: name, label: name })));
+    } catch (err) {
+      setModalContent('작물 이름을 불러오는 중 오류가 발생했습니다.');
+      setModalTitle('오류');
+      setIsError(true);
+      setIsModalOpen(true);
+    }
+  };
+
   useEffect(() => {
-    const fetchCropNames = async () => {
-      try {
-        const response = await getCropNames();
-        setCropNames(response.data.crop_names);
-        setFilteredCropNames(response.data.crop_names.map(name => ({ value: name, label: name })));
-      } catch (err) {
-        setModalContent('작물 이름을 불러오는 중 오류가 발생했습니다.');
-        setModalTitle('오류');
-        setIsError(true);
-        setIsModalOpen(true);
-      }
-    };
+    fetchCropNames();
 
     const fetchRegionNames = async () => {
       try {
@@ -76,8 +80,8 @@ const CropTest = () => {
         setIsModalOpen(true);
       }
     };
+
     fetchRegionNames();
-    fetchCropNames();
   }, []);
 
   const handleInputChange = (selectedOption) => {
@@ -85,15 +89,17 @@ const CropTest = () => {
   };
 
   const handleCropSelect = (selectedOption) => {
-    setCurrentCrop({ ...currentCrop, name: selectedOption.value });
+    setCurrentCrop({ ...currentCrop, name: selectedOption ? selectedOption.value : "" });
     setShowCropList(false);
   };
 
-  const addCrop = () => {
+  const addCrop = async () => {
     if (landArea && region && currentCrop.name && currentCrop.ratio) {
-      setCrops([...crops, currentCrop]);
+      setCrops([...crops, { ...currentCrop, id: crops.length + 1 }]);
       setCurrentCrop({ name: "", ratio: "" });
       setAddError("");
+      setSelectKey(prevKey => prevKey + 1); // key를 변경하여 Select 컴포넌트를 재설정
+      await fetchCropNames(); // 작물 이름 리스트를 다시 불러옴
     } else {
       setAddError("재배 면적, 지역, 작물 및 비율을 모두 입력해주세요.");
     }
@@ -192,6 +198,7 @@ const CropTest = () => {
   return (
     <PageContainer>
       {isLoading && <GlobalLoader />}
+      <SummaryTitle step="1">작물정보 입력</SummaryTitle>
       <InputContainer>
         <Label>재배 면적 (평)</Label>
         <Input
@@ -221,8 +228,11 @@ const CropTest = () => {
             </List>
           )}
         </div>
+        <p style={{ color: '#7f8c8d', fontSize: '0.875rem', marginTop: '0.625rem' }}>원하는 작물과 비율을 선택하여 추가하기를 눌러주세요</p>
+        <p style={{ color: '#7f8c8d', fontSize: '0.875rem', marginTop: '0.625rem' }}>각 작물별 비율은 합해서 1이 되어야 합니다.</p>
         <Label>작물 이름</Label>
         <Select
+          key={selectKey} // key를 설정하여 컴포넌트를 재설정
           options={filteredCropNames}
           onChange={handleInputChange}
           onInputChange={() => setShowCropList(true)}
@@ -231,7 +241,7 @@ const CropTest = () => {
           styles={{
             container: base => ({
               ...base,
-              marginBottom: '20px',
+              marginBottom: '18px',
             }),
             control: base => ({
               ...base,
@@ -246,22 +256,22 @@ const CropTest = () => {
           }}
         />
         <Label>작물별 비율</Label>
-        <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+        <div style={{ display: 'flex', alignItems: 'left', height: '2.5rem', margin: '0.7rem 0', }}>
           <SmallInput
             type="text"
             name="ratio"
-            placeholder="작물별 비율"
+            placeholder="ex) 0.5, 1"
             value={currentCrop.ratio}
             onChange={(e) => setCurrentCrop({ ...currentCrop, ratio: e.target.value })}
             autoComplete="off"
           />
           <AddButton onClick={addCrop} disabled={!landArea || !region || !currentCrop.name || !currentCrop.ratio}>
-            <FaPlus style={{ marginRight: '5px' }} /> 추가하기
+            <FaPlus style={{ marginRight: '0.5rem' }} /> 추가하기
           </AddButton>
         </div>
         {addError && <ErrorMessage>{addError}</ErrorMessage>}
       </InputContainer>
-      <SummaryTitle>선택 정보</SummaryTitle>
+      <SummaryTitle step="2">입력 정보 확인</SummaryTitle>
       <SummaryContainer>
         <SummaryItem>
           <ItemText>
@@ -276,10 +286,10 @@ const CropTest = () => {
         {crops.map((crop, index) => (
           <SummaryItem key={index}>
             <ItemText>
-              <CropName>작물: {crop.name}</CropName>
+              <CropName>{crop.id}. 작물: {crop.name}</CropName>
               <CropRatio>비율: {crop.ratio}</CropRatio>
             </ItemText>
-            <RemoveButton onClick={() => removeCrop(index)}><FaTrash /></RemoveButton>
+            <RemoveIcon onClick={() => removeCrop(index)}><FaTrash /></RemoveIcon>
           </SummaryItem>
         ))}
         <Button onClick={handleSubmit}>예측 결과 보러가기</Button>
