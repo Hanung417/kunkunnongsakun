@@ -143,19 +143,33 @@ const Select = styled.select`
 const CropList = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; // 왼쪽 정렬로 변경
   width: 100%;
   max-width: 400px;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  position: absolute;
   z-index: 1;
   top: 70px;
-  max-height: 200px;
+  max-height: 200px; // 높이 제한 설정
   overflow-y: auto;
+
+  // 스크롤바 스타일 커스터마이징
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #f9f9f9;
+  }
 `;
+
 
 const CropItem = styled.div`
   padding: 8px;
