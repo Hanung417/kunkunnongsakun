@@ -7,7 +7,7 @@ import Chart from 'chart.js/auto';
 import { CategoryScale, TimeScale } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 import { useLoading } from "../../../LoadingContext";
-import GlobalLoader from "../../../GlobalLoader";
+import GlobalLoader from "../../atoms/GlobalLoader";
 
 Chart.register(CategoryScale, TimeScale);
 

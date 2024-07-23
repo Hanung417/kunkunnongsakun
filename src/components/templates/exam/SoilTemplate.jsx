@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Modal from 'react-modal';
-import { IoClose, IoSearch } from 'react-icons/io5'; // Close icon and Search icon import
+import { IoSearch } from 'react-icons/io5'; // Close icon and Search icon import
+import Modal from 'react-modal'; // Modal 컴포넌트 불러오기
 import { getCropNames, getSoilExamData, getSoilFertilizerInfo } from "../../../apis/predict";
 import { useLoading } from "../../../LoadingContext"; // 로딩 훅 임포트
 import CustomModal from '../../atoms/CustomModal'; // CustomModal 컴포넌트 임포트
@@ -27,7 +27,6 @@ const BoxContainer = styled.div`
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 24px;
   width: 100%;
   max-width: 600px;
   @media (max-width: 768px) {
@@ -70,13 +69,12 @@ const Input = styled.input`
 
 const AddressContainer = styled.div`
   display: flex;
-  align-items: center;
   width: 100%;
-  height: 36px;
+  align-items: center;
 `;
 
 const AddressInput = styled(Input)`
-  flex: 1;
+  width: calc(100% - 110px);
   height: 40px; // 높이 통일
   @media (max-width: 768px) {
     height: 36px; // 모바일에서 높이 통일
@@ -92,7 +90,7 @@ const SearchButton = styled.button`
   font-size: 1rem;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   margin-left: 10px;
-  height: 36px; // 높이 통일
+  height: 40px; // 높이 통일
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,10 +117,6 @@ const InputContainer = styled.div`
   margin-bottom: 16px;
   display: flex;
   flex-direction: column;
-
-  &:last-child {
-    width: calc(100% - 110px); // Adjust to match the combined width of the AddressInput and SearchButton
-  }
 `;
 
 const SearchIcon = styled(IoSearch)`
@@ -149,19 +143,33 @@ const Select = styled.select`
 const CropList = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; // 왼쪽 정렬로 변경
   width: 100%;
   max-width: 400px;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  position: absolute;
   z-index: 1;
-  top: 40px;
-  max-height: 200px;
+  top: 70px;
+  max-height: 200px; // 높이 제한 설정
   overflow-y: auto;
+
+  // 스크롤바 스타일 커스터마이징
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #f9f9f9;
+  }
 `;
+
 
 const CropItem = styled.div`
   padding: 8px;
@@ -196,19 +204,6 @@ const ExternalButtonContainer = styled.div`
   @media (max-width: 768px) {
     margin-top: 12px;
   }
-`;
-
-const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-`;
-
-const ModalHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
 `;
 
 const Divider = styled.hr`
@@ -269,11 +264,8 @@ const SoilTemplate = () => {
   const [filteredCropNames, setFilteredCropNames] = useState([]);
   const [showCropList, setShowCropList] = useState(false);
   const [error, setError] = useState(null);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedSoilSample, setSelectedSoilSample] = useState(null);
-  const [isFetching, setIsFetching] = useState(false); // 상태 추가
-  const [analysisDone, setAnalysisDone] = useState(false); // 분석 완료 상태 추가
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false); // 에러 모달 상태 추가
+  const [analysisDone, setAnalysisDone] = useState(false); // 분석 완료 상태 추가
   const navigate = useNavigate(); // 네비게이트 추가
 
   const inputRef = useRef(null);
@@ -286,9 +278,37 @@ const SoilTemplate = () => {
   };
 
   const handleAddressChange = (e) => setAddress(e.target.value);
-  const handleSampleChange = (e) => {
-    setSelectedSample(e.target.value);
-    setSelectedSoilSample(soilData.find(sample => sample.No === e.target.value));
+
+  const handleSampleChange = async (e) => {
+    const selectedSampleId = e.target.value;
+    const selected = soilData.find(sample => sample.No === selectedSampleId);
+    setSelectedSample(selected);
+
+    try {
+      setIsLoading(true); // 로딩 시작
+      const response = await getSoilFertilizerInfo({
+        crop_code: cropName,
+        address: address,
+        acid: selected.ACID ?? 0,
+        om: selected.OM ?? 0,
+        vldpha: selected.VLDPHA ?? 0,
+        posifert_K: selected.POSIFERT_K ?? 0,
+        posifert_Ca: selected.POSIFERT_CA ?? 0,
+        posifert_Mg: selected.POSIFERT_MG ?? 0,
+        vldsia: selected.VLDSIA ?? 0,
+        selc: selected.SELC ?? 0,
+        PNU_Nm: selected.PNU_Nm
+      });
+      setFertilizerData(response.data.data);
+      setError(null);
+      setAnalysisDone(true); // 분석 완료 상태 설정
+    } catch (err) {
+      setError(err.response.data.error);
+      setErrorModalIsOpen(true); // 에러 모달 오픈
+      setFertilizerData(null);
+    } finally {
+      setIsLoading(false); // 로딩 끝
+    }
   };
 
   useEffect(() => {
@@ -299,6 +319,7 @@ const SoilTemplate = () => {
         setFilteredCropNames(response.data.crop_names);
       } catch (err) {
         setError('작물 이름을 불러오는 중 오류가 발생했습니다.');
+        setErrorModalIsOpen(true); // 에러 모달 오픈
       }
     };
 
@@ -321,78 +342,17 @@ const SoilTemplate = () => {
         setSoilData([]);
         setSelectedSample(null);
         setFertilizerData(null);
-        setSelectedSoilSample(null);
-        setModalIsOpen(false);
         return;
       }
       setSoilData(response.data.soil_data);
-      setSelectedSample(null);
-      setFertilizerData(null);
-      setSelectedSoilSample(null);
+      setSelectedSample(null); // 첫 번째 샘플 자동 선택 대신 null 설정
       setError(null);
-      setModalIsOpen(true);
     } catch (err) {
       setError('작물이름과 주소를 정확히 입력해 주세요.');
       setErrorModalIsOpen(true); // 에러 모달 오픈
       setSoilData([]);
     } finally {
       setIsLoading(false); // 로딩 끝
-    }
-  };
-
-  const fetchFertilizerData = async () => {
-    if (!selectedSample) {
-      setError('먼저 토양 샘플을 선택하세요.');
-      setErrorModalIsOpen(true); // 에러 모달 오픈
-      return;
-    }
-
-    if (isFetching) {
-      return; // 이미 fetching 중이라면 아무것도 하지 않음
-    }
-
-    setIsFetching(true); // 비활성화 시작
-
-    const latestSoilSample = soilData.find(sample => sample.No === selectedSample);
-    const sanitizedSample = {
-      ...latestSoilSample,
-      ACID: latestSoilSample.ACID ?? 0,
-      OM: latestSoilSample.OM ?? 0,
-      VLDPHA: latestSoilSample.VLDPHA ?? 0,
-      POSIFERT_K: latestSoilSample.POSIFERT_K ?? 0,
-      POSIFERT_CA: latestSoilSample.POSIFERT_CA ?? 0,
-      POSIFERT_MG: latestSoilSample.POSIFERT_MG ?? 0,
-      VLDSIA: latestSoilSample.VLDSIA ?? 0,
-      SELC: latestSoilSample.SELC ?? 0
-    };
-
-    try {
-      setIsLoading(true); // 로딩 시작
-      const response = await getSoilFertilizerInfo({
-        crop_code: cropName,
-        address: address,
-        acid: sanitizedSample.ACID,
-        om: sanitizedSample.OM,
-        vldpha: sanitizedSample.VLDPHA,
-        posifert_K: sanitizedSample.POSIFERT_K,
-        posifert_Ca: sanitizedSample.POSIFERT_CA,
-        posifert_Mg: sanitizedSample.POSIFERT_MG,
-        vldsia: sanitizedSample.VLDSIA,
-        selc: sanitizedSample.SELC,
-        PNU_Nm: sanitizedSample.PNU_Nm
-      });
-      setFertilizerData(response.data.data);
-      setSelectedSoilSample(sanitizedSample);
-      setError(null);
-      setModalIsOpen(false);
-      setAnalysisDone(true); // 분석 완료 상태 설정
-    } catch (err) {
-      setError(err.response.data.error);
-      setErrorModalIsOpen(true); // 에러 모달 오픈
-      setFertilizerData(null);
-    } finally {
-      setIsLoading(false); // 로딩 끝
-      setIsFetching(false); // 비활성화 종료
     }
   };
 
@@ -418,10 +378,6 @@ const SoilTemplate = () => {
     };
   }, []);
 
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-
   const closeErrorModal = () => {
     setErrorModalIsOpen(false);
   };
@@ -436,16 +392,10 @@ const SoilTemplate = () => {
     }
   };
 
-  const handleModalKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      fetchFertilizerData();
-    }
-  };
-
   return (
     <Container>
       <BoxContainer>
-        <Title>토양 분석</Title>
+        <p style={{ color: '#7f8c8d', fontSize: '0.875rem', marginTop: '0.625rem' }}>작물 이름과 주소 (ㅇㅇ시 ㅇㅇ동)을 입력하세요</p>
         <InputContainer ref={inputRef}>
           <InputLabel>작물 이름</InputLabel>
           <Input
@@ -454,7 +404,7 @@ const SoilTemplate = () => {
             onChange={handleCropNameChange}
             onClick={handleCropNameClick}
             onKeyDown={handleKeyDown}
-            placeholder="작물 이름"
+            placeholder="작물 이름을 검색하세요"
           />
           {showCropList && filteredCropNames.length > 0 && (
             <CropList>
@@ -479,35 +429,21 @@ const SoilTemplate = () => {
             <SearchButton onClick={fetchSoilExamData}>주소 검색 <SearchIcon /></SearchButton>
           </AddressContainer>
         </InputContainer>
+        {soilData.length > 0 && (
+          <InputContainer>
+            <InputLabel>상세 주소 선택</InputLabel>
+            <Select onChange={handleSampleChange} defaultValue="">
+              <option value="" disabled>선택하세요</option>
+              {soilData.map(sample => (
+                <option key={sample.No} value={sample.No}>
+                  {sample.PNU_Nm}
+                </option>
+              ))}
+            </Select>
+          </InputContainer>
+        )}
       </BoxContainer>
       <Divider />
-      {!analysisDone && (
-        <ExternalButtonContainer>
-          <Button onClick={handleBackToList}>목록으로 돌아가기</Button>
-        </ExternalButtonContainer>
-      )}
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Soil Samples Modal"
-      >
-        <ModalHeader>
-          <h2>상세 주소</h2>
-          <IoClose size={24} onClick={closeModal} style={{ cursor: 'pointer' }} />
-        </ModalHeader>
-        <ModalContent>
-          <Select onChange={handleSampleChange} onKeyDown={handleModalKeyDown}>
-            <option value="">선택</option>
-            {soilData.map(sample => (
-              <option key={sample.No} value={sample.No}>
-                {sample.PNU_Nm}
-              </option>
-            ))}
-          </Select>
-          <Button onClick={fetchFertilizerData} disabled={isFetching || !selectedSample}>분석하기</Button>
-        </ModalContent>
-      </Modal>
       <CustomModal
         isOpen={errorModalIsOpen}
         onRequestClose={closeErrorModal}
@@ -519,10 +455,10 @@ const SoilTemplate = () => {
         overlayStyles={{ zIndex: 1103 }} // Ensure overlay is above other elements
         contentStyles={{ zIndex: 1104 }} // Ensure modal content is above other elements
       />
-      {selectedSoilSample && fertilizerData && (
+      {selectedSample && fertilizerData && (
         <SoilResults
           cropName={cropName} // 작물 이름 전달
-          selectedSoilSample={selectedSoilSample}
+          selectedSoilSample={selectedSample}
           fertilizerData={fertilizerData}
           handleBackToList={handleBackToList}
         />

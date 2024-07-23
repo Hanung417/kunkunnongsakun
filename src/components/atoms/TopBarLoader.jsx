@@ -1,7 +1,7 @@
 import React from 'react';
 import { SyncLoader } from 'react-spinners';
 import styled from 'styled-components';
-import { useLoading } from "./LoadingContext";
+import { useLoading } from "../../LoadingContext";
 
 const LoaderContainer = styled.div`
   display: flex;

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { checkAuthStatus, logoutUser } from "../../apis/user";
 import { FaArrowLeft, FaUser, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import CustomModal from "../atoms/CustomModal";
-import TopBarLoader from "../../TopBarLoader"; // TopBarLoader import
+import TopBarLoader from "../atoms/TopBarLoader"; // TopBarLoader import
 import { useLoading } from "../../LoadingContext"; // useLoading import
 
 const TopBars = styled.nav`

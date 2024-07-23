@@ -45,10 +45,9 @@ function App() {
             <Route path="/password_reset" element={<PasswordResetTemplate />} />
             <Route path="/main" element={<MainTemplate />} />
             <Route path="/mypage" element={<MyPageTemplate />} />
+            <Route path="*" element={<NotFound />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
-            <Route path="*" element={<NotFound />} />
-            
 
             {/* post */}
             <Route path="board" element={<BoardTemplate />} />

@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { checkAuthStatus, logoutUser } from "../../apis/user";
 import CustomModal from "../atoms/CustomModal";
-import TopBarLoader from "../../TopBarLoader";
+import TopBarLoader from "../atoms/TopBarLoader";
 import { useLoading } from "../../LoadingContext";
 
 const TopBars = styled.nav`

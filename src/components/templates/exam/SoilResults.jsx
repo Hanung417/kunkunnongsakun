@@ -8,7 +8,7 @@ const RecommendationContainer = styled.div`
   background-color: #fff;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  padding: 2rem;
+  padding: 1rem 2rem;
 `;
 
 const CropInfoContainer = styled.div`
@@ -112,7 +112,7 @@ const Button = styled.button`
 
 const formatValue = (value) => {
   const parsedValue = parseFloat(value);
-  if (isNaN(parsedValue)) return 'N/A';
+  if (isNaN(parsedValue)) return '0';
   if (parsedValue % 1 === 0) return parsedValue.toString();
   return parsedValue.toFixed(1);
 };
