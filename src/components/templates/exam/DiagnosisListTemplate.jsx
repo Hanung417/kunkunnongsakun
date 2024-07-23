@@ -6,7 +6,7 @@ import { FaTrash, FaPlus } from 'react-icons/fa';
 import ConfirmModal from '../../atoms/ConfirmModal';
 import ReactPaginate from 'react-paginate';
 import { useLoading } from "../../../LoadingContext";
-import GlobalLoader from "../../../GlobalLoader";
+import GlobalLoader from "../../atoms/GlobalLoader";
 
 const PageContainer = styled.div`
   display: flex;

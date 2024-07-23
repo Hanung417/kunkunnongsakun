@@ -35,7 +35,7 @@ const HomeLink = styled(Link)`
   }
 `;
 
-const NotFoundPage = () => (
+const NotFound = () => (
   <Container>
     <Title>404</Title>
     <Message>페이지를 찾을 수 없습니다.</Message>
@@ -43,4 +43,4 @@ const NotFoundPage = () => (
   </Container>
 );
 
-export default NotFoundPage;
+export default NotFound;

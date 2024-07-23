@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { deleteAccount, getCSRFToken } from "../../../apis/user"; // import from user.js
 import { FaTimes } from "react-icons/fa";
-import GlobalLoader from '../../../GlobalLoader';
+import GlobalLoader from '../../atoms/GlobalLoader';
 import { useLoading } from '../../../LoadingContext';
 
 const customStyles = {

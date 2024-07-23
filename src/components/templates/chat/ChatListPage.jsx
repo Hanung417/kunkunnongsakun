@@ -8,7 +8,7 @@ import { FaTrash, FaEdit, FaTimes } from 'react-icons/fa';
 import ConfirmModal from '../../atoms/ConfirmModal';
 import Modal from 'react-modal';
 import { useLoading } from '../../../LoadingContext'; // useLoading 훅 가져오기
-import GlobalLoader from "../../../GlobalLoader"; // GlobalLoader 컴포넌트 가져오기
+import GlobalLoader from "../../atoms/GlobalLoader"; // GlobalLoader 컴포넌트 가져오기
 
 const Container = styled.div`
   display: flex;

@@ -5,7 +5,7 @@ import ReactPaginate from "react-paginate";
 import { fetchMyPosts, deletePost } from "../../../apis/post";
 import ConfirmModal from "../../atoms/ConfirmModal";
 import { useLoading } from "../../../LoadingContext";
-import GlobalLoader from "../../../GlobalLoader"; // GlobalLoader import 추가
+import GlobalLoader from "../../atoms/GlobalLoader"; // GlobalLoader import 추가
 
 const Container = styled.div`
   display: flex;

@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import { changeUsername } from "../../../apis/user";
 import { FaTimes } from "react-icons/fa";
 import CustomModal from "../../atoms/CustomModal";
-import GlobalLoader from '../../../GlobalLoader';
+import GlobalLoader from '../../atoms/GlobalLoader';
 import { useLoading } from '../../../LoadingContext';
 
 const ModalContainer = styled(Modal)`

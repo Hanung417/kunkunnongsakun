@@ -8,7 +8,7 @@ import { FaUserEdit, FaKey, FaTrashAlt, FaPen, FaCommentDots } from "react-icons
 import { checkAuthStatus } from "../../../apis/user";
 import { useLoading } from "../../../LoadingContext";
 import CustomModal from "../../atoms/CustomModal";
-import TopBarLoader from "../../../TopBarLoader"; // TopBarLoader import
+import TopBarLoader from "../../atoms/TopBarLoader"; // TopBarLoader import
 
 const Container = styled.div`
   display: flex;

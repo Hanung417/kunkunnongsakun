@@ -3,7 +3,7 @@ import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { loginUser } from "../../../apis/user";
 import CustomModal from "../../atoms/CustomModal";
-import GlobalLoader from '../../../GlobalLoader';
+import GlobalLoader from '../../atoms/GlobalLoader';
 import { useLoading } from '../../../LoadingContext';
 
 const Container = styled.div`
