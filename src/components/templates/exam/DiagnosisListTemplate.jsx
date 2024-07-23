@@ -310,7 +310,7 @@ const DiagnosisListTemplate = () => {
                   <SessionInfo>
                     <div><strong>질병명:</strong> {session.pest_name}</div>
                     <div><strong>진단 날짜:</strong> {session.detection_date}</div>
-                    <div><strong>정확도:</strong> {session.confidence}</div>
+                    <div><strong>AI 모델 정확도:</strong> {session.confidence}</div>
                   </SessionInfo>
                   <DeleteButton onClick={(e) => {
                     e.stopPropagation();
