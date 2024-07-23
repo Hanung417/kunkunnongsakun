@@ -15,20 +15,32 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
-  background-color: #f0f4f8;
-  height: 100vh;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
   box-sizing: border-box;
   overflow: auto;
+`;
+
+const LayoutContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 2rem;
 `;
 
 const SectionContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; /* 왼쪽 정렬로 변경 */
   justify-content: center;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   flex: 1;
 `;
 
@@ -36,6 +48,19 @@ const InfoTableContainer = styled.div`
   width: 100%;
   max-width: 800px;
   margin-bottom: 20px;
+`;
+
+const SectionTitle = styled.h3`
+  font-size: 1.5rem;
+  color: #4aaa87;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const InfoTableTitle = styled.h3`
@@ -73,10 +98,17 @@ const InfoTable = styled.table`
   }
 `;
 
+const Divider = styled.hr`
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px 0; /* 위아래 간격을 줄였습니다 */
+`;
+
 const ChartContainer = styled.div`
   background-color: #fff;
   padding: 1rem;
-  margin: 1rem 0;
+  margin: 0.4rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,6 +128,7 @@ const ChartContainer = styled.div`
 
 const Tabs = styled.div`
   display: flex;
+  gap: 10px;
   justify-content: center;
   margin-bottom: 20px;
 `;
@@ -148,9 +181,9 @@ const Loader = styled.div`
 `;
 
 const columns = [
-  "총수입 (원)", "총생산비 (원)", "총경영비", "총중간재비",
-  "농약비", "수도광열비", "고용노동비", "자가노동비",
-  "부가가치 (원)", "소득 (원)",
+  "농약비", "초기투자비용", "보통(무기질)비료비", "부산물(유기질)비료비",
+  "기타재료비", "수도광열비", "수리·유지비", "농기계·시설 임차료",
+  "토지임차료", "기타비용"
 ];
 
 const generateBarChartData = (adjustedData, cropName) => {
@@ -364,65 +397,113 @@ const SessionDetails = () => {
 
   return (
     <PageContainer>
-      {isLoading && <GlobalLoader />} {/* GlobalLoader를 로딩 중일 때만 표시 */}
-      <SectionContainer>
-        <InfoTableContainer>
-          <InfoTable>
-            <tbody>
-              <tr>
-                <td>지역</td>
-                <td>{sessionDetails.region}</td>
-              </tr>
-              <tr>
-                <td>선택한 작물</td>
-                <td>{cropNames.join(', ')}</td>
-              </tr>
-              <tr>
-                <td>토지 면적</td>
-                <td>{sessionDetails.land_area.toLocaleString()} 평</td>
-              </tr>
-              <tr>
-                <td>총 수입</td>
-                <td>{formatNumber(Math.round(adjustedDataList[selectedCropIndex]["총수입 (원)"]))}</td>
-              </tr>
-            </tbody>
-          </InfoTable>
-        </InfoTableContainer>
-        <Tabs>
-          {cropNames.map((cropName, index) => (
-            <TabButton
-              key={index}
-              active={index === selectedCropIndex}
-              onClick={() => handleTabClick(index)}
-            >
-              {cropName}
-            </TabButton>
-          ))}
-        </Tabs>
-        {isChartLoading ? (
-          <Loader />
-        ) : (
-          <>
-            <ChartContainer>
-              {Object.keys(adjustedDataList[selectedCropIndex]).length > 0 ? (
-                <Bar data={barChartData} options={barChartOptions} />
-              ) : (
-                <ErrorText>차트 데이터를 불러오는 과정에서 문제가 생겼습니다.</ErrorText>
-              )}
-            </ChartContainer>
-            <ChartContainer>
-              {sessionDetails.results[selectedCropIndex].crop_chart_data ? (
-                <Line
-                  data={lineChartData}
-                  options={lineChartOptions}
-                />
-              ) : (
-                <ErrorText>라인 데이터를 불러오는 과정에서 문제가 생겼습니다.</ErrorText>
-              )}
-            </ChartContainer>
-          </>
-        )}
-      </SectionContainer>
+      {isLoading && <GlobalLoader />}
+      <LayoutContainer>
+        <SectionContainer>
+          <InfoTableContainer>
+            <InfoTable>
+              <SectionTitle>작물 조합의 예상 총 수입</SectionTitle>
+              <tbody>
+                <tr>
+                  <td>지역</td>
+                  <td>{sessionDetails.region}</td>
+                </tr>
+                <tr>
+                  <td>선택한 작물</td>
+                  <td>{cropNames.join(', ')}</td>
+                </tr>
+                <tr>
+                  <td>토지 면적</td>
+                  <td>{sessionDetails.land_area.toLocaleString()} 평</td>
+                </tr>
+                <tr>
+                  <td>작물 조합 총 소득 (연간)</td>
+                  <td>{formatNumber(Math.round(sessionDetails.total_income))}</td>
+                </tr>
+              </tbody>
+            </InfoTable>
+          </InfoTableContainer>
+          <Divider />
+          <SectionTitle>작물별 상세 정보</SectionTitle>
+          <Tabs>
+            {cropNames.map((cropName, index) => (
+              <TabButton
+                key={index}
+                active={index === selectedCropIndex}
+                onClick={() => handleTabClick(index)}
+              >
+                {cropName}
+              </TabButton>
+            ))}
+          </Tabs>
+          {isChartLoading ? (
+            <Loader />
+          ) : (
+            <>
+            <InfoTable>
+              <tbody>
+                <tr>
+                  <td>예상 총 소득<br/>(연간)</td>
+                  <td>{formatNumber(Math.round(adjustedDataList[selectedCropIndex]["소득 (원)"]))}</td>
+                </tr>
+                <tr>
+                  <td>예상 총 경영비<br/>(연간)</td>
+                  <td>{formatNumber(Math.round(adjustedDataList[selectedCropIndex]["총경영비"]))}</td>
+                </tr>
+                <tr>
+                  <td>예상 총 수입<br/>(연간)</td>
+                  <td>{formatNumber(Math.round(adjustedDataList[selectedCropIndex]["총수입 (원)"]))}</td>
+                </tr>
+                <tr>
+                  <td>예상 자가노동비</td>
+                  <td>{formatNumber(Math.round(adjustedDataList[selectedCropIndex]["자가노동비"]))}</td>
+                </tr>
+                <tr>
+                  <td>예상 고용노동비</td>
+                  <td>{formatNumber(Math.round(adjustedDataList[selectedCropIndex]["고용노동비"]))}</td>
+                </tr>
+              </tbody>
+            </InfoTable>
+              <SectionTitle>그 외 예상 비용</SectionTitle>
+              <ChartContainer>
+                {Object.keys(adjustedDataList[selectedCropIndex]).length > 0 ? (
+                  <Bar data={barChartData} options={barChartOptions} />
+                ) : (
+                  <ErrorText>차트 데이터를 불러오는 과정에서 문제가 생겼습니다.</ErrorText>
+                )}
+              </ChartContainer>
+              <SectionTitle>도매 정보</SectionTitle>
+              <InfoTable>
+                <tbody>
+                  <tr>
+                    <td>내일 예상 도매가</td>
+                    <td>{sessionDetails.results[selectedCropIndex].price} 원</td>
+                  </tr>
+                  <tr>
+                    <td>모델 학습 결과(RMSE)</td>
+                    <td>{sessionDetails.results[selectedCropIndex].rmse.toFixed(1)}</td>
+                  </tr>
+                  <tr>
+                    <td>모델 학습 결과(R2)</td>
+                    <td>{sessionDetails.results[selectedCropIndex].r2_score.toFixed(3)}</td>
+                  </tr>
+                </tbody>
+              </InfoTable>
+              <SectionTitle>지난 1년간 일일 도매가</SectionTitle>
+              <ChartContainer>
+                {sessionDetails.results[selectedCropIndex].crop_chart_data ? (
+                  <Line
+                    data={lineChartData}
+                    options={lineChartOptions}
+                  />
+                ) : (
+                  <ErrorText>라인 데이터를 불러오는 과정에서 문제가 생겼습니다.</ErrorText>
+                )}
+              </ChartContainer>
+            </>
+          )}
+        </SectionContainer>
+      </LayoutContainer>
     </PageContainer>
   );
 };
