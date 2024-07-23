@@ -16,7 +16,6 @@ const LayoutContainer = styled.div`
   gap: 12px;
   width: 100%;
   max-width: 900px;
-  margin-top: 20px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -185,45 +184,54 @@ const InfoTemplate = () => {
             <InfoText>{confidence.toFixed(2)}</InfoText>
           </InfoBox>
         </SingleRowContainer>
-        <InfoBox>
-          <InfoLabel>질병 이름</InfoLabel>
-          <InfoText>{pest_name}</InfoText>
-        </InfoBox>
-        <Divider />
-        <SectionTitle>상세 정보</SectionTitle>
-        <InfoContainer>
+        {pest_name === "0" ? (
           <InfoBox>
-            <InfoLabel>발생 환경</InfoLabel>
-            <InfoText>{occurrence_environment}</InfoText>
+            <InfoLabel>진단 결과</InfoLabel>
+            <InfoText>병해충이 탐지되지 않았습니다.</InfoText>
           </InfoBox>
-          <InfoBox>
-            <InfoLabel>증상 설명</InfoLabel>
-            <InfoText>{symptom_description}</InfoText>
-          </InfoBox>
-          <InfoBox>
-            <InfoLabel>예방 방법</InfoLabel>
-            <InfoText>{prevention_methods}</InfoText>
-          </InfoBox>
-          <InfoBox>
-            <InfoLabel>농약 처방 정보</InfoLabel>
-            <Table>
-              <thead>
-                <tr>
-                  <TableHeader>농약명</TableHeader>
-                </tr>
-              </thead>
-              <tbody>
-                {pesticides.map((pesticide, index) => (
-                  <tr key={index}>
-                    <TableCell>{pesticide}</TableCell>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          </InfoBox>
-        </InfoContainer>
+        ) : (
+          <>
+            <InfoBox>
+              <InfoLabel>질병 이름</InfoLabel>
+              <InfoText>{pest_name}</InfoText>
+            </InfoBox>
+            <Divider />
+            <SectionTitle>상세 정보</SectionTitle>
+            <InfoContainer>
+              <InfoBox>
+                <InfoLabel>발생 환경</InfoLabel>
+                <InfoText>{occurrence_environment}</InfoText>
+              </InfoBox>
+              <InfoBox>
+                <InfoLabel>증상 설명</InfoLabel>
+                <InfoText>{symptom_description}</InfoText>
+              </InfoBox>
+              <InfoBox>
+                <InfoLabel>예방 방법</InfoLabel>
+                <InfoText>{prevention_methods}</InfoText>
+              </InfoBox>
+              <InfoBox>
+                <InfoLabel>농약 처방 정보</InfoLabel>
+                <Table>
+                  <thead>
+                    <tr>
+                      <TableHeader>농약명</TableHeader>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {pesticides.map((pesticide, index) => (
+                      <tr key={index}>
+                        <TableCell>{pesticide}</TableCell>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </InfoBox>
+            </InfoContainer>
+          </>
+        )}
       </LayoutContainer>
-      <BackButton onClick={() => navigate('/diagnosislist')}>진단 목록으로 돌아가기</BackButton>
+      <BackButton onClick={() => navigate('/diagnosislist')}>목록으로 돌아가기</BackButton>
     </PageContainer>
   );
 };
