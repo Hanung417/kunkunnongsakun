@@ -5,6 +5,7 @@ import { useDropzone } from "react-dropzone";
 import { uploadImage } from "../../../apis/predict";
 import { FaCamera, FaFile } from "react-icons/fa";
 import CustomModal from '../../atoms/CustomModal';
+import GlobalLoader from '../../atoms/GlobalLoader'; // GlobalLoader 임포트
 import { useLoading } from "../../../LoadingContext";
 
 const PageContainer = styled.div`
@@ -210,7 +211,7 @@ const DiagnoseButton = styled.button`
 `;
 
 const DiagnosisTemplate = () => {
-  const { setIsLoading } = useLoading();
+  const { setIsLoading, isLoading } = useLoading();
   const [image, setImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [result, setResult] = useState("");
@@ -282,6 +283,7 @@ const DiagnosisTemplate = () => {
 
   return (
     <PageContainer>
+      {isLoading && <GlobalLoader />}
       <Content>
         <UploadText>병해충 진단을 위한 사진을 업로드해주세요</UploadText>
         <ButtonWrapper>

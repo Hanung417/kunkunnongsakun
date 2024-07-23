@@ -1,192 +1,23 @@
 import React, { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
+import {
+  CommentList,
+  CommentItem,
+  CommentAuthor,
+  CommentContent,
+  CommentMeta,
+  CommentActions,
+  CommentForm,
+  CommentTextarea,
+  CommentButton,
+  EditCommentButton,
+  SettingsIcon2,
+  SettingsMenu2,
+  SettingsMenuItem2,
+  Divider,
+} from "../../styles/Post";
 import { FaPaperPlane, FaEllipsisV } from "react-icons/fa";
 import { MdOutlineChatBubbleOutline } from "react-icons/md";
 import ConfirmModal from "../atoms/ConfirmModal";
-
-const CommentList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-  margin-top: 24px;
-`;
-
-const CommentItem = styled.li`
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 8px 16px;
-  margin-bottom: 12px;
-  position: relative;
-  margin-left: ${(props) => (props.isReply ? "40px" : "0")};
-
-  &::before {
-    content: "${(props) => (props.isReply ? "↳" : "")}";
-    position: absolute;
-    left: -20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px;
-    color: #4aaa87;
-  }
-`;
-
-const CommentAuthor = styled.div`
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  margin-bottom: 4px;
-`;
-
-const CommentContent = styled.div`
-  color: #555;
-`;
-
-const CommentMeta = styled.div`
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 4px;
-`;
-
-const CommentActions = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-top: 4px;
-
-  button {
-    background: none;
-    border: none;
-    color: #4aaa87;
-    cursor: pointer;
-  }
-`;
-
-const CommentForm = styled.form`
-  display: flex;
-  align-items: center;
-  position: relative;
-  margin-top: 12px;
-  margin-left: ${(props) => (props.isReply ? "40px" : "0")};
-`;
-
-const CommentTextarea = styled.textarea`
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  line-height: 1.5;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  transition: border-color 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  &:focus {
-    outline: none;
-    border-color: #4aaa87;
-    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.25);
-  }
-`;
-
-const CommentButton = styled.button`
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: #4aaa87;
-  cursor: pointer;
-  padding: 8px 16px;
-  font-size: 20px;
-  &:hover {
-    color: #3e8e75;
-  }
-  &:disabled {
-    color: #ccc;
-    cursor: not-allowed;
-  }
-`;
-
-const EditCommentButton = styled.button`
-  position: absolute;
-  right: 5%;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #4aaa87;
-  border-radius: 8px;
-  border: none;
-  color: whitesmoke;
-  cursor: pointer;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: bold;
-  &:hover {
-    color: #3e8e75;
-  }
-  &:disabled {
-    color: #ccc;
-    cursor: not-allowed;
-  }
-`;
-
-const SettingsIcon = styled(FaEllipsisV)`
-  cursor: pointer;
-  font-size: 20px;
-  color: #888;
-  position: absolute;
-  right: 16px;
-  top: 16px;
-`;
-
-const SettingsMenu = styled.div`
-  position: absolute;
-  top: 30px;
-  right: 0;
-  background: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  display: ${(props) => (props.show ? "block" : "none")};
-  z-index: 1;
-  animation: fadeIn 0.3s ease;
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-`;
-
-const SettingsMenuItem = styled.button`
-  background: none;
-  border: none;
-  padding: 12px 24px;
-  width: 100%;
-  text-align: left;
-  font-size: 14px;
-  color: #333;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-
-  &:hover {
-    background: #f5f5f5;
-    color: #4aaa87;
-  }
-
-  &:first-child {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
-
-  &:last-child {
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
-`;
 
 const Comment = ({
   comments,
@@ -205,7 +36,7 @@ const Comment = ({
   setReplyCommentId,
   currentUserId,
   setEditCommentId,
-  setEditCommentContent
+  setEditCommentContent,
 }) => {
   const [showSettingsMenu, setShowSettingsMenu] = useState({});
   const [selectedCommentId, setSelectedCommentId] = useState(null);
@@ -295,13 +126,13 @@ const Comment = ({
             )}
             {String(currentUserId) === String(comment.user_id) && (
               <>
-                <SettingsIcon onClick={() => handleSettingsClick(comment.id)} />
-                <SettingsMenu
+                <SettingsIcon2 onClick={() => handleSettingsClick(comment.id)} />
+                <SettingsMenu2
                   show={showSettingsMenu[comment.id]}
                   ref={(el) => (settingsMenuRefs.current[comment.id] = el)}
                   data-comment-id={comment.id}
                 >
-                  <SettingsMenuItem
+                  <SettingsMenuItem2
                     onClick={() => {
                       setEditCommentId(comment.id);
                       setEditCommentContent(comment.content);
@@ -312,9 +143,9 @@ const Comment = ({
                     }}
                   >
                     수정
-                  </SettingsMenuItem>
-                  <SettingsMenuItem onClick={() => handleDeleteClick(comment.id)}>삭제</SettingsMenuItem>
-                </SettingsMenu>
+                  </SettingsMenuItem2>
+                  <SettingsMenuItem2 onClick={() => handleDeleteClick(comment.id)}>삭제</SettingsMenuItem2>
+                </SettingsMenu2>
               </>
             )}
             {parentId === null && (

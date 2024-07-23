@@ -1,137 +1,24 @@
-// EditPostTemplate.js
-
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchPost, editPost } from "../../../apis/post";
 import CustomModal from "../../atoms/CustomModal";
-import styled from "styled-components";
+import {
+  Container,
+  Form,
+  Label,
+  Required,
+  Input,
+  Textarea,
+  Button,
+  Select,
+  FileInputWrapper,
+  FileInputLabel,
+  FileInput,
+  FileName,
+  ImagePreview,
+  ErrorMessage,
+} from "../../../styles/Post";
 import { useLoading } from "../../../LoadingContext";
-
-const Container = styled.div`
-  margin: 0 auto;
-  padding: 24px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 75rem;
-  width: 100%;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Label = styled.label`
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 8px;
-`;
-
-const Required = styled.span`
-  color: red;
-  margin-left: 4px;
-`;
-
-const Input = styled.input`
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  transition: border-color 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  &:focus {
-    outline: none;
-    border-color: #4aaa87;
-  }
-`;
-
-const Textarea = styled.textarea`
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  transition: border-color 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  &:focus {
-    outline: none;
-    border-color: #4aaa87;
-  }
-`;
-
-const Button = styled.button`
-  padding: 12px 20px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #4aaa87;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  align-self: center;
-  transition: background-color 0.3s;
-  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
-  pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
-
-  &:hover {
-    background-color: #3e8e75;
-  }
-`;
-
-const Select = styled.select`
-  padding: 8px;
-  font-size: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  transition: border-color 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  &:focus {
-    outline: none;
-    border-color: #4aaa87;
-  }
-`;
-
-const FileInputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 16px;
-`;
-
-const FileInputLabel = styled.label`
-  padding: 10px 16px;
-  font-size: 16px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: border-color 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-
-  &:hover {
-    background-color: #e6f9f1;
-  }
-`;
-
-const FileInput = styled.input`
-  display: none;
-`;
-
-const FileName = styled.span`
-  margin-top: 8px;
-  font-size: 14px;
-  color: #555;
-`;
-
-const ImagePreview = styled.img`
-  margin-top: 16px;
-  max-width: 100%;
-  border-radius: 8px;
-`;
 
 const EditPostTemplate = () => {
   const { id } = useParams();

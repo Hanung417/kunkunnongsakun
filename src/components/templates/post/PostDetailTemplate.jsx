@@ -12,12 +12,23 @@ import {
 import PostDetails from "../../molecules/PostDetail";
 import Comments from "../../molecules/Comment";
 import { useLoading } from "../../../LoadingContext";
-
-const Container = styled.div`
-  max-width: 75rem;
-  width: 100%;
-  margin: 0 auto;
-`;
+import {
+  Container,
+  CommentList,
+  CommentItem,
+  CommentAuthor,
+  CommentContent,
+  CommentMeta,
+  CommentActions,
+  CommentForm,
+  CommentTextarea,
+  CommentButton,
+  EditCommentButton,
+  SettingsIcon,
+  SettingsMenu,
+  SettingsMenuItem,
+  Divider,
+} from "../../../styles/Post";
 
 const PostDetailTemplate = () => {
   const { id } = useParams();
@@ -169,37 +180,37 @@ const PostDetailTemplate = () => {
 
   return (
     <Container>
-        <PostDetails
-          post={post}
-          currentUserId={currentUserId}
-          showSettingsMenu={showSettingsMenu}
-          settingsMenuRefs={settingsMenuRefs}
-          openModal={openModal}
-          handleSettingsClick={handleSettingsClick}
-          isModalOpen={isModalOpen}
-          closeModal={closeModal}
-          handleDeletePost={handleDeletePost}
-        />
-        <Comments
-          comments={comments}
-          newComment={newComment}
-          newReply={newReply}
-          replyCommentId={replyCommentId}
-          editCommentId={editCommentId}
-          editCommentContent={editCommentContent}
-          handleCommentChange={handleCommentChange}
-          handleEditCommentChange={handleEditCommentChange}
-          handleReplyChange={handleReplyChange}
-          handleSubmitComment={handleSubmitComment}
-          handleSubmitReply={handleSubmitReply}
-          handleEditComment={handleEditComment}
-          handleDeleteComment={handleDeleteComment}
-          setReplyCommentId={setReplyCommentId}
-          currentUserId={currentUserId}
-          setEditCommentId={setEditCommentId}
-          setEditCommentContent={setEditCommentContent}
-          setShowSettingsMenu={setShowSettingsMenu}
-        />
+      <PostDetails
+        post={post}
+        currentUserId={currentUserId}
+        showSettingsMenu={showSettingsMenu}
+        settingsMenuRefs={settingsMenuRefs}
+        openModal={openModal}
+        handleSettingsClick={handleSettingsClick}
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        handleDeletePost={handleDeletePost}
+      />
+      <Comments
+        comments={comments}
+        newComment={newComment}
+        newReply={newReply}
+        replyCommentId={replyCommentId}
+        editCommentId={editCommentId}
+        editCommentContent={editCommentContent}
+        handleCommentChange={handleCommentChange}
+        handleEditCommentChange={handleEditCommentChange}
+        handleReplyChange={handleReplyChange}
+        handleSubmitComment={handleSubmitComment}
+        handleSubmitReply={handleSubmitReply}
+        handleEditComment={handleEditComment}
+        handleDeleteComment={handleDeleteComment}
+        setReplyCommentId={setReplyCommentId}
+        currentUserId={currentUserId}
+        setEditCommentId={setEditCommentId}
+        setEditCommentContent={setEditCommentContent}
+        setShowSettingsMenu={setShowSettingsMenu}
+      />
     </Container>
   );
 };
