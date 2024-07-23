@@ -40,6 +40,7 @@ const SessionList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.625rem; /* 10px */
+  max-width: 75rem;
 `;
 
 const SessionItem = styled.div`
@@ -59,14 +60,14 @@ const SessionItem = styled.div`
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
   }
   flex-wrap: wrap;
-  font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* 텍스트 크기 반응형으로 조정 */
+  font-size: clamp(0.8rem, 2.5vw, 1.2rem); /* 텍스트 크기 반응형으로 조정 */
   position: relative;
 `;
 
 const SessionInfo = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0.375rem; /* 6px */
+  padding: 0.8rem 0.35rem; /* 6px */
   gap: 0.3125rem; /* 5px */
   flex: 1;
   min-width: 9.375rem; /* 150px */
@@ -82,19 +83,19 @@ const SessionImage = styled.img`
   flex-shrink: 0;
 
   @media (max-width: 48rem) { /* 768px */
-    margin-bottom: 0.625rem; /* 10px */
+    margin-bottom: 0.5rem; /* 10px */
     margin-right: 0;
   }
 
   @media (max-width: 30rem) { /* 480px */
-    margin-bottom: 0.625rem; /* 10px */
+    margin-bottom: 0rem; /* 10px */
     margin-right: 0;
   }
 `;
 
 const DeleteButton = styled.button`
   position: absolute;
-  top: 2px; 
+  top: 0.7rem; 
   right: 0.5rem; 
   background: none;
   border: none;
@@ -212,7 +213,7 @@ const PaginationContainer = styled.div`
 
   .pagination li.disabled a {
     color: #ccc;
-    cursor: not-allowed.
+    cursor: not-allowed;
   }
 `;
 
@@ -222,7 +223,7 @@ const DiagnosisListTemplate = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sessionIdToDelete, setSessionIdToDelete] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
-  const [loading, setLoading] = useState(true); // 로딩 상태 추가
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const sessionsPerPage = 4;
@@ -239,7 +240,7 @@ const DiagnosisListTemplate = () => {
         console.error('Failed to fetch sessions', error);
       }
       setIsLoading(false);
-      setLoading(false); // 로딩 상태 업데이트
+      setLoading(false);
     };
 
     fetchSessions();
@@ -248,7 +249,7 @@ const DiagnosisListTemplate = () => {
   const handleSessionClick = async (sessionId) => {
     try {
       setIsLoading(true);
-      setLoading(true); // 로딩 상태 업데이트
+      setLoading(true);
       const response = await fetchSessionDetails(sessionId);
       navigate('/info', { state: { diagnosisResult: response.data } });
     } catch (error) {
@@ -256,14 +257,14 @@ const DiagnosisListTemplate = () => {
       alert('Failed to load the details for this session.');
     } finally {
       setIsLoading(false);
-      setLoading(false); // 로딩 상태 업데이트
+      setLoading(false);
     }
   };
 
   const handleDeleteSession = async () => {
     try {
       setIsLoading(true);
-      setLoading(true); // 로딩 상태 업데이트
+      setLoading(true);
       await deleteDetectionSession(sessionIdToDelete);
       setSessions(sessions.filter(session => session.session_id !== sessionIdToDelete));
       setIsModalOpen(false);
@@ -271,7 +272,7 @@ const DiagnosisListTemplate = () => {
       console.error('Failed to delete session', error);
     } finally {
       setIsLoading(false);
-      setLoading(false); // 로딩 상태 업데이트
+      setLoading(false);
     }
   };
 
@@ -294,7 +295,7 @@ const DiagnosisListTemplate = () => {
 
   return (
     <PageContainer>
-      {loading && <GlobalLoader />} {/* 로딩 상태일 때 로더 표시 */}
+      {loading && <GlobalLoader />}
       <AddButtonContainer onClick={handleAddClick} aria-label="새 진단 시작하기">
         <AddButtonIcon />
         <AddButtonText>새 진단 시작하기</AddButtonText>
@@ -307,12 +308,12 @@ const DiagnosisListTemplate = () => {
           <>
             <SessionList>
               {sessions.slice(offset, offset + sessionsPerPage).map(session => (
-                <SessionItem key={session.session_id} onClick={() => handleSessionClick(session.session_id)} tabIndex="0" aria-label={`${session.pest_name} 진단 결과 보기`}>
-                  <SessionImage src={session.user_image_url} alt={session.pest_name} />
+                <SessionItem key={session.session_id} onClick={() => handleSessionClick(session.session_id)} tabIndex="0" aria-label={`${session.pest_name === "0" ? "정상" : session.pest_name} 진단 결과 보기`}>
+                  <SessionImage src={session.user_image_url} alt={session.pest_name === "0" ? "정상" : session.pest_name} />
                   <SessionInfo>
-                    <div><strong>질병명:</strong> {session.pest_name}</div>
+                    <div><strong>질병명:</strong> {session.pest_name === "0" ? "정상" : session.pest_name}</div>
                     <div><strong>진단 날짜:</strong> {session.detection_date}</div>
-                    <div><strong>AI 모델 정확도:</strong> {session.confidence}</div>
+                    <div><strong>AI 모델 정확도:</strong> {session.pest_name === "0" ? "정상" : session.confidence.toFixed(2)}</div>
                   </SessionInfo>
                   <DeleteButton onClick={(e) => {
                     e.stopPropagation();
