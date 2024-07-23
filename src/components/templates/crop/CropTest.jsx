@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getCropNames, predictCrops, getRegionNames } from "../../../apis/crop";
 import { useLoading } from "../../../LoadingContext";
 import CustomModal from "../../atoms/CustomModal";
-import GlobalLoader from "../../../GlobalLoader";
+import GlobalLoader from "../../atoms/GlobalLoader";
 import { FaPlus, FaTrash } from 'react-icons/fa';
 import {
   PageContainer,
@@ -29,7 +29,7 @@ import {
   ErrorMessage,
   StepTitle,
   RemoveIcon,
-} from '../../styles/CropTest';
+} from '../../../styles/CropTest';
 
 const CropTest = () => {
   const { setIsLoading, isLoading } = useLoading();

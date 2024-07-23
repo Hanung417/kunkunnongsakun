@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { checkUsername, sendVerificationEmail, signupUser } from "../../../apis/user";
 import { useNavigate } from "react-router-dom";
 import CustomModal from "../../atoms/CustomModal";
-import { Container, Title, Form, InputGroup, Label, Input, Button, ErrorMessage, SuccessMessage } from "../../styles/Form";
+import { Container, Title, Form, InputGroup, Label, Input, Button, ErrorMessage, SuccessMessage } from "../../../styles/Form";
 
 const SignupTemplate = () => {
   const [formData, setFormData] = useState({

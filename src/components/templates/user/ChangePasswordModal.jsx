@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { changePassword } from "../../../apis/user";
 import CustomModal from "../../atoms/CustomModal"; // Import your custom modal component
 import { FaTimes } from "react-icons/fa";
-import GlobalLoader from "../../../GlobalLoader";
+import GlobalLoader from "../../atoms/GlobalLoader";
 import { useLoading } from "../../../LoadingContext"; // Import the useLoading hook
 
 const ModalContainer = styled(Modal)`
