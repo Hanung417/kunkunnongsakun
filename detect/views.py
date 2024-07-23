@@ -1,15 +1,51 @@
+import os
+import tempfile
+import cv2
+import torch
+from ultralytics import YOLO
 from django.http import JsonResponse
-from django.shortcuts import render
-from django.core.files.base import ContentFile
 from django.utils import timezone
+from django.core.files.base import ContentFile
 from .models import Pest, PestDetection
-from .utils import process_image
 from aivle_big.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from aivle_big.exceptions import ValidationError, NotFoundError, InternalServerError, InvalidRequestError
 import logging
+from io import BytesIO
+from PIL import Image
 
 logger = logging.getLogger(__name__)
+
+model = YOLO('best.pt')
+
+def process_image(image_path):
+    """Process the image and return predictions along with annotated image content."""
+    # Perform inference using the YOLO model
+    results = model(image_path)
+
+    # If there are results, get the pest_id and confidence
+    if results and len(results) > 0:
+        best_result = results[0]  # Assuming the first result is the best one
+        if best_result.boxes and len(best_result.boxes) > 0:
+            pest_id = int(best_result.boxes[0].cls.item())  # Assuming 'cls' gives the class ID
+            confidence = float(best_result.boxes[0].conf.item()) * 100  # Assuming 'conf' gives the confidence score
+
+            # Plot the annotated image and save to a BytesIO object
+            annotated_image = best_result.plot()
+            is_success, buffer = cv2.imencode(".jpg", annotated_image)
+            result_image_content = ContentFile(buffer.tobytes(), name=os.path.basename(image_path))
+        else:
+            pest_id = 10  # Default pest ID
+            confidence = 0.0
+            with open(image_path, 'rb') as original_file:
+                result_image_content = ContentFile(original_file.read(), name=os.path.basename(image_path))
+    else:
+        pest_id = 10  # Default pest ID
+        confidence = 0.0
+        with open(image_path, 'rb') as original_file:
+            result_image_content = ContentFile(original_file.read(), name=os.path.basename(image_path))
+
+    return pest_id, confidence, result_image_content
 
 @login_required
 def upload_image_for_detection(request):
@@ -25,21 +61,27 @@ def upload_image_for_detection(request):
         raise ValidationError('Invalid file type, expected an image.')
 
     try:
-        # Instead of reading the image data, directly save it to the model using Django's storage system
-        pest_id, confidence = process_image(image_file)  # Assume this function is designed to handle file like objects directly
+        # Save the uploaded image temporarily to a local file with the correct extension
+        file_extension = image_file.name.split('.')[-1]
+        with tempfile.NamedTemporaryFile(suffix=f'.{file_extension}', delete=False) as temp_file:
+            for chunk in image_file.chunks():
+                temp_file.write(chunk)
+            temp_image_path = temp_file.name
+
+        # Process the image and get pest ID, confidence, and annotated image content
+        pest_id, confidence, result_image_content = process_image(temp_image_path)
 
         try:
             pest_info = Pest.objects.get(id=pest_id)
         except Pest.DoesNotExist:
             pest_info = Pest.objects.get(id=13)
             confidence = 0.0
-            # raise NotFoundError("Pest not found.")
 
-        # Create a new detection instance
+        # Save the detection result using the custom storage
         detection = PestDetection(
             user=request.user,
             pest=pest_info,
-            image=image_file,  # Directly save the ImageField without reading the file
+            image=result_image_content,  # Save the annotated image using custom storage
             detection_date=timezone.now(),
             confidence=confidence
         )
@@ -53,10 +95,14 @@ def upload_image_for_detection(request):
             'prevention_methods': pest_info.prevention_methods,
             'pesticide_name': pest_info.pesticide_name,
             'confidence': confidence,
-            'user_image_url': detection.image.url, # 사용자가 넣은 이미지
-            'db_image_url': detection.pest.image_url, # 디비에 있는 이미지
+            'user_image_url': detection.image.url,  # Annotated image URL
+            'db_image_url': detection.pest.image_url,  # Database image URL
             'detection_date': detection.detection_date.strftime('%Y-%m-%d %H:%M')
         }
+
+        # Clean up temporary image file
+        os.remove(temp_image_path)
+
         return JsonResponse(data, status=200)
 
     except Exception as e:
