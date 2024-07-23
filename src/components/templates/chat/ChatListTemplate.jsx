@@ -141,7 +141,7 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 16px; /* Added margin for spacing between input and button */
+  margin-bottom: 16px;
 `;
 
 const Input = styled.input`
@@ -206,7 +206,7 @@ const PaginationContainer = styled.div`
 `;
 
 const ChatListTemplate = () => {
-  const { setIsLoading } = useLoading(); // Access loading context
+  const { setIsLoading } = useLoading();
   const [chatSessions, setChatSessions] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
@@ -215,7 +215,7 @@ const ChatListTemplate = () => {
   const [sessionToDelete, setSessionToDelete] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [error, setError] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // Add this line
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -232,7 +232,7 @@ const ChatListTemplate = () => {
           const filteredSessions = response.data.filter(session => session.session_id !== null);
           setChatSessions(filteredSessions);
         } catch (error) {
-          setErrorMessage('채팅 세션을 불러오는 중 오류가 발생했습니다.'); // Update this line
+          setErrorMessage('채팅 세션을 불러오는 중 오류가 발생했습니다.');
         } finally {
           setIsLoading(false);
         }
@@ -245,12 +245,12 @@ const ChatListTemplate = () => {
   const startNewChat = () => {
     setNewSessionName('');
     setError('');
-    setErrorMessage(''); // Add this line
+    setErrorMessage('');
     if (!isLoggedIn) {
       const newSessionId = uuidv4();
       localStorage.setItem('sessionId', newSessionId);
-      localStorage.setItem('sessionName', 'Anonymous Session');
-      navigate(`/chat/${newSessionId}?session_name=Anonymous%20Session`);
+      localStorage.setItem('sessionName', '농업GPT');
+      navigate(`/chat/${newSessionId}?session_name=농업GPT`);
     } else {
       setIsModalOpen(true);
     }
@@ -262,7 +262,7 @@ const ChatListTemplate = () => {
       return;
     }
     setError('');
-    setErrorMessage(''); // Add this line
+    setErrorMessage('');
     if (editingSession) {
       setIsLoading(true);
       try {
@@ -273,7 +273,7 @@ const ChatListTemplate = () => {
             : session
         )));
       } catch (error) {
-        setErrorMessage('세션 이름을 업데이트하는 중 오류가 발생했습니다.'); // Update this line
+        setErrorMessage('세션 이름을 업데이트하는 중 오류가 발생했습니다.');
       } finally {
         setIsLoading(false);
       }
@@ -306,7 +306,7 @@ const ChatListTemplate = () => {
         await deleteChatSession(sessionToDelete);
         setChatSessions(chatSessions.filter(session => session.session_id !== sessionToDelete));
       } catch (error) {
-        setErrorMessage('세션을 삭제하는 중 오류가 발생했습니다.'); // Update this line
+        setErrorMessage('세션을 삭제하는 중 오류가 발생했습니다.');
       } finally {
         setIsLoading(false);
       }
@@ -320,7 +320,7 @@ const ChatListTemplate = () => {
     setEditingSession(session);
     setIsModalOpen(true);
     setError('');
-    setErrorMessage(''); // Add this line
+    setErrorMessage('');
   };
 
   const handlePageClick = ({ selected }) => {
@@ -331,13 +331,13 @@ const ChatListTemplate = () => {
     setIsModalOpen(false);
     setEditingSession(null);
     setError('');
-    setErrorMessage(''); // Add this line
+    setErrorMessage('');
   };
 
   return (
     <Container>
       <GlobalLoader />
-      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>} {/* Add this line */}
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       {isLoggedIn ? (
         <>
           <NewChatButton onClick={startNewChat}>새 대화 시작하기</NewChatButton>

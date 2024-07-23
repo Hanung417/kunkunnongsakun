@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { checkAuthStatus, logoutUser } from "../../apis/user";
 import { FaArrowLeft, FaUser, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import CustomModal from "../atoms/CustomModal";
-import TopBarLoader from "../atoms/TopBarLoader"; // TopBarLoader import
-import { useLoading } from "../../LoadingContext"; // useLoading import
+import TopBarLoader from "../atoms/TopBarLoader";
+import { useLoading } from "../../LoadingContext";
 
 const TopBars = styled.nav`
   display: flex;
@@ -53,11 +53,11 @@ const BackButton = styled.button`
 const RightSection = styled.div`
   display: flex;
   align-items: center;
-  position: relative; /* 추가 */
+  position: relative;
 `;
 
 const IconButton = styled.button`
-  position: relative; /* 추가 */
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +70,7 @@ const IconButton = styled.button`
 `;
 
 const PageTopBar = () => {
-  const { setIsLoading, isLoading } = useLoading(); // Access loading context
+  const { setIsLoading, isLoading } = useLoading();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -86,7 +86,6 @@ const PageTopBar = () => {
     "/post/:id": "게시글 상세보기",
     "/post/create": "게시글 작성",
     "/chatlist": "대화 목록",
-    "/chat/:sessionid": "대화",
     "/mypage": "마이페이지",
     "/post/edit/:id": "게시글 수정",
     "/my_commented_posts": "내가 댓글 단 글",
@@ -105,17 +104,32 @@ const PageTopBar = () => {
     "/password_reset": "비밀번호 찾기",
   };
 
-  // 뒤로가기 버튼 표시 안할 페이지 (추가하기)
-  const noBackButtonPages = [
+  const noBackButtonPages = [];
 
-  ];
+  const getPageTitle = () => {
+    const pathname = location.pathname;
+    const pathKeys = Object.keys(pageTitles);
 
-  const pageTitle = pageTitles[location.pathname] || "";
+    for (const pathKey of pathKeys) {
+      const regex = new RegExp(`^${pathKey.replace(/:\w+/g, "\\w+")}$`);
+      if (regex.test(pathname)) {
+        return pageTitles[pathKey];
+      }
+    }
+
+    if (/^\/chat\/[\w-]+$/.test(pathname)) {
+      return "농업GPT";
+    }
+
+    return "";
+  };
+
+  const pageTitle = getPageTitle();
   const showBackButton = !noBackButtonPages.includes(location.pathname);
 
   useEffect(() => {
     const checkAuth = async () => {
-      setIsLoading(true); // 로딩 시작
+      setIsLoading(true);
       try {
         const response = await checkAuthStatus();
         if (response.data.is_authenticated) {
@@ -127,7 +141,7 @@ const PageTopBar = () => {
       } catch (error) {
         console.error("Failed to check auth status:", error);
       } finally {
-        setIsLoading(false); // 로딩 끝
+        setIsLoading(false);
       }
     };
 
@@ -135,7 +149,7 @@ const PageTopBar = () => {
   }, [setIsLoading]);
 
   const handleLogout = async () => {
-    setIsLoading(true); // 로딩 시작
+    setIsLoading(true);
     try {
       await logoutUser();
       setIsLoggedIn(false);
@@ -145,7 +159,7 @@ const PageTopBar = () => {
     } catch (error) {
       console.error("Failed to logout:", error);
     } finally {
-      setIsLoading(false); // 로딩 끝
+      setIsLoading(false);
     }
   };
 

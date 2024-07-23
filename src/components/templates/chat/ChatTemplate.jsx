@@ -13,23 +13,23 @@ const Container = styled.div`
   background-color: #ffffff;
   box-sizing: border-box;
   overflow: hidden;
-  padding-bottom: 70px;
+  padding-bottom: 4.375rem; /* 70px in rem */
 `;
 
 const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 1rem; /* 16px in rem */
   background-color: #4AAA87;
   color: white;
-  font-size: 20px;
+  font-size: 1.25rem; /* 20px in rem */
   font-weight: bold;
   position: relative;
 
   @media (max-width: 768px) {
-    font-size: 18px;
-    padding: 12px;
+    font-size: 1.125rem; /* 18px in rem */
+    padding: 0.75rem; /* 12px in rem */
   }
 `;
 
@@ -40,22 +40,25 @@ const Title = styled.div`
 
 const ChatListButton = styled.button`
   position: absolute;
-  left: 5px;
-  padding: 10px 12px;
-  flex: 1;
+  left: 0.3125rem; /* 5px in rem */
+  padding: 0.625rem 0.75rem; /* 10px 12px in rem */
   font-weight: 600;
   color: white;
   background-color: #4AAA87;
   border: none;
-  border-radius: 20px;
+  border-radius: 1.25rem; /* 20px in rem */
   cursor: pointer;
+
+  svg {
+    margin-bottom: -0.125rem; /* 2px in rem */
+  }
 `;
 
 const ChatBox = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 16px;
+  padding: 1rem; /* 16px in rem */
   background-color: #E6F8E0;
   overflow-y: auto;
 `;
@@ -69,11 +72,11 @@ const MessageList = styled.ul`
 const MessageContainer = styled.li`
   display: flex;
   align-items: flex-start;
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem; /* 12px in rem */
   justify-content: ${({ isUser }) => (isUser ? 'flex-end' : 'flex-start')};
 
   @media (max-width: 768px) {
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem; /* 8px in rem */
   }
 `;
 
@@ -82,16 +85,16 @@ const Message = styled.div`
   display: flex;
   flex-direction: column;
   align-items: ${({ isUser }) => (isUser ? 'flex-end' : 'flex-start')};
-  padding: 10px 14px;
-  border-radius: 20px;
+  padding: 0.625rem 0.875rem; /* 10px 14px in rem */
+  border-radius: 1.25rem; /* 20px in rem */
   background-color: ${({ isUser }) => (isUser ? '#F7FE2E' : 'white')};
   position: relative;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.1); /* 1px 1px in rem */
   word-break: break-word;
-  margin-top: 8px;
+  margin-top: 0.5rem; /* 8px in rem */
 
   @media (max-width: 768px) {
-    padding: 8px 10px;
+    padding: 0.5rem 0.625rem; /* 8px 10px in rem */
   }
 `;
 
@@ -100,84 +103,84 @@ const MessageText = styled.div`
 `;
 
 const MessageTime = styled.small`
-  margin-top: 4px;
+  margin-top: 0.25rem; /* 4px in rem */
   font-size: 0.8em;
   color: #666;
   ${({ isUser }) => isUser ? css`align-self: flex-end;` : css`align-self: flex-start;`}
 `;
 
 const ProfileImage = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 3.125rem; /* 50px in rem */
+  height: 3.125rem; /* 50px in rem */
   border-radius: 50%;
-  margin-right: ${({ isUser }) => (isUser ? '0' : '10px')};
-  margin-left: ${({ isUser }) => (isUser ? '10px' : '0')};
+  margin-right: ${({ isUser }) => (isUser ? '0' : '0.625rem')}; /* 10px in rem */
+  margin-left: ${({ isUser }) => (isUser ? '0.625rem' : '0')}; /* 10px in rem */
 
   @media (max-width: 768px) {
-    width: 40px;
-    height: 40px;
-    margin-right: ${({ isUser }) => (isUser ? '0' : '6px')};
-    margin-left: ${({ isUser }) => (isUser ? '6px' : '0')};
+    width: 2.5rem; /* 40px in rem */
+    height: 2.5rem; /* 40px in rem */
+    margin-right: ${({ isUser }) => (isUser ? '0' : '0.375rem')}; /* 6px in rem */
+    margin-left: ${({ isUser }) => (isUser ? '0.375rem' : '0')}; /* 6px in rem */
   }
 `;
 
 const InputBox = styled.form`
   display: flex;
-  padding: 20px;
+  padding: 1.25rem 0.75rem; /* 20px 12px in rem */
   background-color: #f0f0f0;
   border-top: 1px solid #ddd;
   width: 100%;
   box-sizing: border-box;
   position: fixed;
-  bottom: 60px;
+  bottom: 3.75rem; /* 60px in rem */
   left: 0;
   right: 0;
 
   @media (max-width: 768px) {
-    padding: 16px;
+    padding: 1rem; /* 16px in rem */
   }
 `;
 
 const Input = styled.input`
   flex: 1;
-  padding: 20px;
+  padding: 1.25rem; /* 20px in rem */
   border: 1px solid #ddd;
-  border-radius: 20px;
-  margin-right: 8px;
-  font-size: 16px;
+  border-radius: 1.25rem; /* 20px in rem */
+  margin-right: 0.5rem; /* 8px in rem */
+  font-size: 1rem; /* 16px in rem */
   &:focus {
     outline: none;
     border-color: #4aaa87;
   }
 
   @media (max-width: 768px) {
-    padding: 16px;
-    margin-right: 4px;
+    padding: 1rem; /* 16px in rem */
+    margin-right: 0.25rem; /* 4px in rem */
   }
 `;
 
 const Button = styled.button`
-  padding: 10px 16px;
-  font-size: 14px;
+  padding: 0.625rem 1rem; /* 10px 16px in rem */
+  font-size: 0.875rem; /* 14px in rem */
   color: white;
   background-color: #4aaa87;
   border: none;
-  border-radius: 12px;
+  border-radius: 1.25rem; /* 20px in rem */
   cursor: pointer;
   &:hover {
     background-color: #6dc4b0;
   }
 
   @media (max-width: 768px) {
-    padding: 8px 12px;
-    font-size: 12px;
+    padding: 0.5rem 0.75rem; /* 8px 12px in rem */
+    font-size: 0.75rem; /* 12px in rem */
   }
 `;
 
 const ErrorMessage = styled.div`
   color: red;
-  margin-top: 8px;
-  font-size: 14px;
+  margin-top: 0.5rem; /* 8px in rem */
+  font-size: 0.875rem; /* 14px in rem */
   text-align: center; 
 `;
 
@@ -269,7 +272,7 @@ const ChatTemplate = () => {
     <Container>
       <Header>
         <Title>{sessionName || '농업 GPT'}</Title>
-        <ChatListButton onClick={() => navigate('/chatlist')}><IoMenu /> 목록 보기</ChatListButton>
+        <ChatListButton onClick={() => navigate('/chatlist')}><IoMenu />  목록 보기</ChatListButton>
       </Header>
       <ChatBox ref={chatBoxRef}>
         <MessageList>
@@ -283,7 +286,7 @@ const ChatTemplate = () => {
                   ) : (
                     <>
                       {msg.text}
-                      <br />
+                      <br/>
                     </>
                   )}
                 </MessageText>
