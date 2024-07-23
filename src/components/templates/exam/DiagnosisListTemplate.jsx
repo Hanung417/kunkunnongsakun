@@ -14,6 +14,8 @@ const PageContainer = styled.div`
   align-items: center;
   padding: 1.5rem;
   background-color: #f9f9f9;
+  width: 100%;
+  margin: 0 auto;
 `;
 
 const Content = styled.div`

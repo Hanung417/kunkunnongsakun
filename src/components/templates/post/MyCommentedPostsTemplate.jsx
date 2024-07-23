@@ -12,6 +12,9 @@ const Container = styled.div`
   align-items: center;
   padding: 16px;
   background-color: #f9f9f9;
+  max-width: 75rem;
+  width: 100%;
+  margin: 0 auto;
 `;
 
 const PostList = styled.div`

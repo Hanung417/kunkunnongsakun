@@ -22,6 +22,7 @@ const SessionList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
+  max-width: 75rem;
 `;
 
 const SessionItem = styled.div`

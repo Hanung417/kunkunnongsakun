@@ -6,9 +6,10 @@ import CustomModal from "../../atoms/CustomModal";
 import { useLoading } from "../../../LoadingContext";
 
 const Container = styled.div`
-  max-width: 600px;
   margin: 0 auto;
   padding: 20px;
+  max-width: 75rem;
+  width: 100%;
 `;
 
 const Form = styled.form`
