@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
-import { useParams, useLocation, useNavigate } from 'react-router-dom'; // useNavigate 임포트
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { fetchChatHistory, sendChatMessage } from '../../../apis/chat';
 import SyncLoader from 'react-spinners/SyncLoader';
 import { IoMenu } from "react-icons/io5";
@@ -19,7 +19,7 @@ const Container = styled.div`
 const Header = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center; /* 중앙 정렬 */
+  justify-content: center;
   padding: 16px;
   background-color: #4AAA87;
   color: white;
@@ -34,13 +34,13 @@ const Header = styled.div`
 `;
 
 const Title = styled.div`
-  flex: 1; /* flex를 사용하여 중앙에 배치 */
-  text-align: center; /* 텍스트 중앙 정렬 */
+  flex: 1;
+  text-align: center;
 `;
 
 const ChatListButton = styled.button`
-  position: absolute; /* 절대 위치 */
-  left: 5px; /* 오른쪽에 배치 */
+  position: absolute;
+  left: 5px;
   padding: 10px 12px;
   flex: 1;
   font-weight: 600;
@@ -49,7 +49,6 @@ const ChatListButton = styled.button`
   border: none;
   border-radius: 20px;
   cursor: pointer;
-
 `;
 
 const ChatBox = styled.div`
@@ -124,24 +123,24 @@ const ProfileImage = styled.img`
 
 const InputBox = styled.form`
   display: flex;
-  padding: 20px; /* Increased padding */
+  padding: 20px;
   background-color: #f0f0f0;
   border-top: 1px solid #ddd;
   width: 100%;
   box-sizing: border-box;
   position: fixed;
-  bottom: 60px; /* Adjust this value to the height of your bottom navigation bar */
+  bottom: 60px;
   left: 0;
   right: 0;
 
   @media (max-width: 768px) {
-    padding: 16px; /* Increased padding */
+    padding: 16px;
   }
 `;
 
 const Input = styled.input`
   flex: 1;
-  padding: 20px; /* Increased padding */
+  padding: 20px;
   border: 1px solid #ddd;
   border-radius: 20px;
   margin-right: 8px;
@@ -152,7 +151,7 @@ const Input = styled.input`
   }
 
   @media (max-width: 768px) {
-    padding: 16px; /* Increased padding */
+    padding: 16px;
     margin-right: 4px;
   }
 `;
@@ -163,7 +162,7 @@ const Button = styled.button`
   color: white;
   background-color: #4aaa87;
   border: none;
-  border-radius: 20px;
+  border-radius: 12px;
   cursor: pointer;
   &:hover {
     background-color: #6dc4b0;
@@ -175,14 +174,22 @@ const Button = styled.button`
   }
 `;
 
-const ChatPage = () => {
+const ErrorMessage = styled.div`
+  color: red;
+  margin-top: 8px;
+  font-size: 14px;
+  text-align: center; 
+`;
+
+const ChatTemplate = () => {
   const { sessionid } = useParams();
   const location = useLocation();
-  const navigate = useNavigate(); // useNavigate 훅 사용
+  const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [sessionId] = useState(sessionid);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const chatBoxRef = useRef(null);
 
@@ -203,7 +210,7 @@ const ChatPage = () => {
           ]);
           setMessages([{ isUser: false, text: '안녕하세요 무엇을 도와드릴까요?', timestamp: new Date().toISOString() }, ...orderedMessages]);
         } catch (error) {
-          console.error('Error fetching chat history:', error);
+          setErrorMessage('채팅 기록을 불러오는 중 오류가 발생했습니다.');
         }
       };
 
@@ -227,7 +234,7 @@ const ChatPage = () => {
       timestamp: new Date().toISOString()
     };
     setMessages([...messages, userMessage]);
-    setInputValue(''); // Clear input field immediately
+    setInputValue('');
     setLoading(true);
 
     const messageData = {
@@ -246,7 +253,7 @@ const ChatPage = () => {
       };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
     } catch (error) {
-      console.error('Error during chat processing:', error);
+      setErrorMessage('채팅 처리 중 오류가 발생했습니다.');
       const errorMessage = {
         isUser: false,
         text: 'An error occurred. Please try again later.',
@@ -262,7 +269,7 @@ const ChatPage = () => {
     <Container>
       <Header>
         <Title>{sessionName || '농업 GPT'}</Title>
-        <ChatListButton onClick={() => navigate('/chatlist')}><IoMenu />  목록 보기</ChatListButton> 
+        <ChatListButton onClick={() => navigate('/chatlist')}><IoMenu /> 목록 보기</ChatListButton>
       </Header>
       <ChatBox ref={chatBoxRef}>
         <MessageList>
@@ -276,7 +283,7 @@ const ChatPage = () => {
                   ) : (
                     <>
                       {msg.text}
-                      <br/>
+                      <br />
                     </>
                   )}
                 </MessageText>
@@ -297,7 +304,7 @@ const ChatPage = () => {
                     margin={2}
                     size={8}
                     speedMultiplier={0.7}
-                    style={{ marginLeft: '10px' }} // Add some spacing between text and loader
+                    style={{ marginLeft: '10px' }}
                   />
                 </div>
               </Message>
@@ -315,8 +322,9 @@ const ChatPage = () => {
         />
         <Button type="submit">전송</Button>
       </InputBox>
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </Container>
   );
 };
 
-export default ChatPage;
+export default ChatTemplate;
