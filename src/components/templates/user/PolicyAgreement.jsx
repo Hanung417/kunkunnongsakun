@@ -51,7 +51,7 @@ const CustomCheckbox = styled.label`
   width: 20px;
   height: 20px;
   cursor: pointer;
-  margin-right: 10px;  /* 간격 추가 */
+  margin-right: 10px;
   input[type="checkbox"] {
     opacity: 0;
     width: 0;
@@ -92,7 +92,7 @@ const CustomCheckbox = styled.label`
 `;
 
 const Label = styled.label`
-  font-size: 16px;  /* 텍스트 크기 키우기 */
+  font-size: 16px;
   color: #333;
   cursor: pointer;
   flex: 1;
@@ -101,7 +101,7 @@ const Label = styled.label`
 
 const ToggleIcon = styled.div`
   cursor: pointer;
-  margin-left: 10px;  /* 간격 추가 */
+  margin-left: 10px;
 `;
 
 const Button = styled.button`
@@ -127,14 +127,24 @@ const Button = styled.button`
   }
 `;
 
+const InfoButton = styled.img`
+  cursor: pointer;
+  width: 20px; /* 버튼 크기 조절 */
+  height: 20px; /* 버튼 크기 조절 */
+  margin-left: auto; /* 텍스트와의 간격 조절 */
+`;
+
 const ToggleContent = styled.div`
+  display: none;
+  align-items: center;
+  justify-content: space-between;
   background: #f0f0f0;
   border-left: 3px solid #4aaa87;
   margin: 5px 0 10px;
   padding: 10px;
-  display: none;
+  position: relative;
   ${props => props.show && css`
-    display: block;
+    display: flex;
   `}
 `;
 
@@ -260,7 +270,7 @@ const PolicyAgreement = () => {
               <Label htmlFor="allChecked">전체 동의합니다.</Label>
             </CheckboxWrapper>
             {[
-              { key: 'ageCheck', label: '서비스 이용약관(필수)', content: '여기에 서비스 이용약관 세부 내용을 입력합니다.' },
+              { key: 'ageCheck', label: '서비스 이용약관(필수)', content: '자세한 사항은 더보기를 참고해주세요.' },
               { key: 'usingListCheck', label: '개인정보 수집 및 이용동의(필수)', content: '○ 개인정보 수집·이용목적 : 본인확인 및 본인 인증, 서비스 제공, 서비스 품질 개선 및 신규 서비스 개발을 위한 통계관리\n\n○ 개인정보 수집항목. 필수항목 : 성명, 이메일, 비밀번호\n\n○ 개인정보의 보유 및 이용기간 : 회원탈퇴 시 까지\n\n○ 동의거부 권리 및 동의거부에 따른 불이익 : 귀하는 개인정보 제공 및 동의를 거부할 권리가 있으며, 위 항목 동의 거부 시 꾼꾼농사꾼에서 제공하는 서비스 이용이 제한될 수 있습니다.'},
             ].map(({ key, label, content }, idx) => (
               <div key={idx}>
@@ -282,6 +292,13 @@ const PolicyAgreement = () => {
                 </CheckboxWrapper>
                 <ToggleContent show={showDetails[key]}>
                   {content}
+                  {key === 'ageCheck' && (
+                    <InfoButton 
+                      src="../more_info.png" 
+                      alt="약관 상세 보기" 
+                      onClick={() => navigate('/terms-of-service')} 
+                    />
+                  )}
                 </ToggleContent>
               </div>
             ))}

@@ -25,6 +25,7 @@ import SessionDetails from "./components/templates/crop/SessionDetails";
 import StartTemplate from "./components/templates/user/StartTemplate";
 import PolicyAgreement from "./components/templates/user/PolicyAgreement";
 import PrivacyPolicyPage from "./components/templates/user/PrivacyPolicyPage";
+import TermsOfService from "./components/templates/user/TermsOfService";
 import NotFound from "./components/templates/NotFound";
 import SoilTemplate from "./components/templates/exam/SoilTemplate";
 import { LoadingProvider } from "./LoadingContext";
@@ -45,6 +46,8 @@ function App() {
             <Route path="/main" element={<MainTemplate />} />
             <Route path="/mypage" element={<MyPageTemplate />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
 
             {/* post */}
             <Route path="board" element={<BoardTemplate />} />
@@ -71,7 +74,7 @@ function App() {
             <Route path="/diagnosislist" element={<DiagnosisListTemplate />} />
             <Route path="/cropselection" element={<CropSelectionPage />} />
             <Route path="/sessiondetails" element={<SessionDetails />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            
           </Route>
         </Routes>
       </BrowserRouter>
