@@ -8,8 +8,6 @@ import SellBoardTemplate from "./components/templates/post/SellBoardTemplate";
 import WritePostTemplate from "./components/templates/post/WritePostTemplate";
 import PostDetailTemplate from "./components/templates/post/PostDetailTemplate";
 import LoginTemplate from "./components/templates/user/LoginTemplate";
-import ChatPage from "./components/templates/chat/ChatPage";
-import ChatListPage from "./components/templates/chat/ChatListPage";
 import PasswordResetTemplate from "./components/templates/user/PasswordResetTemplate";
 import MyPageTemplate from "./components/templates/user/MyPageTemplate";
 import CropTest from "./components/templates/crop/CropTest";
@@ -31,6 +29,8 @@ import SoilTemplate from "./components/templates/exam/SoilTemplate";
 import { LoadingProvider } from "./LoadingContext";
 import DiagnosisTemplate from "./components/templates/exam/DiagnosisTemplate";
 import InfoTemplate from "./components/templates/exam/InfoTemplate";
+import ChatListTemplate from "./components/templates/chat/ChatListTemplate";
+import ChatTemplate from "./components/templates/chat/ChatTemplate";
 
 function App() {
   return (
@@ -61,8 +61,8 @@ function App() {
             <Route path="/my_commented_posts" element={<MyCommentedPostsTemplate />} />
 
             {/* chat */}
-            <Route path="chatlist" element={<ChatListPage />} />
-            <Route path="chat/:sessionid" element={<ChatPage />} />
+            <Route path="chatlist" element={<ChatListTemplate />} />
+            <Route path="chat/:sessionid" element={<ChatTemplate />} />
 
             {/* ai */}
             <Route path="/croptest" element={<CropTest />} />
