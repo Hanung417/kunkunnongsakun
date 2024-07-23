@@ -8,7 +8,7 @@ const RecommendationContainer = styled.div`
   background-color: #fff;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  padding: 2rem;
+  padding: 1rem 2rem;
 `;
 
 const CropInfoContainer = styled.div`
