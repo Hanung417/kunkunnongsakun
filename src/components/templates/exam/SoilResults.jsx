@@ -112,7 +112,7 @@ const Button = styled.button`
 
 const formatValue = (value) => {
   const parsedValue = parseFloat(value);
-  if (isNaN(parsedValue)) return 'N/A';
+  if (isNaN(parsedValue)) return '0';
   if (parsedValue % 1 === 0) return parsedValue.toString();
   return parsedValue.toFixed(1);
 };
