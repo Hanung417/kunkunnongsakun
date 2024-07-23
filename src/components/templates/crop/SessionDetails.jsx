@@ -46,8 +46,8 @@ const SectionContainer = styled.div`
 
 const InfoTableContainer = styled.div`
   width: 100%;
-  max-width: 800px;
   margin-bottom: 20px;
+  overflow: auto;
 `;
 
 const SectionTitle = styled.h3`
@@ -93,9 +93,14 @@ const InfoTable = styled.table`
   @media (max-width: 768px) {
     th, td {
       font-size: 1rem; 
-      padding: 10px;
+      padding: 8px;
     }
   }
+`;
+
+const ExplanationText = styled.p`
+  font-size: 0.8rem;
+  color: #666;
 `;
 
 const Divider = styled.hr`
@@ -128,7 +133,7 @@ const ChartContainer = styled.div`
 
 const Tabs = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 5px;
   justify-content: center;
   margin-bottom: 20px;
 `;
@@ -474,16 +479,16 @@ const SessionDetails = () => {
             <InfoTable>
               <tbody>
                 <tr>
-                  <td>예상 총 소득<br/>(연간)</td>
-                  <td>{formatNumber(Math.round(adjustedDataList[selectedCropIndex]["소득 (원)"]))}</td>
+                  <td>예상 총 수입<br/>(연간)</td>
+                  <td>{formatNumber(Math.round(adjustedDataList[selectedCropIndex]["총수입 (원)"]))}</td>
                 </tr>
                 <tr>
                   <td>예상 총 경영비<br/>(연간)</td>
                   <td>{formatNumber(Math.round(adjustedDataList[selectedCropIndex]["총경영비"]))}</td>
                 </tr>
                 <tr>
-                  <td>예상 총 수입<br/>(연간)</td>
-                  <td>{formatNumber(Math.round(adjustedDataList[selectedCropIndex]["총수입 (원)"]))}</td>
+                  <td>예상 총 소득<br/>(연간)</td>
+                  <td>{formatNumber(Math.round(adjustedDataList[selectedCropIndex]["소득 (원)"]))}</td>
                 </tr>
                 <tr>
                   <td>예상 자가노동비</td>
@@ -495,6 +500,9 @@ const SessionDetails = () => {
                 </tr>
               </tbody>
             </InfoTable>
+            <ExplanationText>
+              * 총 수입 = 총 경영비 + 총 소득
+            </ExplanationText>
               <SectionTitle>그 외 예상 비용</SectionTitle>
               <ChartContainer>
                 {Object.keys(adjustedDataList[selectedCropIndex]).length > 0 ? (
@@ -506,6 +514,10 @@ const SessionDetails = () => {
               <SectionTitle>작물별 도매 정보</SectionTitle>
               <InfoTable>
                 <tbody>
+                  <tr>
+                    <td>작물명</td>
+                    <td>{sessionDetails.results[selectedCropIndex].crop_name}</td>
+                  </tr>
                   <tr>
                     <td>내일 예상 도매가</td>
                     <td>{sessionDetails.results[selectedCropIndex].price} 원</td>
@@ -520,6 +532,11 @@ const SessionDetails = () => {
                   </tr>
                 </tbody>
               </InfoTable>
+              <ExplanationText>
+                RMSE: 모델 예측값과 실제값 간의 차이를 제곱한 평균을 구한 후 제곱근을 취한 값.<br/>
+                R2 score: 모델의 설명력을 나타내는 지표, 1에 가까울 수록 모델이 데이터를 잘 설명함<br/>
+                <br/>* 예상 도매가는 실제값과 다를 수 있습니다.
+              </ExplanationText>
               <SectionTitle>지난 1년간 일일 도매가</SectionTitle>
               <ChartContainer>
                 {sessionDetails.results[selectedCropIndex].crop_chart_data ? (
