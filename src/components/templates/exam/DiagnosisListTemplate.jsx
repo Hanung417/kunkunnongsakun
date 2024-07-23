@@ -40,6 +40,7 @@ const SessionList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.625rem; /* 10px */
+  max-width: 75rem;
 `;
 
 const SessionItem = styled.div`
@@ -59,14 +60,14 @@ const SessionItem = styled.div`
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
   }
   flex-wrap: wrap;
-  font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* 텍스트 크기 반응형으로 조정 */
+  font-size: clamp(0.8rem, 2.5vw, 1.2rem); /* 텍스트 크기 반응형으로 조정 */
   position: relative;
 `;
 
 const SessionInfo = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0.375rem; /* 6px */
+  padding: 0.8rem 0.35rem; /* 6px */
   gap: 0.3125rem; /* 5px */
   flex: 1;
   min-width: 9.375rem; /* 150px */
@@ -82,19 +83,19 @@ const SessionImage = styled.img`
   flex-shrink: 0;
 
   @media (max-width: 48rem) { /* 768px */
-    margin-bottom: 0.625rem; /* 10px */
+    margin-bottom: 0.5rem; /* 10px */
     margin-right: 0;
   }
 
   @media (max-width: 30rem) { /* 480px */
-    margin-bottom: 0.625rem; /* 10px */
+    margin-bottom: 0rem; /* 10px */
     margin-right: 0;
   }
 `;
 
 const DeleteButton = styled.button`
   position: absolute;
-  top: 2px; 
+  top: 0.7rem; 
   right: 0.5rem; 
   background: none;
   border: none;
