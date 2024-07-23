@@ -23,29 +23,33 @@ def process_image(image_path):
     # Perform inference using the YOLO model
     results = model(image_path)
 
-    # If there are results, get the pest_id and confidence
+    # Initialize default values for pest_id and confidence
+    pest_id = 10  # Default pest ID if no detection meets confidence threshold
+    confidence = 0.0
+    result_image_content = None
+
+    # If there are results, process them
     if results and len(results) > 0:
         best_result = results[0]  # Assuming the first result is the best one
         if best_result.boxes and len(best_result.boxes) > 0:
-            pest_id = int(best_result.boxes[0].cls.item())  # Assuming 'cls' gives the class ID
-            confidence = float(best_result.boxes[0].conf.item()) * 100  # Assuming 'conf' gives the confidence score
+            for box in best_result.boxes:
+                if box.conf >= 0.6:  # Check if confidence is at least 0.6
+                    pest_id = int(box.cls.item())  # Assuming 'cls' gives the class ID
+                    confidence = float(box.conf.item()) * 100  # Assuming 'conf' gives the confidence score
 
-            # Plot the annotated image and save to a BytesIO object
-            annotated_image = best_result.plot()
-            is_success, buffer = cv2.imencode(".jpg", annotated_image)
-            result_image_content = ContentFile(buffer.tobytes(), name=os.path.basename(image_path))
-        else:
-            pest_id = 10  # Default pest ID
-            confidence = 0.0
-            with open(image_path, 'rb') as original_file:
-                result_image_content = ContentFile(original_file.read(), name=os.path.basename(image_path))
-    else:
-        pest_id = 10  # Default pest ID
-        confidence = 0.0
+                    # Plot the annotated image and save to a BytesIO object
+                    annotated_image = best_result.plot()
+                    is_success, buffer = cv2.imencode(".jpg", annotated_image)
+                    result_image_content = ContentFile(buffer.tobytes(), name=os.path.basename(image_path))
+                    break  # Stop after the first match meeting the criterion
+
+    # If no valid detections, read the original image
+    if not result_image_content:
         with open(image_path, 'rb') as original_file:
             result_image_content = ContentFile(original_file.read(), name=os.path.basename(image_path))
 
     return pest_id, confidence, result_image_content
+
 
 @login_required
 def upload_image_for_detection(request):
