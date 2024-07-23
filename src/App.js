@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import MainPage from "./pages/MainPage";
+import MainTemplate from "./components/templates/MainTemplate";
 import { MainLayout } from "./components/layouts/MainLayout";
-import BoardPage from "./pages/BoardPage";
-import BuyBoardPage from "./pages/BuyBoardPage";
-import SellBoardPage from "./pages/SellBoardPage";
-import PostDetailPage from "./pages/PostDetailPage";
-import WritePostPage from "./pages/WritePostPage";
+import BoardTemplate from "./components/templates/post/BoardTemplate";
+import BuyBoardTemplate from "./components/templates/post/BuyBoardTemplate";
+import SellBoardTemplate from "./components/templates/post/SellBoardTemplate";
+import WritePostTemplate from "./components/templates/post/WritePostTemplate";
+import PostDetailTemplate from "./components/templates/post/PostDetailTemplate";
 import LoginTemplate from "./components/templates/user/LoginTemplate";
 import ChatPage from "./components/templates/chat/ChatPage";
 import ChatListPage from "./components/templates/chat/ChatListPage";
@@ -16,21 +16,20 @@ import CropTest from "./components/templates/crop/CropTest";
 import MyPostTemplate from "./components/templates/post/MyPostTemplate";
 import EditPostTemplate from "./components/templates/post/EditPostTemplate";
 import ExchangeBoardTemplate from "./components/templates/post/ExchangeBoardTemplate";
-import SoilPage from "./pages/SoilPage";
-import DiagnosisPage from "./pages/DiagnosisPage";
-import InfoPage from "./pages/InfoPage";
 import MyCommentedPostsTemplate from "./components/templates/post/MyCommentedPostsTemplate";
 import CropSelectionPage from "./components/templates/crop/CropSelectionPage";
 import DiagnosisListTemplate from "./components/templates/exam/DiagnosisListTemplate";
 import SoilListTemplate from "./components/templates/exam/SoilListTemplate";
 import SoilDataDetails from "./components/templates/exam/SoilDataDetails";
-import NotFoundPage from "./pages/NotFoundPage";
 import SessionDetails from "./components/templates/crop/SessionDetails";
 import StartTemplate from "./components/templates/user/StartTemplate";
 import PolicyAgreement from "./components/templates/user/PolicyAgreement";
 import PrivacyPolicyPage from "./components/templates/user/PrivacyPolicyPage";
+import NotFound from "./components/templates/NotFound";
+import SoilTemplate from "./components/templates/exam/SoilTemplate";
 import { LoadingProvider } from "./LoadingContext";
-import GlobalLoader from "./GlobalLoader";
+import DiagnosisTemplate from "./components/templates/exam/DiagnosisTemplate";
+import InfoTemplate from "./components/templates/exam/InfoTemplate";
 
 function App() {
   return (
@@ -43,17 +42,17 @@ function App() {
             <Route path="/signup" element={<PolicyAgreement />} />
             <Route path="/login" element={<LoginTemplate />} />
             <Route path="/password_reset" element={<PasswordResetTemplate />} />
-            <Route path="/main" element={<MainPage />} />
+            <Route path="/main" element={<MainTemplate />} />
             <Route path="/mypage" element={<MyPageTemplate />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="*" element={<NotFound />} />
 
             {/* post */}
-            <Route path="board" element={<BoardPage />} />
-            <Route path="buyboard" element={<BuyBoardPage />} />
-            <Route path="sellboard" element={<SellBoardPage />} />
+            <Route path="board" element={<BoardTemplate />} />
+            <Route path="buyboard" element={<BuyBoardTemplate />} />
+            <Route path="sellboard" element={<SellBoardTemplate />} />
             <Route path="exchangeboard" element={<ExchangeBoardTemplate />} />
-            <Route path="post/:id" element={<PostDetailPage />} />
-            <Route path="post/create" element={<WritePostPage />} />
+            <Route path="post/:id" element={<PostDetailTemplate />} />
+            <Route path="post/create" element={<WritePostTemplate />} />
             <Route path="/my_posts" element={<MyPostTemplate />} />
             <Route path="/post/edit/:id" element={<EditPostTemplate />} />
             <Route path="/my_commented_posts" element={<MyCommentedPostsTemplate />} />
@@ -64,11 +63,11 @@ function App() {
 
             {/* ai */}
             <Route path="/croptest" element={<CropTest />} />
-            <Route path="/soil" element={<SoilPage />} />
+            <Route path="/soil" element={<SoilTemplate />} />
             <Route path="/soillist" element={<SoilListTemplate />} />
             <Route path="/soil_details" element={<SoilDataDetails />} />
-            <Route path="/diagnosis" element={<DiagnosisPage />} />
-            <Route path="/info" element={<InfoPage />} />
+            <Route path="/diagnosis" element={<DiagnosisTemplate />} />
+            <Route path="/info" element={<InfoTemplate />} />
             <Route path="/diagnosislist" element={<DiagnosisListTemplate />} />
             <Route path="/cropselection" element={<CropSelectionPage />} />
             <Route path="/sessiondetails" element={<SessionDetails />} />
