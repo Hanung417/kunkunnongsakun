@@ -52,6 +52,22 @@ const InputLabel = styled.label`
   align-self: flex-start;
 `;
 
+const Input = styled.input`
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  height: 40px; // 높이 통일
+  box-sizing: border-box;
+  font-size: 16px;
+
+  @media (max-width: 768px) {
+    height: 36px; // 모바일에서 높이 통일
+    font-size: 14px;
+    padding: 6px;
+  }
+`;
+
 const AddressContainer = styled.div`
   display: flex;
   align-items: center;
@@ -97,22 +113,6 @@ const SearchButton = styled.button`
   }
 `;
 
-const Input = styled.input`
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-  height: 40px; // 높이 통일
-  box-sizing: border-box;
-  font-size: 16px;
-
-  @media (max-width: 768px) {
-    height: 36px; // 모바일에서 높이 통일
-    font-size: 14px;
-    padding: 6px;
-  }
-`;
-
 const InputContainer = styled.div`
   position: relative;
   width: 100%;
@@ -124,9 +124,6 @@ const InputContainer = styled.div`
     width: calc(100% - 110px); // Adjust to match the combined width of the AddressInput and SearchButton
   }
 `;
-
-
-
 
 const SearchIcon = styled(IoSearch)`
   font-size: 20px;
