@@ -46,8 +46,8 @@ const SectionContainer = styled.div`
 
 const InfoTableContainer = styled.div`
   width: 100%;
-  max-width: 800px;
   margin-bottom: 20px;
+  overflow: auto;
 `;
 
 const SectionTitle = styled.h3`
@@ -93,7 +93,7 @@ const InfoTable = styled.table`
   @media (max-width: 768px) {
     th, td {
       font-size: 1rem; 
-      padding: 10px;
+      padding: 8px;
     }
   }
 `;
@@ -128,7 +128,7 @@ const ChartContainer = styled.div`
 
 const Tabs = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 5px;
   justify-content: center;
   margin-bottom: 20px;
 `;
@@ -506,6 +506,10 @@ const SessionDetails = () => {
               <SectionTitle>작물별 도매 정보</SectionTitle>
               <InfoTable>
                 <tbody>
+                  <tr>
+                    <td>작물명</td>
+                    <td>{sessionDetails.results[selectedCropIndex].crop_name}</td>
+                  </tr>
                   <tr>
                     <td>내일 예상 도매가</td>
                     <td>{sessionDetails.results[selectedCropIndex].price} 원</td>
