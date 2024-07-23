@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { deleteAccount, getCSRFToken } from "../../../apis/user"; // import from user.js
 import { FaTimes } from "react-icons/fa";
-import GlobalLoader from '../../atoms/GlobalLoader';
 import { useLoading } from '../../../LoadingContext';
 
 const customStyles = {
@@ -15,45 +14,49 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    width: "70%",
-    boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1)",
+    width: "80%",
+    maxWidth: "32rem", /* 512px */
+    boxShadow: "0 0.5rem 1rem rgba(0, 0, 0, 0.3), 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1)",
+    padding: "2rem", /* 32px */
   },
 };
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  width: 80%;
-  padding: 24px;
+  align-items: center; /* Center align */
+  width: 100%;
 `;
 
 const CloseButton = styled.button`
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 1rem; /* 16px in rem */
+  right: 1rem; /* 16px in rem */
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 1.5rem; /* 24px in rem */
   cursor: pointer;
 `;
 
 const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem; /* 24px in rem */
+  width: 100%;
 `;
 
 const Label = styled.label`
-  font-size: 14px;
+  font-size: 0.875rem; /* 14px in rem */
   color: #666;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem; /* 8px in rem */
 `;
 
 const Input = styled.input`
-  font-size: 14px;
-  padding: 12px;
+  font-size: 0.875rem; /* 14px in rem */
+  padding: 0.75rem; /* 12px in rem */
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 0.25rem; /* 4px in rem */
+  width: 100%;
   &:focus {
     outline: none;
     border-color: #2faa9a;
@@ -61,15 +64,16 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  padding: 12px 16px;
-  font-size: 16px;
+  padding: 0.75rem 1rem; /* 12px 16px in rem */
+  font-size: 1rem; /* 16px in rem */
   font-weight: bold;
   color: white;
   background-color: #2faa9a;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.25rem; /* 4px in rem */
   cursor: pointer;
-  margin-top: 16px;
+  width: 100%;
+  max-width: 20rem; /* 320px in rem */
   &:hover {
     background-color: #6dc4b0;
   }
@@ -77,14 +81,15 @@ const Button = styled.button`
 
 const ErrorMessage = styled.div`
   color: red;
-  font-size: 12px;
-  margin-top: 4px;
+  font-size: 0.75rem; /* 12px in rem */
+  margin-top: 0.25rem; /* 4px in rem */
 `;
 
 const WarningMessage = styled.div`
   color: #d9534f;
-  font-size: 14px;
-  margin-bottom: 16px;
+  font-size: 0.875rem; /* 14px in rem */
+  margin-bottom: 1rem; /* 16px in rem */
+  text-align: center;
 `;
 
 const DeleteAccountModal = ({ isOpen, onRequestClose }) => {
@@ -129,7 +134,6 @@ const DeleteAccountModal = ({ isOpen, onRequestClose }) => {
       style={customStyles}
       contentLabel="Delete Account Modal"
     >
-      <GlobalLoader isLoading={isLoading} />
       <CloseButton onClick={onRequestClose}><FaTimes /></CloseButton>
       <Form onSubmit={handleSubmit}>
         <h2>회원 탈퇴</h2>

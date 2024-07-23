@@ -29,6 +29,7 @@ const ChatList = styled.ul`
   overflow-y: auto;
   width: 100%;
   margin-bottom: 24px;
+  max-width: 75rem;
 `;
 
 const ChatListItem = styled.li`

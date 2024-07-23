@@ -13,6 +13,9 @@ const Container = styled.div`
   height: 100vh;
   box-sizing: border-box;
   overflow: auto;
+  max-width: 75rem;
+  width: 100%;
+  margin: 0 auto;
 
   @media (max-width: 768px) {
     padding: 16px;

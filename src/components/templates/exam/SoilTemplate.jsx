@@ -14,6 +14,7 @@ const Container = styled.div`
   align-items: center;
   padding: 24px;
   background-color: #f9f9f9;
+  min-height: auto;
   @media (max-width: 768px) {
     padding: 16px;
   }

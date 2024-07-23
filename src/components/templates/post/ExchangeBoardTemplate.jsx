@@ -11,12 +11,16 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 16px;
+  max-width: 75rem;
+  width: 100%;
+  margin: 0 auto;
 `;
 
 const PostList = styled.div`
   display: grid;
   gap: 1rem;
   width: 100%;
+  max-width: 75rem;
 `;
 
 const Table = styled.table`

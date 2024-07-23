@@ -13,7 +13,7 @@ const PageContainer = styled.div`
   align-items: center;
   padding: 1.5rem 0.8rem;
   background-color: #f9f9f9;
-  min-height: 50vh;
+  min-height: 100vh;
 `;
 
 const SessionList = styled.div`
@@ -22,6 +22,7 @@ const SessionList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
+  max-width: 75rem;
 `;
 
 const SessionItem = styled.div`

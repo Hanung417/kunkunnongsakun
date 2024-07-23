@@ -14,7 +14,9 @@ import Comments from "../../molecules/Comment";
 import { useLoading } from "../../../LoadingContext";
 
 const Container = styled.div`
-  margin: 12px;
+  max-width: 75rem;
+  width: 100%;
+  margin: 0 auto;
 `;
 
 const PostDetailTemplate = () => {
