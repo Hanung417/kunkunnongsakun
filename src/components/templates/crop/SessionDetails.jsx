@@ -180,6 +180,33 @@ const Loader = styled.div`
   }
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+const Button = styled.button`
+  background-color: #4aaa87;
+  color: white;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+
+  &:hover {
+    background-color: #3b8b6d;
+  }
+
+  @media (max-width: 600px) {
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+  }
+`;
+
 const columns = [
   "농약비", "초기투자비용", "보통(무기질)비료비", "부산물(유기질)비료비",
   "기타재료비", "수도광열비", "수리·유지비", "농기계·시설 임차료",
@@ -387,6 +414,10 @@ const SessionDetails = () => {
     setIsChartLoading(false);
   };
 
+  const handleBackToList = () => {
+    navigate('/cropselection');
+  };
+
 
   if (!sessionDetails || !barChartData || !lineChartData) {
     return <div></div>;
@@ -472,7 +503,7 @@ const SessionDetails = () => {
                   <ErrorText>차트 데이터를 불러오는 과정에서 문제가 생겼습니다.</ErrorText>
                 )}
               </ChartContainer>
-              <SectionTitle>도매 정보</SectionTitle>
+              <SectionTitle>작물별 도매 정보</SectionTitle>
               <InfoTable>
                 <tbody>
                   <tr>
@@ -503,6 +534,9 @@ const SessionDetails = () => {
             </>
           )}
         </SectionContainer>
+        <ButtonContainer>
+          <Button onClick={handleBackToList}>목록으로 돌아가기</Button>
+        </ButtonContainer>
       </LayoutContainer>
     </PageContainer>
   );

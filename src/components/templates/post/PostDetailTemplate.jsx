@@ -116,7 +116,7 @@ const PostDetailTemplate = () => {
       setEditCommentId(null);
       setEditCommentContent("");
     } catch (error) {
-      console.error("Failed to edit comment", error);
+      console.error("Failed to edit comment:", error); // 오류 로그에 상세 정보 추가
     }
   };
 

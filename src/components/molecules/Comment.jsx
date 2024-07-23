@@ -277,14 +277,14 @@ const Comment = ({
               <CommentForm
                 onSubmit={(e) => {
                   e.preventDefault();
-                  handleEditComment(e, comment.id);
+                  handleEditComment(comment.id);
                 }}
               >
                 <CommentTextarea
                   rows="2"
                   value={editCommentContent}
                   onChange={handleEditCommentChange}
-                  onKeyDown={(e) => handleKeyDown(e, (ev) => handleEditComment(ev, comment.id))}
+                  onKeyDown={(e) => handleKeyDown(e, () => handleEditComment(comment.id))}
                 />
                 <EditCommentButton type="submit" disabled={!editCommentContent.trim()}>
                   확인
