@@ -6,20 +6,20 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px;
+  padding: 1.5rem;
   background-color: #f9f9f9;
 `;
 
 const LayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 1.5rem;
   width: 100%;
-  max-width: 900px;
+  max-width: 56.25rem; /* 900px */
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  border-radius: 0.625rem; /* 10px */
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  padding: 1.25rem;
 `;
 
 const SectionTitle = styled.h2`
@@ -31,18 +31,23 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 180px; /* 최대 너비 설정 */
-  height: 150px; /* 이미지 크기 고정 */
-  border-radius: 4px;
+  width: 8rem; /* 128px */
+  height: 10rem; /* 160px */
+  border-radius: 0.25rem; /* 4px */
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
+
+  @media (min-width: 768px) {
+    width: 16rem; /* 256px */
+    height: 20rem; /* 320px */
+  }
 `;
+
 
 const ImageLabel = styled.div`
   font-weight: bold;
   color: #4aaa87;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
   text-align: center;
 `;
 
@@ -55,14 +60,15 @@ const Image = styled.img`
 const InfoContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  @media (max-width: 768px) {
+  gap: 1rem;
+  @media (max-width: 48rem) { /* 768px */
     grid-template-columns: 1fr;
   }
 `;
 
 const SingleRowContainer = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 1.25rem;
   width: 100%;
   justify-content: center;
 `;
@@ -71,22 +77,22 @@ const Divider = styled.hr`
   width: 100%;
   height: 1px;
   background-color: #ccc;
-  margin: 10px 0; /* 위아래 간격을 줄였습니다 */
+  margin: 0.625rem 0;
 `;
 
 const InfoBox = styled.div`
   background-color: #f9f9f9;
-  padding: 10px 20px; /* 상하 패딩을 줄였습니다 */
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   flex: 1;
-  border: 1px solid #ddd; /* 테두리 추가 */
+  border: 1px solid #ddd;
 `;
 
 const InfoLabel = styled.p`
   font-weight: bold;
   color: #4aaa87;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 `;
 
 const InfoText = styled.p`
@@ -97,33 +103,33 @@ const InfoText = styled.p`
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 `;
 
 const TableHeader = styled.th`
   border: 1px solid #ccc;
-  padding: 8px;
+  padding: 0.5rem;
   background-color: #f0f0f0;
   color: #333;
 `;
 
 const TableCell = styled.td`
   border: 1px solid #ccc;
-  padding: 8px;
+  padding: 0.5rem;
   color: #333;
 `;
 
 const BackButton = styled.button`
   background-color: #4aaa87;
   color: white;
-  padding: 12px 24px;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.3125rem;
   cursor: pointer;
   font-size: 1rem;
   font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  margin-top: 1.25rem;
 
   &:hover {
     background-color: #3b8b6d;
@@ -181,7 +187,7 @@ const InfoTemplate = () => {
           </InfoBox>
           <InfoBox>
             <InfoLabel>모델 학습 결과</InfoLabel>
-            <InfoText>{confidence.toFixed(2)}</InfoText>
+            <InfoText>{pest_name === "0" ? "정상" : confidence.toFixed(2)}</InfoText>
           </InfoBox>
         </SingleRowContainer>
         {pest_name === "0" ? (
