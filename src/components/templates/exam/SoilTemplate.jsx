@@ -430,6 +430,7 @@ const SoilTemplate = () => {
             />
             <SearchButton onClick={fetchSoilExamData}>주소 검색 <SearchIcon /></SearchButton>
           </AddressContainer>
+          <p style={{ color: '#7f8c8d', fontSize: '0.875rem', marginTop: '0.5rem' }}>예시) 광주광역시 용전동, 전라남도 순천시 용당동</p>
         </InputContainer>
         {soilData.length > 0 && (
           <InputContainer>
