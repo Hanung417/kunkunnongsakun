@@ -228,8 +228,7 @@ const CropTest = () => {
             </List>
           )}
         </div>
-        <p style={{ color: '#7f8c8d', fontSize: '0.875rem', marginTop: '0.625rem' }}>원하는 작물과 비율을 선택하여 추가하기를 눌러주세요</p>
-        <p style={{ color: '#7f8c8d', fontSize: '0.875rem', marginTop: '0.625rem' }}>각 작물별 비율은 합해서 1이 되어야 합니다.</p>
+        <p style={{ color: '#7f8c8d', fontSize: '0.875rem', marginTop: '0.625rem' }}>원하는 작물과 비율을 선택하여 추가하기를 눌러주세요.</p>
         <Label>작물 이름</Label>
         <Select
           key={selectKey} // key를 설정하여 컴포넌트를 재설정
@@ -269,6 +268,7 @@ const CropTest = () => {
             <FaPlus style={{ marginRight: '0.5rem' }} /> 추가하기
           </AddButton>
         </div>
+        <p style={{ color: '#7f8c8d', fontSize: '0.875rem', marginTop: '0.625rem' }}>각 작물별 비율은 합해서 1이 되어야 합니다.</p>
         {addError && <ErrorMessage>{addError}</ErrorMessage>}
       </InputContainer>
       <SummaryTitle step="2">입력 정보 확인</SummaryTitle>
