@@ -4,6 +4,7 @@ import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { fetchChatHistory, sendChatMessage } from '../../../apis/chat';
 import SyncLoader from 'react-spinners/SyncLoader';
 import { IoMenu } from "react-icons/io5";
+import { FaPaperPlane } from "react-icons/fa";
 
 const Container = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ const Container = styled.div`
   box-sizing: border-box;
   overflow: hidden;
   padding-bottom: 4.375rem; /* 70px in rem */
+  min-height: auto;
 `;
 
 const Header = styled.div`
@@ -167,6 +169,7 @@ const Button = styled.button`
   border: none;
   border-radius: 1.25rem; /* 20px in rem */
   cursor: pointer;
+  width: 4rem;
   &:hover {
     background-color: #6dc4b0;
   }
@@ -323,7 +326,7 @@ const ChatTemplate = () => {
           placeholder="질문을 입력하세요"
           required
         />
-        <Button type="submit">전송</Button>
+        <Button type="submit"><FaPaperPlane size="20px"/></Button>
       </InputBox>
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </Container>
