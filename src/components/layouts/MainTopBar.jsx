@@ -112,6 +112,7 @@ const MainTopBar = () => {
       setIsLoggedIn(false);
       setUsername("");
       localStorage.setItem('isLoggedIn', 'false');
+      localStorage.clear();
       setModalContent("로그아웃이 완료되었습니다.");
       setIsModalOpen(true);
     } catch (error) {

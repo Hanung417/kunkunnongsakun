@@ -13,11 +13,13 @@ const ModalContainer = styled(Modal)`
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   position: absolute;
-  top: 40%;
+  top: ${({ customTop }) => customTop || '50%'};
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 400px;
   width: 80%;
+  height: auto;
+  max-height: ${({ customHeight }) => customHeight || '400px'};
 `;
 
 const ModalTitle = styled.h2`
@@ -52,12 +54,14 @@ const Button = styled.button`
   }
 `;
 
-const CustomModal = ({ isOpen, onRequestClose, title, content, onConfirm, showConfirmButton, isError }) => (
+const CustomModal = ({ isOpen, onRequestClose, title, content, onConfirm, showConfirmButton, isError, customTop, customHeight }) => (
   <ModalContainer
     isOpen={isOpen}
     onRequestClose={onRequestClose}
     contentLabel={title}
     ariaHideApp={false}
+    customTop={customTop}
+    customHeight={customHeight}
   >
     <ModalTitle>{title}</ModalTitle>
     <ModalContent>{content}</ModalContent>

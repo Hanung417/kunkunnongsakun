@@ -19,7 +19,7 @@ const TopBarLoader = ({ color }) => {
 
   return (
     <LoaderContainer>
-      <SyncLoader color={color} loading={isLoading} size={8} />
+      <SyncLoader color={color} size={8} />
     </LoaderContainer>
   );
 };
