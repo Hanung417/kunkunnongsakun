@@ -210,6 +210,12 @@ const DiagnoseButton = styled.button`
   }
 `;
 
+const ExplanationText = styled.p`
+  font-size: 0.8rem;
+  color: #666;
+  text-align: center;
+`;
+
 const DiagnosisTemplate = () => {
   const { setIsLoading, isLoading } = useLoading();
   const [image, setImage] = useState(null);
@@ -286,6 +292,12 @@ const DiagnosisTemplate = () => {
       {isLoading && <GlobalLoader text="AI 진단 중입니다." />}
       <Content>
         <UploadText>병해충 진단을 위한 사진을 업로드해주세요</UploadText>
+        <ExplanationText>
+          &#60;탐지 가능 병해충 목록&#62;<br/>
+          고추: 탄저병, 흰가루병<br/>
+          오이: 노균병, 흰가루병<br/>
+          토마토: 잿빛곰팡이병, 흰가루병
+        </ExplanationText>
         <ButtonWrapper>
           <UploadButton onClick={openFileDialog}>
             <FaFile />
