@@ -98,7 +98,7 @@ const PostDetailTemplate = () => {
       setNewReply("");
       setReplyCommentId(null);
     } catch (error) {
-      console.error("Failed to post reply", error);
+      alert("답글 작성에 실패했습니다.");
     }
   };
 
