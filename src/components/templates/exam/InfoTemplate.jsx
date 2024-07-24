@@ -31,9 +31,8 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 8rem; /* 128px */
+  width: 100%; /* 128px */
   height: 10rem; /* 160px */
-  border-radius: 0.25rem; /* 4px */
   overflow: hidden;
   margin-bottom: 1.25rem;
 
@@ -54,7 +53,7 @@ const ImageLabel = styled.div`
 const Image = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 const InfoContainer = styled.div`
