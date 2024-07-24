@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { IoSearch } from 'react-icons/io5'; // Close icon and Search icon import
-import Modal from 'react-modal'; // Modal 컴포넌트 불러오기
+import { IoSearch } from 'react-icons/io5';
 import { getCropNames, getSoilExamData, getSoilFertilizerInfo } from "../../../apis/predict";
-import { useLoading } from "../../../LoadingContext"; // 로딩 훅 임포트
-import CustomModal from '../../atoms/CustomModal'; // CustomModal 컴포넌트 임포트
+import { useLoading } from "../../../LoadingContext";
+import CustomModal from '../../atoms/CustomModal';
 import SoilResults from "./SoilResults";
 
 const Container = styled.div`
@@ -35,16 +34,6 @@ const BoxContainer = styled.div`
   }
 `;
 
-const Title = styled.h1`
-  font-size: 24px;
-  margin-bottom: 32px;
-  color: #333;
-  @media (max-width: 768px) {
-    font-size: 20px;
-    margin-bottom: 24px;
-  }
-`;
-
 const InputLabel = styled.label`
   font-size: 16px;
   margin-bottom: 8px;
@@ -57,12 +46,12 @@ const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 100%;
-  height: 40px; // 높이 통일
+  height: 40px; 
   box-sizing: border-box;
   font-size: 16px;
 
   @media (max-width: 768px) {
-    height: 36px; // 모바일에서 높이 통일
+    height: 36px; 
     font-size: 14px;
     padding: 6px;
   }
@@ -76,9 +65,9 @@ const AddressContainer = styled.div`
 
 const AddressInput = styled(Input)`
   width: calc(100% - 110px);
-  height: 40px; // 높이 통일
+  height: 40px; 
   @media (max-width: 768px) {
-    height: 36px; // 모바일에서 높이 통일
+    height: 36px; 
   }
 `;
 
@@ -91,7 +80,7 @@ const SearchButton = styled.button`
   font-size: 1rem;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   margin-left: 10px;
-  height: 40px; // 높이 통일
+  height: 40px; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,7 +90,7 @@ const SearchButton = styled.button`
   }
 
   @media (max-width: 768px) {
-    height: 36px; // 모바일에서 높이 통일
+    height: 36px; 
     padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
   }
@@ -144,7 +133,7 @@ const Select = styled.select`
 const CropList = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start; // 왼쪽 정렬로 변경
+  align-items: flex-start; 
   width: 100%;
   max-width: 400px;
   background-color: #fff;
@@ -153,10 +142,9 @@ const CropList = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1;
   top: 70px;
-  max-height: 200px; // 높이 제한 설정
+  max-height: 200px; 
   overflow-y: auto;
-
-  // 스크롤바 스타일 커스터마이징
+  
   &::-webkit-scrollbar {
     width: 8px;
   }
@@ -185,77 +173,14 @@ const CropItem = styled.div`
   }
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  margin-top: 16px;
-  @media (max-width: 768px) {
-    margin-top: 12px;
-  }
-`;
-
-const ExternalButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  max-width: 400px;
-  margin-top: 16px;
-  @media (max-width: 768px) {
-    margin-top: 12px;
-  }
-`;
-
 const Divider = styled.hr`
   width: 100%;
   max-width: 600px;
   border: 1px solid #ccc;
 `;
 
-const customStyles = {
-  content: {
-    top: '45%', // 조정된 위치
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    width: '80%',
-    maxWidth: '600px',
-    padding: '20px',
-    zIndex: 1102, // Ensure modal is above other elements
-  },
-  overlay: {
-    zIndex: 1101, // Ensure overlay is above other elements
-  }
-};
-
-const Button = styled.button`
-  background-color: #4aaa87;
-  color: white;
-  padding: 1rem 2.5rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1.2rem;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-  margin-top: 1rem;
-
-  &:hover {
-    background-color: #3b8b6d;
-  }
-
-  @media (max-width: 600px) {
-    padding: 0.8rem 1.8rem;
-    font-size: 1rem;
-  }
-`;
-
-Modal.setAppElement('#root');
-
 const SoilTemplate = () => {
-  const { setIsLoading } = useLoading(); // 로딩 훅 사용
+  const { setIsLoading } = useLoading();
   const [cropName, setCropName] = useState('');
   const [address, setAddress] = useState('');
   const [soilData, setSoilData] = useState([]);
@@ -265,9 +190,8 @@ const SoilTemplate = () => {
   const [filteredCropNames, setFilteredCropNames] = useState([]);
   const [showCropList, setShowCropList] = useState(false);
   const [error, setError] = useState(null);
-  const [errorModalIsOpen, setErrorModalIsOpen] = useState(false); // 에러 모달 상태 추가
-  const [analysisDone, setAnalysisDone] = useState(false); // 분석 완료 상태 추가
-  const navigate = useNavigate(); // 네비게이트 추가
+  const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const inputRef = useRef(null);
 
@@ -286,7 +210,7 @@ const SoilTemplate = () => {
     setSelectedSample(selected);
 
     try {
-      setIsLoading(true); // 로딩 시작
+      setIsLoading(true);
       const response = await getSoilFertilizerInfo({
         crop_code: cropName,
         address: address,
@@ -302,13 +226,12 @@ const SoilTemplate = () => {
       });
       setFertilizerData(response.data.data);
       setError(null);
-      setAnalysisDone(true); // 분석 완료 상태 설정
     } catch (err) {
       setError(err.response.data.error);
-      setErrorModalIsOpen(true); // 에러 모달 오픈
+      setErrorModalIsOpen(true);
       setFertilizerData(null);
     } finally {
-      setIsLoading(false); // 로딩 끝
+      setIsLoading(false);
     }
   };
 
@@ -320,7 +243,7 @@ const SoilTemplate = () => {
         setFilteredCropNames(response.data.crop_names);
       } catch (err) {
         setError('작물 이름을 불러오는 중 오류가 발생했습니다.');
-        setErrorModalIsOpen(true); // 에러 모달 오픈
+        setErrorModalIsOpen(true);
       }
     };
 
@@ -331,29 +254,29 @@ const SoilTemplate = () => {
     try {
       if (!cropNames.includes(cropName)) {
         setError('작물이름과 주소를 정확히 입력해 주세요.');
-        setErrorModalIsOpen(true); // 에러 모달 오픈
+        setErrorModalIsOpen(true);
         return;
       }
 
-      setIsLoading(true); // 로딩 시작
+      setIsLoading(true);
       const response = await getSoilExamData(cropName, address);
       if (response.data.soil_data.length === 0) {
         setError('현재 주소에 해당하는 데이터가 없습니다.');
-        setErrorModalIsOpen(true); // 에러 모달 오픈
+        setErrorModalIsOpen(true);
         setSoilData([]);
         setSelectedSample(null);
         setFertilizerData(null);
         return;
       }
       setSoilData(response.data.soil_data);
-      setSelectedSample(null); // 첫 번째 샘플 자동 선택 대신 null 설정
+      setSelectedSample(null);
       setError(null);
     } catch (err) {
       setError('작물이름과 주소를 정확히 입력해 주세요.');
-      setErrorModalIsOpen(true); // 에러 모달 오픈
+      setErrorModalIsOpen(true);
       setSoilData([]);
     } finally {
-      setIsLoading(false); // 로딩 끝
+      setIsLoading(false);
     }
   };
 
@@ -455,12 +378,12 @@ const SoilTemplate = () => {
         onConfirm={closeErrorModal}
         showConfirmButton={false}
         isError={true}
-        overlayStyles={{ zIndex: 1103 }} // Ensure overlay is above other elements
-        contentStyles={{ zIndex: 1104 }} // Ensure modal content is above other elements
+        overlayStyles={{ zIndex: 1103 }}
+        contentStyles={{ zIndex: 1104 }}
       />
       {selectedSample && fertilizerData && (
         <SoilResults
-          cropName={cropName} // 작물 이름 전달
+          cropName={cropName}
           selectedSoilSample={selectedSample}
           fertilizerData={fertilizerData}
           handleBackToList={handleBackToList}

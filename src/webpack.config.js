@@ -1,8 +1,6 @@
-// webpack.config.js
 const path = require("path");
 
 module.exports = {
-  // 기타 설정...
   resolve: {
     fallback: {
       https: require.resolve("https-browserify"),

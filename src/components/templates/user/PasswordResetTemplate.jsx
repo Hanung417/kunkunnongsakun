@@ -16,12 +16,6 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Title = styled.h1`
-  font-size: 24px;
-  margin-bottom: 18px;
-  color: #333;
-`;
-
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -172,7 +166,6 @@ const PasswordResetTemplate = () => {
     setIsLoading(true);
     try {
       const resetPasswordResponse = await resetPassword({ email, temporary_password: temporaryPassword, new_password: newPassword });
-      console.log(resetPasswordResponse.data);
       if (resetPasswordResponse.data.status === 'success') {
         setMessage("새로운 비밀번호로 변경되었습니다.");
         setIsSuccessModalOpen(true);

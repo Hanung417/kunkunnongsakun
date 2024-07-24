@@ -194,7 +194,7 @@ const SoilListTemplate = () => {
       setSoilData(soilData.filter(soil => soil.session_id !== selectedSessionId));
       closeModal();
     } catch (error) {
-      console.error('Failed to delete soil data', error);
+      alert("토양 데이터 삭제에 실패했습니다. 다시 시도해주세요.");
     } finally {
       setIsLoading(false);
     }

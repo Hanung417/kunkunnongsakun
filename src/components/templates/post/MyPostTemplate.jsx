@@ -5,7 +5,7 @@ import ReactPaginate from "react-paginate";
 import { fetchMyPosts, deletePost } from "../../../apis/post";
 import ConfirmModal from "../../atoms/ConfirmModal";
 import { useLoading } from "../../../LoadingContext";
-import GlobalLoader from "../../atoms/GlobalLoader"; // GlobalLoader import 추가
+import GlobalLoader from "../../atoms/GlobalLoader";
 
 const Container = styled.div`
   display: flex;
@@ -116,7 +116,7 @@ const PaginationContainer = styled.div`
 `;
 
 const MyPostTemplate = () => {
-  const { setIsLoading, isLoading } = useLoading(); // useLoading을 사용하여 로딩 상태 관리
+  const { setIsLoading, isLoading } = useLoading();
   const [posts, setPosts] = useState([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
@@ -134,7 +134,7 @@ const MyPostTemplate = () => {
         const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
         setPosts(sortedPosts);
       } catch (error) {
-        console.error("Failed to fetch posts", error);
+        alert("게시글을 불러오는데 실패했습니다. 다시 시도해주세요.");
       }
       setIsLoading(false);
     };
@@ -149,7 +149,7 @@ const MyPostTemplate = () => {
       setIsDeleteModalOpen(false);
       setSelectedPostId(null);
     } catch (error) {
-      console.error("Failed to delete post", error);
+      alert("게시글 삭제에 실패했습니다. 다시 시도해주세요.");
     }
     setIsLoading(false);
   };

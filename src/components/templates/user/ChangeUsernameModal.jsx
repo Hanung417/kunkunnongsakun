@@ -106,7 +106,7 @@ const ChangeUsernameModal = ({ isOpen, onRequestClose, setUsername }) => {
         setErrorMessage(response.data.message);
       }
     } catch (error) {
-      console.error("이름 변경에 실패했습니다.", error);
+      alert("이름 변경에 실패했습니다. 다시 시도해주세요.");
       setErrorMessage(error?.response?.data?.message || "이름 변경에 실패했습니다.");
     } finally {
       setIsLoading(false);

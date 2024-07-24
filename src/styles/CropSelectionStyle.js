@@ -4,8 +4,7 @@ export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f9f9f9;
-  padding: 1.25rem 0; /* 20px in rem */
+  padding: 1.25rem 0; 
   height: 100vh;
   position: relative;
   overflow: hidden;
@@ -21,21 +20,28 @@ export const ContentContainer = styled.div`
 `;
 
 export const Button = styled.button`
-  padding: 0.625rem 1.25rem; /* 10px 20px in rem */
-  margin-top: 1.25rem; /* 20px in rem */
-  margin-bottom: 1.25rem; /* 20px in rem */
-  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem; 
+  margin-top: 1.25rem; 
+  margin-bottom: 1.25rem; 
+  font-weight: 600;
   background-color: #4aaa87;
   color: white;
   border: none;
-  border-radius: 0.3125rem; /* 5px in rem */
+  border-radius: 0.3125rem; 
   cursor: pointer;
-  font-size: 1.25rem; /* 20px in rem */
+  font-size: 1rem; 
   transition: background-color 0.3s;
-  width: 9.375rem; /* 150px in rem */
+  width: 9.375rem; 
 
   &:hover {
     background-color: #3e8e75;
+  }
+
+  svg {
+    margin-right: 0.5rem;
   }
 `;
 
@@ -50,87 +56,88 @@ export const SessionListContainer = styled.div`
 
 export const SessionList = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); /* 200px in rem */
-  gap: 0.625rem; /* 10px in rem */
-  max-width: 62.5rem; /* 1000px in rem */
+  grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); 
+  gap: 0.625rem;
+  max-width: 62.5rem;
   width: 100%;
-  padding: 0 1.25rem; /* 20px in rem */
+  padding: 0 1.25rem;
   box-sizing: border-box;
-  margin-bottom: 1.25rem; /* 20px in rem */
+  margin-bottom: 1.25rem; 
 
   @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(11.25rem, 1fr)); /* 180px in rem */
+    grid-template-columns: repeat(auto-fill, minmax(11.25rem, 1fr)); 
   }
 
   @media (max-width: 480px) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem; /* 8px in rem */
+    gap: 0.5rem;
   }
 `;
 
 export const SessionItem = styled.div`
-  background-color: #FFFFFF;
-  border-radius: 0.625rem; /* 10px in rem */
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); /* 2px 4px in rem */
+  background-color: #f9f9f9;
+  border-radius: 0.625rem; 
+  border: 1px solid #ccc;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); 
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Left align text */
+  align-items: flex-start; 
   justify-content: space-between;
-  padding: 0.625rem; /* 10px in rem */
+  padding: 0.625rem; 
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
-  height: auto; /* Adjust height based on content */
+  height: auto; 
 
   &:hover {
-    transform: translateY(-0.3125rem); /* 5px in rem */
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* 8px 16px in rem */
+    transform: translateY(-0.3125rem); 
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); 
   }
 
   &:active {
-    transform: translateY(-0.125rem); /* 2px in rem */
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* 4px 8px in rem */
+    transform: translateY(-0.125rem);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); 
   }
 `;
 
 export const SessionName = styled.span`
-  font-size: 1.2rem; /* 24px in rem */
+  font-size: 1.2rem; 
   font-weight: 600;
   color: #333;
-  margin-bottom: 0.5rem; /* 8px in rem */
+  margin-bottom: 0.5rem; 
   word-break: break-word;
   text-align: center;
 
   @media (max-width: 480px) {
-    font-size: 1rem; /* 20px in rem */
-    margin-bottom: 0.375rem; /* 6px in rem */
+    font-size: 1rem; 
+    margin-bottom: 0.375rem;
   }
 `;
 
 export const EditInput = styled.input`
-  font-size: 1.25rem; /* 20px in rem */
-  padding: 0.625rem; /* 10px in rem */
-  margin-bottom: 0.5rem; /* 8px in rem */
+  font-size: 1.25rem; 
+  padding: 0.625rem; 
+  margin-bottom: 0.5rem; 
   width: 80%;
   border: 2px solid #E0E0E0;
-  border-radius: 0.625rem; /* 10px in rem */
+  border-radius: 0.625rem; 
 
   @media (max-width: 480px) {
-    font-size: 1rem; /* 16px in rem */
-    padding: 0.5rem; /* 8px in rem */
-    margin-bottom: 0.375rem; /* 6px in rem */
+    font-size: 1rem; 
+    padding: 0.5rem;
+    margin-bottom: 0.375rem; 
   }
 `;
 
 export const SessionDetails = styled.div`
-  font-size: 1rem; /* 16px in rem */
+  font-size: 1rem; 
   margin-top: 0.5rem;
-  margin-bottom: 0.5rem; /* 8px in rem */
+  margin-bottom: 0.5rem; 
   text-align: left;
-  color: dimgray; /* Changed to black */
+  color: dimgray; 
 
   @media (max-width: 480px) {
-    font-size: 0.875rem; /* 14px in rem */
-    margin-bottom: 0.375rem; /* 6px in rem */
+    font-size: 0.875rem; 
+    margin-bottom: 0.375rem;
   }
 `;
 
@@ -138,10 +145,10 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  margin-top: 0.5rem; /* 8px in rem */
+  margin-top: 0.5rem; 
 
   @media (max-width: 480px) {
-    margin-top: 0.375rem; /* 6px in rem */
+    margin-top: 0.375rem;
   }
 `;
 
@@ -149,8 +156,8 @@ export const SaveButton = styled.button`
   background-color: #4aaa87;
   color: white;
   border: none;
-  border-radius: 0.3125rem; /* 5px in rem */
-  padding: 0.5rem 0.875rem; /* 8px 14px in rem */
+  border-radius: 0.3125rem; 
+  padding: 0.5rem 0.875rem; 
   cursor: pointer;
   font-size: 1rem; /* 16px in rem */
   transition: background-color 0.3s;
@@ -160,8 +167,8 @@ export const SaveButton = styled.button`
   }
 
   @media (max-width: 480px) {
-    padding: 0.375rem 0.625rem; /* 6px 10px in rem */
-    font-size: 0.875rem; /* 14px in rem */
+    padding: 0.375rem 0.625rem; 
+    font-size: 0.875rem; 
   }
 `;
 
@@ -170,14 +177,14 @@ export const DeleteButton = styled.button`
   border: none;
   color: #e53e3e;
   cursor: pointer;
-  font-size: 1rem; /* 16px in rem */
+  font-size: 1rem; 
 
   &:hover {
     color: #c53030;
   }
 
   @media (max-width: 480px) {
-    font-size: 0.875rem; /* 14px in rem */
+    font-size: 0.875rem; 
   }
 `;
 
@@ -186,22 +193,15 @@ export const EditButton = styled.button`
   border: none;
   color: #4aaa87;
   cursor: pointer;
-  font-size: 1rem; /* 16px in rem */
+  font-size: 1rem; 
 
   &:hover {
     color: #3e8e75;
   }
 
   @media (max-width: 480px) {
-    font-size: 0.875rem; /* 14px in rem */
+    font-size: 0.875rem;
   }
-`;
-
-export const ButtonGroup = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
 `;
 
 export const PaginationContainer = styled.div`
@@ -209,7 +209,7 @@ export const PaginationContainer = styled.div`
   justify-content: center;
   width: 100%;
   margin-top: 1.5rem;
-  margin-bottom: 1.25rem; /* 20px in rem */
+  margin-bottom: 1.25rem; 
 
   .pagination {
     display: flex;
@@ -224,25 +224,25 @@ export const PaginationContainer = styled.div`
   }
 
   .pagination li {
-    margin: 0 0.3125rem; /* 5px in rem */
+    margin: 0 0.3125rem; 
 
     @media (max-width: 480px) {
-      margin: 0.3125rem; /* 5px in rem */
+      margin: 0.3125rem; 
     }
   }
 
   .pagination li a {
-    padding: 0.625rem 0.75rem; /* 10px 12px in rem */
+    padding: 0.625rem 0.75rem; 
     border: 1px solid #ddd;
-    border-radius: 0.3125rem; /* 5px in rem */
+    border-radius: 0.3125rem; 
     cursor: pointer;
     color: #4aaa87;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
 
     @media (max-width: 480px) {
-      padding: 0.375rem 0.625rem; /* 6px 10px in rem */
-      font-size: 0.875rem; /* 14px in rem */
+      padding: 0.375rem 0.625rem; 
+      font-size: 0.875rem; 
     }
   }
 
@@ -271,6 +271,6 @@ export const PaginationContainer = styled.div`
 export const EmptyMessage = styled.div`
   text-align: center;
   color: #888;
-  font-size: 1rem; /* 20px in rem */
+  font-size: 1rem;
   margin: 2rem;
 `;

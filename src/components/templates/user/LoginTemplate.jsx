@@ -3,7 +3,6 @@ import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { loginUser } from "../../../apis/user";
 import CustomModal from "../../atoms/CustomModal";
-import GlobalLoader from '../../atoms/GlobalLoader';
 import { useLoading } from '../../../LoadingContext';
 
 const Container = styled.div`
@@ -82,7 +81,7 @@ const ErrorMessage = styled.div`
 const LinksContainer = styled.div`
   margin-top: 16px;
   display: flex;
-  justify-content: flex-start; /* 변경 */
+  justify-content: flex-start; 
   width: 100%;
   max-width: 600px;
 `;

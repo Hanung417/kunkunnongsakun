@@ -8,15 +8,12 @@ import GlobalLoader from "../../atoms/GlobalLoader";
 import { FaPlus, FaTrash } from 'react-icons/fa';
 import {
   PageContainer,
-  Title,
   InputContainer,
   Label,
-  InputRow,
   Input,
   SmallInput,
   AddButton,
   Button,
-  CropContainer,
   SummaryContainer,
   SummaryTitle,
   SummaryItem,
@@ -25,9 +22,7 @@ import {
   ListItem,
   CropName,
   CropRatio,
-  RemoveButton,
   ErrorMessage,
-  StepTitle,
   RemoveIcon,
 } from '../../../styles/CropTest';
 
@@ -86,11 +81,6 @@ const CropTest = () => {
 
   const handleInputChange = (selectedOption) => {
     setCurrentCrop({ ...currentCrop, name: selectedOption ? selectedOption.value : "" });
-  };
-
-  const handleCropSelect = (selectedOption) => {
-    setCurrentCrop({ ...currentCrop, name: selectedOption ? selectedOption.value : "" });
-    setShowCropList(false);
   };
 
   const addCrop = async () => {
@@ -231,7 +221,7 @@ const CropTest = () => {
         <p style={{ color: '#7f8c8d', fontSize: '0.875rem', marginTop: '0.625rem' }}>원하는 작물과 비율을 선택하여 추가하기를 눌러주세요.</p>
         <Label>작물 이름</Label>
         <Select
-          key={selectKey} // key를 설정하여 컴포넌트를 재설정
+          key={selectKey}
           options={filteredCropNames}
           onChange={handleInputChange}
           onInputChange={() => setShowCropList(true)}

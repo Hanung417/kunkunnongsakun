@@ -9,7 +9,6 @@ const Container = styled.div`
   justify-content: center;
   height: 100vh;
   padding: 24px;
-  padding-top: 80px;  /* 위쪽 여백 추가 */
   background-color: #f9f9f9;
   box-sizing: border-box;
 `;

@@ -16,7 +16,6 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1.5rem;
-  background-color: #f9f9f9;
   box-sizing: border-box;
   overflow: auto;
 `;
@@ -27,8 +26,7 @@ const LayoutContainer = styled.div`
   gap: 12px;
   width: 100%;
   max-width: 900px;
-  margin-top: 20px;
-  background-color: #fff;
+  background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 0.5rem 2rem;
@@ -38,7 +36,7 @@ const SectionContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* 왼쪽 정렬로 변경 */
+  align-items: flex-start; 
   justify-content: center;
   margin: 0.5rem 0;
   flex: 1;
@@ -63,12 +61,6 @@ const SectionTitle = styled.h3`
   }
 `;
 
-const InfoTableTitle = styled.h3`
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 1rem;
-`;
-
 const InfoTable = styled.table`
   width: 100%;
   border-collapse: collapse;
@@ -77,22 +69,22 @@ const InfoTable = styled.table`
     padding: 12px;
     border: 1px solid #ddd;
     text-align: left;
-    font-size: 1.2rem; /* 폰트 크기 증가 */
+    font-size: 1.2rem; 
   }
 
   td:first-child {
     width: 40%;
-    font-weight: bold;
+    font-weight: 600;
     background-color: #f9f9f9;
   }
 
   td:last-child {
-    width: 60%;
+    width: 50%;
   }
 
   @media (max-width: 768px) {
     th, td {
-      font-size: 1rem; 
+      font-size: 1.0rem; 
       padding: 8px;
     }
   }
@@ -107,7 +99,7 @@ const Divider = styled.hr`
   width: 100%;
   height: 1px;
   background-color: #ccc;
-  margin: 10px 0; /* 위아래 간격을 줄였습니다 */
+  margin: 10px 0; 
 `;
 
 const ChartContainer = styled.div`
@@ -307,6 +299,9 @@ const lineChartOptions = {
   },
   plugins: {
     legend: {
+      labels: {
+        color: 'black'  // 레이블 색상을 검정색으로 설정
+      },
       display: true
     }
   }
@@ -334,6 +329,11 @@ const barChartOptions = {
           label += Math.round(context.raw).toLocaleString();
           return label;
         }
+      }
+    },
+    legend: {
+      labels: {
+        color: 'black'  // 레이블 색상을 검정색으로 설정
       }
     },
     datalabels: {

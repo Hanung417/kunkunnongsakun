@@ -13,7 +13,6 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1.5rem;
-  background-color: #f9f9f9;
   width: 100%;
   margin: 0 auto;
 `;
@@ -23,14 +22,14 @@ const Content = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 75rem; /* 1200px */
-  margin-top: 1.875rem;
+  max-width: 75rem; 
+  margin-top: 1rem;
 
-  @media (max-width: 48rem) { /* 768px */
-    max-width: 37.5rem; /* 600px */
+  @media (max-width: 48rem) { 
+    max-width: 37.5rem; 
   }
 
-  @media (max-width: 30rem) { /* 480px */
+  @media (max-width: 30rem) { 
     max-width: 100%;
   }
 `;
@@ -39,7 +38,7 @@ const SessionList = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.625rem; /* 10px */
+  gap: 0.7rem; 
   max-width: 75rem;
 `;
 
@@ -47,48 +46,48 @@ const SessionItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.625rem; /* 10px */
+  padding: 0.625rem;
   border: 1px solid #ccc;
-  border-radius: 0.625rem; /* 10px */
-  background-color: #fff;
+  border-radius: 0.625rem; 
+  background-color: #f9f9f9;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   &:hover {
     background-color: #f0f0f0;
-    transform: translateY(-0.125rem); /* -2px */
+    transform: translateY(-0.125rem); 
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
   }
   flex-wrap: wrap;
-  font-size: clamp(0.8rem, 2.5vw, 1.2rem); /* 텍스트 크기 반응형으로 조정 */
+  font-size: clamp(0.8rem, 2.5vw, 1.2rem); 
   position: relative;
 `;
 
 const SessionInfo = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0.8rem 0.35rem; /* 6px */
-  gap: 0.3125rem; /* 5px */
+  padding: 0.8rem 0.35rem; 
+  gap: 0.3125rem; 
   flex: 1;
-  min-width: 9.375rem; /* 150px */
-  font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* 텍스트 크기 반응형으로 조정 */
+  min-width: 9.375rem; 
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem); 
 `;
 
 const SessionImage = styled.img`
-  width: 5rem; /* 80px */
-  height: 5rem; /* 80px */
+  width: 5rem; 
+  height: 5rem; 
   object-fit: cover;
-  border-radius: 0.3125rem; /* 5px */
-  margin-right: 0.625rem; /* 10px */
+  border-radius: 0.3125rem; 
+  margin-right: 0.625rem; 
   flex-shrink: 0;
 
-  @media (max-width: 48rem) { /* 768px */
-    margin-bottom: 0.5rem; /* 10px */
+  @media (max-width: 48rem) { 
+    margin-bottom: 0.5rem; 
     margin-right: 0;
   }
 
-  @media (max-width: 30rem) { /* 480px */
-    margin-bottom: 0rem; /* 10px */
+  @media (max-width: 30rem) { 
+    margin-bottom: 0rem; 
     margin-right: 0;
   }
 `;
@@ -113,7 +112,7 @@ const AddButtonContainer = styled.button`
   align-items: center;
   cursor: pointer;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   background-color: #4aaa87;
   color: white;
   border: none;
@@ -137,7 +136,7 @@ const AddButtonContainer = styled.button`
 `;
 
 const AddButtonIcon = styled(FaPlus)`
-  margin-right: 0.5rem; /* 8px */
+  margin-right: 0.5rem; 
 `;
 
 const AddButtonText = styled.span`
@@ -155,42 +154,42 @@ const EmptyMessage = styled.div`
 const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 1.5rem; /* 24px */
+  margin-top: 1.5rem; 
   .pagination {
     display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
 
-    @media (max-width: 48rem) { /* 768px */
+    @media (max-width: 48rem) { 
       flex-wrap: wrap;
     }
 
-    @media (max-width: 30rem) { /* 480px */
+    @media (max-width: 30rem) { 
       flex-wrap: wrap;
       justify-content: center;
     }
   }
 
   .pagination li {
-    margin: 0 0.3125rem; /* 5px */
+    margin: 0 0.3125rem; 
 
-    @media (max-width: 30rem) { /* 480px */
-      margin: 0.3125rem; /* 5px */
+    @media (max-width: 30rem) { 
+      margin: 0.3125rem; 
     }
   }
 
   .pagination li a {
-    padding: 0.5rem 0.75rem; /* 8px 12px */
+    padding: 0.5rem 0.75rem; 
     border: 1px solid #ddd;
-    border-radius: 0.25rem; /* 4px */
+    border-radius: 0.25rem; 
     cursor: pointer;
     color: #4aaa87;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
 
-    @media (max-width: 30rem) { /* 480px */
-      padding: 0.375rem 0.625rem; /* 6px 10px */
+    @media (max-width: 30rem) { 
+      padding: 0.375rem 0.625rem; 
       font-size: 0.9rem;
     }
   }
@@ -253,8 +252,7 @@ const DiagnosisListTemplate = () => {
       const response = await fetchSessionDetails(sessionId);
       navigate('/info', { state: { diagnosisResult: response.data } });
     } catch (error) {
-      console.error('Failed to fetch session details', error);
-      alert('Failed to load the details for this session.');
+      alert('세션을 불러오는데 실패했습니다. 다시 시도해주세요.');
     } finally {
       setIsLoading(false);
       setLoading(false);
@@ -269,7 +267,7 @@ const DiagnosisListTemplate = () => {
       setSessions(sessions.filter(session => session.session_id !== sessionIdToDelete));
       setIsModalOpen(false);
     } catch (error) {
-      console.error('Failed to delete session', error);
+      alert('세션 삭제에 실패했습니다. 다시 시도해주세요.');
     } finally {
       setIsLoading(false);
       setLoading(false);
