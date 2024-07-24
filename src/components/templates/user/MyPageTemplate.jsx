@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import ChangePasswordModal from "./ChangePasswordModal";
 import ChangeUsernameModal from "./ChangeUsernameModal";
 import DeleteAccountModal from "./DeleteAccountModal";
 import { FaUserEdit, FaKey, FaTrashAlt, FaPen, FaCommentDots } from "react-icons/fa";
 import { checkAuthStatus } from "../../../apis/user";
 import { useLoading } from "../../../LoadingContext";
-import TopBarLoader from "../../atoms/TopBarLoader"; // TopBarLoader import
+import TopBarLoader from "../../atoms/TopBarLoader";
 
 
 const Container = styled.div`
@@ -99,7 +99,7 @@ const ActionText = styled.div`
 const MyPageTemplate = () => {
   const { setIsLoading } = useLoading();
   const [username, setUsername] = useState("");
-  const [isUsernameLoading, setIsUsernameLoading] = useState(true); // username 로딩 상태
+  const [isUsernameLoading, setIsUsernameLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(false);
@@ -163,7 +163,7 @@ const MyPageTemplate = () => {
             <UserImage src={`${process.env.PUBLIC_URL}/user_icon.jpg`} alt="User Icon" />
             <UserInfo>
               {isUsernameLoading ? (
-                <TopBarLoader color="#4aaa87" /> // 로딩 중일 때 로더 표시
+                <TopBarLoader color="#4aaa87" />
               ) : (
                 <UserName>{username}</UserName>
               )}

@@ -1,5 +1,3 @@
-// commonStyles.js
-
 import styled from 'styled-components';
 import { FaEllipsisV } from 'react-icons/fa';
 

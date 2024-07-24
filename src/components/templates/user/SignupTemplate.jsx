@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { checkUsername, sendVerificationEmail, signupUser } from "../../../apis/user";
 import { useNavigate } from "react-router-dom";
 import CustomModal from "../../atoms/CustomModal";
-import { Container, Title, Form, InputGroup, Label, Input, Button, ErrorMessage, SuccessMessage } from "../../../styles/Form";
+import { Container, Form, InputGroup, Label, Input, Button, ErrorMessage, SuccessMessage } from "../../../styles/Form";
 
 const SignupTemplate = () => {
   const [formData, setFormData] = useState({
@@ -108,12 +108,12 @@ const SignupTemplate = () => {
           ? error.response.data.message
           : "인증번호 전송에서 오류가 발생했습니다.";
         setVerificationCodeError(message);
-        setModalTitle("오류"); // 오류 시 모달 타이틀 설정
+        setModalTitle("오류");
         setModalContent(message);
         setIsModalOpen(true);
       })
       .finally(() => {
-        setIsSendingCode(false); // 인증번호 발송 중 상태 해제
+        setIsSendingCode(false);
       });
   };
 
@@ -125,7 +125,7 @@ const SignupTemplate = () => {
 
     if (password1 !== password2) {
       setPasswordError("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-      setModalTitle("오류"); // 오류 시 모달 타이틀 설정
+      setModalTitle("오류");
       setModalContent("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
       setIsModalOpen(true);
       return;
@@ -133,15 +133,15 @@ const SignupTemplate = () => {
 
     signupUser({ username, email, verification_code, password1, password2 })
       .then(() => {
-        setIsSignupSuccess(true); // 회원가입 성공 상태 설정
-        setModalTitle("알림"); // 성공 시 모달 타이틀 설정
+        setIsSignupSuccess(true);
+        setModalTitle("알림");
         setModalContent("회원가입 성공");
         setIsModalOpen(true);
       })
       .catch((error) => {
         if (error.response) {
           const errors = error.response.data;
-          setModalTitle("오류"); // 오류 시 모달 타이틀 설정
+          setModalTitle("오류");
           if (errors.message) {
             setModalContent(errors.message);
             setIsModalOpen(true);
@@ -167,8 +167,8 @@ const SignupTemplate = () => {
             setPasswordError("");
           }
         } else {
-          setSignupError("An error occurred during signup.");
-          setModalContent("An error occurred during signup.");
+          setSignupError("회원가입에 실패했습니다. 다시 시도해주세요.");
+          setModalContent("회원가입에 실패했습니다. 다시 시도해주세요.");
           setIsModalOpen(true);
         }
       });

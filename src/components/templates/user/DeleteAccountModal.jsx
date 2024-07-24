@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { deleteAccount, getCSRFToken } from "../../../apis/user"; // import from user.js
+import { deleteAccount, getCSRFToken } from "../../../apis/user";
 import { FaTimes } from "react-icons/fa";
 import { useLoading } from '../../../LoadingContext';
 
@@ -15,47 +15,47 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     width: "80%",
-    maxWidth: "32rem", /* 512px */
+    maxWidth: "32rem",
     boxShadow: "0 0.5rem 1rem rgba(0, 0, 0, 0.3), 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1)",
-    padding: "2rem", /* 32px */
+    padding: "2rem",
   },
 };
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center align */
+  align-items: center; 
   width: 100%;
 `;
 
 const CloseButton = styled.button`
   position: absolute;
-  top: 1rem; /* 16px in rem */
-  right: 1rem; /* 16px in rem */
+  top: 1rem; 
+  right: 1rem; 
   background: none;
   border: none;
-  font-size: 1.5rem; /* 24px in rem */
+  font-size: 1.5rem; 
   cursor: pointer;
 `;
 
 const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.5rem; /* 24px in rem */
+  margin-bottom: 1.5rem; 
   width: 100%;
 `;
 
 const Label = styled.label`
-  font-size: 0.875rem; /* 14px in rem */
+  font-size: 0.875rem; 
   color: #666;
-  margin-bottom: 0.5rem; /* 8px in rem */
+  margin-bottom: 0.5rem; 
 `;
 
 const Input = styled.input`
-  font-size: 0.875rem; /* 14px in rem */
-  padding: 0.75rem; /* 12px in rem */
+  font-size: 0.875rem; 
+  padding: 0.75rem; 
   border: 1px solid #ddd;
-  border-radius: 0.25rem; /* 4px in rem */
+  border-radius: 0.25rem; 
   width: 100%;
   &:focus {
     outline: none;
@@ -64,16 +64,16 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  padding: 0.75rem 1rem; /* 12px 16px in rem */
-  font-size: 1rem; /* 16px in rem */
+  padding: 0.75rem 1rem; 
+  font-size: 1rem; 
   font-weight: bold;
   color: white;
   background-color: #2faa9a;
   border: none;
-  border-radius: 0.25rem; /* 4px in rem */
+  border-radius: 0.25rem; 
   cursor: pointer;
   width: 100%;
-  max-width: 20rem; /* 320px in rem */
+  max-width: 20rem; 
   &:hover {
     background-color: #6dc4b0;
   }
@@ -81,14 +81,14 @@ const Button = styled.button`
 
 const ErrorMessage = styled.div`
   color: red;
-  font-size: 0.75rem; /* 12px in rem */
+  font-size: 0.75rem; 
   margin-top: 0.25rem; /* 4px in rem */
 `;
 
 const WarningMessage = styled.div`
   color: #d9534f;
-  font-size: 0.875rem; /* 14px in rem */
-  margin-bottom: 1rem; /* 16px in rem */
+  font-size: 0.875rem; 
+  margin-bottom: 1rem;
   text-align: center;
 `;
 

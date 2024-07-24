@@ -3,10 +3,10 @@ import Modal from "react-modal";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { changePassword } from "../../../apis/user";
-import CustomModal from "../../atoms/CustomModal"; // Import your custom modal component
+import CustomModal from "../../atoms/CustomModal";
 import { FaTimes } from "react-icons/fa";
 import GlobalLoader from "../../atoms/GlobalLoader";
-import { useLoading } from "../../../LoadingContext"; // Import the useLoading hook
+import { useLoading } from "../../../LoadingContext";
 
 const ModalContainer = styled(Modal)`
   display: flex;
@@ -106,9 +106,9 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
     new_password2: ""
   });
   const [error, setError] = useState("");
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true); // Add state for button disable
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [modalContent, setModalContent] = useState("");
-  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false); // Add state for success modal
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -155,7 +155,7 @@ const ChangePasswordModal = ({ isOpen, onRequestClose }) => {
 
   const closeModal = () => {
     setIsSuccessModalOpen(false);
-    navigate('/login'); // Redirect to login page after successful password change
+    navigate('/login');
   };
 
   return (

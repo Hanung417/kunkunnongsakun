@@ -6,51 +6,43 @@ export const PageContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #f0f2f5;
-  padding: 1rem; /* 16px */
+  padding: 1rem; 
 `;
 
 export const Title = styled.h1`
-  margin-bottom: 1.5rem; /* 24px */
+  margin-bottom: 1.5rem; 
   color: #2c3e50;
-  font-size: 1.75rem; /* 28px */
+  font-size: 1.75rem; 
   font-weight: bold;
 `;
 
 export const InputContainer = styled.div`
   background-color: #ffffff;
-  padding: 1.5rem; /* 24px */
+  padding: 1.5rem; 
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 35rem; /* 560px */
+  max-width: 35rem; 
   position: relative;
   box-sizing: border-box;
-  margin-bottom: 1rem; /* 16px */
+  margin-bottom: 1rem; 
 `;
 
 export const Label = styled.label`
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem; 
   color: #2c3e50;
-  margin-bottom: 0.25rem; /* 4px */
+  margin-bottom: 0.25rem; 
   display: block;
 `;
 
-export const InputRow = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem; /* 16px */
-  width: 100%;
-  position: relative;
-`;
-
 export const Input = styled.input`
-  padding: 0.5rem 0.75rem; /* 8px 12px */
+  padding: 0.5rem 0.75rem; 
   width: 100%;
-  border: 1px solid #b0b8c1; /* 진한 테두리 색상 */
+  border: 1px solid #b0b8c1; 
   border-radius: 8px;
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem; 
   transition: border-color 0.3s;
-  margin-bottom: 1rem; /* 16px */
+  margin-bottom: 1rem; 
 
   &:focus {
     border-color: #4aaa87;
@@ -60,29 +52,29 @@ export const Input = styled.input`
 
 export const SmallInput = styled(Input)`
   width: 50%;
-  padding: 0.5rem 1.5rem; /* Ensure consistent padding */
-  height: 2.5rem; /* Ensure consistent height */
+  padding: 0.5rem 1.5rem; 
+  height: 2.5rem;
 `;
 
 
 export const AddButton = styled.button`
-  padding: 0 1.5rem; /* Consistent horizontal padding */
-  height: 2.5rem; /* Ensure consistent height */
-  min-width: 100px; /* Minimum width to accommodate text */
+  padding: 0 1.5rem; 
+  height: 2.5rem; 
+  min-width: 100px; 
   background-color: ${props => (props.disabled ? '#b2babb' : '#4aaa87')};
   color: white;
   border: none;
   border-radius: 8px;
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   margin-bottom: 0.9rem;
-  margin-left: 1rem; /* 12px */
-  font-size: 0.9rem; /* 14px */
+  margin-left: 1rem; 
+  font-size: 0.9rem; 
   font-weight: 600;
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the content */
+  justify-content: center; 
   transition: background-color 0.3s;
-  box-sizing: border-box; /* Ensure padding is included in the height */
+  box-sizing: border-box; 
 
   &:hover {
     background-color: ${props => (props.disabled ? '#b2babb' : '#6dc4b0')};
@@ -91,14 +83,14 @@ export const AddButton = styled.button`
 
 
 export const Button = styled.button`
-  padding: 0.75rem 1rem; /* 12px 16px */
-  margin-top: 0.75rem; /* 12px */
+  padding: 0.75rem 1rem; 
+  margin-top: 0.75rem; 
   background-color: #4aaa87;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem; /* 14px */
+  font-size: 1rem; 
   font-weight: bold;
   transition: background-color 0.3s;
   width: 100%;
@@ -108,26 +100,14 @@ export const Button = styled.button`
   }
 `;
 
-export const CropContainer = styled.div`
-  background-color: #ffffff;
-  padding: 1.5rem; /* 24px */
-  border-radius: 12px;
-  margin-bottom: 1rem; /* 16px */
-  position: relative;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 35rem; /* 560px */
-  box-sizing: border-box;
-`;
-
 export const SummaryContainer = styled.div`
   background-color: #ffffff;
-  padding: 1rem; /* 16px */
+  padding: 1rem; 
   border-radius: 12px;
-  margin-top: 0.75rem; /* 12px */
+  margin-top: 0.75rem; 
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 35rem; /* 560px */
+  max-width: 35rem; 
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -138,7 +118,7 @@ export const SummaryTitle = styled.h2`
   align-items: center;
   font-size: 1.5rem;
   color: #2c3e50;
-  margin-bottom: 1.25rem; /* 20px */
+  margin-bottom: 1.25rem; 
   font-weight: bold;
   text-align: left;
 
@@ -164,9 +144,9 @@ export const SummaryItem = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #f8f9fa;
-  padding: 0.75rem; /* 12px */
+  padding: 0.75rem; 
   border-radius: 12px;
-  margin-bottom: 0.5rem; /* 8px */
+  margin-bottom: 0.5rem; 
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 `;
 
@@ -176,13 +156,13 @@ export const ItemText = styled.div`
 `;
 
 export const CropName = styled.p`
-  font-size: 1rem; /* 16px */
+  font-size: 1rem;
   color: #2c3e50;
   margin: 0;
 `;
 
 export const CropRatio = styled.p`
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem; 
   color: #7f8c8d;
   margin: 0;
 `;
@@ -190,7 +170,7 @@ export const CropRatio = styled.p`
 export const RemoveIcon = styled.div`
   color: #e74c3c;
   cursor: pointer;
-  font-size: 1.25rem; /* 20px */
+  font-size: 1.25rem; 
   transition: color 0.3s;
 
   &:hover {
@@ -200,8 +180,8 @@ export const RemoveIcon = styled.div`
 
 export const ErrorMessage = styled.p`
   color: #e74c3c;
-  font-size: 0.75rem; /* 12px */
-  margin-top: 0.5rem; /* 8px */
+  font-size: 0.75rem; 
+  margin-top: 0.5rem; 
 `;
 
 export const List = styled.div`
@@ -239,30 +219,5 @@ export const ListItem = styled.div`
 
   &:not(:last-child) {
     border-bottom: 1px solid #ccc;
-  }
-`;
-
-export const StepTitle = styled.h2`
-  display: flex;
-  align-items: center;
-  font-size: 1.25rem; /* 20px */
-  color: #2c3e50;
-  margin-bottom: 1rem; /* 24px */
-  font-weight: bold;
-
-  &::before {
-    content: '${props => props.step}';
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background-color: #4aaa87;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
-    font-size: 1rem;
-    font-weight: bold;
   }
 `;
