@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import {
   fetchPostDetail,
   createComment,
@@ -14,20 +13,6 @@ import Comments from "../../molecules/Comment";
 import { useLoading } from "../../../LoadingContext";
 import {
   Container,
-  CommentList,
-  CommentItem,
-  CommentAuthor,
-  CommentContent,
-  CommentMeta,
-  CommentActions,
-  CommentForm,
-  CommentTextarea,
-  CommentButton,
-  EditCommentButton,
-  SettingsIcon,
-  SettingsMenu,
-  SettingsMenuItem,
-  Divider,
 } from "../../../styles/Post";
 
 const PostDetailTemplate = () => {
@@ -54,7 +39,7 @@ const PostDetailTemplate = () => {
       setPost(response.data);
       setComments(response.data.comments || []);
     } catch (error) {
-      console.error("Failed to fetch post", error);
+      alert("게시글을 불러오는데 실패했습니다. 다시 시도해주세요.");
     } finally {
       setIsLoading(false);
     }
@@ -129,7 +114,7 @@ const PostDetailTemplate = () => {
       setEditCommentId(null);
       setEditCommentContent("");
     } catch (error) {
-      console.error("Failed to edit comment:", error); // 오류 로그에 상세 정보 추가
+      alert("댓글 수정에 실패했습니다. 다시 시도해주세요.");
     }
   };
 
@@ -138,7 +123,7 @@ const PostDetailTemplate = () => {
       await deleteComment(commentId);
       setComments(comments.filter((comment) => comment.id !== commentId));
     } catch (error) {
-      console.error("Failed to delete comment", error);
+      alert("댓글 삭제에 실패했습니다. 다시 시도해주세요.");
     }
   };
 

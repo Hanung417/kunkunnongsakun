@@ -14,7 +14,7 @@ const Container = styled.div`
   background-color: #ffffff;
   box-sizing: border-box;
   overflow: hidden;
-  padding-bottom: 4.375rem; /* 70px in rem */
+  padding-bottom: 4.375rem; 
   min-height: auto;
 `;
 
@@ -22,16 +22,16 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem; /* 16px in rem */
+  padding: 1rem; 
   background-color: #4AAA87;
   color: white;
-  font-size: 1.25rem; /* 20px in rem */
+  font-size: 1.25rem; 
   font-weight: bold;
   position: relative;
 
   @media (max-width: 768px) {
-    font-size: 1.125rem; /* 18px in rem */
-    padding: 0.75rem; /* 12px in rem */
+    font-size: 1.125rem; 
+    padding: 0.75rem;
   }
 `;
 
@@ -42,17 +42,17 @@ const Title = styled.div`
 
 const ChatListButton = styled.button`
   position: absolute;
-  left: 0.3125rem; /* 5px in rem */
-  padding: 0.625rem 0.75rem; /* 10px 12px in rem */
+  left: 0.3125rem; 
+  padding: 0.625rem 0.75rem; 
   font-weight: 600;
   color: white;
   background-color: #4AAA87;
   border: none;
-  border-radius: 1.25rem; /* 20px in rem */
+  border-radius: 1.25rem; 
   cursor: pointer;
 
   svg {
-    margin-bottom: -0.125rem; /* 2px in rem */
+    margin-bottom: -0.125rem; 
   }
 `;
 
@@ -60,7 +60,7 @@ const ChatBox = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 1rem; /* 16px in rem */
+  padding: 1rem; 
   background-color: #E6F8E0;
   overflow-y: auto;
 `;
@@ -74,11 +74,11 @@ const MessageList = styled.ul`
 const MessageContainer = styled.li`
   display: flex;
   align-items: flex-start;
-  margin-bottom: 0.75rem; /* 12px in rem */
+  margin-bottom: 0.75rem; 
   justify-content: ${({ isUser }) => (isUser ? 'flex-end' : 'flex-start')};
 
   @media (max-width: 768px) {
-    margin-bottom: 0.5rem; /* 8px in rem */
+    margin-bottom: 0.5rem; 
   }
 `;
 
@@ -87,16 +87,16 @@ const Message = styled.div`
   display: flex;
   flex-direction: column;
   align-items: ${({ isUser }) => (isUser ? 'flex-end' : 'flex-start')};
-  padding: 0.625rem 0.875rem; /* 10px 14px in rem */
-  border-radius: 1.25rem; /* 20px in rem */
+  padding: 0.625rem 0.875rem; 
+  border-radius: 1.25rem; 
   background-color: ${({ isUser }) => (isUser ? '#F7FE2E' : 'white')};
   position: relative;
-  box-shadow: 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.1); /* 1px 1px in rem */
+  box-shadow: 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.1); 
   word-break: break-word;
-  margin-top: 0.5rem; /* 8px in rem */
+  margin-top: 0.5rem;
 
   @media (max-width: 768px) {
-    padding: 0.5rem 0.625rem; /* 8px 10px in rem */
+    padding: 0.5rem 0.625rem; 
   }
 `;
 
@@ -105,86 +105,86 @@ const MessageText = styled.div`
 `;
 
 const MessageTime = styled.small`
-  margin-top: 0.25rem; /* 4px in rem */
+  margin-top: 0.25rem;
   font-size: 0.8em;
   color: #666;
   ${({ isUser }) => isUser ? css`align-self: flex-end;` : css`align-self: flex-start;`}
 `;
 
 const ProfileImage = styled.img`
-  width: 3.125rem; /* 50px in rem */
-  height: 3.125rem; /* 50px in rem */
+  width: 3.125rem; 
+  height: 3.125rem; 
   border-radius: 50%;
-  margin-right: ${({ isUser }) => (isUser ? '0' : '0.625rem')}; /* 10px in rem */
-  margin-left: ${({ isUser }) => (isUser ? '0.625rem' : '0')}; /* 10px in rem */
+  margin-right: ${({ isUser }) => (isUser ? '0' : '0.625rem')}; 
+  margin-left: ${({ isUser }) => (isUser ? '0.625rem' : '0')}; 
 
   @media (max-width: 768px) {
-    width: 2.5rem; /* 40px in rem */
-    height: 2.5rem; /* 40px in rem */
-    margin-right: ${({ isUser }) => (isUser ? '0' : '0.375rem')}; /* 6px in rem */
-    margin-left: ${({ isUser }) => (isUser ? '0.375rem' : '0')}; /* 6px in rem */
+    width: 2.5rem; 
+    height: 2.5rem; 
+    margin-right: ${({ isUser }) => (isUser ? '0' : '0.375rem')};
+    margin-left: ${({ isUser }) => (isUser ? '0.375rem' : '0')}; 
   }
 `;
 
 const InputBox = styled.form`
   display: flex;
-  align-items: center; /* Align items vertically center */
-  padding: 1.25rem 0.75rem; /* 20px 12px in rem */
+  align-items: center; 
+  padding: 1.25rem 0.75rem; 
   background-color: #f0f0f0;
   border-top: 1px solid #ddd;
   width: 100%;
   box-sizing: border-box;
   position: fixed;
-  bottom: 60px; /* Changed to 0 */
+  bottom: 60px; 
   left: 0;
   right: 0;
 
   @media (max-width: 768px) {
-    padding: 1rem; /* 16px in rem */
+    padding: 1rem; 
   }
 `;
 
 const Input = styled.input`
   flex-grow: 1;
-  padding: 0.8rem; /* 16px in rem */
+  padding: 0.8rem; 
   border: 1px solid #ddd;
-  border-radius: 1rem; /* 20px in rem */
-  margin-right: 0.5rem; /* 8px in rem */
-  font-size: 1rem; /* 16px in rem */
+  border-radius: 1rem; 
+  margin-right: 0.5rem; 
+  font-size: 1rem; 
   &:focus {
     outline: none;
     border-color: #4aaa87;
   }
 
   @media (max-width: 768px) {
-    padding: 0.6rem; /* 12px in rem */
-    margin-right: 0.25rem; /* 4px in rem */
+    padding: 0.6rem; 
+    margin-right: 0.25rem;
   }
 `;
 
 const Button = styled.button`
   flex-shrink: 0;
-  padding: 0.625rem 1rem; /* 10px 16px in rem */
-  font-size: 0.875rem; /* 14px in rem */
+  padding: 0.625rem 1rem; 
+  font-size: 0.875rem; 
   color: white;
   background-color: #4aaa87;
   border: none;
-  border-radius: 1rem; /* 20px in rem */
+  border-radius: 1rem;
   cursor: pointer;
   &:hover {
     background-color: #6dc4b0;
   }
 
   @media (max-width: 768px) {
-    padding: 0.5rem 0.75rem; /* 8px 12px in rem */
-    font-size: 0.75rem; /* 12px in rem */
+    padding: 0.5rem 0.75rem; 
+    font-size: 0.75rem; 
   }
 `;
 
 const ErrorMessage = styled.div`
   color: red;
-  margin-top: 0.5rem; /* 8px in rem */
-  font-size: 0.875rem; /* 14px in rem */
+  margin-top: 0.5rem; 
+  font-size: 0.875rem; 
   text-align: center; 
 `;
 
@@ -263,7 +263,7 @@ const ChatTemplate = () => {
       setErrorMessage('채팅 처리 중 오류가 발생했습니다.');
       const errorMessage = {
         isUser: false,
-        text: 'An error occurred. Please try again later.',
+        text: '채팅 처리 중 오류가 발생했습니다. 다시 시도해주세요.',
         timestamp: new Date().toISOString()
       };
       setMessages((prevMessages) => [...prevMessages, errorMessage]);

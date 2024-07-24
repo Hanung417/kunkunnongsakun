@@ -13,9 +13,8 @@ import {
   SettingsIcon2,
   SettingsMenu2,
   SettingsMenuItem2,
-  Divider,
 } from "../../styles/Post";
-import { FaPaperPlane, FaEllipsisV } from "react-icons/fa";
+import { FaPaperPlane } from "react-icons/fa";
 import { MdOutlineChatBubbleOutline } from "react-icons/md";
 import ConfirmModal from "../atoms/ConfirmModal";
 

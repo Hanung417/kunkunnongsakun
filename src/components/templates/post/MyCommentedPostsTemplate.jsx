@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { fetchMyCommentedPosts } from "../../../apis/post";
 import { useLoading } from "../../../LoadingContext";
-import GlobalLoader from "../../atoms/GlobalLoader"; // GlobalLoader import 추가
+import GlobalLoader from "../../atoms/GlobalLoader";
 
 const Container = styled.div`
   display: flex;

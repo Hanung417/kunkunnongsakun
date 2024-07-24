@@ -38,7 +38,7 @@ const SectionContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* 왼쪽 정렬로 변경 */
+  align-items: flex-start; 
   justify-content: center;
   margin: 0.5rem 0;
   flex: 1;
@@ -77,7 +77,7 @@ const InfoTable = styled.table`
     padding: 12px;
     border: 1px solid #ddd;
     text-align: left;
-    font-size: 1.2rem; /* 폰트 크기 증가 */
+    font-size: 1.2rem; 
   }
 
   td:first-child {
@@ -107,7 +107,7 @@ const Divider = styled.hr`
   width: 100%;
   height: 1px;
   background-color: #ccc;
-  margin: 10px 0; /* 위아래 간격을 줄였습니다 */
+  margin: 10px 0; 
 `;
 
 const ChartContainer = styled.div`

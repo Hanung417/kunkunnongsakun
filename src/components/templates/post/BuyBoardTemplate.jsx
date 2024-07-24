@@ -1,5 +1,3 @@
-// BuyBoardTemplate.js
-
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -178,7 +176,7 @@ const BuyBoardTemplate = () => {
         const sortedPosts = response.data.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date));
         setPosts(sortedPosts);
       } catch (error) {
-        console.error("Failed to fetch posts", error);
+        alert("게시글을 불러오는데 실패했습니다. 다시 시도해주세요.");
       } finally {
         setIsLoading(false);
       }

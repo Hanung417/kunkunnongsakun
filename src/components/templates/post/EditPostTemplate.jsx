@@ -16,7 +16,6 @@ import {
   FileInput,
   FileName,
   ImagePreview,
-  ErrorMessage,
 } from "../../../styles/Post";
 import { useLoading } from "../../../LoadingContext";
 

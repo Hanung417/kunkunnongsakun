@@ -5,7 +5,7 @@ import { useDropzone } from "react-dropzone";
 import { uploadImage } from "../../../apis/predict";
 import { FaCamera, FaFile } from "react-icons/fa";
 import CustomModal from '../../atoms/CustomModal';
-import GlobalLoader from '../../atoms/GlobalLoader'; // GlobalLoader 임포트
+import GlobalLoader from '../../atoms/GlobalLoader';
 import { useLoading } from "../../../LoadingContext";
 
 const PageContainer = styled.div`
@@ -251,8 +251,7 @@ const DiagnosisTemplate = () => {
       setResult(response.data.result);
       navigate('/info', { state: { diagnosisResult: response.data } });
     } catch (error) {
-      console.error('Failed to upload image', error);
-      setModalContent('Error in diagnosing the image.');
+      setModalContent('이미지 진단에 실패했습니다. 다시 시도해주세요.');
       setIsModalOpen(true);
     } finally {
       setIsLoading(false);
