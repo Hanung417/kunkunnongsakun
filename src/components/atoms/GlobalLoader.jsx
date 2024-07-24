@@ -18,9 +18,9 @@ const LoaderContainer = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 100px; /* 로고의 크기 */
+  width: 100px; 
   height: 100px;
-  margin-bottom: 20px; /* 로고와 로더 사이의 간격 */
+  margin-bottom: 20px; 
 `;
 
 const LoaderWrapper = styled.div`
@@ -52,7 +52,7 @@ const GlobalLoader = ({ text }) => {
       <LoaderWrapper>
         <Logo src={`${process.env.PUBLIC_URL}/android-chrome-192x192.png`} alt="Loading Logo" />
         <LoaderOffsetWrapper>
-          <FadeLoader color="#4aaa87" loading={isLoading} size={60} /> {/* 로더의 크기 */}
+          <FadeLoader color="#4aaa87" loading={isLoading} size={60} />
         </LoaderOffsetWrapper>
         {text && <LoaderText>{text}</LoaderText>}
       </LoaderWrapper>

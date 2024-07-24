@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import ChangePasswordModal from "./ChangePasswordModal";
 import ChangeUsernameModal from "./ChangeUsernameModal";
 import DeleteAccountModal from "./DeleteAccountModal";
@@ -10,15 +10,15 @@ import { useLoading } from "../../../LoadingContext";
 import CustomModal from "../../atoms/CustomModal";
 import TopBarLoader from "../../atoms/TopBarLoader"; // TopBarLoader import
 
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem;
+  padding: 0.5rem 1.5rem;
   background-color: #f9f9f9;
   box-sizing: border-box;
 `;
-
 const UserProfile = styled.div`
   display: flex;
   align-items: center;
@@ -61,7 +61,7 @@ const Section = styled.div`
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
-  padding: 1.25rem;
+  padding: 1rem;
 `;
 
 const SectionTitle = styled.h3`
@@ -121,9 +121,10 @@ const MyPageTemplate = () => {
           setIsLoginModalOpen(true);
         }
       } catch (error) {
-        console.error("Failed to fetch user data", error);
+        setIsAuthenticated(false);
+        setIsLoginModalOpen(true);
       }
-      setIsUsernameLoading(false); // username 로딩 완료
+      setIsUsernameLoading(false);
       setIsLoading(false);
     };
 
@@ -222,6 +223,8 @@ const MyPageTemplate = () => {
         onRequestClose={closeModal}
         title="알림"
         content="로그인이 필요합니다. 로그인 페이지로 이동합니다."
+        customTop="40%" // 모달의 위치를 위로 조정
+        customHeight="200px" // 모달의 최대 높이를 줄임
       />
     </Container>
   );
