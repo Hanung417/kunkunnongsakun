@@ -14,7 +14,7 @@ const Container = styled.div`
   align-items: center;
   padding: 24px;
   background-color: #f9f9f9;
-  min-height: auto;
+  min-height: 160vh;
   @media (max-width: 768px) {
     padding: 16px;
   }
@@ -215,7 +215,7 @@ const Divider = styled.hr`
 
 const customStyles = {
   content: {
-    top: '50%',
+    top: '45%', // 조정된 위치
     left: '50%',
     right: 'auto',
     bottom: 'auto',
@@ -396,7 +396,7 @@ const SoilTemplate = () => {
   return (
     <Container>
       <BoxContainer>
-        <p style={{ color: '#7f8c8d', fontSize: '0.875rem', marginTop: '0.625rem' }}>작물 이름과 주소 (ㅇㅇ시 ㅇㅇ동)을 입력하세요</p>
+        <p style={{ color: '#7f8c8d', fontSize: '0.875rem', marginTop: '0.625rem' }}>토양 분석을 위한 작물 이름과 주소를 입력하세요</p>
         <InputContainer ref={inputRef}>
           <InputLabel>작물 이름</InputLabel>
           <Input
@@ -419,6 +419,7 @@ const SoilTemplate = () => {
         </InputContainer>
         <InputContainer>
           <InputLabel>주소</InputLabel>
+          <p style={{ color: '#7f8c8d', fontSize: '0.875rem', marginTop: '0.5rem' }}>주소를 입력한 후 검색 버튼을 눌러주세요.</p>
           <AddressContainer>
             <AddressInput
               type="text"

@@ -141,6 +141,12 @@ const PaginationContainer = styled.div`
   }
 `;
 
+const NoDataText = styled.p`
+  font-size: 1rem;
+  color: #888;
+  margin-top: 2rem;
+`;
+
 const formatDateTime = (dateString) => {
   const options = {
     year: 'numeric',
@@ -233,24 +239,28 @@ const SoilListTemplate = () => {
   return (
     <PageContainer>
       <AddButton onClick={handleAddClick}>새 토양 데이터 추가</AddButton>
-      <SessionList>
-        {currentSessions.map(sessionId => (
-          <SessionItem key={sessionId} onClick={() => handleSoilDataClick(soilData.find(soil => soil.session_id === sessionId))}>
-            <SessionInfo>
-              <SessionDate>{formatDateTime(soilData.find(soil => soil.session_id === sessionId).created_at)}</SessionDate>
-              <div><strong>작물:</strong> {soilData.find(soil => soil.session_id === sessionId).crop_name}</div>
-              <div><strong>주소:</strong> {soilData.find(soil => soil.session_id === sessionId).address}</div>
-              <div><strong>상세 주소:</strong> {soilData.find(soil => soil.session_id === sessionId).detailed_address}</div>
-            </SessionInfo>
-            <DeleteButton onClick={(e) => {
-              e.stopPropagation();
-              openModal(sessionId);
-            }}>
-              <FaTrash />
-            </DeleteButton>
-          </SessionItem>
-        ))}
-      </SessionList>
+      {currentSessions.length === 0 ? (
+        <NoDataText>목록이 존재하지 않습니다. 첫 토양 분석을 진행해보세요</NoDataText>
+      ) : (
+        <SessionList>
+          {currentSessions.map(sessionId => (
+            <SessionItem key={sessionId} onClick={() => handleSoilDataClick(soilData.find(soil => soil.session_id === sessionId))}>
+              <SessionInfo>
+                <SessionDate>{formatDateTime(soilData.find(soil => soil.session_id === sessionId).created_at)}</SessionDate>
+                <div><strong>작물:</strong> {soilData.find(soil => soil.session_id === sessionId).crop_name}</div>
+                <div><strong>주소:</strong> {soilData.find(soil => soil.session_id === sessionId).address}</div>
+                <div><strong>상세 주소:</strong> {soilData.find(soil => soil.session_id === sessionId).detailed_address}</div>
+              </SessionInfo>
+              <DeleteButton onClick={(e) => {
+                e.stopPropagation();
+                openModal(sessionId);
+              }}>
+                <FaTrash />
+              </DeleteButton>
+            </SessionItem>
+          ))}
+        </SessionList>
+      )}
       <PaginationContainer>
         <ReactPaginate
           previousLabel={"이전"}
