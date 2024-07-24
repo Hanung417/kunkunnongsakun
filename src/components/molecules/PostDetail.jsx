@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { FaEllipsisV } from "react-icons/fa";
+import { FaEllipsisV, FaThList } from "react-icons/fa";
 import ConfirmModal from "../atoms/ConfirmModal";
 import { useNavigate } from "react-router-dom";
 
 const PostMeta = styled.div`
   font-size: 14px;
   color: #666;
+  margin-top: 16px;
   margin-bottom: 24px;
   display: flex;
   justify-content: space-between;
@@ -27,16 +28,18 @@ const PostContent = styled.div`
   word-break: break-word; /* Break long words for better readability */
   display: flex;
   align-items: flex-start; /* Align content to the top */
+  width: 100%; /* Ensure content box has the same width */
 `;
 
 const PostImage = styled.img`
   max-width: 100%;
   max-height: 400px;
-  width: auto;
+  width: 100%;
   height: auto;
-  margin-top: 16px;
+  margin: 16px auto 0 auto; /* Center the image */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: block; /* Ensure the image is a block element for margin auto to work */
 `;
 
 const TitleBar = styled.div`
@@ -44,20 +47,26 @@ const TitleBar = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  margin-bottom: 24px;
 `;
 
 const Title = styled.h1`
-  font-size: 28px;
+  font-size: 1.5rem;
   color: #444;
-  border-bottom: 2px solid #4aaa87;
   padding-bottom: 8px;
+  text-align: center;
+  flex: 1;
+`;
+
+const PostTypeBadge = styled.span`
+  font-size: 14px;
+  color: white;
+  background-color: #4aaa87;
+  padding: 4px 8px;
+  border-radius: 4px;
   text-align: center;
 `;
 
 const SettingsIcon = styled(FaEllipsisV)`
-  position: absolute;
-  right: 0;
   cursor: pointer;
   font-size: 24px;
   color: #888;
@@ -120,6 +129,24 @@ const Divider = styled.div`
   margin: 4px 0;
 `;
 
+const ListIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  color: #888;
+
+  &:hover {
+    color: #3e8e75;
+  }
+
+  span {
+    margin-left: 8px;
+    font-size: 16px;
+  }
+`;
+
 const PostDetail = ({
   post,
   currentUserId,
@@ -132,9 +159,44 @@ const PostDetail = ({
   handleDeletePost
 }) => {
   const navigate = useNavigate();
+
+  const getPostTypeLabel = (postType) => {
+    switch (postType) {
+      case "sell":
+        return "판매게시판";
+      case "buy":
+        return "구매게시판";
+      case "exchange":
+        return "품앗이게시판";
+      default:
+        return "";
+    }
+  };
+
+  const handleBoardClick = (postType) => {
+    switch (postType) {
+      case 'buy':
+        navigate("/buyboard");
+        break;
+      case 'sell':
+        navigate("/sellboard");
+        break;
+      case 'exchange':
+        navigate("/exchangeboard");
+        break;
+      default:
+        navigate("/board");
+        break;
+    }
+  };
+
   return (
     <>
       <TitleBar>
+        <ListIconContainer onClick={() => handleBoardClick(post.post_type)}>
+          <FaThList />
+          <span>목록</span>
+        </ListIconContainer>
         <Title>{post.title}</Title>
         {String(currentUserId) === String(post.user_id) && (
           <>
@@ -151,6 +213,7 @@ const PostDetail = ({
           </>
         )}
       </TitleBar>
+      <PostTypeBadge>{getPostTypeLabel(post.post_type)}</PostTypeBadge>
       <PostMeta>
         <span>작성자: {post.username}</span>
         <span>작성일: {new Date(post.creation_date).toLocaleDateString()}</span>

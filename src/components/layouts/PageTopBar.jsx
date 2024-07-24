@@ -83,8 +83,8 @@ const PageTopBar = () => {
     "/buyboard": "구매 게시판",
     "/sellboard": "판매 게시판",
     "/exchangeboard": "품앗이 게시판",
-    "/post/:id": "게시글 상세보기",
     "/post/create": "게시글 작성",
+    "/post/:id": "게시글 상세보기",
     "/chatlist": "대화 목록",
     "/mypage": "마이페이지",
     "/post/edit/:id": "게시글 수정",
@@ -104,7 +104,9 @@ const PageTopBar = () => {
     "/password_reset": "비밀번호 찾기",
   };
 
-  const noBackButtonPages = [];
+  const noBackButtonPages = [
+    "/post/:id"
+  ];
 
   const getPageTitle = () => {
     const pathname = location.pathname;
@@ -117,6 +119,12 @@ const PageTopBar = () => {
       }
     }
 
+    const searchParams = new URLSearchParams(location.search);
+    const postType = searchParams.get('post_type');
+    if (pathname.startsWith('/post/create') && postType) {
+      return "게시글 작성";
+    }
+
     if (/^\/chat\/[\w-]+$/.test(pathname)) {
       return "농업GPT";
     }
@@ -125,7 +133,10 @@ const PageTopBar = () => {
   };
 
   const pageTitle = getPageTitle();
-  const showBackButton = !noBackButtonPages.includes(location.pathname);
+  const showBackButton = !noBackButtonPages.some((page) => {
+    const regex = new RegExp(`^${page.replace(/:\w+/g, "\\w+")}$`);
+    return regex.test(location.pathname);
+  });
 
   useEffect(() => {
     const checkAuth = async () => {

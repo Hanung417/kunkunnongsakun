@@ -3,8 +3,8 @@ import { FaEllipsisV } from 'react-icons/fa';
 
 export const Container = styled.div`
   margin: 0 auto;
-  padding: 20px;
-  max-width: 75rem;
+  padding: 2rem;
+  max-width: 50rem;
   width: 100%;
   background-color: #ffffff;
   border-radius: 12px;
@@ -142,8 +142,8 @@ export const TitleBar = styled.div`
   margin-bottom: 24px;
 `;
 
-export const Title = styled.h1`
-  font-size: 28px;
+export const Title = styled.div`
+  font-size: 2rem;
   color: #444;
   border-bottom: 2px solid #4aaa87;
   padding-bottom: 8px;
