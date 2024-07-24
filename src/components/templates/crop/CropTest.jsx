@@ -197,7 +197,7 @@ const CropTest = () => {
 
   return (
     <PageContainer>
-      {isLoading && <GlobalLoader />}
+      {isLoading && <GlobalLoader text="AI 수익 예측 중입니다."/>}
       <SummaryTitle step="1">작물정보 입력</SummaryTitle>
       <InputContainer>
         <Label>재배 면적 (평)</Label>

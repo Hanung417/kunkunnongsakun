@@ -283,7 +283,7 @@ const DiagnosisTemplate = () => {
 
   return (
     <PageContainer>
-      {isLoading && <GlobalLoader />}
+      {isLoading && <GlobalLoader text="AI 진단 중입니다." />}
       <Content>
         <UploadText>병해충 진단을 위한 사진을 업로드해주세요</UploadText>
         <ButtonWrapper>
