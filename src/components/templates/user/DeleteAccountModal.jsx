@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { deleteAccount, getCSRFToken } from "../../../apis/user";
+import { deleteAccount } from "../../../apis/user";
 import { FaTimes } from "react-icons/fa";
 import { useLoading } from '../../../LoadingContext';
 
@@ -105,14 +105,9 @@ const DeleteAccountModal = ({ isOpen, onRequestClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const csrfToken = getCSRFToken();
-
     setIsLoading(true);
     try {
-      await deleteAccount(password, {
-        headers: { "X-CSRFToken": csrfToken },
-        withCredentials: true
-      });
+      await deleteAccount(password);
       setMessage("계정이 성공적으로 삭제되었습니다.");
       setError("");
       setTimeout(() => {

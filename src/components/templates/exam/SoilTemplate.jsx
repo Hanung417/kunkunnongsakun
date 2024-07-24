@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { IoSearch } from 'react-icons/io5';
-import Modal from 'react-modal';
 import { getCropNames, getSoilExamData, getSoilFertilizerInfo } from "../../../apis/predict";
 import { useLoading } from "../../../LoadingContext";
 import CustomModal from '../../atoms/CustomModal';
@@ -192,7 +191,6 @@ const SoilTemplate = () => {
   const [showCropList, setShowCropList] = useState(false);
   const [error, setError] = useState(null);
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
-  const [analysisDone, setAnalysisDone] = useState(false);
   const navigate = useNavigate();
 
   const inputRef = useRef(null);
@@ -228,7 +226,6 @@ const SoilTemplate = () => {
       });
       setFertilizerData(response.data.data);
       setError(null);
-      setAnalysisDone(true);
     } catch (err) {
       setError(err.response.data.error);
       setErrorModalIsOpen(true);

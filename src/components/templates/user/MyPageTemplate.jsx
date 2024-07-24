@@ -14,8 +14,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.5rem 1.5rem;
-  background-color: #f9f9f9;
+  padding: 1rem 1.5rem;
   box-sizing: border-box;
 `;
 const UserProfile = styled.div`
@@ -104,7 +103,6 @@ const MyPageTemplate = () => {
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(false);
   const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -117,11 +115,9 @@ const MyPageTemplate = () => {
           setUsername(response.data.username);
         } else {
           setIsAuthenticated(false);
-          setIsLoginModalOpen(true);
         }
       } catch (error) {
         setIsAuthenticated(false);
-        setIsLoginModalOpen(true);
       }
       setIsUsernameLoading(false);
       setIsLoading(false);
@@ -148,11 +144,6 @@ const MyPageTemplate = () => {
 
   const handleViewMyCommentedPosts = () => {
     navigate("/my_commented_posts");
-  };
-
-  const closeModal = () => {
-    setIsLoginModalOpen(false);
-    navigate("/login");
   };
 
   return (

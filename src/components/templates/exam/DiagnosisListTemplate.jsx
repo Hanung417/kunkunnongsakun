@@ -13,7 +13,6 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1.5rem;
-  background-color: #f9f9f9;
   width: 100%;
   margin: 0 auto;
 `;
@@ -24,7 +23,7 @@ const Content = styled.div`
   align-items: center;
   width: 100%;
   max-width: 75rem; 
-  margin-top: 1.875rem;
+  margin-top: 1rem;
 
   @media (max-width: 48rem) { 
     max-width: 37.5rem; 
@@ -39,7 +38,7 @@ const SessionList = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.625rem; 
+  gap: 0.7rem; 
   max-width: 75rem;
 `;
 
@@ -50,7 +49,7 @@ const SessionItem = styled.div`
   padding: 0.625rem;
   border: 1px solid #ccc;
   border-radius: 0.625rem; 
-  background-color: #fff;
+  background-color: #f9f9f9;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -113,7 +112,7 @@ const AddButtonContainer = styled.button`
   align-items: center;
   cursor: pointer;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   background-color: #4aaa87;
   color: white;
   border: none;

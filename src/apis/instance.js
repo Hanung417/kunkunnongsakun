@@ -34,15 +34,15 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
-{/* instance.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    if (error.response && error.response.status === 401) {
-      alert("로그인이 필요한 서비스입니다. 로그인 페이지로 이동합니다.");
-      window.location.href = "/login";
-    }
-    return Promise.reject(error);
-  }
-); */}
+// instance.interceptors.response.use(
+//   (response) => {
+//     return response;
+//   },
+//   (error) => {
+//     if (error.response && error.response.status === 401) {
+//       alert("로그인이 필요한 서비스입니다. 로그인 페이지로 이동합니다.");
+//       window.location.href = "/login";
+//     }
+//     return Promise.reject(error);
+//   }
+// );

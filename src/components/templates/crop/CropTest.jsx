@@ -83,11 +83,6 @@ const CropTest = () => {
     setCurrentCrop({ ...currentCrop, name: selectedOption ? selectedOption.value : "" });
   };
 
-  const handleCropSelect = (selectedOption) => {
-    setCurrentCrop({ ...currentCrop, name: selectedOption ? selectedOption.value : "" });
-    setShowCropList(false);
-  };
-
   const addCrop = async () => {
     if (landArea && region && currentCrop.name && currentCrop.ratio) {
       setCrops([...crops, { ...currentCrop, id: crops.length + 1 }]);

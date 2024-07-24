@@ -7,7 +7,6 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1.5rem;
-  background-color: #f9f9f9;
 `;
 
 const LayoutContainer = styled.div`

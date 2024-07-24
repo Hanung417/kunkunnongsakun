@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaTrash, FaEdit } from 'react-icons/fa';
+import { FaTrash, FaEdit, FaPlus } from 'react-icons/fa';
 import { getCropList, deleteCrop, updateSessionName } from '../../../apis/crop';
 import ConfirmModal from '../../atoms/ConfirmModal';
 import ReactPaginate from 'react-paginate';
@@ -140,7 +140,9 @@ const CropSelectionPage = () => {
     <>
       <GlobalLoader />
       <PageContainer>
-        <Button onClick={() => navigate('/croptest')}>작물 조합 추가</Button>
+        <Button onClick={() => navigate('/croptest')}>
+          <FaPlus /> 작물 조합 추가
+        </Button>
         {error && <p>{error}</p>}
         <ContentContainer>
           <SessionListContainer>

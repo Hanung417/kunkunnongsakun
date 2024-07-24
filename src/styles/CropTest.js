@@ -5,7 +5,6 @@ export const PageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f0f2f5;
   padding: 1rem; 
 `;
 

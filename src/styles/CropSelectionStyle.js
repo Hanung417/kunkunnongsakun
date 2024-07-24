@@ -4,7 +4,6 @@ export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f9f9f9;
   padding: 1.25rem 0; 
   height: 100vh;
   position: relative;
@@ -21,21 +20,28 @@ export const ContentContainer = styled.div`
 `;
 
 export const Button = styled.button`
-  padding: 0.625rem 1.25rem; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem; 
   margin-top: 1.25rem; 
   margin-bottom: 1.25rem; 
-  font-weight: 500;
+  font-weight: 600;
   background-color: #4aaa87;
   color: white;
   border: none;
   border-radius: 0.3125rem; 
   cursor: pointer;
-  font-size: 1.25rem; 
+  font-size: 1rem; 
   transition: background-color 0.3s;
   width: 9.375rem; 
 
   &:hover {
     background-color: #3e8e75;
+  }
+
+  svg {
+    margin-right: 0.5rem;
   }
 `;
 
@@ -69,9 +75,10 @@ export const SessionList = styled.div`
 `;
 
 export const SessionItem = styled.div`
-  background-color: #FFFFFF;
+  background-color: #f9f9f9;
   border-radius: 0.625rem; 
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); 
+  border: 1px solid #ccc;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); 
   display: flex;
   flex-direction: column;
   align-items: flex-start; 

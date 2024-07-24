@@ -16,12 +16,6 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Title = styled.h1`
-  font-size: 24px;
-  margin-bottom: 18px;
-  color: #333;
-`;
-
 const Form = styled.form`
   display: flex;
   flex-direction: column;
