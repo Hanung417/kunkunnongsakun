@@ -128,13 +128,14 @@ const ProfileImage = styled.img`
 
 const InputBox = styled.form`
   display: flex;
+  align-items: center; /* Align items vertically center */
   padding: 1.25rem 0.75rem; /* 20px 12px in rem */
   background-color: #f0f0f0;
   border-top: 1px solid #ddd;
   width: 100%;
   box-sizing: border-box;
   position: fixed;
-  bottom: 3.75rem; /* 60px in rem */
+  bottom: 60px; /* Changed to 0 */
   left: 0;
   right: 0;
 
@@ -144,10 +145,10 @@ const InputBox = styled.form`
 `;
 
 const Input = styled.input`
-  flex: 1;
-  padding: 1.25rem; /* 20px in rem */
+  flex-grow: 1;
+  padding: 0.8rem; /* 16px in rem */
   border: 1px solid #ddd;
-  border-radius: 1.25rem; /* 20px in rem */
+  border-radius: 1rem; /* 20px in rem */
   margin-right: 0.5rem; /* 8px in rem */
   font-size: 1rem; /* 16px in rem */
   &:focus {
@@ -156,20 +157,20 @@ const Input = styled.input`
   }
 
   @media (max-width: 768px) {
-    padding: 1rem; /* 16px in rem */
+    padding: 0.6rem; /* 12px in rem */
     margin-right: 0.25rem; /* 4px in rem */
   }
 `;
 
 const Button = styled.button`
+  flex-shrink: 0;
   padding: 0.625rem 1rem; /* 10px 16px in rem */
   font-size: 0.875rem; /* 14px in rem */
   color: white;
   background-color: #4aaa87;
   border: none;
-  border-radius: 1.25rem; /* 20px in rem */
+  border-radius: 1rem; /* 20px in rem */
   cursor: pointer;
-  width: 4rem;
   &:hover {
     background-color: #6dc4b0;
   }
