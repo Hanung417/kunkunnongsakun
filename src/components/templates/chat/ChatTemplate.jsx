@@ -169,7 +169,7 @@ const Button = styled.button`
   color: white;
   background-color: #4aaa87;
   border: none;
-  border-radius: 1:wa:rem; /* 20px in rem */
+  border-radius: 1rem; /* 20px in rem */
   cursor: pointer;
   &:hover {
     background-color: #6dc4b0;
