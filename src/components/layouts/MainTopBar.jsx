@@ -95,7 +95,6 @@ const MainTopBar = () => {
           localStorage.setItem('isLoggedIn', 'false');
         }
       } catch (error) {
-        console.error("Failed to check auth status:", error);
         setIsLoggedIn(false);
         localStorage.setItem('isLoggedIn', 'false');
       }

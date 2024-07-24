@@ -105,7 +105,8 @@ const PageTopBar = () => {
   };
 
   const noBackButtonPages = [
-    "/post/:id"
+    "/post/:id",
+    "/post/create"
   ];
 
   const getPageTitle = () => {
@@ -135,7 +136,7 @@ const PageTopBar = () => {
   const pageTitle = getPageTitle();
   const showBackButton = !noBackButtonPages.some((page) => {
     const regex = new RegExp(`^${page.replace(/:\w+/g, "\\w+")}$`);
-    return regex.test(location.pathname);
+    return regex.test(location.pathname) && !location.pathname.startsWith("/post/create");
   });
 
   useEffect(() => {
@@ -161,13 +162,15 @@ const PageTopBar = () => {
 
   const handleLogout = async () => {
     setIsLoading(true);
-    try {
+     try {
       await logoutUser();
       setIsLoggedIn(false);
       setUsername("");
+      localStorage.setItem('isLoggedIn', 'false');
+      localStorage.clear();
       setModalContent("로그아웃이 완료되었습니다.");
       setIsModalOpen(true);
-    } catch (error) {
+    }  catch (error) {
       console.error("Failed to logout:", error);
     } finally {
       setIsLoading(false);
