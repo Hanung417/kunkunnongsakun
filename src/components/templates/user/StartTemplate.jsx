@@ -57,6 +57,18 @@ const Button = styled.button`
   }
 `;
 
+const ExplanationText = styled.p`
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: -0.75rem;
+  margin-bottom: 1rem;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+  }
+`;
+
 const Logo = styled.img`
   width: 10rem;
   height: 10rem;
@@ -149,9 +161,10 @@ const StartTemplate = () => {
 
   return (
     <Container>
-      <GlobalLoader isLoading={isLoading} />
+      <GlobalLoader text={isLoading ? "로그인 중입니다..." : ""} />
       <Logo src={`${process.env.PUBLIC_URL}/android-chrome-192x192.png`} alt="Logo" />
       <Title>꾼꾼농사꾼에 오신 것을 환영합니다!</Title>
+      <ExplanationText>테스트 계정으로 접속하면 회원가입 과정 없이 서비스 이용할 수 있습니다.</ExplanationText>
       <Button onClick={handleTestLogin}>테스트 계정으로 접속하기</Button>
       <Button onClick={handleLoginRedirect}>로그인하러가기</Button>
       <CustomModal
