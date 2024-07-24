@@ -34,7 +34,7 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
-instance.interceptors.response.use(
+{/* instance.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -45,4 +45,4 @@ instance.interceptors.response.use(
     }
     return Promise.reject(error);
   }
-);
+); */}

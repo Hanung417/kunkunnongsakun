@@ -7,7 +7,6 @@ import DeleteAccountModal from "./DeleteAccountModal";
 import { FaUserEdit, FaKey, FaTrashAlt, FaPen, FaCommentDots } from "react-icons/fa";
 import { checkAuthStatus } from "../../../apis/user";
 import { useLoading } from "../../../LoadingContext";
-import CustomModal from "../../atoms/CustomModal";
 import TopBarLoader from "../../atoms/TopBarLoader"; // TopBarLoader import
 
 
@@ -217,15 +216,6 @@ const MyPageTemplate = () => {
           />
         </>
       )}
-
-      <CustomModal
-        isOpen={isLoginModalOpen}
-        onRequestClose={closeModal}
-        title="알림"
-        content="로그인이 필요합니다. 로그인 페이지로 이동합니다."
-        customTop="40%" // 모달의 위치를 위로 조정
-        customHeight="200px" // 모달의 최대 높이를 줄임
-      />
     </Container>
   );
 };

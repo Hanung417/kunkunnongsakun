@@ -31,6 +31,7 @@ import DiagnosisTemplate from "./components/templates/exam/DiagnosisTemplate";
 import InfoTemplate from "./components/templates/exam/InfoTemplate";
 import ChatListTemplate from "./components/templates/chat/ChatListTemplate";
 import ChatTemplate from "./components/templates/chat/ChatTemplate";
+import AuthRoute from "./components/layouts/AuthRoute";
 
 function App() {
   return (
@@ -44,10 +45,27 @@ function App() {
             <Route path="/login" element={<LoginTemplate />} />
             <Route path="/password_reset" element={<PasswordResetTemplate />} />
             <Route path="/main" element={<MainTemplate />} />
-            <Route path="/mypage" element={<MyPageTemplate />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
+
+            {/* auth */}
+            <Route element={<AuthRoute />}>
+              <Route path="/mypage" element={<MyPageTemplate />} />
+              <Route path="/my_posts" element={<MyPostTemplate />} />
+              <Route path="/post/edit/:id" element={<EditPostTemplate />} />
+              <Route path="/my_commented_posts" element={<MyCommentedPostsTemplate />} />
+              <Route path="post/create" element={<WritePostTemplate />} />
+              <Route path="/cropselection" element={<CropSelectionPage />} />
+              <Route path="/croptest" element={<CropTest />} />
+              <Route path="/soil" element={<SoilTemplate />} />
+              <Route path="/soillist" element={<SoilListTemplate />} />
+              <Route path="/soil_details" element={<SoilDataDetails />} />
+              <Route path="/diagnosis" element={<DiagnosisTemplate />} />
+              <Route path="/info" element={<InfoTemplate />} />
+              <Route path="/diagnosislist" element={<DiagnosisListTemplate />} />
+              <Route path="/sessiondetails" element={<SessionDetails />} />
+            </Route>
 
             {/* post */}
             <Route path="board" element={<BoardTemplate />} />
@@ -55,26 +73,10 @@ function App() {
             <Route path="sellboard" element={<SellBoardTemplate />} />
             <Route path="exchangeboard" element={<ExchangeBoardTemplate />} />
             <Route path="post/:id" element={<PostDetailTemplate />} />
-            <Route path="post/create" element={<WritePostTemplate />} />
-            <Route path="/my_posts" element={<MyPostTemplate />} />
-            <Route path="/post/edit/:id" element={<EditPostTemplate />} />
-            <Route path="/my_commented_posts" element={<MyCommentedPostsTemplate />} />
 
             {/* chat */}
             <Route path="chatlist" element={<ChatListTemplate />} />
             <Route path="chat/:sessionid" element={<ChatTemplate />} />
-
-            {/* ai */}
-            <Route path="/croptest" element={<CropTest />} />
-            <Route path="/soil" element={<SoilTemplate />} />
-            <Route path="/soillist" element={<SoilListTemplate />} />
-            <Route path="/soil_details" element={<SoilDataDetails />} />
-            <Route path="/diagnosis" element={<DiagnosisTemplate />} />
-            <Route path="/info" element={<InfoTemplate />} />
-            <Route path="/diagnosislist" element={<DiagnosisListTemplate />} />
-            <Route path="/cropselection" element={<CropSelectionPage />} />
-            <Route path="/sessiondetails" element={<SessionDetails />} />
-            
           </Route>
         </Routes>
       </BrowserRouter>
