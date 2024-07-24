@@ -13,13 +13,13 @@ const ModalContainer = styled(Modal)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 10px 20px;
   background-color: white;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   position: absolute;
-  top: 45%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 400px;
