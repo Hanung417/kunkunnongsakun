@@ -14,7 +14,7 @@ const PostMeta = styled.div`
 `;
 
 const PostContent = styled.div`
-  min-height: 150px; /* Set minimum height */
+  min-height: 150px;
   margin-bottom: 12px;
   color: #333;
   font-size: 18px;
@@ -24,11 +24,11 @@ const PostContent = styled.div`
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: left; /* Ensure text aligns to the left */
-  word-break: break-word; /* Break long words for better readability */
+  text-align: left; 
+  word-break: break-word;
   display: flex;
-  align-items: flex-start; /* Align content to the top */
-  width: 100%; /* Ensure content box has the same width */
+  align-items: flex-start; 
+  width: 100%; 
 `;
 
 const PostImage = styled.img`
@@ -39,13 +39,13 @@ const PostImage = styled.img`
   margin: 16px auto 0 auto; /* Center the image */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  display: block; /* Ensure the image is a block element for margin auto to work */
+  display: block; 
 `;
 
 const TitleBar = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between; 
   position: relative;
 `;
 
@@ -55,6 +55,7 @@ const Title = styled.h1`
   padding-bottom: 8px;
   text-align: center;
   flex: 1;
+  word-break: break-word; 
 `;
 
 const PostTypeBadge = styled.span`
@@ -133,9 +134,8 @@ const ListIconContainer = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  position: absolute;
-  left: 0;
   color: #888;
+  margin-right: 16px;
 
   &:hover {
     color: #3e8e75;
@@ -195,7 +195,6 @@ const PostDetail = ({
       <TitleBar>
         <ListIconContainer onClick={() => handleBoardClick(post.post_type)}>
           <FaThList />
-          <span>목록</span>
         </ListIconContainer>
         <Title>{post.title}</Title>
         {String(currentUserId) === String(post.user_id) && (

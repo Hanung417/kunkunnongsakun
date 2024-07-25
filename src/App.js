@@ -32,6 +32,7 @@ import InfoTemplate from "./components/templates/exam/InfoTemplate";
 import ChatListTemplate from "./components/templates/chat/ChatListTemplate";
 import ChatTemplate from "./components/templates/chat/ChatTemplate";
 import AuthRoute from "./components/layouts/AuthRoute";
+import NoAuthRoute from "./components/layouts/NoAuthRoute";
 
 function App() {
   return (
@@ -41,13 +42,16 @@ function App() {
           <Route element={<MainLayout />}>
             {/* user */}
             <Route path="/" element={<StartTemplate />} />
-            <Route path="/signup" element={<PolicyAgreement />} />
-            <Route path="/login" element={<LoginTemplate />} />
-            <Route path="/password_reset" element={<PasswordResetTemplate />} />
             <Route path="/main" element={<MainTemplate />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
+
+            <Route element={<NoAuthRoute />}>
+              <Route path="/signup" element={<PolicyAgreement />} />
+              <Route path="/login" element={<LoginTemplate />} />
+              <Route path="/password_reset" element={<PasswordResetTemplate />} />
+            </Route>
 
             {/* auth */}
             <Route element={<AuthRoute />}>

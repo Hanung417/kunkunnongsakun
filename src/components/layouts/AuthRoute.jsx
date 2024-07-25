@@ -3,7 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import CustomModal from "../atoms/CustomModal";
 
 const AuthRoute = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true); // 기본값을 true로 설정하여 모달이 처음에 뜨지 않도록 함
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   useEffect(() => {

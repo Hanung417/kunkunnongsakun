@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const BASE_URL = "http://localhost:8000";
 export const instance = axios.create({
-  baseURL: BASE_URL, // 서버 연결 시 서버 주소로 변경
+  baseURL: BASE_URL,
   timeout: 50000,
   headers: {
     "Content-Type": "application/json",

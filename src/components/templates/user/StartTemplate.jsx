@@ -133,6 +133,7 @@ const StartTemplate = () => {
         setModalTitle("로그인 성공");
         setModalContent("테스트 계정으로 로그인 완료.");
         setIsError(false);
+        window.location.reload();
       }
     } catch (error) {
       setModalTitle("로그인 실패");

@@ -1,4 +1,3 @@
-// chat.js
 import { instance } from './instance';
 
 export const fetchChatSessions = () => {

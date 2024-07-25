@@ -109,12 +109,14 @@ const Comment = ({
                   e.preventDefault();
                   handleEditComment(comment.id);
                 }}
+                style={{ display: 'flex', alignItems: 'center' }} // Flexbox for alignment
               >
                 <CommentTextarea
                   rows="2"
                   value={editCommentContent}
                   onChange={handleEditCommentChange}
                   onKeyDown={(e) => handleKeyDown(e, () => handleEditComment(comment.id))}
+                  style={{ flex: 1 }} // Allow textarea to grow
                 />
                 <EditCommentButton type="submit" disabled={!editCommentContent.trim()}>
                   확인

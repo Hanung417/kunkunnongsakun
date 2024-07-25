@@ -236,7 +236,7 @@ const DiagnosisListTemplate = () => {
         const response = await fetchDetectionSessions();
         setSessions(response.data);
       } catch (error) {
-        console.error('Failed to fetch sessions', error);
+        alert("세션을 불러오는데 실패했습니다.");
       }
       setIsLoading(false);
       setLoading(false);
@@ -261,8 +261,7 @@ const DiagnosisListTemplate = () => {
 
   const handleDeleteSession = async () => {
     try {
-      setIsLoading(true);
-      setLoading(true);
+      setIsLoading(true);      setLoading(true);
       await deleteDetectionSession(sessionIdToDelete);
       setSessions(sessions.filter(session => session.session_id !== sessionIdToDelete));
       setIsModalOpen(false);
