@@ -7,9 +7,9 @@ class PredictionSession(models.Model):
     session_id = models.CharField(max_length=36, default=None, null=True, blank=True)
     session_name = models.CharField(max_length=255, default=None, null=True, blank=True)
     crop_names = models.CharField(max_length=100, default='default_crop')
-    land_area = models.FloatField(default=1.0)  # Assume a logical default if applicable
+    land_area = models.FloatField(default=1.0)
     region = models.CharField(max_length=100, default='default_region')
-    total_income = models.FloatField(default=0.0)  # Assume no income as default
+    total_income = models.FloatField(default=0.0)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
@@ -19,11 +19,11 @@ class PredictionSession(models.Model):
 class PredictionResult(models.Model):
     session = models.ForeignKey(PredictionSession, related_name='results', on_delete=models.CASCADE)
     crop_name = models.CharField(max_length=100)
-    predicted_income = models.FloatField(default=0.0)  # Assume zero as default predicted income
-    adjusted_data = models.JSONField(default=dict)  # Use the new JSONField from Django
-    price = models.FloatField(default=0.0)  # Default price as zero if no other logical default
-    latest_year = models.IntegerField(default=timezone.now().year)  # Default to the current year
-    r2_score = models.FloatField(default=0.0)  # R² 점수 필드 추가
+    predicted_income = models.FloatField(default=0.0)
+    adjusted_data = models.JSONField(default=dict)
+    price = models.FloatField(default=0.0)
+    latest_year = models.IntegerField(default=timezone.now().year)
+    r2_score = models.FloatField(default=0.0)
     rmse = models.FloatField(default=0.0)
 
     def __str__(self):

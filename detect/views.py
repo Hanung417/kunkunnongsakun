@@ -20,30 +20,24 @@ model = YOLO('best.pt')
 
 def process_image(image_path):
     """Process the image and return predictions along with annotated image content."""
-    # Perform inference using the YOLO model
     results = model(image_path)
-
-    # Initialize default values for pest_id and confidence
-    pest_id = 10  # Default pest ID if no detection meets confidence threshold
+    pest_id = 10
     confidence = 0.0
     result_image_content = None
 
-    # If there are results, process them
     if results and len(results) > 0:
-        best_result = results[0]  # Assuming the first result is the best one
+        best_result = results[0] 
         if best_result.boxes and len(best_result.boxes) > 0:
             for box in best_result.boxes:
-                if box.conf >= 0.6:  # Check if confidence is at least 0.6
-                    pest_id = int(box.cls.item())  # Assuming 'cls' gives the class ID
-                    confidence = float(box.conf.item()) * 100  # Assuming 'conf' gives the confidence score
+                if box.conf >= 0.6:
+                    pest_id = int(box.cls.item())
+                    confidence = float(box.conf.item()) * 100 
 
-                    # Plot the annotated image and save to a BytesIO object
                     annotated_image = best_result.plot()
                     is_success, buffer = cv2.imencode(".jpg", annotated_image)
                     result_image_content = ContentFile(buffer.tobytes(), name=os.path.basename(image_path))
-                    break  # Stop after the first match meeting the criterion
+                    break 
 
-    # If no valid detections, read the original image
     if not result_image_content:
         with open(image_path, 'rb') as original_file:
             result_image_content = ContentFile(original_file.read(), name=os.path.basename(image_path))
@@ -60,19 +54,16 @@ def upload_image_for_detection(request):
     if not image_file:
         raise ValidationError('No image uploaded.')
 
-    # Check if the uploaded file is an image
     if not image_file.content_type.startswith('image/'):
         raise ValidationError('Invalid file type, expected an image.')
 
     try:
-        # Save the uploaded image temporarily to a local file with the correct extension
         file_extension = image_file.name.split('.')[-1]
         with tempfile.NamedTemporaryFile(suffix=f'.{file_extension}', delete=False) as temp_file:
             for chunk in image_file.chunks():
                 temp_file.write(chunk)
             temp_image_path = temp_file.name
 
-        # Process the image and get pest ID, confidence, and annotated image content
         pest_id, confidence, result_image_content = process_image(temp_image_path)
 
         try:
@@ -81,17 +72,16 @@ def upload_image_for_detection(request):
             pest_info = Pest.objects.get(id=13)
             confidence = 0.0
 
-        # Save the detection result using the custom storage
+
         detection = PestDetection(
             user=request.user,
             pest=pest_info,
-            image=result_image_content,  # Save the annotated image using custom storage
+            image=result_image_content,
             detection_date=timezone.now(),
             confidence=confidence
         )
         detection.save()
 
-        # Prepare and return the response data
         data = {
             'pest_name': pest_info.pest_name,
             'occurrence_environment': pest_info.occurrence_environment,
@@ -99,9 +89,9 @@ def upload_image_for_detection(request):
             'prevention_methods': pest_info.prevention_methods,
             'pesticide_name': pest_info.pesticide_name,
             'confidence': confidence,
-            'user_image_url': detection.image.url,  # Annotated image URL
-            'db_image_url': detection.pest.image_url,  # Database image URL
-            'detection_date': detection.detection_date.strftime('%Y-%m-%d %H:%M')
+            'user_image_url': detection.image.url, 
+            'db_image_url': detection.pest.image_url,  
+            'detection_date': detection.detection_date.now().strftime('%Y-%m-%d %H:%M')
         }
 
         # Clean up temporary image file
@@ -144,10 +134,10 @@ def detection_session_details(request, session_id):
             'symptom_description': session.pest.symptom_description,
             'prevention_methods': session.pest.prevention_methods,
             'pesticide_name': session.pest.pesticide_name,
-            'detection_date': session.detection_date.strftime('%Y-%m-%d %H:%M'),
+            'detection_date': session.detection_date.now().strftime('%Y-%m-%d %H:%M'),
             'confidence': session.confidence,
-            'user_image_url': session.image.url, # 사용자가 넣은 이미지
-            'db_image_url': session.pest.image_url # 디비에 있는 이미지
+            'user_image_url': session.image.url,
+            'db_image_url': session.pest.image_url
         }
         return JsonResponse(details)
     except PestDetection.DoesNotExist:

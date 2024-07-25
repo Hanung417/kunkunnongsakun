@@ -23,7 +23,6 @@ session_id = str(uuid.uuid4())
 
 logger = logging.getLogger(__name__)
 
-# CSV 파일 경로
 CSV_FILE_PATH = 'prediction/all_crop_data.csv'  # 수익률 예측
 CSV_FILE_PATH_1 = 'prediction/predict_code.csv'  # 품목 코드
 re = {'서울': ['1101', '108'], '부산': ['2100', '159'], '대구': ['2200', '143'], '광주': ['2401', '156'], '대전': ['2501', '133']}
@@ -158,7 +157,6 @@ def predict_prices(merged_df, df_2):
     merged_df['year'] = merged_df['tm'].dt.year
     merged_df['month'] = merged_df['tm'].dt.month
     merged_df['day'] = merged_df['tm'].dt.day
-    # 추가적인 특성 엔지니어링
     merged_df['month_sin'] = np.sin(2 * np.pi * merged_df['month'] / 12)
     merged_df['month_cos'] = np.cos(2 * np.pi * merged_df['month'] / 12)
     merged_df['day_sin'] = np.sin(2 * np.pi * merged_df['day'] / 31)
@@ -272,15 +270,14 @@ def predict_income(request):
                         logger.error(f"Missing 'price' in merged DataFrame for {crop_name}" )
                     merged_df.drop('itemname', axis=1, inplace=True)
                     
-                    
-                    # Ensure the predicted value is converted to native Python int type for JSON serialization
+
                     pred_value, r2, rmse = predict_prices(merged_df, df_2)
                     logger.debug(f"Predicted prices for {crop_name}: {pred_value}")
 
                     PredictionResult.objects.create(
                         session=prediction_session,
                         crop_name=crop_name,
-                        predicted_income=int(adjusted_income),  # Conversion to native Python int
+                        predicted_income=int(adjusted_income), 
                         adjusted_data=convert_values(adjusted_data),
                         price=pred_value,
                         latest_year=latest_year,

@@ -11,7 +11,7 @@ class Post(models.Model):
     post_type = models.CharField(max_length=10)
     image = models.ImageField(
         upload_to='post/', 
-        storage=PostBoardStorage(),  # Using custom storage backend
+        storage=PostBoardStorage(), 
         blank=True, 
         null=True
     )
@@ -27,7 +27,7 @@ class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE) #대댓글 기능 추가
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'comment'

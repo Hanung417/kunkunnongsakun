@@ -29,7 +29,6 @@ def signup(request):
         try:
             data = json.loads(request.body)
             form = UserRegistrationForm(data)
-            # 이메일 인증번호 확인
             submitted_verification_code = data.get('verification_code')
             session_verification_code = request.session.get('verification_code')
 
@@ -39,8 +38,6 @@ def signup(request):
             if form.is_valid():
                 user = form.save()
                 auth_login(request, user)
-                # 성공적으로 회원가입 후 세션에서 인증번호 제거
-                #del request.session['verification_code']
                 return JsonResponse({'status': 'success', 'message': 'User registered and logged in.'})
             else:
                 raise ValidationError("Form validation failed", details=form.errors)
@@ -82,13 +79,11 @@ def login(request):
             if not email or not password:
                 raise ValidationError("Email and password are required")
 
-            # Check if a user with this email exists
             try:
                 user = User.objects.get(email=email)
             except User.DoesNotExist:
                 raise UnauthorizedError("존재하지 않는 이메일입니다.")
 
-            # Now authenticate the user with the password
             user = authenticate(request, email=email, password=password)
             if user:
                 auth_login(request, user)
@@ -155,11 +150,6 @@ def send_verification_email(request):
         logger.error(f"Error sending verification email: {str(e)}")
         raise InternalServerError("Failed to send verification email")
 
-# @csrf_exempt
-# def logout_view(request):
-#     logout(request)
-#     return JsonResponse({'status': 'success', 'message': 'User logged out successfully'})
-
 @csrf_exempt
 def logout_view(request):
     try:
@@ -207,7 +197,6 @@ def change_password(request):
             new_password1 = data.get('new_password1')
             new_password2 = data.get('new_password2')
 
-            # Check if the old password is correct
             if not request.user.check_password(old_password):
                 return JsonResponse({'status': 'error', 'message': "현재 비밀번호가 일치하지 않습니다."}, status=400)
 
@@ -260,7 +249,6 @@ def delete_account(request):
         return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
 
     
-# username 변경 API
 @csrf_exempt
 @login_required
 def change_username(request):
@@ -286,7 +274,6 @@ def change_username(request):
     else:
         return JsonResponse({'status': 'error', 'message': 'POST method only allowed', 'code': 1002, 'status_code': 405}, status=405)
 
-# 비밀번호 재설정 API
 @csrf_exempt
 def password_reset_request(request):
     if request.method == 'POST':
@@ -297,15 +284,11 @@ def password_reset_request(request):
             if not email:
                 raise ValueError('이메일 주소가 필요합니다.')
 
-            # 여기서 비밀번호 재설정 메일 전송 로직을 추가합니다.
             user = User.objects.filter(email=email).first()
             if user is not None:
-                # 임시 비밀번호 생성
                 temporary_password = ''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', k=10))
                 user.set_password(temporary_password)
                 user.save()
-
-                # 이메일 전송
                 send_mail(
                     '비밀번호 재설정',
                     f'임시 비밀번호는 {temporary_password} 입니다.',

@@ -21,13 +21,12 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain.memory import ConversationBufferMemory
 
 logger = logging.getLogger(__name__)
-# 설정
+
 openai_api_key = os.getenv("OPENAI_API_KEY")
 embeddings = OpenAIEmbeddings(model="text-embedding-ada-002")
 retriever = Chroma(persist_directory="./database", embedding_function=embeddings).as_retriever(search_kwargs={"k": 3})
 llm = ChatOpenAI(api_key=openai_api_key, model="gpt-4o-2024-05-13")
 
-# 독립형 질문 생성
 contextualize_q_system_prompt = (
     "대화 기록과 최신 사용자 질문을 기반으로, "
     "대화 기록 없이도 이해할 수 있는 독립형 질문을 작성하세요. "
@@ -44,7 +43,6 @@ history_aware_retriever = create_history_aware_retriever(
     llm, retriever, contextualize_q_prompt
 )
 
-# 질문에 답변 생성
 qa_system_prompt = (
     "당신은 질문에 답변하는 작업을 돕는 어시스턴트입니다. "
     "다음의 검색된 문맥을 사용하여 질문에 답변하세요. "
@@ -62,12 +60,11 @@ qa_prompt = ChatPromptTemplate.from_messages(
 )
 question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
 
-# 전체 체인 생성
 rag_chain = create_retrieval_chain(
     history_aware_retriever, question_answer_chain
 )
 
-# Django 뷰 설정
+
 @csrf_exempt
 def chatbot(request):
     try:
@@ -80,15 +77,12 @@ def chatbot(request):
         chat_history = load_chat_history(request, session_id)
         formatted_chat_history = [{"role": message['role'], "content": message['content']} for message in chat_history]
 
-        # 체인 호출
         result = rag_chain.invoke({"input": query, "chat_history": formatted_chat_history})
         answer = result['answer']
         timestamp = timezone.now()
 
-        # 응답 포맷팅
         formatted_answer = format_answer(answer)
 
-        # DB에 대화 기록 저장
         if request.user.is_authenticated:
             session_name = data.get('session_name', 'Default Session')
             Chatbot.objects.create(
@@ -126,14 +120,13 @@ def load_chat_history(request, session_id):
         return []
 
 def format_answer(answer):
-    # 여기서 응답 내용을 포맷팅합니다.
+
     formatted_answer = answer.replace('\n', '<br>')
     
-    # **로 감싸진 부분을 <b></b> 태그로 변경
     while '**' in formatted_answer:
         start = formatted_answer.find('**')
         end = formatted_answer.find('**', start + 2)
-        if end == -1:  # Closing ** not found, break the loop
+        if end == -1:
             break
         formatted_answer = formatted_answer[:start] + '<b>' + formatted_answer[start+2:end] + '</b>' + formatted_answer[end+2:]
 
@@ -150,7 +143,6 @@ def chat_sessions(request):
             seen_session_ids.add(session['session_id'])
             unique_sessions.append(session)
 
-    # unique_sessions를 created_at 기준으로 내림차순 정렬
     unique_sessions.sort(key=lambda x: x['created_at'], reverse=True)
 
     return JsonResponse(unique_sessions, safe=False)

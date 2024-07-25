@@ -148,7 +148,7 @@ def get_soil_fertilizer_info(request):
         }
 
         response = requests.get(url, params=params)
-        response.raise_for_status()  # Raise an HTTPError for bad responses
+        response.raise_for_status()
 
         response_content = response.content.decode('utf-8')
         root = ET.fromstring(response_content)
@@ -177,8 +177,6 @@ def get_soil_fertilizer_info(request):
                 'pre_Compost_Mix': item.find('pre_Compost_Mix').text if item.find('pre_Compost_Mix') is not None else None,
             }
             data.append(item_data)
-            
-            # 'serviceKey'와 'crop_Code'를 제외한 딕셔너리 생성
             filtered_params = {k: v for k, v in params.items() if k not in ['serviceKey', 'crop_Code']}
             
 
@@ -205,13 +203,10 @@ def get_soil_fertilizer_info(request):
         raise InternalServerError(f"HTTP error: {str(e)}")
     except Exception as e:
         raise InternalServerError(str(e))
-    
- # user_id별로 저장된 결과목록 반환
+
 def get_crop_data_by_user(request):
     user_id  = request.user.id
-    # 주어진 user_id에 해당하는 모든 CropData 객체를 최신순으로 가져옵니다.
     crop_instances = crop_data.objects.filter(user_id=user_id).order_by('-created_at')
-    # 여러 개의 인스턴스를 JSON 형식으로 반환
     data = [
         {
             'user_id': crop_instance.user_id,
@@ -227,7 +222,6 @@ def get_crop_data_by_user(request):
     ]
 
     return JsonResponse(data, safe=False)
-#해당되는 session_id 데이터 삭제
 def delete_soil_data_by_session(request, session_id):
     if request.method == 'DELETE':
         crop_data.objects.filter(session_id=session_id).delete()

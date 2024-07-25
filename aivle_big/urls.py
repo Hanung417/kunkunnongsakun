@@ -15,7 +15,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('community/', include('community.urls')),
     path('selfchatbot/', include('selfchatbot.urls', namespace='selfchatbot')),
-    path('prediction/', include('prediction.urls')), # predict 병합
+    path('prediction/', include('prediction.urls')),
     path('detect/', include('detect.urls')),
     path('soil/', include('soil.urls')),
 ]

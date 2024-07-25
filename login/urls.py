@@ -6,7 +6,7 @@ from django.contrib.auth import views as auth_views
 from . import views
 
 app_name = 'login'
-# Update your urlpatterns to include this new view
+
 urlpatterns = [
     path('login/', views.login, name='login'),
     path('logout/', views.logout_view, name='logout'),

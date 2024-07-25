@@ -30,10 +30,10 @@ INSTALLED_APPS = [
     "login",
     "community",
     "selfchatbot",
-    'corsheaders', # cors 헤더 설정
+    'corsheaders',
     'rest_framework',
-    'prediction', # predict 병합
-    'detect', # detect 병합
+    'prediction',
+    'detect',
     'soil',
     
 ]
@@ -96,11 +96,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DATABASE_NAME', 'big_project'),
-        'USER': os.getenv('DATABASE_USER', 'postgres'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD', 'aivle202405!'),
-        'HOST': os.getenv('DATABASE_HOST', 'db-server.cp0ii2ks659o.ap-northeast-2.rds.amazonaws.com'),
-        'PORT': os.getenv('DATABASE_PORT', '5432'),
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT'),
         'OPTIONS': {
             'options': '-c client_encoding=UTF8',
         },
@@ -142,7 +142,7 @@ EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT'))
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == 'True'
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = 'iatu rajv ubti lkkv'#os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 

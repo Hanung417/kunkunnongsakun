@@ -11,7 +11,6 @@ class Chatbot(models.Model):
     answer_content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     
-#Vector DB문서 내용
 class Database(models.Model):
     question = models.TextField('question')
     answer = models.TextField('answer')
