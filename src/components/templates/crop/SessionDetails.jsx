@@ -519,15 +519,15 @@ const SessionDetails = () => {
                     <td>{sessionDetails.results[selectedCropIndex].crop_name}</td>
                   </tr>
                   <tr>
-                    <td>내일 예상 도매가</td>
+                    <td>내일 예상 도매가 (단위:1kg)</td>
                     <td>{sessionDetails.results[selectedCropIndex].price} 원</td>
                   </tr>
                   <tr>
-                    <td>모델 학습 결과(RMSE)</td>
+                    <td>모델 학습 결과 (RMSE)</td>
                     <td>{sessionDetails.results[selectedCropIndex].rmse.toFixed(1)}</td>
                   </tr>
                   <tr>
-                    <td>모델 학습 결과(R2)</td>
+                    <td>모델 학습 결과 (R2)</td>
                     <td>{sessionDetails.results[selectedCropIndex].r2_score.toFixed(3)}</td>
                   </tr>
                 </tbody>
