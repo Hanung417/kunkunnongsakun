@@ -114,7 +114,7 @@ const PaginationContainer = styled.div`
 `;
 
 const MyCommentedPostsTemplate = () => {
-  const { setIsLoading, isLoading } = useLoading(); // useLoading을 사용하여 로딩 상태 관리
+  const { setIsLoading, isLoading } = useLoading();
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const postsPerPage = 5;

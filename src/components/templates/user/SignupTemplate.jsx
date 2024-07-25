@@ -97,7 +97,7 @@ const SignupTemplate = () => {
       setEmailError("올바른 이메일 형식을 입력하세요.");
       return;
     }
-    setIsSendingCode(true); // 인증번호 발송 중 상태 설정
+    setIsSendingCode(true);
     sendVerificationEmail(email)
       .then(() => {
         setVerificationCodeSent(true);

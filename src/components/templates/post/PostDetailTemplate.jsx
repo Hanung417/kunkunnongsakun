@@ -86,7 +86,7 @@ const PostDetailTemplate = () => {
       await fetchPost();
       setNewComment("");
     } catch (error) {
-      console.error("Failed to post comment", error);
+      alert("댓글 작성에 실패했습니다. 다시 시도해주세요.");
     }
   };
 

@@ -64,7 +64,7 @@ const WritePostTemplate = () => {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setImage(file);
-    setFileName(file ? file.name : ""); // 파일 이름 상태 업데이트
+    setFileName(file ? file.name : "");
 
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -108,13 +108,11 @@ const WritePostTemplate = () => {
     try {
       setIsLoading(true);
       const response = await createPost(formData);
-      console.log("Created post", response.data);
-      setCreatedPostId(response.data.id); // 생성된 글 ID 저장
+      setCreatedPostId(response.data.id);
       setModalTitle("알림");
       setModalContent("글 작성이 완료되었습니다.");
       setIsModalOpen(true);
     } catch (error) {
-      console.error("Failed to create post", error);
       setModalTitle("작성 실패");
       setModalContent("글 작성 중 오류가 발생했습니다. 다시 시도해 주세요.");
       setIsModalOpen(true);
